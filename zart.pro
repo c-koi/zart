@@ -12,7 +12,7 @@ PKGCONFIG += opencv fftw3 zlib
 DEFINES += cimg_use_fftw3 cimg_use_zlib
 
 isEmpty(GMIC_PATH) {
-  GMIC_PATH = ../gmic/src/
+  GMIC_PATH = ../gmic/src
 }
 message( GMIC_PATH is $$GMIC_PATH )
 
@@ -51,7 +51,7 @@ openmp {
 SOURCES += $$GMIC_PATH/gmic.cpp
 DEFINES += gmic_build gmic_is_parallel cimg_use_abort
 
-INCLUDEPATH += $$PWD $$PWD/include $$PWD/$$GMIC_PATH/
+INCLUDEPATH += $$PWD $$PWD/include $$GMIC_PATH
 
 DEPENDPATH += $$PWD/include
 

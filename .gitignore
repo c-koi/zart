@@ -5,3 +5,4 @@ zart
 .ui
 .obj
 Makefile
+.qmake.stash
