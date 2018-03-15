@@ -3,6 +3,15 @@ TEMPLATE = app
 QT       += core gui xml network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+# OPTIONS
+
+!defined(GMIC_DYNAMIC_LINKING,var) { GMIC_DYNAMIC_LINKING = off }
+
+#
+#
+#
+#
+
 CONFIG	+= qt
 CONFIG	+= warn_on
 QT_CONFIG -= no-pkg-config
@@ -59,7 +68,16 @@ openmp {
 
 # compile our own version of gmic, with the same cimg_* flags as zart
 #LIBS += $$GMIC_PATH/libgmic.a
-SOURCES += $$GMIC_PATH/gmic.cpp
+
+equals(GMIC_DYNAMIC_LINKING, "on" ) {
+  message(Dynamic linking with libgmic)
+  LIBS += $$GMIC_PATH/libgmic.so
+}
+
+equals(GMIC_DYNAMIC_LINKING, "off" ) {
+   SOURCES += $$GMIC_PATH/gmic.cpp
+}
+
 DEFINES += gmic_build gmic_is_parallel cimg_use_abort
 
 INCLUDEPATH += $$PWD $$PWD/include $$GMIC_PATH
