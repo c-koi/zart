@@ -11,10 +11,21 @@ PKGCONFIG += opencv fftw3 zlib
 # LIBS += -lfftw3_threads
 DEFINES += cimg_use_fftw3 cimg_use_zlib
 
-isEmpty(GMIC_PATH) {
+defined(GMIC_PATH, var) {
+  message("GMIC_PATH is set ("$$GMIC_PATH")")
+}
+!defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
+  message(GMIC_PATH was not set: Found gmic sources in ../src)
+  GMIC_PATH = ../src
+}
+!defined(GMIC_PATH, var):exists(../gmic/src/gmic.cpp) {
+  message(GMIC_PATH was not set: Found gmic sources in ../gmic/src)
   GMIC_PATH = ../gmic/src
 }
-message( GMIC_PATH is $$GMIC_PATH )
+defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
+ error("G'MIC repository was not found ("$$GMIC_PATH")")
+}
+message("G'MIC repository was found ("$$GMIC_PATH")")
 
 unix {
    VERSION = $$system(grep \"define.ZART_VERSION \" include/Common.h | sed -e \"s/.*VERSION //\")
