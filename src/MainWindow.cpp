@@ -72,6 +72,7 @@
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QTreeWidgetItemIterator>
+#include <QButtonGroup>
 
 #include "Common.h"
 #include "DialogAbout.h"
