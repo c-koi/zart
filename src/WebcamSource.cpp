@@ -141,7 +141,7 @@ bool WebcamSource::isWebcamUnused(int index)
   if (capture) {
     try {
       capturedImage = cvQueryFrame(capture);
-    } catch (cv::Exception) {
+    } catch (cv::Exception &) {
       capturedImage = 0;
     }
     cvReleaseCapture(&capture);
@@ -179,7 +179,7 @@ WebcamSource::start()
     if (_capture) {
       try {
         capturedImage = cvQueryFrame(_capture);
-      } catch (cv::Exception) {
+      } catch (cv::Exception &) {
         capturedImage = 0;
       }
     }
