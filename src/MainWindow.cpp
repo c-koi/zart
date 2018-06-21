@@ -47,6 +47,7 @@
 
 #include <QAction>
 #include <QActionGroup>
+#include <QButtonGroup>
 #include <QComboBox>
 #include <QDesktopServices>
 #include <QDir>
