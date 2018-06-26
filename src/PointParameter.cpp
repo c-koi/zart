@@ -368,7 +368,7 @@ bool PointParameter::initFromNode(QDomNode node)
     _radius = radius;
   }
 
-  item = attributes.namedItem("radius");
+  item = attributes.namedItem("visible");
   if (!item.isNull() && item.nodeValue().trimmed() == "0") {
     _visible = false;
   }

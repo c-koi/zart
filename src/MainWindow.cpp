@@ -529,6 +529,7 @@ void MainWindow::play()
     _filterThread->setArguments(_commandParamsWidget->valueString());
   if (_source == StillImage)
     _filterThreadSemaphore.release();
+  updateKeypointsInViews();
   _filterThread->start();
 }
 
@@ -787,7 +788,6 @@ void MainWindow::commandModified()
   if (_filterThread && _filterThread->isRunning()) {
     stop();
     play();
-    updateKeypointsInViews();
   }
 }
 

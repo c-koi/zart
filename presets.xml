@@ -1989,8 +1989,8 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <command>
 -fx_symmetrize_preview $"*"
   </command>
-  <point name="Point 1" position="50,50" />
-  <point name="Point 2" position="50,50" removable="1" color="255,0,0,128" />
+  <point name="Point 1" position="50,50" color="128" />
+  <point name="Point 2" position="50,50" removable="-1" color="255,0,0,-128" visible="0" radius="25" />
   <float name="Angle" default="0" min="-180" max="180" />
   <choice name="Boundary" default="0" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
   <choice name="Type" default="0" choice0="Symmetry" choice1="Antisymmetry" />
