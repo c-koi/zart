@@ -45,48 +45,27 @@
  */
 #include <TreeWidgetPresetItem.h>
 
-TreeWidgetPresetItem::TreeWidgetPresetItem(const QStringList &strings,
-                                           QDomNode node)
-  : QTreeWidgetItem(strings),
-    _presetNode(node)
-{
-}
+TreeWidgetPresetItem::TreeWidgetPresetItem(const QStringList & strings, QDomNode node) : QTreeWidgetItem(strings), _presetNode(node) {}
 
-TreeWidgetPresetItem::TreeWidgetPresetItem(QTreeWidget * parent,
-                                           const QStringList &strings,
-                                           QDomNode node)
-  : QTreeWidgetItem(parent,strings),
-    _presetNode(node)
-{
-}
+TreeWidgetPresetItem::TreeWidgetPresetItem(QTreeWidget * parent, const QStringList & strings, QDomNode node) : QTreeWidgetItem(parent, strings), _presetNode(node) {}
 
-TreeWidgetPresetItem::TreeWidgetPresetItem(QTreeWidgetItem * parent,
-                                           const QStringList & strings,
-                                           QDomNode node)
-  : QTreeWidgetItem(parent,strings),
-    _presetNode(node)
-{
-}
+TreeWidgetPresetItem::TreeWidgetPresetItem(QTreeWidgetItem * parent, const QStringList & strings, QDomNode node) : QTreeWidgetItem(parent, strings), _presetNode(node) {}
 
-TreeWidgetPresetItem::~TreeWidgetPresetItem()
-{
-}
+TreeWidgetPresetItem::~TreeWidgetPresetItem() {}
 
-QDomNode
-TreeWidgetPresetItem::node() const
+QDomNode TreeWidgetPresetItem::node() const
 {
   return _presetNode;
 }
 
-TreeWidgetPresetItem *
-TreeWidgetPresetItem::clone() const
+TreeWidgetPresetItem * TreeWidgetPresetItem::clone() const
 {
   int columns = columnCount();
   QStringList strings;
   for (int i = 0; i < columns; ++i) {
     strings.append(text(i));
   }
-  TreeWidgetPresetItem * result = new TreeWidgetPresetItem(strings,_presetNode);
+  TreeWidgetPresetItem * result = new TreeWidgetPresetItem(strings, _presetNode);
   int count = childCount();
   for (int i = 0; i < count; ++i) {
     result->addChild(child(i)->clone());
@@ -94,11 +73,10 @@ TreeWidgetPresetItem::clone() const
   return result;
 }
 
-QStringList
-TreeWidgetPresetItem::path() const
+QStringList TreeWidgetPresetItem::path() const
 {
   QStringList result;
-  TreeWidgetPresetItem * parentItem = dynamic_cast<TreeWidgetPresetItem*>(parent());
+  TreeWidgetPresetItem * parentItem = dynamic_cast<TreeWidgetPresetItem *>(parent());
   if (parentItem) {
     result.append(parentItem->text(0));
   }

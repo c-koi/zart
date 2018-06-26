@@ -62,10 +62,11 @@ public:
   FullScreenWidget(MainWindow *);
   ~FullScreenWidget();
   ImageView * imageView();
-  QTreeWidget *treeWidget();
+  QTreeWidget * treeWidget();
   CommandParamsWidget * commandParamsWidget();
   void setFavesModel(QAbstractItemModel *);
   QComboBox * cbFaves();
+
 protected:
   void showEvent(QShowEvent * event);
   void keyPressEvent(QKeyEvent *);
@@ -73,6 +74,7 @@ protected:
 signals:
   void escapePressed();
   void spaceBarPressed();
+
 private:
   MainWindow * _mainWindow;
 };

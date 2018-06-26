@@ -48,26 +48,16 @@
 /**
  * Constructor
  */
-CommandEditor::CommandEditor(QWidget * parent)
-  : QPlainTextEdit(parent)
-{
-}
+CommandEditor::CommandEditor(QWidget * parent) : QPlainTextEdit(parent) {}
 
-CommandEditor::~CommandEditor()
-{
-}
+CommandEditor::~CommandEditor() {}
 
-void
-CommandEditor::keyPressEvent (QKeyEvent * event)
+void CommandEditor::keyPressEvent(QKeyEvent * event)
 {
-  if ((event->key() == Qt::Key_Enter ||
-       event->key() == Qt::Key_Return)
-      && (event->modifiers() & Qt::ControlModifier)) {
+  if ((event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) && (event->modifiers() & Qt::ControlModifier)) {
     event->accept();
     emit commandModified();
   } else {
     QPlainTextEdit::keyPressEvent(event);
   }
 }
-
-

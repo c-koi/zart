@@ -45,25 +45,20 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "IntParameter.h"
-#include "Common.h"
-#include <QWidget>
 #include <QGridLayout>
-#include <QSpinBox>
-#include <QSlider>
 #include <QLabel>
+#include <QSlider>
+#include <QSpinBox>
+#include <QWidget>
+#include "Common.h"
 
-IntParameter::IntParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _node(node),
-    _label(0),
-    _slider(0),
-    _spinBox(0)
+IntParameter::IntParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _node(node), _label(0), _slider(0), _spinBox(0)
 {
   _name = node.attributes().namedItem("name").nodeValue();
   QString min = node.attributes().namedItem("min").nodeValue();
   QString max = node.attributes().namedItem("max").nodeValue();
   QString def = node.attributes().namedItem("default").nodeValue();
-  QString value = node.toElement().attribute("savedValue",def);
+  QString value = node.toElement().attribute("savedValue", def);
   _min = min.toInt();
   _max = max.toInt();
   _default = def.toInt();
@@ -77,37 +72,33 @@ IntParameter::~IntParameter()
   delete _label;
 }
 
-void
-IntParameter::addTo(QWidget * widget, int row)
+void IntParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _spinBox;
   delete _slider;
   delete _label;
-  _slider = new QSlider(Qt::Horizontal,widget);
-  _slider->setRange(_min,_max);
+  _slider = new QSlider(Qt::Horizontal, widget);
+  _slider->setRange(_min, _max);
   _slider->setValue(_value);
   _spinBox = new QSpinBox(widget);
-  _spinBox->setRange(_min,_max);
+  _spinBox->setRange(_min, _max);
   _spinBox->setValue(_value);
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_slider,row,1,1,1);
-  grid->addWidget(_spinBox,row,2,1,1);
-  connect(_slider, SIGNAL(valueChanged(int)),
-          this, SLOT(onSliderChanged(int)));
-  connect(_spinBox, SIGNAL(valueChanged(int)),
-          this, SLOT(onSpinBoxChanged(int)));
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_slider, row, 1, 1, 1);
+  grid->addWidget(_spinBox, row, 2, 1, 1);
+  connect(_slider, SIGNAL(valueChanged(int)), this, SLOT(onSliderChanged(int)));
+  connect(_spinBox, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxChanged(int)));
 }
 
-QString
-IntParameter::textValue() const
+QString IntParameter::textValue() const
 {
   return _spinBox->text();
 }
 
-void
-IntParameter::setValue(const QString & value)
+void IntParameter::setValue(const QString & value)
 {
   _value = value.toInt();
   if (_spinBox) {
@@ -116,32 +107,28 @@ IntParameter::setValue(const QString & value)
   }
 }
 
-void
-IntParameter::reset()
+void IntParameter::reset()
 {
   _slider->setValue(_default);
   _spinBox->setValue(_default);
   _value = _default;
 }
 
-void
-IntParameter::saveValueInDOM()
+void IntParameter::saveValueInDOM()
 {
-  _node.toElement().setAttribute("savedValue",_slider->value());
+  _node.toElement().setAttribute("savedValue", _slider->value());
 }
 
-void
-IntParameter::onSliderChanged(int i)
+void IntParameter::onSliderChanged(int i)
 {
   _value = i;
   _spinBox->setValue(i);
   emit valueChanged();
 }
 
-void
-IntParameter::onSpinBoxChanged(int i)
+void IntParameter::onSpinBoxChanged(int i)
 {
-  _value= i;
+  _value = i;
   _slider->setValue(i);
   emit valueChanged();
 }

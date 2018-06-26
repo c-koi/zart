@@ -52,30 +52,24 @@ ImageSource::ImageSource()
   _image = 0;
 }
 
-ImageSource::~ImageSource()
-{
-}
+ImageSource::~ImageSource() {}
 
-IplImage *
-ImageSource::image() const
+IplImage * ImageSource::image() const
 {
   return _image;
 }
 
-void
-ImageSource::setWidth(int width)
+void ImageSource::setWidth(int width)
 {
   _width = width;
 }
 
-void
-ImageSource::setHeight(int height)
+void ImageSource::setHeight(int height)
 {
   _height = height;
 }
 
-void
-ImageSource::setImage(IplImage *image)
+void ImageSource::setImage(IplImage * image)
 {
   _image = image;
   if (_image) {
@@ -87,20 +81,17 @@ ImageSource::setImage(IplImage *image)
   }
 }
 
-int
-ImageSource::width() const
+int ImageSource::width() const
 {
   return _width;
 }
 
-int
-ImageSource::height() const
+int ImageSource::height() const
 {
   return _height;
 }
 
-QSize
-ImageSource::size() const
+QSize ImageSource::size() const
 {
-  return QSize(_width,_height);
+  return QSize(_width, _height);
 }

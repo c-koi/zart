@@ -46,9 +46,9 @@
 #ifndef _FOLDERPARAMETER_H_
 #define _FOLDERPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QDomNode>
 #include <QString>
+#include "AbstractParameter.h"
 class QLabel;
 class QPushButton;
 
@@ -67,6 +67,7 @@ public slots:
   void onButtonPressed();
 signals:
   void valueChanged();
+
 private:
   QDomNode _node;
   QString _name;

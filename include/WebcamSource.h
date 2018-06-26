@@ -55,9 +55,9 @@
 #include <cv.h>
 #include <highgui.h>
 #endif
-#include <QVector>
 #include <QList>
 #include <QSize>
+#include <QVector>
 #include "ImageSource.h"
 
 class QSplashScreen;
@@ -82,12 +82,13 @@ public:
   static void retrieveWebcamResolutions(const QList<int> & camList, QSplashScreen * splashScreen = 0, QStatusBar * statusBar = 0);
   static const QList<QSize> & webcamResolutions(int index);
   static void clearSavedSettings();
+
 private:
-  CvCapture *_capture;
+  CvCapture * _capture;
   int _cameraIndex;
   QSize _captureSize;
   static QList<int> _webcamList;
-  static QVector< QList<QSize> > _webcamResolutions;
+  static QVector<QList<QSize>> _webcamResolutions;
 };
 
 #endif

@@ -67,10 +67,11 @@ void VideoFileSource::capture()
   if (!_videoIsReadable)
     return;
   IplImage * newImage = cvQueryFrame(_capture);
-  if (! newImage) {
+  if (!newImage) {
     cvReleaseCapture(&_capture);
     loadVideoFile(_filename);
-    if (_loop) newImage = cvQueryFrame(_capture);
+    if (_loop)
+      newImage = cvQueryFrame(_capture);
   }
   setImage(newImage);
 }
@@ -78,7 +79,8 @@ void VideoFileSource::capture()
 bool VideoFileSource::loadVideoFile(QString filename)
 {
   QFileInfo info(filename);
-  if (! info.isReadable()) return false;
+  if (!info.isReadable())
+    return false;
   _capture = cvCaptureFromFile(filename.toLatin1().constData());
   if (_capture) {
     IplImage * iplImage = cvQueryFrame(_capture);
@@ -94,20 +96,18 @@ bool VideoFileSource::loadVideoFile(QString filename)
       setWidth(0);
       setHeight(0);
       setImage(0);
-      QMessageBox::critical(0,"Error","Could not decode video file.\nTry to install gstreamer-ffmpeg...");
+      QMessageBox::critical(0, "Error", "Could not decode video file.\nTry to install gstreamer-ffmpeg...");
     }
   }
   return _videoIsReadable;
 }
 
-const QString &
-VideoFileSource::filename() const
+const QString & VideoFileSource::filename() const
 {
   return _filename;
 }
 
-const QString &
-VideoFileSource::filePath() const
+const QString & VideoFileSource::filePath() const
 {
   return _filePath;
 }
@@ -116,4 +116,3 @@ void VideoFileSource::setLoop(bool on)
 {
   _loop = on;
 }
-

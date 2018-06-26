@@ -46,12 +46,12 @@
 #ifndef _COLORPARAMETER_H_
 #define _COLORPARAMETER_H_
 
-#include "AbstractParameter.h"
-#include <QDomNode>
-#include <QString>
 #include <QColor>
-#include <QPixmap>
 #include <QColorDialog>
+#include <QDomNode>
+#include <QPixmap>
+#include <QString>
+#include "AbstractParameter.h"
 class QSpinBox;
 class QSlider;
 class QLabel;
@@ -72,8 +72,8 @@ public slots:
   void colorChanged(const QColor &);
 signals:
   void valueChanged();
-private:
 
+private:
   void updateButtonColor();
   QDomNode _node;
   QString _name;

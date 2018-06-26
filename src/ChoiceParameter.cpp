@@ -45,23 +45,19 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "ChoiceParameter.h"
-#include "Common.h"
-#include <QWidget>
-#include <QGridLayout>
 #include <QComboBox>
-#include <QLabel>
 #include <QDomNamedNodeMap>
+#include <QGridLayout>
+#include <QLabel>
+#include <QWidget>
+#include "Common.h"
 
-ChoiceParameter::ChoiceParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _node(node),
-    _label(0),
-    _comboBox(0)
+ChoiceParameter::ChoiceParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _node(node), _label(0), _comboBox(0)
 {
   _name = node.attributes().namedItem("name").nodeValue();
 
-  QString def = node.toElement().attribute("default","0");
-  QString value = node.toElement().attribute("savedValue",def);
+  QString def = node.toElement().attribute("default", "0");
+  QString value = node.toElement().attribute("savedValue", def);
   _default = def.toInt();
   _value = value.toInt();
 }
@@ -72,11 +68,11 @@ ChoiceParameter::~ChoiceParameter()
   delete _label;
 }
 
-void
-ChoiceParameter::addTo(QWidget * widget, int row)
+void ChoiceParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _comboBox;
   delete _label;
 
@@ -88,25 +84,22 @@ ChoiceParameter::addTo(QWidget * widget, int row)
     if (attr.isNull()) {
       done = true;
     } else {
-      _comboBox->addItem(attr.nodeValue(),QVariant(i));
+      _comboBox->addItem(attr.nodeValue(), QVariant(i));
     }
   }
   _comboBox->setCurrentIndex(_value);
 
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_comboBox,row,1,1,2);
-  connect(_comboBox, SIGNAL(currentIndexChanged(int)),
-          this, SLOT(onComboBoxIndexChanged(int)));
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_comboBox, row, 1, 1, 2);
+  connect(_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxIndexChanged(int)));
 }
 
-QString
-ChoiceParameter::textValue() const
+QString ChoiceParameter::textValue() const
 {
   return QString("%1").arg(_comboBox->currentIndex());
 }
 
-void
-ChoiceParameter::setValue(const QString & value)
+void ChoiceParameter::setValue(const QString & value)
 {
   _value = value.toInt();
   if (_comboBox) {
@@ -114,8 +107,7 @@ ChoiceParameter::setValue(const QString & value)
   }
 }
 
-void
-ChoiceParameter::reset()
+void ChoiceParameter::reset()
 {
   _comboBox->setCurrentIndex(_default);
   _value = _default;
@@ -123,13 +115,11 @@ ChoiceParameter::reset()
 
 void ChoiceParameter::saveValueInDOM()
 {
-  _node.toElement().setAttribute("savedValue",_comboBox->currentIndex());
+  _node.toElement().setAttribute("savedValue", _comboBox->currentIndex());
 }
 
-void
-ChoiceParameter::onComboBoxIndexChanged(int i)
+void ChoiceParameter::onComboBoxIndexChanged(int i)
 {
   _value = i;
   emit valueChanged();
 }
-

@@ -46,9 +46,9 @@
 #ifndef _CHOICEPARAMETER_H_
 #define _CHOICEPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QDomNode>
 #include <QString>
+#include "AbstractParameter.h"
 class QComboBox;
 class QLabel;
 
@@ -66,13 +66,14 @@ public slots:
   void onComboBoxIndexChanged(int);
 signals:
   void valueChanged();
+
 private:
   QDomNode _node;
   QString _name;
   int _default;
   int _value;
   QLabel * _label;
-  QComboBox* _comboBox;
+  QComboBox * _comboBox;
 };
 
 #endif // _CHOICEPARAMETER_H_

@@ -48,8 +48,7 @@
 
 #include <QMutex>
 
-template<typename T>
-class CriticalRef {
+template <typename T> class CriticalRef {
 public:
   CriticalRef(T * pobject);
   ~CriticalRef();
@@ -57,50 +56,37 @@ public:
   const T & object() const;
   void lock();
   void unlock();
+
 private:
   T * _object;
   QMutex _mutex;
 };
 
-template<typename T>
-CriticalRef<T>::CriticalRef(T * pobject)
-  : _object(pobject)
-{
-}
+template <typename T> CriticalRef<T>::CriticalRef(T * pobject) : _object(pobject) {}
 
-template<typename T>
-CriticalRef<T>::~CriticalRef()
+template <typename T> CriticalRef<T>::~CriticalRef()
 {
   delete _object;
 }
 
-template<typename T>
-T &
-CriticalRef<T>::object()
+template <typename T> T & CriticalRef<T>::object()
 {
   return *_object;
 }
 
-template<typename T>
-const T &
-CriticalRef<T>::object() const
+template <typename T> const T & CriticalRef<T>::object() const
 {
   return *_object;
 }
 
-template<typename T>
-void
-CriticalRef<T>::lock()
+template <typename T> void CriticalRef<T>::lock()
 {
   _mutex.lock();
 }
 
-template<typename T>
-void
-CriticalRef<T>::unlock()
+template <typename T> void CriticalRef<T>::unlock()
 {
   _mutex.unlock();
 }
-
 
 #endif // _CRITICALREF_H_

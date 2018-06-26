@@ -44,19 +44,16 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "DialogLicense.h"
-#include "Common.h"
 #include <QFile>
+#include "Common.h"
 
 /**
  * Constructor
  */
-DialogLicense::DialogLicense(QWidget * parent)
-  :QDialog(parent)
+DialogLicense::DialogLicense(QWidget * parent) : QDialog(parent)
 {
   setupUi(this);
   QFile license(":/Licence_CeCILL_V2-en.html");
   license.open(QFile::ReadOnly);
   _text->setText(license.readAll());
 }
-
-

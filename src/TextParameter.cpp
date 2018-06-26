@@ -45,22 +45,18 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "TextParameter.h"
-#include "Common.h"
-#include <QWidget>
 #include <QGridLayout>
-#include <QLineEdit>
 #include <QLabel>
+#include <QLineEdit>
+#include <QWidget>
+#include "Common.h"
 
-TextParameter::TextParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _node(node),
-    _label(0),
-    _lineEdit(0)
+TextParameter::TextParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _node(node), _label(0), _lineEdit(0)
 {
   _name = node.attributes().namedItem("name").nodeValue();
   QString def = node.attributes().namedItem("default").nodeValue();
-  _default = node.toElement().attribute("default",QString());
-  _value = node.toElement().attribute("savedValue",_default);
+  _default = node.toElement().attribute("default", QString());
+  _value = node.toElement().attribute("savedValue", _default);
 }
 
 TextParameter::~TextParameter()
@@ -69,39 +65,35 @@ TextParameter::~TextParameter()
   delete _label;
 }
 
-void
-TextParameter::addTo(QWidget * widget, int row)
+void TextParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _label;
   delete _lineEdit;
-  _lineEdit = new QLineEdit(_value,widget);
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_lineEdit,row,1,1,2);
-  connect(_lineEdit,SIGNAL(editingFinished()),
-          this,SIGNAL(valueChanged()));
+  _lineEdit = new QLineEdit(_value, widget);
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_lineEdit, row, 1, 1, 2);
+  connect(_lineEdit, SIGNAL(editingFinished()), this, SIGNAL(valueChanged()));
 }
 
-QString
-TextParameter::textValue() const
+QString TextParameter::textValue() const
 {
   QString text = _lineEdit->text();
-  text.replace(QChar('"'),QString("\\\""));
+  text.replace(QChar('"'), QString("\\\""));
   if (_lineEdit->text().isEmpty())
     return QString("\"\\\"\\\"\"");
   else
     return QString("\"%1\"").arg(text);
 }
 
-QString
-TextParameter::unquotedTextValue() const
+QString TextParameter::unquotedTextValue() const
 {
   return _lineEdit->text();
 }
 
-void
-TextParameter::setValue(const QString & value)
+void TextParameter::setValue(const QString & value)
 {
   _value = value;
   if (_lineEdit) {
@@ -109,15 +101,13 @@ TextParameter::setValue(const QString & value)
   }
 }
 
-void
-TextParameter::reset()
+void TextParameter::reset()
 {
   _lineEdit->setText(_default);
   _value = _default;
 }
 
-void
-TextParameter::saveValueInDOM()
+void TextParameter::saveValueInDOM()
 {
-  _node.toElement().setAttribute("savedValue",_lineEdit->text());
+  _node.toElement().setAttribute("savedValue", _lineEdit->text());
 }

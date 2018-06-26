@@ -45,24 +45,20 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "FileParameter.h"
-#include "Common.h"
-#include <QWidget>
-#include <QGridLayout>
-#include <QLabel>
 #include <QFileDialog>
-#include <QPushButton>
 #include <QFileInfo>
 #include <QFontMetrics>
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QWidget>
+#include "Common.h"
 
-FileParameter::FileParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _node(node),
-    _label(0),
-    _button(0)
+FileParameter::FileParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _node(node), _label(0), _button(0)
 {
   _name = node.attributes().namedItem("name").nodeValue();
-  _default = node.toElement().attribute("default",QString());
-  _value = node.toElement().attribute("savedValue",_default);
+  _default = node.toElement().attribute("default", QString());
+  _value = node.toElement().attribute("savedValue", _default);
 }
 
 FileParameter::~FileParameter()
@@ -71,11 +67,11 @@ FileParameter::~FileParameter()
   delete _button;
 }
 
-void
-FileParameter::addTo(QWidget * widget, int row)
+void FileParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _label;
   delete _button;
 
@@ -83,19 +79,17 @@ FileParameter::addTo(QWidget * widget, int row)
   if (_value.isEmpty()) {
     buttonText = "...";
   } else {
-    int w = widget->contentsRect().width()/3;
+    int w = widget->contentsRect().width() / 3;
     QFontMetrics fm(widget->font());
-    buttonText = fm.elidedText(QFileInfo(_value).fileName(),Qt::ElideRight,w);
+    buttonText = fm.elidedText(QFileInfo(_value).fileName(), Qt::ElideRight, w);
   }
-  _button = new QPushButton(buttonText,widget);
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_button,row,1,1,2);
-  connect(_button, SIGNAL(clicked()),
-          this, SLOT(onButtonPressed()));
+  _button = new QPushButton(buttonText, widget);
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_button, row, 1, 1, 2);
+  connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
 
-QString
-FileParameter::textValue() const
+QString FileParameter::textValue() const
 {
   if (_value.isEmpty())
     return QString("\"\\\"\\\"\"");
@@ -103,56 +97,50 @@ FileParameter::textValue() const
     return QString("\"%1\"").arg(_value);
 }
 
-QString
-FileParameter::unquotedTextValue() const
+QString FileParameter::unquotedTextValue() const
 {
   return _value;
 }
 
-void
-FileParameter::setValue(const QString & value)
+void FileParameter::setValue(const QString & value)
 {
   _value = value;
   if (_button) {
     if (_value.isEmpty()) {
       _button->setText("...");
     } else {
-      int width = _button->contentsRect().width()-10;
+      int width = _button->contentsRect().width() - 10;
       QFontMetrics fm(_button->font());
-      _button->setText(fm.elidedText(QFileInfo(_value).fileName(),Qt::ElideRight,width));
+      _button->setText(fm.elidedText(QFileInfo(_value).fileName(), Qt::ElideRight, width));
     }
   }
 }
 
-void
-FileParameter::reset()
+void FileParameter::reset()
 {
   _value = _default;
 }
 
-void
-FileParameter::saveValueInDOM()
+void FileParameter::saveValueInDOM()
 {
-  _node.toElement().setAttribute("savedValue",_value);
+  _node.toElement().setAttribute("savedValue", _value);
 }
 
-void
-FileParameter::onButtonPressed()
+void FileParameter::onButtonPressed()
 {
   QString folder;
   if (!_value.isEmpty()) {
     folder = QFileInfo(_value).path();
   }
-  QString filename = QFileDialog::getSaveFileName(0,"Select a file",folder,QString(),0,
-                                                  QFileDialog::DontConfirmOverwrite);
+  QString filename = QFileDialog::getSaveFileName(0, "Select a file", folder, QString(), 0, QFileDialog::DontConfirmOverwrite);
   if (filename.isNull()) {
     _value = "";
     _button->setText("...");
   } else {
     _value = filename;
-    int w = _button->contentsRect().width()-10;
+    int w = _button->contentsRect().width() - 10;
     QFontMetrics fm(_button->font());
-    _button->setText(fm.elidedText(QFileInfo(_value).fileName(),Qt::ElideRight,w));
+    _button->setText(fm.elidedText(QFileInfo(_value).fileName(), Qt::ElideRight, w));
   }
   emit valueChanged();
 }

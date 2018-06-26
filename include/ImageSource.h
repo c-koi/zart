@@ -66,12 +66,14 @@ public:
   int height() const;
   QSize size() const;
   virtual void capture() = 0;
+
 protected:
   void setWidth(int);
   void setHeight(int);
-  void setImage(IplImage *image);
+  void setImage(IplImage * image);
+
 private:
-  IplImage *_image;
+  IplImage * _image;
   int _width;
   int _height;
 };

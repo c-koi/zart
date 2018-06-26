@@ -52,15 +52,13 @@
 /**
  *  The DialogAbout class.
  */
-class DialogAbout : public QDialog, public Ui::DialogAbout  {
+class DialogAbout : public QDialog, public Ui::DialogAbout {
 
 public:
   DialogAbout(QWidget * parent);
 
 protected:
-
 private:
-
 };
 
 #endif // _DIALOGABOUT_H_

@@ -61,6 +61,7 @@ public:
   void saveValueInDOM();
 signals:
   void valueChanged();
+
 private:
   QFrame * _frame;
 };

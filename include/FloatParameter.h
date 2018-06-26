@@ -46,9 +46,9 @@
 #ifndef _FLOATPARAMETER_H_
 #define _FLOATPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QDomNode>
 #include <QString>
+#include "AbstractParameter.h"
 class QDoubleSpinBox;
 class QSlider;
 class QLabel;
@@ -68,6 +68,7 @@ public slots:
   void onSpinBoxChanged(double);
 signals:
   void valueChanged();
+
 private:
   QDomNode _node;
   QString _name;

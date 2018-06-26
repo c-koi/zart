@@ -53,45 +53,35 @@
 #include <cv.h>
 #endif
 
-#include "gmic.h"
-#include "CImg.h"
 #include <QMutex>
+#include "gmic.h"
 
 class QImage;
 
 class ImageConverter {
 public:
-  enum MergeDirection { MergeTop, MergeLeft, MergeBottom, MergeRight, DuplicateVertical, DuplicateHorizontal };
+  enum MergeDirection
+  {
+    MergeTop,
+    MergeLeft,
+    MergeBottom,
+    MergeRight,
+    DuplicateVertical,
+    DuplicateHorizontal
+  };
 
   static void convert(const IplImage * in, QImage * out);
   static void convert(const QImage & in, IplImage ** out);
   static void convert(const IplImage * in, cimg_library::CImg<float> & out);
   static void convert(const cimg_library::CImg<float> & in, QImage * out);
-  static void merge(IplImage * iplImage,
-                    const cimg_library::CImg<float> & cimgImage,
-                    QImage * out,
-                    QMutex * imageMutex,
-                    MergeDirection direction);
-  static void mergeTop(IplImage * iplImage,
-                       const cimg_library::CImg<float> & cimgImage,
-                       QImage * out);
-  static void mergeLeft(IplImage * iplImage,
-                        const cimg_library::CImg<float> & cimgImage,
-                        QImage * out);
-  static void mergeBottom(IplImage * iplImage,
-                          const cimg_library::CImg<float> & cimgImage,
-                          QImage * out,
-                          bool shift = false);
-  static void mergeRight(IplImage * iplImage,
-                         const cimg_library::CImg<float> & cimgImage,
-                         QImage * out,
-                         bool shift = true);
-  static void duplicateVertical(IplImage * iplImage,
-                                const cimg_library::CImg<float> & cimgImage,
-                                QImage * out);
-  static void duplicateHorizontal(IplImage * iplImage,
-                                  const cimg_library::CImg<float> & cimgImage,
-                                  QImage * out);
+  static void merge(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, QMutex * imageMutex, MergeDirection direction);
+  static void mergeTop(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
+  static void mergeLeft(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
+  static void mergeBottom(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift = false);
+  static void mergeRight(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift = true);
+  static void duplicateVertical(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
+  static void duplicateHorizontal(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
+
 private:
   static IplImage * _image;
 };

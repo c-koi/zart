@@ -43,18 +43,16 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#include <iostream>
 #include "FullScreenWidget.h"
-#include "ImageView.h"
-#include <QKeyEvent>
 #include <QCloseEvent>
 #include <QHBoxLayout>
+#include <QKeyEvent>
 #include <QVBoxLayout>
+#include <iostream>
+#include "ImageView.h"
 #include "MainWindow.h"
 
-FullScreenWidget::FullScreenWidget(MainWindow * mainwindow)
-  : QWidget(0),
-    _mainWindow(mainwindow)
+FullScreenWidget::FullScreenWidget(MainWindow * mainwindow) : QWidget(0), _mainWindow(mainwindow)
 {
   setupUi(this);
 
@@ -63,34 +61,24 @@ FullScreenWidget::FullScreenWidget(MainWindow * mainwindow)
 #else
   _tbFoldRightPanel->setText("Hide >>");
 #endif
-  connect(_tbFoldRightPanel,SIGNAL(clicked()),
-          _rightFrame, SLOT(hide()));
-  connect(_tbFoldRightPanel,SIGNAL(clicked()),
-          _imageView, SLOT(setFocus()));
-  connect(_imageView, SIGNAL(escapePressed()),
-          this, SIGNAL(escapePressed()));
-  connect(_imageView, SIGNAL(spaceBarPressed()),
-          this, SIGNAL(spaceBarPressed()));
-  connect(_imageView, SIGNAL(mousePress(QMouseEvent *)),
-          _mainWindow, SLOT(imageViewMouseEvent(QMouseEvent *)));
-  connect(_imageView, SIGNAL(mouseMove(QMouseEvent *)),
-          _mainWindow, SLOT(imageViewMouseEvent(QMouseEvent *)));
+  connect(_tbFoldRightPanel, SIGNAL(clicked()), _rightFrame, SLOT(hide()));
+  connect(_tbFoldRightPanel, SIGNAL(clicked()), _imageView, SLOT(setFocus()));
+  connect(_imageView, SIGNAL(escapePressed()), this, SIGNAL(escapePressed()));
+  connect(_imageView, SIGNAL(spaceBarPressed()), this, SIGNAL(spaceBarPressed()));
+  connect(_imageView, SIGNAL(mousePress(QMouseEvent *)), _mainWindow, SLOT(imageViewMouseEvent(QMouseEvent *)));
+  connect(_imageView, SIGNAL(mouseMove(QMouseEvent *)), _mainWindow, SLOT(imageViewMouseEvent(QMouseEvent *)));
   _imageView->setMouseTracking(true);
   _imageView->setBackgroundColor(Qt::black);
   setMouseTracking(true);
   _rightFrame->setVisible(false);
   _splitter->setChildrenCollapsible(false);
-  layout()->setContentsMargins(0,0,0,0);
+  layout()->setContentsMargins(0, 0, 0, 0);
   _imageView->installEventFilter(this);
 }
 
-FullScreenWidget::~FullScreenWidget()
-{
+FullScreenWidget::~FullScreenWidget() {}
 
-}
-
-void
-FullScreenWidget::keyPressEvent(QKeyEvent * e)
+void FullScreenWidget::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Escape || e->key() == Qt::Key_F5) {
     emit escapePressed();
@@ -102,11 +90,11 @@ FullScreenWidget::keyPressEvent(QKeyEvent * e)
   }
 }
 
-bool
-FullScreenWidget::eventFilter(QObject * , QEvent * event)
+bool FullScreenWidget::eventFilter(QObject *, QEvent * event)
 {
-  if (_rightFrame->isVisible() ||(event->type() != QEvent::MouseMove)) return false;
-  if (dynamic_cast<QMouseEvent*>(event)->x() == width() - 1) {
+  if (_rightFrame->isVisible() || (event->type() != QEvent::MouseMove))
+    return false;
+  if (dynamic_cast<QMouseEvent *>(event)->x() == width() - 1) {
     _rightFrame->setVisible(true);
     return true;
   } else {
@@ -114,38 +102,32 @@ FullScreenWidget::eventFilter(QObject * , QEvent * event)
   }
 }
 
-ImageView *
-FullScreenWidget::imageView()
+ImageView * FullScreenWidget::imageView()
 {
   return _imageView;
 }
 
-QTreeWidget *
-FullScreenWidget::treeWidget()
+QTreeWidget * FullScreenWidget::treeWidget()
 {
   return _treePresetsFullScreen;
 }
 
-CommandParamsWidget *
-FullScreenWidget::commandParamsWidget()
+CommandParamsWidget * FullScreenWidget::commandParamsWidget()
 {
   return _commandParamsWidget;
 }
 
-void
-FullScreenWidget::setFavesModel(QAbstractItemModel * model)
+void FullScreenWidget::setFavesModel(QAbstractItemModel * model)
 {
   _cbFaves->setModel(model);
 }
 
-QComboBox *
-FullScreenWidget::cbFaves()
+QComboBox * FullScreenWidget::cbFaves()
 {
   return _cbFaves;
 }
 
-void
-FullScreenWidget::showEvent(QShowEvent *)
+void FullScreenWidget::showEvent(QShowEvent *)
 {
   _imageView->setFocus();
 }

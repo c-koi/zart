@@ -45,43 +45,39 @@
  *
  */
 #include "ImageView.h"
-#include <QPainter>
-#include <QMouseEvent>
-#include <QThread>
 #include <QFrame>
 #include <QLayout>
-#include <QRect>
+#include <QMouseEvent>
 #include <QMutexLocker>
+#include <QPainter>
+#include <QRect>
+#include <QThread>
 #include <iostream>
 #include "Common.h"
 
-ImageView::ImageView(QWidget * parent)
-  : QWidget(parent)
+ImageView::ImageView(QWidget * parent) : QWidget(parent)
 {
   setAutoFillBackground(false);
   _image = QImage(640, 480, QImage::Format_RGB888);
   _image.fill(0);
-  setMinimumSize(320,200);
-  setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+  setMinimumSize(320, 200);
+  setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
   _imagePosition = geometry();
   _scaleFactor = 1.0;
-  _zoomOriginal= false;
+  _zoomOriginal = false;
 }
 
-void
-ImageView::setImageSize(int width, int height)
+void ImageView::setImageSize(int width, int height)
 {
-  _image = _image.scaled(width,height,Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
+  _image = _image.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 }
 
-void
-ImageView::setBackgroundColor(QColor color)
+void ImageView::setBackgroundColor(QColor color)
 {
   _backgroundColor = color;
 }
 
-void
-ImageView::paintEvent(QPaintEvent *)
+void ImageView::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   QMutexLocker locker(&_imageMutex);
@@ -92,96 +88,88 @@ ImageView::paintEvent(QPaintEvent *)
     return;
   }
   if (_backgroundColor.isValid()) {
-    painter.fillRect(rect(),_backgroundColor);
+    painter.fillRect(rect(), _backgroundColor);
   }
   QImage scaled;
   const double imageRatio = _image.width() / static_cast<double>(_image.height());
   const double widgetRatio = width() / static_cast<double>(height());
   if (imageRatio > widgetRatio) {
     scaled = _image.scaledToWidth(width());
-    _imagePosition = QRect(0,(height()-scaled.height())/2,scaled.width(),scaled.height());
-    _scaleFactor = scaled.width()/static_cast<double>(_image.width());
+    _imagePosition = QRect(0, (height() - scaled.height()) / 2, scaled.width(), scaled.height());
+    _scaleFactor = scaled.width() / static_cast<double>(_image.width());
     painter.drawImage(_imagePosition.topLeft(), scaled);
   } else {
     scaled = _image.scaledToHeight(height());
-    _imagePosition = QRect((width()-scaled.width())/2,0,scaled.width(),scaled.height());
-    _scaleFactor = scaled.height()/static_cast<double>(_image.height());
+    _imagePosition = QRect((width() - scaled.width()) / 2, 0, scaled.width(), scaled.height());
+    _scaleFactor = scaled.height() / static_cast<double>(_image.height());
     painter.drawImage(_imagePosition.topLeft(), scaled);
   }
 }
 
-void
-ImageView::mousePressEvent(QMouseEvent * e)
+void ImageView::mousePressEvent(QMouseEvent * e)
 {
-  if (!_imagePosition.contains(e->pos())) return;
+  if (!_imagePosition.contains(e->pos()))
+    return;
   *e = mapMousePositionToImage(e);
   emit mousePress(e);
 }
 
-void
-ImageView::mouseReleaseEvent(QMouseEvent *)
-{
-}
+void ImageView::mouseReleaseEvent(QMouseEvent *) {}
 
-void
-ImageView::mouseDoubleClickEvent(QMouseEvent * e)
+void ImageView::mouseDoubleClickEvent(QMouseEvent * e)
 {
   emit mouseDoubleClick(e);
 }
 
-void
-ImageView::mouseMoveEvent(QMouseEvent * e)
+void ImageView::mouseMoveEvent(QMouseEvent * e)
 {
-  if (!_imagePosition.contains(e->pos())) return;
+  if (!_imagePosition.contains(e->pos()))
+    return;
   *e = mapMousePositionToImage(e);
   emit mouseMove(e);
 }
 
-void
-ImageView::resizeEvent(QResizeEvent *)
-{
-}
+void ImageView::resizeEvent(QResizeEvent *) {}
 
 void ImageView::zoomOriginal()
 {
   _zoomOriginal = true;
   setMinimumSize(_image.size());
   resize(_image.size());
-  setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
+  setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
 void ImageView::zoomFitBest()
 {
   _zoomOriginal = false;
-  QFrame * frame = dynamic_cast<QFrame*>(parent());
+  QFrame * frame = dynamic_cast<QFrame *>(parent());
   if (frame) {
-    setMinimumSize(320,200);
+    setMinimumSize(320, 200);
     QRect rect = frame->layout()->contentsRect();
-    setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
-    resize(rect.width(),rect.height());
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    resize(rect.width(), rect.height());
   }
 }
 
 void ImageView::checkSize()
 {
-  if (!_zoomOriginal) return;
+  if (!_zoomOriginal)
+    return;
   if (size() != _image.size()) {
     setMinimumSize(_image.size());
     resize(_image.size());
-    setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
+    setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
   }
 }
 
-QMouseEvent
-ImageView::mapMousePositionToImage(QMouseEvent * e)
+QMouseEvent ImageView::mapMousePositionToImage(QMouseEvent * e)
 {
-  int x = (e->pos().x()-_imagePosition.left()) / _scaleFactor;
-  int y = (e->pos().y()-_imagePosition.top()) / _scaleFactor;
-  return QMouseEvent(e->type(),QPoint(x,y),e->button(),e->buttons(),e->modifiers());
+  int x = (e->pos().x() - _imagePosition.left()) / _scaleFactor;
+  int y = (e->pos().y() - _imagePosition.top()) / _scaleFactor;
+  return QMouseEvent(e->type(), QPoint(x, y), e->button(), e->buttons(), e->modifiers());
 }
 
-void
-ImageView::keyPressEvent(QKeyEvent * e)
+void ImageView::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Space) {
     e->accept();
@@ -193,10 +181,8 @@ ImageView::keyPressEvent(QKeyEvent * e)
   }
 }
 
-void
-ImageView::closeEvent(QCloseEvent * e)
+void ImageView::closeEvent(QCloseEvent * e)
 {
   emit aboutToClose();
   e->accept();
 }
-

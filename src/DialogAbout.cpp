@@ -49,8 +49,7 @@
 /**
  * Constructor
  */
-DialogAbout::DialogAbout(QWidget * parent)
-  :QDialog(parent)
+DialogAbout::DialogAbout(QWidget * parent) : QDialog(parent)
 {
   setupUi(this);
   setWindowTitle("About ZArt");

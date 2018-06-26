@@ -55,8 +55,8 @@
 #include <cv.h>
 #include <highgui.h>
 #endif
-#include "ImageSource.h"
 #include <QString>
+#include "ImageSource.h"
 
 class StillImageSource : public ImageSource {
 
@@ -67,6 +67,7 @@ public:
   bool loadImage(QString filename);
   const QString & filename() const;
   const QString & filePath() const;
+
 private:
   QString _filename;
   QString _filePath;

@@ -46,9 +46,9 @@
 #ifndef _INTPARAMETER_H_
 #define _INTPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QDomNode>
 #include <QString>
+#include "AbstractParameter.h"
 class QSpinBox;
 class QSlider;
 class QLabel;
@@ -68,6 +68,7 @@ public slots:
   void onSpinBoxChanged(int);
 signals:
   void valueChanged();
+
 private:
   QDomNode _node;
   QString _name;

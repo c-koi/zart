@@ -45,26 +45,21 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "FloatParameter.h"
-#include "Common.h"
-#include <QWidget>
-#include <QGridLayout>
 #include <QDoubleSpinBox>
-#include <QSlider>
+#include <QGridLayout>
 #include <QLabel>
 #include <QLocale>
+#include <QSlider>
+#include <QWidget>
+#include "Common.h"
 
-FloatParameter::FloatParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _node(node),
-    _label(0),
-    _slider(0),
-    _spinBox(0)
+FloatParameter::FloatParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _node(node), _label(0), _slider(0), _spinBox(0)
 {
   _name = node.attributes().namedItem("name").nodeValue();
   QString min = node.attributes().namedItem("min").nodeValue();
   QString max = node.attributes().namedItem("max").nodeValue();
   QString def = node.attributes().namedItem("default").nodeValue();
-  QString value = node.toElement().attribute("savedValue",def);
+  QString value = node.toElement().attribute("savedValue", def);
   _min = min.toFloat();
   _max = max.toFloat();
   _default = def.toFloat();
@@ -78,33 +73,30 @@ FloatParameter::~FloatParameter()
   delete _label;
 }
 
-void
-FloatParameter::addTo(QWidget * widget, int row)
+void FloatParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _spinBox;
   delete _slider;
   delete _label;
-  _slider = new QSlider(Qt::Horizontal,widget);
-  _slider->setRange(0,1000);
-  _slider->setValue(static_cast<int>(1000*(_value-_min)/(_max-_min)));
+  _slider = new QSlider(Qt::Horizontal, widget);
+  _slider->setRange(0, 1000);
+  _slider->setValue(static_cast<int>(1000 * (_value - _min) / (_max - _min)));
   _spinBox = new QDoubleSpinBox(widget);
-  _spinBox->setRange(_min,_max);
+  _spinBox->setRange(_min, _max);
   _spinBox->setValue(_value);
   _spinBox->setDecimals(2);
-  _spinBox->setSingleStep((_max-_min)/100.0);
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_slider,row,1,1,1);
-  grid->addWidget(_spinBox,row,2,1,1);
-  connect(_slider, SIGNAL(valueChanged(int)),
-          this, SLOT(onSliderChanged(int)));
-  connect(_spinBox, SIGNAL(valueChanged(double)),
-          this, SLOT(onSpinBoxChanged(double)));
+  _spinBox->setSingleStep((_max - _min) / 100.0);
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_slider, row, 1, 1, 1);
+  grid->addWidget(_spinBox, row, 2, 1, 1);
+  connect(_slider, SIGNAL(valueChanged(int)), this, SLOT(onSliderChanged(int)));
+  connect(_spinBox, SIGNAL(valueChanged(double)), this, SLOT(onSpinBoxChanged(double)));
 }
 
-QString
-FloatParameter::textValue() const
+QString FloatParameter::textValue() const
 {
   QLocale currentLocale;
   QLocale::setDefault(QLocale::c());
@@ -113,43 +105,37 @@ FloatParameter::textValue() const
   return value;
 }
 
-void
-FloatParameter::setValue(const QString & value)
+void FloatParameter::setValue(const QString & value)
 {
   _value = value.toFloat();
   if (_slider) {
-    _slider->setValue(static_cast<int>(1000*(_value-_min)/(_max-_min)));
+    _slider->setValue(static_cast<int>(1000 * (_value - _min) / (_max - _min)));
     _spinBox->setValue(_value);
   }
 }
 
-void
-FloatParameter::reset()
+void FloatParameter::reset()
 {
   _slider->setValue(_default);
   _spinBox->setValue(_default);
   _value = _default;
 }
 
-void
-FloatParameter::saveValueInDOM()
+void FloatParameter::saveValueInDOM()
 {
-  _node.toElement().setAttribute("savedValue",_spinBox->value());
+  _node.toElement().setAttribute("savedValue", _spinBox->value());
 }
 
-void
-FloatParameter::onSliderChanged(int i)
+void FloatParameter::onSliderChanged(int i)
 {
-  _value = _min+(i/1000.0)*(_max-_min);
+  _value = _min + (i / 1000.0) * (_max - _min);
   _spinBox->setValue(_value);
   emit valueChanged();
 }
 
-void
-FloatParameter::onSpinBoxChanged(double x)
+void FloatParameter::onSpinBoxChanged(double x)
 {
   _value = x;
-  _slider->setValue(static_cast<int>(1000*(_value-_min)/(_max-_min)));
+  _slider->setValue(static_cast<int>(1000 * (_value - _min) / (_max - _min)));
   emit valueChanged();
 }
-

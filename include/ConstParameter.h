@@ -62,6 +62,7 @@ public:
   void saveValueInDOM();
 signals:
   void valueChanged();
+
 private:
   QString _value;
 };

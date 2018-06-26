@@ -43,20 +43,17 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#include <iostream>
 #include "OutputWindow.h"
-#include "ImageView.h"
-#include <QKeyEvent>
 #include <QCloseEvent>
 #include <QHBoxLayout>
-#include <QVBoxLayout>
+#include <QKeyEvent>
 #include <QToolButton>
+#include <QVBoxLayout>
+#include <iostream>
+#include "ImageView.h"
 #include "MainWindow.h"
 
-OutputWindow::OutputWindow(MainWindow * mainwindow)
-  : QWidget(0),
-    _ui(new Ui::OutputWindow),
-    _mainWindow(mainwindow)
+OutputWindow::OutputWindow(MainWindow * mainwindow) : QWidget(0), _ui(new Ui::OutputWindow), _mainWindow(mainwindow)
 {
   _ui->setupUi(this);
 
@@ -70,23 +67,16 @@ OutputWindow::OutputWindow(MainWindow * mainwindow)
   _ui->_tbFullScreen->setToolButtonStyle(Qt::ToolButtonTextOnly);
 #endif
   _ui->_pbClose->setCheckable(false);
-  connect(_fullScreenAction, SIGNAL(toggled(bool)),
-          this, SLOT(onShowFullscreen(bool)));
-  connect(_ui->_pbClose, SIGNAL(clicked(bool)),
-          this, SLOT(onCloseClicked()));
-  connect(_ui->_imageView, SIGNAL(escapePressed()),
-          this, SIGNAL(escapePressed()));
-  connect(_ui->_imageView, SIGNAL(spaceBarPressed()),
-          this, SIGNAL(spaceBarPressed()));
-  connect(_ui->_imageView, SIGNAL(mousePress(QMouseEvent *)),
-          _mainWindow, SLOT(imageViewMouseEvent(QMouseEvent *)));
-  connect(_ui->_imageView, SIGNAL(mouseMove(QMouseEvent *)),
-          _mainWindow, SLOT(imageViewMouseEvent(QMouseEvent *)));
-  connect(_ui->_imageView, SIGNAL(mouseDoubleClick(QMouseEvent*)),
-          this, SLOT(toggleFullScreen()));
+  connect(_fullScreenAction, SIGNAL(toggled(bool)), this, SLOT(onShowFullscreen(bool)));
+  connect(_ui->_pbClose, SIGNAL(clicked(bool)), this, SLOT(onCloseClicked()));
+  connect(_ui->_imageView, SIGNAL(escapePressed()), this, SIGNAL(escapePressed()));
+  connect(_ui->_imageView, SIGNAL(spaceBarPressed()), this, SIGNAL(spaceBarPressed()));
+  connect(_ui->_imageView, SIGNAL(mousePress(QMouseEvent *)), _mainWindow, SLOT(imageViewMouseEvent(QMouseEvent *)));
+  connect(_ui->_imageView, SIGNAL(mouseMove(QMouseEvent *)), _mainWindow, SLOT(imageViewMouseEvent(QMouseEvent *)));
+  connect(_ui->_imageView, SIGNAL(mouseDoubleClick(QMouseEvent *)), this, SLOT(toggleFullScreen()));
   _ui->_imageView->setMouseTracking(true);
   setMouseTracking(true);
-  layout()->setContentsMargins(1,0,1,0);
+  layout()->setContentsMargins(1, 0, 1, 0);
 }
 
 OutputWindow::~OutputWindow()
@@ -94,9 +84,8 @@ OutputWindow::~OutputWindow()
   delete _ui;
 }
 
-void
-OutputWindow::keyPressEvent(QKeyEvent * e)
-{    
+void OutputWindow::keyPressEvent(QKeyEvent * e)
+{
   if (isFullScreen() && (e->key() == Qt::Key_Escape || e->key() == Qt::Key_F5)) {
     onShowFullscreen(false);
     emit escapePressed();
@@ -108,25 +97,22 @@ OutputWindow::keyPressEvent(QKeyEvent * e)
   }
 }
 
-void
-OutputWindow::closeEvent(QCloseEvent * e)
+void OutputWindow::closeEvent(QCloseEvent * e)
 {
   emit aboutToClose();
   e->accept();
 }
 
-void
-OutputWindow::onCloseClicked()
+void OutputWindow::onCloseClicked()
 {
   close();
 }
 
-void
-OutputWindow::onShowFullscreen(bool on)
+void OutputWindow::onShowFullscreen(bool on)
 {
   if (on) {
     QPalette p = palette();
-    p.setColor(QPalette::Window,Qt::black);
+    p.setColor(QPalette::Window, Qt::black);
     setPalette(p);
     _ui->_buttonsFrame->hide();
     showFullScreen();
@@ -141,21 +127,17 @@ OutputWindow::onShowFullscreen(bool on)
   }
 }
 
-void
-OutputWindow::toggleFullScreen()
+void OutputWindow::toggleFullScreen()
 {
   _fullScreenAction->setChecked(!isFullScreen());
 }
 
-ImageView *
-OutputWindow::imageView()
+ImageView * OutputWindow::imageView()
 {
   return _ui->_imageView;
 }
 
-void
-OutputWindow::showEvent(QShowEvent *)
+void OutputWindow::showEvent(QShowEvent *)
 {
   _ui->_imageView->setFocus();
 }
-

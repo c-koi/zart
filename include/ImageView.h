@@ -46,8 +46,8 @@
 #ifndef _IMAGEVIEW_H_
 #define _IMAGEVIEW_H_
 
-#include <QWidget>
 #include <QMutex>
+#include <QWidget>
 
 class QPaintEvent;
 
@@ -72,7 +72,7 @@ protected:
   void mouseReleaseEvent(QMouseEvent *);
   void mouseDoubleClickEvent(QMouseEvent *);
   void mouseMoveEvent(QMouseEvent *);
-  void resizeEvent (QResizeEvent *);
+  void resizeEvent(QResizeEvent *);
   void keyPressEvent(QKeyEvent *);
   void closeEvent(QCloseEvent *);
 
@@ -94,14 +94,12 @@ private:
   QColor _backgroundColor;
 };
 
-QImage &
-ImageView::image()
+QImage & ImageView::image()
 {
   return _image;
 }
 
-QMutex &
-ImageView::imageMutex()
+QMutex & ImageView::imageMutex()
 {
   return _imageMutex;
 }

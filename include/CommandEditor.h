@@ -58,10 +58,11 @@ public:
   ~CommandEditor();
 signals:
   void commandModified();
-protected:
-  void keyPressEvent (QKeyEvent * event);
-private:
 
+protected:
+  void keyPressEvent(QKeyEvent * event);
+
+private:
 };
 
 #endif // _COMMANDEDITOR_H_

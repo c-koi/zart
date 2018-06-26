@@ -45,13 +45,11 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "NoteParameter.h"
-#include "Common.h"
-#include <QLabel>
 #include <QGridLayout>
+#include <QLabel>
+#include "Common.h"
 
-NoteParameter::NoteParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _label(0)
+NoteParameter::NoteParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _label(0)
 {
   _text = node.attributes().namedItem("text").nodeValue();
 }
@@ -61,34 +59,25 @@ NoteParameter::~NoteParameter()
   delete _label;
 }
 
-void
-NoteParameter::addTo(QWidget * widget, int row)
+void NoteParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _label;
-  _label = new QLabel(_text,widget);
-  _label->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Fixed);
+  _label = new QLabel(_text, widget);
+  _label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
   _label->setWordWrap(true);
-  grid->addWidget(_label,row,0,1,3);
+  grid->addWidget(_label, row, 0, 1, 3);
 }
 
-QString
-NoteParameter::textValue() const
+QString NoteParameter::textValue() const
 {
   return QString::null;
 }
 
-void
-NoteParameter::setValue(const QString &)
-{
-}
+void NoteParameter::setValue(const QString &) {}
 
-void
-NoteParameter::reset()
-{
-}
+void NoteParameter::reset() {}
 
-void NoteParameter::saveValueInDOM()
-{
-}
+void NoteParameter::saveValueInDOM() {}

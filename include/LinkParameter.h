@@ -46,8 +46,8 @@
 #ifndef _LINKPARAMETER_H_
 #define _LINKPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <Qt>
+#include "AbstractParameter.h"
 class QLabel;
 
 class LinkParameter : public AbstractParameter {
@@ -64,6 +64,7 @@ public slots:
   void onLinkActivated(const QString & link);
 signals:
   void valueChanged();
+
 private:
   QLabel * _label;
   QString _text;

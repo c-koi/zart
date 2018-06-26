@@ -44,51 +44,29 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "FilterThread.h"
-#include "ImageConverter.h"
-#include "WebcamSource.h"
 #include <QApplication>
 #include <QColor>
 #include <QFont>
 #include <QFontMetrics>
+#include <QImage>
 #include <QMutex>
 #include <QPainter>
-#include <QImage>
-#include <QTime>
 #include <QSemaphore>
+#include <QTime>
 #include <iostream>
+#include "ImageConverter.h"
+#include "WebcamSource.h"
 using namespace cimg_library;
 
-FilterThread::FilterThread(ImageSource & imageSource,
-                           const QString & command,
-                           QImage * outputImageA,
-                           QMutex * imageMutexA,
-                           QImage * outputImageB,
-                           QMutex * imageMutexB,
-                           PreviewMode previewMode,
-                           int frameSkip,
-                           int fps,
-                           QSemaphore * blockingSemaphore)
-  : _imageSource(imageSource),
-    _arguments(new QString("")),
-    _commandUpdated(true),
-    _outputImageA(outputImageA),
-    _imageMutexA(imageMutexA),
-    _outputImageB(outputImageB),
-    _imageMutexB(imageMutexB),
-    _blockingSemaphore(blockingSemaphore),
-    _previewMode(previewMode),
-    _frameSkip(frameSkip),
-    _continue(true),
-    _xMouse(-1),
-    _yMouse(-1),
-    _buttonsMouse(0),
-    _gmic_images(),
-    _gmic(0)
+FilterThread::FilterThread(ImageSource & imageSource, const QString & command, QImage * outputImageA, QMutex * imageMutexA, QImage * outputImageB, QMutex * imageMutexB, PreviewMode previewMode,
+                           int frameSkip, int fps, QSemaphore * blockingSemaphore)
+    : _imageSource(imageSource), _arguments(new QString("")), _commandUpdated(true), _outputImageA(outputImageA), _imageMutexA(imageMutexA), _outputImageB(outputImageB), _imageMutexB(imageMutexB),
+      _blockingSemaphore(blockingSemaphore), _previewMode(previewMode), _frameSkip(frameSkip), _continue(true), _xMouse(-1), _yMouse(-1), _buttonsMouse(0), _gmic_images(), _gmic(0)
 {
   setCommand(command);
   setFPS(fps);
 #ifdef _IS_MACOS_
-  setStackSize(8*1024*1024);
+  setStackSize(8 * 1024 * 1024);
 #endif
 }
 
@@ -97,54 +75,47 @@ FilterThread::~FilterThread()
   delete _gmic;
 }
 
-void
-FilterThread::setMousePosition(int x, int y, int buttons)
+void FilterThread::setMousePosition(int x, int y, int buttons)
 {
   _xMouse = x;
   _yMouse = y;
   _buttonsMouse = buttons;
 }
 
-void
-FilterThread::setArguments(const QString & str)
+void FilterThread::setArguments(const QString & str)
 {
   _arguments.lock();
   _arguments.object() = str;
   _arguments.unlock();
 }
 
-void
-FilterThread::setPreviewMode(PreviewMode pm)
+void FilterThread::setPreviewMode(PreviewMode pm)
 {
   _previewMode = pm;
 }
 
-void
-FilterThread::setFrameSkip(int n)
+void FilterThread::setFrameSkip(int n)
 {
   _frameSkip = n;
 }
 
-void
-FilterThread::setFPS(int fps)
+void FilterThread::setFPS(int fps)
 {
   _fps = fps;
   _frameInterval = 0;
   if (fps > 0) {
-    _frameInterval = 1000/fps;
+    _frameInterval = 1000 / fps;
   }
 }
 
-void
-FilterThread::stop()
+void FilterThread::stop()
 {
   _continue = false;
   _fps = 1;
   _frameInterval = 0;
 }
 
-void
-FilterThread::run()
+void FilterThread::run()
 {
   QTime timeMeasure;
   unsigned int lastCommandDuration = 0;
@@ -153,21 +124,21 @@ FilterThread::run()
   while (_continue) {
     // Delay (minus last command duration)
     if (_frameInterval && lastCommandDuration < _frameInterval)
-      msleep(_frameInterval-lastCommandDuration);
+      msleep(_frameInterval - lastCommandDuration);
     // Skip some frames and grab an image from the webcam
     n = _frameSkip + 1;
     while (n--) {
       _imageSource.capture();
     }
     // Abort if no image is provided by the source
-    if (! _imageSource.image()) {
+    if (!_imageSource.image()) {
       emit endOfCapture();
       return;
     }
     if (!_gmic_images)
       _gmic_images.assign(1);
-    if (!_gmic_images[0].is_sameXYZC(_imageSource.width(),_imageSource.height(),1,3))
-      _gmic_images[0].assign(_imageSource.width(),_imageSource.height(),1,3);
+    if (!_gmic_images[0].is_sameXYZC(_imageSource.width(), _imageSource.height(), 1, 3))
+      _gmic_images[0].assign(_imageSource.width(), _imageSource.height(), 1, 3);
 
     ImageConverter::convert(_imageSource.image(), _gmic_images[0]);
 
@@ -198,7 +169,7 @@ FilterThread::run()
 
       // SHOW(call);
 
-      _gmic->run(c.toLatin1().constData(),_gmic_images,_gmic_images_names);
+      _gmic->run(c.toLatin1().constData(), _gmic_images, _gmic_images_names);
       lastCommandDuration = timeMeasure.elapsed();
 
       switch (_previewMode) {
@@ -236,63 +207,49 @@ FilterThread::run()
         }
         ImageConverter::convert(_imageSource.image(), _outputImageA);
         ImageConverter::convert(_imageSource.image(), _outputImageB);
-      }
-        break;
+      } break;
       case LeftHalf:
-        ImageConverter::merge(_imageSource.image(),_gmic_images[0],
-            _outputImageA, _imageMutexA, ImageConverter::MergeLeft);
-        ImageConverter::merge(_imageSource.image(),_gmic_images[0],
-            _outputImageB, _imageMutexB, ImageConverter::MergeLeft);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeLeft);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeLeft);
         break;
       case TopHalf:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageA, _imageMutexA, ImageConverter::MergeTop);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageB, _imageMutexB, ImageConverter::MergeTop);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeTop);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeTop);
         break;
       case BottomHalf:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageA, _imageMutexA, ImageConverter::MergeBottom);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageB, _imageMutexB, ImageConverter::MergeBottom);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeBottom);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeBottom);
         break;
       case RightHalf:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageA, _imageMutexB, ImageConverter::MergeRight);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageB, _imageMutexB, ImageConverter::MergeRight);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexB, ImageConverter::MergeRight);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeRight);
         break;
       case DuplicateHorizontal:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageA, _imageMutexA, ImageConverter::DuplicateHorizontal);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageB, _imageMutexB, ImageConverter::DuplicateHorizontal);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::DuplicateHorizontal);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::DuplicateHorizontal);
         break;
       case DuplicateVertical:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageA, _imageMutexA, ImageConverter::DuplicateVertical);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0],
-            _outputImageB, _imageMutexB, ImageConverter::DuplicateVertical);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::DuplicateVertical);
+        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::DuplicateVertical);
         break;
       default:
-        _outputImageA->fill(QColor(255,255,255).rgb());
+        _outputImageA->fill(QColor(255, 255, 255).rgb());
         if (_outputImageB) {
-          _outputImageB->fill(QColor(255,255,255).rgb());
+          _outputImageB->fill(QColor(255, 255, 255).rgb());
         }
         break;
       }
 
     } catch (gmic_exception & e) {
-      CImg<unsigned char> src(reinterpret_cast<unsigned char*>(_imageSource.image()->imageData),
-                              3, _imageSource.width(), _imageSource.height(), 1, true);
+      CImg<unsigned char> src(reinterpret_cast<unsigned char *>(_imageSource.image()->imageData), 3, _imageSource.width(), _imageSource.height(), 1, true);
       _gmic_images = src.get_permute_axes("yzcx");
       QString errorCommand = QString("-gimp_error_preview \"%1\"").arg(e.what());
 
       try {
-        _gmic->run(errorCommand.toLatin1().constData(),_gmic_images,_gmic_images_names);
-      } catch (gmic_exception &e) {
-        const unsigned char color1[] = { 0,255,0 }, color2[] = { 0,0,0 };
-        _gmic_images = src.get_permute_axes("yzcx").channel(0).resize(-100,-100,1,3).draw_text(10,10,"Syntax Error",color1,color2,0.5,57);
+        _gmic->run(errorCommand.toLatin1().constData(), _gmic_images, _gmic_images_names);
+      } catch (gmic_exception & e) {
+        const unsigned char color1[] = {0, 255, 0}, color2[] = {0, 0, 0};
+        _gmic_images = src.get_permute_axes("yzcx").channel(0).resize(-100, -100, 1, 3).draw_text(10, 10, "Syntax Error", color1, color2, 0.5, 57);
       }
       std::cerr << e.what() << std::endl;
       QSize size(_imageSource.image()->width, _imageSource.image()->height);
@@ -311,7 +268,7 @@ FilterThread::run()
     }
     emit imageAvailable();
     if (!_fps && _blockingSemaphore) {
-      _blockingSemaphore->acquire(_blockingSemaphore->available()+1);
+      _blockingSemaphore->acquire(_blockingSemaphore->available() + 1);
     }
   }
 }
@@ -320,13 +277,10 @@ FilterThread::run()
  * Private methods
  */
 
-void
-FilterThread::setCommand(const QString & command)
+void FilterThread::setCommand(const QString & command)
 {
   QByteArray str = command.toLatin1();
   _command = str.constData();
-  _command.replace("{*,x}", "$_x")
-      .replace("{*,y}", "$_y")
-      .replace("{*,b}", "$_b");
+  _command.replace("{*,x}", "$_x").replace("{*,y}", "$_y").replace("{*,b}", "$_b");
   _commandUpdated = true;
 }

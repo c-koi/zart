@@ -45,47 +45,33 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "ConstParameter.h"
-#include "Common.h"
 #include <QString>
+#include "Common.h"
 
-ConstParameter::ConstParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent)
+ConstParameter::ConstParameter(QDomNode node, QObject * parent) : AbstractParameter(parent)
 {
   _value = node.attributes().namedItem("value").nodeValue();
 }
 
-ConstParameter::~ConstParameter()
-{
-}
+ConstParameter::~ConstParameter() {}
 
-bool
-ConstParameter::isVisible() const
+bool ConstParameter::isVisible() const
 {
   return false;
 }
 
-void
-ConstParameter::addTo(QWidget *, int)
-{
-}
+void ConstParameter::addTo(QWidget *, int) {}
 
-QString
-ConstParameter::textValue() const
+QString ConstParameter::textValue() const
 {
   return QString("%1").arg(_value);
 }
 
-void
-ConstParameter::setValue(const QString & value)
+void ConstParameter::setValue(const QString & value)
 {
   _value = value;
 }
 
-void
-ConstParameter::reset()
-{
-}
+void ConstParameter::reset() {}
 
-void ConstParameter::saveValueInDOM()
-{
-}
+void ConstParameter::saveValueInDOM() {}

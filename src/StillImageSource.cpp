@@ -44,8 +44,8 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "StillImageSource.h"
-#include <QImage>
 #include <QFileInfo>
+#include <QImage>
 #include "ImageConverter.h"
 
 StillImageSource::StillImageSource()
@@ -61,18 +61,16 @@ StillImageSource::~StillImageSource()
   }
 }
 
-void StillImageSource::capture()
-{
-}
+void StillImageSource::capture() {}
 
 bool StillImageSource::loadImage(QString filename)
 {
   QImage qimage;
   QFileInfo info(filename);
-  if (! info.isReadable()) {
+  if (!info.isReadable()) {
     return false;
   }
-  if (! qimage.load(filename)) {
+  if (!qimage.load(filename)) {
     return false;
   }
   QImage rgb = qimage.convertToFormat(QImage::Format_RGB888);
@@ -82,20 +80,17 @@ bool StillImageSource::loadImage(QString filename)
   if (iplImage)
     cvReleaseImage(&iplImage);
   iplImage = 0;
-  ImageConverter::convert(rgb,&iplImage);
+  ImageConverter::convert(rgb, &iplImage);
   setImage(iplImage);
   return true;
 }
 
-const QString &
-StillImageSource::filename() const
+const QString & StillImageSource::filename() const
 {
   return _filename;
 }
 
-const QString &
-StillImageSource::filePath() const
+const QString & StillImageSource::filePath() const
 {
   return _filePath;
 }
-

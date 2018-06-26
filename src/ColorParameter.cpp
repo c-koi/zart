@@ -45,28 +45,22 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "ColorParameter.h"
-#include "Common.h"
-#include <QWidget>
-#include <QGridLayout>
-#include <QToolButton>
-#include <QLabel>
+#include <QColorDialog>
 #include <QFont>
 #include <QFontMetrics>
-#include <QColorDialog>
+#include <QGridLayout>
+#include <QLabel>
 #include <QPainter>
+#include <QToolButton>
+#include <QWidget>
 #include <cstdio>
+#include "Common.h"
 
-ColorParameter::ColorParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _node(node),
-    _alphaChannel(false),
-    _label(0),
-    _button(0),
-    _dialog(0)
+ColorParameter::ColorParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _node(node), _alphaChannel(false), _label(0), _button(0), _dialog(0)
 {
   _name = node.attributes().namedItem("name").nodeValue();
   QString def = node.attributes().namedItem("default").nodeValue();
-  QString value = node.toElement().attribute("savedValue",def);
+  QString value = node.toElement().attribute("savedValue", def);
 
   QStringList list = value.split(",");
   int r = list[0].toInt();
@@ -74,10 +68,10 @@ ColorParameter::ColorParameter(QDomNode node, QObject *parent)
   int b = list[2].toInt();
   if (list.size() == 4) {
     int a = list[3].toInt();
-    _default = _value = QColor(r,g,b,a);
+    _default = _value = QColor(r, g, b, a);
     _alphaChannel = true;
   } else {
-    _default = _value = QColor(r,g,b);
+    _default = _value = QColor(r, g, b);
   }
 }
 
@@ -88,11 +82,11 @@ ColorParameter::~ColorParameter()
   delete _dialog;
 }
 
-void
-ColorParameter::addTo(QWidget * widget, int row)
+void ColorParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _button;
   delete _label;
 
@@ -101,17 +95,15 @@ ColorParameter::addTo(QWidget * widget, int row)
 
   QFontMetrics fm(widget->font());
   QRect r = fm.boundingRect("COLOR");
-  _pixmap = QPixmap(r.width(),r.height()*2);
+  _pixmap = QPixmap(r.width(), r.height() * 2);
   updateButtonColor();
 
-  grid->addWidget(_label = new QLabel(_name,widget),row,0,1,1);
-  grid->addWidget(_button,row,1,1,1);
-  connect(_button, SIGNAL(clicked()),
-          this, SLOT(onButtonPressed()));
+  grid->addWidget(_label = new QLabel(_name, widget), row, 0, 1, 1);
+  grid->addWidget(_button, row, 1, 1, 1);
+  connect(_button, SIGNAL(clicked()), this, SLOT(onButtonPressed()));
 }
 
-QString
-ColorParameter::textValue() const
+QString ColorParameter::textValue() const
 {
   const QColor & c = _value;
   if (_alphaChannel)
@@ -120,8 +112,7 @@ ColorParameter::textValue() const
     return QString("%1,%2,%3").arg(c.red()).arg(c.green()).arg(c.blue());
 }
 
-void
-ColorParameter::setValue(const QString & value)
+void ColorParameter::setValue(const QString & value)
 {
   QStringList list = value.split(",");
   int red = list[0].toInt();
@@ -129,10 +120,10 @@ ColorParameter::setValue(const QString & value)
   int blue = list[2].toInt();
   if (list.size() == 4) {
     int alpha = list[3].toInt();
-    _value = QColor(red,green,blue,alpha);
+    _value = QColor(red, green, blue, alpha);
     _alphaChannel = true;
   } else {
-    _value = QColor(red,green,blue);
+    _value = QColor(red, green, blue);
     _alphaChannel = false;
   }
   if (_button) {
@@ -140,38 +131,34 @@ ColorParameter::setValue(const QString & value)
   }
 }
 
-void
-ColorParameter::reset()
+void ColorParameter::reset()
 {
   _value = _default;
 }
 
 void ColorParameter::saveValueInDOM()
 {
-  _node.toElement().setAttribute("savedValue",textValue());
+  _node.toElement().setAttribute("savedValue", textValue());
 }
 
-void
-ColorParameter::onButtonPressed()
+void ColorParameter::onButtonPressed()
 {
   QColor color = _value;
   if (!_dialog) {
-    _dialog = new QColorDialog(color,0);
-    connect(_dialog,SIGNAL(currentColorChanged(QColor)),
-            this, SLOT(colorChanged(QColor)));
+    _dialog = new QColorDialog(color, 0);
+    connect(_dialog, SIGNAL(currentColorChanged(QColor)), this, SLOT(colorChanged(QColor)));
   } else {
     _dialog->setCurrentColor(color);
   }
   if (_alphaChannel) {
-    _dialog->setOptions(QColorDialog::ShowAlphaChannel|QColorDialog::NoButtons);
+    _dialog->setOptions(QColorDialog::ShowAlphaChannel | QColorDialog::NoButtons);
   } else {
     _dialog->setOptions(QColorDialog::NoButtons);
   }
   _dialog->exec();
 }
 
-void
-ColorParameter::colorChanged(const QColor & color)
+void ColorParameter::colorChanged(const QColor & color)
 {
   if (color.isValid()) {
     _value = color;
@@ -185,11 +172,9 @@ void ColorParameter::updateButtonColor()
   QPainter painter(&_pixmap);
   QColor color(_value);
   if (_alphaChannel)
-    painter.drawImage(0,0,QImage(":images/transparency.png"));
+    painter.drawImage(0, 0, QImage(":images/transparency.png"));
   painter.setBrush(color);
   painter.setPen(Qt::black);
-  painter.drawRect(0,0,_pixmap.width()-1,_pixmap.height()-1);
+  painter.drawRect(0, 0, _pixmap.width() - 1, _pixmap.height() - 1);
   _button->setIcon(_pixmap);
 }
-
-

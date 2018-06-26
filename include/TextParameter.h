@@ -46,9 +46,9 @@
 #ifndef _TEXTPARAMETER_H_
 #define _TEXTPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QDomNode>
 #include <QString>
+#include "AbstractParameter.h"
 class QLineEdit;
 class QLabel;
 
@@ -66,6 +66,7 @@ public:
 public slots:
 signals:
   void valueChanged();
+
 private:
   QDomNode _node;
   QString _name;

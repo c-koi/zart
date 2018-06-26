@@ -45,80 +45,71 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "AbstractParameter.h"
-#include "IntParameter.h"
-#include "FloatParameter.h"
 #include "BoolParameter.h"
 #include "ChoiceParameter.h"
 #include "ColorParameter.h"
-#include "SeparatorParameter.h"
-#include "NoteParameter.h"
-#include "FileParameter.h"
-#include "FolderParameter.h"
-#include "TextParameter.h"
-#include "LinkParameter.h"
 #include "ConstParameter.h"
+#include "FileParameter.h"
+#include "FloatParameter.h"
+#include "FolderParameter.h"
+#include "IntParameter.h"
+#include "LinkParameter.h"
+#include "NoteParameter.h"
+#include "SeparatorParameter.h"
+#include "TextParameter.h"
 
-AbstractParameter::AbstractParameter(QObject *parent)
-  : QObject(parent)
-{
-}
+AbstractParameter::AbstractParameter(QObject * parent) : QObject(parent) {}
 
-AbstractParameter::~AbstractParameter()
-{
-}
+AbstractParameter::~AbstractParameter() {}
 
-bool
-AbstractParameter::isVisible() const
+bool AbstractParameter::isVisible() const
 {
   return true;
 }
 
-QString
-AbstractParameter::unquotedTextValue() const
+QString AbstractParameter::unquotedTextValue() const
 {
   return textValue();
 }
 
-AbstractParameter *
-AbstractParameter::createFromNode(QDomNode node, QObject * parent)
+AbstractParameter * AbstractParameter::createFromNode(QDomNode node, QObject * parent)
 {
   QString name = node.nodeName();
   if (name == "int") {
-    return new IntParameter(node,parent);
+    return new IntParameter(node, parent);
   }
   if (name == "float") {
-    return new FloatParameter(node,parent);
+    return new FloatParameter(node, parent);
   }
   if (name == "bool") {
-    return new BoolParameter(node,parent);
+    return new BoolParameter(node, parent);
   }
   if (name == "choice") {
-    return new ChoiceParameter(node,parent);
+    return new ChoiceParameter(node, parent);
   }
   if (name == "color") {
-    return new ColorParameter(node,parent);
+    return new ColorParameter(node, parent);
   }
   if (name == "separator") {
-    return new SeparatorParameter(node,parent);
+    return new SeparatorParameter(node, parent);
   }
   if (name == "note") {
-    return new NoteParameter(node,parent);
+    return new NoteParameter(node, parent);
   }
   if (name == "file") {
-    return new FileParameter(node,parent);
+    return new FileParameter(node, parent);
   }
   if (name == "folder") {
-    return new FolderParameter(node,parent);
+    return new FolderParameter(node, parent);
   }
   if (name == "text") {
-    return new TextParameter(node,parent);
+    return new TextParameter(node, parent);
   }
   if (name == "link") {
-    return new LinkParameter(node,parent);
+    return new LinkParameter(node, parent);
   }
   if (name == "value") {
-    return new ConstParameter(node,parent);
+    return new ConstParameter(node, parent);
   }
   return 0;
 }
-

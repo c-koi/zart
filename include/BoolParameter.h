@@ -46,9 +46,9 @@
 #ifndef _BOOLPARAMETER_H_
 #define _BOOLPARAMETER_H_
 
-#include "AbstractParameter.h"
 #include <QDomNode>
 #include <QString>
+#include "AbstractParameter.h"
 class QCheckBox;
 class QLabel;
 
@@ -66,6 +66,7 @@ public slots:
   void onCheckBoxChanged(bool);
 signals:
   void valueChanged();
+
 private:
   QDomNode _node;
   QString _name;

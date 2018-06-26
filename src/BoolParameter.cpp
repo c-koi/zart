@@ -45,21 +45,17 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "BoolParameter.h"
-#include "Common.h"
-#include <QWidget>
-#include <QGridLayout>
 #include <QCheckBox>
+#include <QGridLayout>
 #include <QLabel>
+#include <QWidget>
+#include "Common.h"
 
-BoolParameter::BoolParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _node(node),
-    _label(0),
-    _checkBox(0)
+BoolParameter::BoolParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _node(node), _label(0), _checkBox(0)
 {
   _name = node.attributes().namedItem("name").nodeValue();
   QString def = node.attributes().namedItem("default").nodeValue();
-  QString value = node.toElement().attribute("savedValue",def);
+  QString value = node.toElement().attribute("savedValue", def);
   _default = def.toInt();
   _value = value.toInt();
 }
@@ -70,28 +66,25 @@ BoolParameter::~BoolParameter()
   delete _label;
 }
 
-void
-BoolParameter::addTo(QWidget * widget, int row)
+void BoolParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _checkBox;
   delete _label;
-  _checkBox = new QCheckBox(_name,widget);
+  _checkBox = new QCheckBox(_name, widget);
   _checkBox->setChecked(_value);
-  grid->addWidget(_checkBox,row,0,1,3);
-  connect(_checkBox, SIGNAL(toggled(bool)),
-          this, SLOT(onCheckBoxChanged(bool)));
+  grid->addWidget(_checkBox, row, 0, 1, 3);
+  connect(_checkBox, SIGNAL(toggled(bool)), this, SLOT(onCheckBoxChanged(bool)));
 }
 
-QString
-BoolParameter::textValue() const
+QString BoolParameter::textValue() const
 {
-  return _value?"1":"0";
+  return _value ? "1" : "0";
 }
 
-void
-BoolParameter::setValue(const QString & value)
+void BoolParameter::setValue(const QString & value)
 {
   _value = (value == "1");
   if (_checkBox) {
@@ -99,22 +92,19 @@ BoolParameter::setValue(const QString & value)
   }
 }
 
-void
-BoolParameter::reset()
+void BoolParameter::reset()
 {
   _checkBox->setChecked(_default);
   _value = _default;
 }
 
-void
-BoolParameter::onCheckBoxChanged(bool on)
+void BoolParameter::onCheckBoxChanged(bool on)
 {
   _value = on;
   emit valueChanged();
 }
 
-void
-BoolParameter::saveValueInDOM()
+void BoolParameter::saveValueInDOM()
 {
-  _node.toElement().setAttribute("savedValue",_checkBox->isChecked());
+  _node.toElement().setAttribute("savedValue", _checkBox->isChecked());
 }

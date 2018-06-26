@@ -55,12 +55,13 @@ class QFrame;
 class QTreeWidget;
 class QAction;
 
-class OutputWindow: public QWidget {
+class OutputWindow : public QWidget {
   Q_OBJECT
 public:
   OutputWindow(MainWindow *);
   ~OutputWindow();
   ImageView * imageView();
+
 protected:
   void showEvent(QShowEvent * event);
   void keyPressEvent(QKeyEvent *);
@@ -73,6 +74,7 @@ signals:
   void escapePressed();
   void spaceBarPressed();
   void aboutToClose();
+
 private:
   Ui::OutputWindow * _ui;
   MainWindow * _mainWindow;

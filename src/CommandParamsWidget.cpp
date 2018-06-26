@@ -44,61 +44,54 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 
-#include "Common.h"
 #include "CommandParamsWidget.h"
-#include "AbstractParameter.h"
 #include <QGridLayout>
 #include <QLabel>
+#include "AbstractParameter.h"
+#include "Common.h"
 
-CommandParamsWidget::CommandParamsWidget(QWidget * parent)
-  :QWidget(parent),
-    _valueString(""),
-    _pbReset(0),
-    _labelNoParams(0)
+CommandParamsWidget::CommandParamsWidget(QWidget * parent) : QWidget(parent), _valueString(""), _pbReset(0), _labelNoParams(0)
 {
   delete layout();
   QGridLayout * grid = new QGridLayout;
-  grid->setRowStretch(1,2);
+  grid->setRowStretch(1, 2);
   setLayout(grid);
-  _labelNoParams = new QLabel("<i>No parameters</i>",this);
-  _labelNoParams->setAlignment(Qt::AlignHCenter|Qt::AlignCenter);
-  grid->addWidget(_labelNoParams,0,0,4,3);
+  _labelNoParams = new QLabel("<i>No parameters</i>", this);
+  _labelNoParams->setAlignment(Qt::AlignHCenter | Qt::AlignCenter);
+  grid->addWidget(_labelNoParams, 0, 0, 4, 3);
 }
 
-void
-CommandParamsWidget::build(QDomNode presetNode)
+void CommandParamsWidget::build(QDomNode presetNode)
 {
   clear();
   delete layout();
   QGridLayout * grid = new QGridLayout;
-  grid->setRowStretch(1,2);
+  grid->setRowStretch(1, 2);
   setLayout(grid);
 
   int row = 0;
   QDomNode child = presetNode.firstChild();
-  while (! child.isNull()) {
+  while (!child.isNull()) {
     AbstractParameter * parameter = AbstractParameter::createFromNode(child, this);
     if (parameter) {
       _presetParameters.push_back(parameter);
       if (parameter->isVisible()) {
-        parameter->addTo(this,row++);
+        parameter->addTo(this, row++);
       }
-      connect(parameter,SIGNAL(valueChanged()),
-              this,SLOT(updateValueString()));
+      connect(parameter, SIGNAL(valueChanged()), this, SLOT(updateValueString()));
     }
     child = child.nextSibling();
   }
   if (row) {
-    _pbReset = new QPushButton("Reset",this);
-    grid->addWidget(_pbReset,row,0,1,3);
-    connect(_pbReset,SIGNAL(clicked()),
-            this,SLOT(reset()));
+    _pbReset = new QPushButton("Reset", this);
+    grid->addWidget(_pbReset, row, 0, 1, 3);
+    connect(_pbReset, SIGNAL(clicked()), this, SLOT(reset()));
     delete _labelNoParams;
     _labelNoParams = 0;
   } else {
-    _labelNoParams = new QLabel("<i>No parameters</i>",this);
-    _labelNoParams->setAlignment(Qt::AlignHCenter|Qt::AlignCenter);
-    grid->addWidget(_labelNoParams,0,0,4,3);
+    _labelNoParams = new QLabel("<i>No parameters</i>", this);
+    _labelNoParams->setAlignment(Qt::AlignHCenter | Qt::AlignCenter);
+    grid->addWidget(_labelNoParams, 0, 0, 4, 3);
   }
   updateValueString(false);
 }
@@ -108,14 +101,12 @@ CommandParamsWidget::~CommandParamsWidget()
   clear();
 }
 
-const QString &
-CommandParamsWidget::valueString() const
+const QString & CommandParamsWidget::valueString() const
 {
   return _valueString;
 }
 
-QStringList
-CommandParamsWidget::valueStringList() const
+QStringList CommandParamsWidget::valueStringList() const
 {
   QStringList list;
   for (int i = 0; i < _presetParameters.size(); ++i) {
@@ -124,8 +115,7 @@ CommandParamsWidget::valueStringList() const
   return list;
 }
 
-void
-CommandParamsWidget::setValues(const QStringList & list)
+void CommandParamsWidget::setValues(const QStringList & list)
 {
   if (_presetParameters.size() != list.size()) {
     return;
@@ -136,16 +126,14 @@ CommandParamsWidget::setValues(const QStringList & list)
   updateValueString(true);
 }
 
-void
-CommandParamsWidget::saveValuesInDOM()
+void CommandParamsWidget::saveValuesInDOM()
 {
   for (int i = 0; i < _presetParameters.size(); ++i) {
     _presetParameters[i]->saveValueInDOM();
   }
 }
 
-void
-CommandParamsWidget::updateValueString(bool notify)
+void CommandParamsWidget::updateValueString(bool notify)
 {
   _valueString.clear();
   bool firstParameter = true;
@@ -163,8 +151,7 @@ CommandParamsWidget::updateValueString(bool notify)
     emit valueChanged();
 }
 
-void
-CommandParamsWidget::reset()
+void CommandParamsWidget::reset()
 {
   for (int i = 0; i < _presetParameters.size(); ++i) {
     _presetParameters[i]->reset();
@@ -172,10 +159,9 @@ CommandParamsWidget::reset()
   updateValueString(true);
 }
 
-void
-CommandParamsWidget::clear()
+void CommandParamsWidget::clear()
 {
-  QVector<AbstractParameter*>::iterator it = _presetParameters.begin();
+  QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
   while (it != _presetParameters.end()) {
     delete *it;
     ++it;

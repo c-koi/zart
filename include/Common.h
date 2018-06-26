@@ -47,8 +47,8 @@
 #ifndef _COMMON_H_
 #define _COMMON_H_
 
-#include <iostream>
 #include <QDebug>
+#include <iostream>
 
 #define SHOW(V) qDebug() << " " #V " = " << (V)
 

@@ -66,6 +66,7 @@ public:
   const QString & filename() const;
   const QString & filePath() const;
   void setLoop(bool);
+
 private:
   CvCapture * _capture;
   QString _filename;

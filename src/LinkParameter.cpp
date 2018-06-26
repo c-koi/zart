@@ -45,23 +45,24 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "LinkParameter.h"
-#include "Common.h"
+#include <QDesktopServices>
+#include <QGridLayout>
+#include <QLabel>
 #include <QString>
 #include <QUrl>
-#include <QLabel>
-#include <QGridLayout>
-#include <QDesktopServices>
+#include "Common.h"
 
-LinkParameter::LinkParameter(QDomNode node, QObject *parent)
-  : AbstractParameter(parent),
-    _label(0)
+LinkParameter::LinkParameter(QDomNode node, QObject * parent) : AbstractParameter(parent), _label(0)
 {
   _text = node.attributes().namedItem("name").nodeValue();
   _url = node.attributes().namedItem("url").nodeValue();
-  QString align = node.toElement().attribute("align",QString("left"));
-  if (align == "left") _alignment = Qt::AlignLeft;
-  if (align == "center") _alignment = Qt::AlignHCenter;
-  if (align == "right") _alignment = Qt::AlignRight;
+  QString align = node.toElement().attribute("align", QString("left"));
+  if (align == "left")
+    _alignment = Qt::AlignLeft;
+  if (align == "center")
+    _alignment = Qt::AlignHCenter;
+  if (align == "right")
+    _alignment = Qt::AlignRight;
 }
 
 LinkParameter::~LinkParameter()
@@ -69,44 +70,32 @@ LinkParameter::~LinkParameter()
   delete _label;
 }
 
-void
-LinkParameter::addTo(QWidget * widget, int row)
+void LinkParameter::addTo(QWidget * widget, int row)
 {
-  QGridLayout * grid = dynamic_cast<QGridLayout*>(widget->layout());
-  if (! grid) return;
+  QGridLayout * grid = dynamic_cast<QGridLayout *>(widget->layout());
+  if (!grid)
+    return;
   delete _label;
-  _label = new QLabel(QString("<a href=\"%2\">%1</a>").arg(_text).arg(_url),widget);
+  _label = new QLabel(QString("<a href=\"%2\">%1</a>").arg(_text).arg(_url), widget);
   _label->setAlignment(_alignment);
   _label->setTextFormat(Qt::RichText);
-  _label->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Fixed);
-  connect(_label, SIGNAL(linkActivated(QString)),
-          this, SLOT(onLinkActivated(QString)));
-  grid->addWidget(_label,row,0,1,3);
+  _label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+  connect(_label, SIGNAL(linkActivated(QString)), this, SLOT(onLinkActivated(QString)));
+  grid->addWidget(_label, row, 0, 1, 3);
 }
 
-QString
-LinkParameter::textValue() const
+QString LinkParameter::textValue() const
 {
   return QString::null;
 }
 
-void
-LinkParameter::setValue(const QString &)
-{
-}
+void LinkParameter::setValue(const QString &) {}
 
-void
-LinkParameter::reset()
-{
-}
+void LinkParameter::reset() {}
 
-void
-LinkParameter::saveValueInDOM()
-{
-}
+void LinkParameter::saveValueInDOM() {}
 
-void
-LinkParameter::onLinkActivated(const QString &link)
+void LinkParameter::onLinkActivated(const QString & link)
 {
   QDesktopServices::openUrl(QUrl(link));
 }
