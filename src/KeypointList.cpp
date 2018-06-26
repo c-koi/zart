@@ -1,8 +1,8 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
- * @file   CommandParamsWidget.h
+ * @file   KeypointList.cpp
  * @author Sebastien Fourey
- * @date   Nov 2014
- * @brief  Declaration of the class CommandParamsWidget
+ * @date   June 2018
+ * @brief  Definition of the class KeypointList
  *
  * This file is part of the ZArt software's source code.
  *
@@ -43,46 +43,81 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _COMMANDPARAMSWIDGET_H_
-#define _COMMANDPARAMSWIDGET_H_
-
-#include <QDomNode>
-#include <QPushButton>
-#include <QStringList>
-#include <QVector>
-#include <QWidget>
 #include "KeypointList.h"
+#include <cmath>
+#include <cstring>
 
-class AbstractParameter;
-class QLabel;
+KeypointList::KeypointList() {}
 
-class CommandParamsWidget : public QWidget {
-  Q_OBJECT
-public:
-  CommandParamsWidget(QWidget * parent = 0);
-  void build(QDomNode presetNode);
-  virtual ~CommandParamsWidget();
-  const QString & valueString() const;
-  QStringList valueStringList() const;
-  void setValues(const QStringList &);
-  void saveValuesInDOM();
-  bool hasKeypoints() const;
-  KeypointList keypoints() const;
-  void setKeypoints(KeypointList list, bool notify);
+void KeypointList::add(const KeypointList::Keypoint & keypoint)
+{
+  _keypoints.push_back(keypoint);
+}
 
-public slots:
-  void updateValueString(bool notify = true);
-  void reset();
-signals:
-  void valueChanged();
+bool KeypointList::isEmpty()
+{
+  return _keypoints.empty();
+}
 
-protected:
-  void clear();
-  QVector<AbstractParameter *> _presetParameters;
-  QString _valueString;
-  QPushButton * _pbReset;
-  QLabel * _labelNoParams;
-  bool _hasKeypoints;
-};
+void KeypointList::clear()
+{
+  _keypoints.clear();
+}
 
-#endif // _COMMANDPARAMSWIDGET_H_
+QPointF KeypointList::position(int n) const
+{
+  const Keypoint & kp = _keypoints[n];
+  return QPointF(kp.x, kp.y);
+}
+
+QColor KeypointList::color(int n) const
+{
+  return _keypoints[n].color;
+}
+
+bool KeypointList::isRemovable(int n) const
+{
+  return _keypoints[n].removable;
+}
+
+KeypointList::Keypoint::Keypoint(float x, float y, QColor color, bool removable, float radius, bool keepOpacityWhenSelected)
+    : x(x), y(y), color(color), removable(removable), radius(radius), keepOpacityWhenSelected(keepOpacityWhenSelected)
+{
+}
+
+KeypointList::Keypoint::Keypoint(QPointF point, QColor color, bool removable, float radius, bool keepOpacityWhenSelected)
+    : x((float)point.x()), y((float)point.y()), color(color), removable(removable), radius(radius), keepOpacityWhenSelected(keepOpacityWhenSelected)
+{
+}
+
+KeypointList::Keypoint::Keypoint(QColor color, bool removable, float radius, bool keepOpacityWhenSelected)
+    : color(color), removable(removable), radius(radius), keepOpacityWhenSelected(keepOpacityWhenSelected)
+{
+  setNaN();
+}
+
+bool KeypointList::Keypoint::isNaN() const
+{
+  if (sizeof(float) == 4) {
+    unsigned int ix, iy;
+    std::memcpy(&ix, &x, sizeof(float));
+    std::memcpy(&iy, &y, sizeof(float));
+    return ((ix & 0x7fffffff) > 0x7f800000) || ((iy & 0x7fffffff) > 0x7f800000);
+  }
+#ifdef isnan
+  return (isnan(x) || isnan(y));
+#else
+  return !(x == x) || !(y == y);
+#endif
+}
+
+KeypointList::Keypoint & KeypointList::Keypoint::setNaN()
+{
+#ifdef NAN
+  x = y = (float)NAN;
+#else
+  const double nanValue = -std::sqrt(-1.0);
+  x = y = (float)nanValue;
+#endif
+  return *this;
+}

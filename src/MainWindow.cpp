@@ -273,6 +273,8 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), _filterThread(0)
 
   connect(_imageView, SIGNAL(mouseMove(QMouseEvent *)), this, SLOT(imageViewMouseEvent(QMouseEvent *)));
 
+  connect(_imageView, SIGNAL(keypointPositionsChanged(uint, ulong)), this, SLOT(onImageViewKeypointsEvent(uint, ulong)));
+
   connect(_treeGPresets, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(presetClicked(QTreeWidgetItem *, int)));
 
   connect(_fullScreenWidget->treeWidget(), SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(presetClicked(QTreeWidgetItem *, int)));
@@ -348,7 +350,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), _filterThread(0)
   _tbRemoveFave->setIcon(QIcon::fromTheme("list-remove", QIcon(":/images/list-remove.png")));
 #else
   _tbAddFave->setIcon(QIcon(":/images/list-add.png"));
-  _tbRemoveFave->setIcon(QIcon(":/images/list-remove.png")));
+  _tbRemoveFave->setIcon(QIcon(":/images/list-remove.png"));
 #endif
   _tbRenameFave->setIcon(QIcon(":/images/rename.png"));
   int favesCount = settings.value("Faves/Count", 0).toInt();
@@ -461,6 +463,23 @@ QString MainWindow::getPreset(const QString & name)
   return QString();
 }
 
+void MainWindow::updateKeypointsInViews()
+{
+  KeypointList keypoints = _commandParamsWidget->keypoints();
+  if (_displayMode == InWindow) {
+    _imageView->setKeypoints(keypoints);
+    _imageView->repaint();
+  }
+  if (_displayMode == FullScreen) {
+    _fullScreenWidget->imageView()->setKeypoints(keypoints);
+    _fullScreenWidget->imageView()->repaint();
+  }
+  if (_outputWindow && _outputWindow->isVisible() && _outputWindowAction->isChecked()) {
+    _outputWindow->imageView()->setKeypoints(keypoints);
+    _outputWindow->imageView()->repaint();
+  }
+}
+
 void MainWindow::onImageAvailable()
 {
   if (_displayMode == InWindow) {
@@ -540,6 +559,7 @@ void MainWindow::onCommandParametersChanged()
     if (_source == StillImage && _zeroFPS)
       _filterThreadSemaphore.release();
   }
+  updateKeypointsInViews();
 }
 
 void MainWindow::onCommandParametersChangedFullScreen()
@@ -745,16 +765,21 @@ void MainWindow::changePlayButtonAppearence(bool on)
 void MainWindow::imageViewMouseEvent(QMouseEvent * event)
 {
   int buttons = 0;
-  if (event->buttons() & Qt::LeftButton)
+  if (event->buttons() & Qt::LeftButton) {
     buttons |= 1;
-  if (event->buttons() & Qt::RightButton)
+  }
+  if (event->buttons() & Qt::RightButton) {
     buttons |= 2;
-  if (event->buttons() & Qt::MidButton)
+  }
+  if (event->buttons() & Qt::MidButton) {
     buttons |= 4;
-  if (_filterThread)
+  }
+  if (_filterThread) {
     _filterThread->setMousePosition(event->x(), event->y(), buttons);
-  if (_source == StillImage && _zeroFPS)
+  }
+  if (_source == StillImage && _zeroFPS) {
     _filterThreadSemaphore.release();
+  }
 }
 
 void MainWindow::commandModified()
@@ -1251,4 +1276,9 @@ void MainWindow::closeEvent(QCloseEvent * event)
     toggleFullScreenMode();
   }
   event->accept();
+}
+
+void MainWindow::onImageViewKeypointsEvent(unsigned int flags, unsigned long time)
+{
+  _commandParamsWidget->setKeypoints(_imageView->keypoints(), true);
 }

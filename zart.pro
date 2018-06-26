@@ -12,7 +12,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 #
 #
 
-CONFIG	+= qt
+CONFIG	+= qt c++11
 CONFIG	+= warn_on
 QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig
@@ -116,6 +116,9 @@ HEADERS	+= $$GMIC_PATH/gmic.h \
     include/TextParameter.h \
     include/LinkParameter.h \
     include/ConstParameter.h \
+    include/PointParameter.h \
+    include/KeypointList.h\
+    include/OverrideCursor.h\
     include/OutputWindow.h
 
 SOURCES	+= \
@@ -146,7 +149,10 @@ SOURCES	+= \
     src/FolderParameter.cpp \
     src/TextParameter.cpp \
     src/LinkParameter.cpp \
+    src/PointParameter.cpp \
     src/ConstParameter.cpp \
+    src/KeypointList.cpp \
+    src/OverrideCursor.cpp \
     src/OutputWindow.cpp
 
 RESOURCES = zart.qrc

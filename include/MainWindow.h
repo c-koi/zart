@@ -142,6 +142,9 @@ public slots:
 protected:
   void closeEvent(QCloseEvent *);
 
+private slots:
+  void onImageViewKeypointsEvent(unsigned int flags, unsigned long time);
+
 private:
   void setPresets(const QDomElement &);
   void addPresets(const QDomElement &, TreeWidgetPresetItem * parent);
@@ -177,6 +180,7 @@ private:
   bool _zeroFPS;
   int _presetsCount;
   QVector<int> _cameraDefaultResolutionsIndexes;
+  void updateKeypointsInViews();
 };
 
 #endif

@@ -55,6 +55,7 @@
 #include "IntParameter.h"
 #include "LinkParameter.h"
 #include "NoteParameter.h"
+#include "PointParameter.h"
 #include "SeparatorParameter.h"
 #include "TextParameter.h"
 
@@ -71,6 +72,10 @@ QString AbstractParameter::unquotedTextValue() const
 {
   return textValue();
 }
+
+void AbstractParameter::addToKeypointList(KeypointList &) const {}
+
+void AbstractParameter::extractPositionFromKeypointList(KeypointList &) {}
 
 AbstractParameter * AbstractParameter::createFromNode(QDomNode node, QObject * parent)
 {
@@ -110,6 +115,9 @@ AbstractParameter * AbstractParameter::createFromNode(QDomNode node, QObject * p
   }
   if (name == "value") {
     return new ConstParameter(node, parent);
+  }
+  if (name == "point") {
+    return new PointParameter(node, parent);
   }
   return 0;
 }

@@ -1,8 +1,8 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
- * @file   CommandParamsWidget.h
+ * @file   OverrideCursor.cpp
  * @author Sebastien Fourey
- * @date   Nov 2014
- * @brief  Declaration of the class CommandParamsWidget
+ * @date   June 2018
+ * @brief Definition of the methods of the class OverrideCursor.
  *
  * This file is part of the ZArt software's source code.
  *
@@ -42,47 +42,52 @@
  *
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
+ *
  */
-#ifndef _COMMANDPARAMSWIDGET_H_
-#define _COMMANDPARAMSWIDGET_H_
+#include "OverrideCursor.h"
+#include <QApplication>
+#include <QDebug>
+#include "Common.h"
 
-#include <QDomNode>
-#include <QPushButton>
-#include <QStringList>
-#include <QVector>
-#include <QWidget>
-#include "KeypointList.h"
+bool OverrideCursor::_waiting = false;
+bool OverrideCursor::_pointingHand = false;
 
-class AbstractParameter;
-class QLabel;
+void OverrideCursor::setWaiting(bool waiting)
+{
+  if (waiting == _waiting) {
+    return;
+  }
+  _waiting = waiting;
+  updateCurrentCursor();
+}
 
-class CommandParamsWidget : public QWidget {
-  Q_OBJECT
-public:
-  CommandParamsWidget(QWidget * parent = 0);
-  void build(QDomNode presetNode);
-  virtual ~CommandParamsWidget();
-  const QString & valueString() const;
-  QStringList valueStringList() const;
-  void setValues(const QStringList &);
-  void saveValuesInDOM();
-  bool hasKeypoints() const;
-  KeypointList keypoints() const;
-  void setKeypoints(KeypointList list, bool notify);
+void OverrideCursor::setPointingHand(bool pointingHand)
+{
+  if (pointingHand == _pointingHand) {
+    return;
+  }
+  _pointingHand = pointingHand;
+  updateCurrentCursor();
+}
 
-public slots:
-  void updateValueString(bool notify = true);
-  void reset();
-signals:
-  void valueChanged();
+void OverrideCursor::updateCurrentCursor()
+{
+  while (QApplication::overrideCursor()) {
+    QApplication::restoreOverrideCursor();
+  }
+  if (_pointingHand) {
+    QApplication::setOverrideCursor(Qt::PointingHandCursor);
+  } else if (_waiting) {
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+  }
+}
 
-protected:
-  void clear();
-  QVector<AbstractParameter *> _presetParameters;
-  QString _valueString;
-  QPushButton * _pbReset;
-  QLabel * _labelNoParams;
-  bool _hasKeypoints;
-};
+bool OverrideCursor::currentCursorIsWaiting()
+{
+  return QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::WaitCursor;
+}
 
-#endif // _COMMANDPARAMSWIDGET_H_
+bool OverrideCursor::currentCursorIsPointingHand()
+{
+  return QApplication::overrideCursor() && QApplication::overrideCursor()->shape() == Qt::PointingHandCursor;
+}

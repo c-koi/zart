@@ -1,8 +1,9 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
- * @file   CommandParamsWidget.h
+ * @file   PointParameter.h
  * @author Sebastien Fourey
- * @date   Nov 2014
- * @brief  Declaration of the class CommandParamsWidget
+ * @date   June 2018
+ *
+ * @brief  Declaration of the class PointParameter
  *
  * This file is part of the ZArt software's source code.
  *
@@ -43,46 +44,78 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _COMMANDPARAMSWIDGET_H_
-#define _COMMANDPARAMSWIDGET_H_
+#ifndef _ZART_POINTPARAMETER_H_
+#define _ZART_POINTPARAMETER_H_
 
+#include <QColor>
+#include <QColorDialog>
 #include <QDomNode>
-#include <QPushButton>
-#include <QStringList>
-#include <QVector>
-#include <QWidget>
-#include "KeypointList.h"
-
-class AbstractParameter;
+#include <QDoubleSpinBox>
+#include <QPixmap>
+#include <QPointF>
+#include <QString>
+#include <QToolButton>
+#include "AbstractParameter.h"
+class QSpinBox;
+class QSlider;
 class QLabel;
+class QPushButton;
+class KeypointList;
 
-class CommandParamsWidget : public QWidget {
+class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  CommandParamsWidget(QWidget * parent = 0);
-  void build(QDomNode presetNode);
-  virtual ~CommandParamsWidget();
-  const QString & valueString() const;
-  QStringList valueStringList() const;
-  void setValues(const QStringList &);
-  void saveValuesInDOM();
-  bool hasKeypoints() const;
-  KeypointList keypoints() const;
-  void setKeypoints(KeypointList list, bool notify);
+  PointParameter(QDomNode node, QObject * parent = 0);
+  ~PointParameter();
+  bool isVisible() const override;
+  void addTo(QWidget *, int row) override;
+  void addToKeypointList(KeypointList &) const override;
+  void extractPositionFromKeypointList(KeypointList &) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void setRemoved(bool on);
+  void saveValueInDOM() override;
+
+  static void resetDefaultColorIndex();
 
 public slots:
-  void updateValueString(bool notify = true);
-  void reset();
-signals:
-  void valueChanged();
+  void enableNotifications(bool);
 
-protected:
-  void clear();
-  QVector<AbstractParameter *> _presetParameters;
-  QString _valueString;
-  QPushButton * _pbReset;
-  QLabel * _labelNoParams;
-  bool _hasKeypoints;
+private slots:
+  void onSpinBoxChanged();
+  void onRemoveButtonToggled(bool);
+
+private:
+  QDomNode _node;
+  bool initFromNode(QDomNode node);
+  static int randomChannel();
+  void connectSpinboxes();
+  void disconnectSpinboxes();
+  void pickColorFromDefaultColormap();
+  QString _name;
+  QPointF _defaultPosition;
+  bool _defaultRemovedStatus;
+  QPointF _position;
+  QColor _color;
+  bool _removable;
+  int _radius;
+  bool _visible;
+  bool _keepOpacityWhenSelected;
+
+  QLabel * _label;
+  QLabel * _colorLabel;
+  QLabel * _labelX;
+  QLabel * _labelY;
+  QDoubleSpinBox * _spinBoxX;
+  QDoubleSpinBox * _spinBoxY;
+  QToolButton * _removeButton;
+  bool _connected;
+  bool _removed;
+  QWidget * _rowCell;
+  bool _notificationEnabled;
+  static int _defaultColorNextIndex;
+  static unsigned long _randomSeed;
 };
 
-#endif // _COMMANDPARAMSWIDGET_H_
+#endif // _ZART_POINTPARAMETER_H_

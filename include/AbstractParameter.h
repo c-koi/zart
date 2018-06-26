@@ -49,6 +49,8 @@
 #include <QDomNode>
 #include <QObject>
 
+class KeypointList;
+
 class AbstractParameter : public QObject {
   Q_OBJECT
 public:
@@ -61,6 +63,9 @@ public:
   virtual void setValue(const QString & value) = 0;
   virtual void reset() = 0;
   virtual void saveValueInDOM() = 0;
+  virtual void addToKeypointList(KeypointList &) const;
+  virtual void extractPositionFromKeypointList(KeypointList &);
+
   static AbstractParameter * createFromNode(QDomNode node, QObject * parent = 0);
 signals:
   void valueChanged();

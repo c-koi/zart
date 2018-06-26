@@ -59,6 +59,7 @@ CommandParamsWidget::CommandParamsWidget(QWidget * parent) : QWidget(parent), _v
   _labelNoParams = new QLabel("<i>No parameters</i>", this);
   _labelNoParams->setAlignment(Qt::AlignHCenter | Qt::AlignCenter);
   grid->addWidget(_labelNoParams, 0, 0, 4, 3);
+  _hasKeypoints = false;
 }
 
 void CommandParamsWidget::build(QDomNode presetNode)
@@ -82,6 +83,15 @@ void CommandParamsWidget::build(QDomNode presetNode)
     }
     child = child.nextSibling();
   }
+
+  KeypointList keypoints;
+  QVector<AbstractParameter *>::iterator it = _presetParameters.begin();
+  while (it != _presetParameters.end()) {
+    (*it)->addToKeypointList(keypoints);
+    ++it;
+  }
+  _hasKeypoints = !keypoints.isEmpty();
+
   if (row) {
     _pbReset = new QPushButton("Reset", this);
     grid->addWidget(_pbReset, row, 0, 1, 3);
@@ -133,6 +143,11 @@ void CommandParamsWidget::saveValuesInDOM()
   }
 }
 
+bool CommandParamsWidget::hasKeypoints() const
+{
+  return _hasKeypoints;
+}
+
 void CommandParamsWidget::updateValueString(bool notify)
 {
   _valueString.clear();
@@ -171,4 +186,32 @@ void CommandParamsWidget::clear()
   _pbReset = 0;
   delete _labelNoParams;
   _labelNoParams = 0;
+}
+
+KeypointList CommandParamsWidget::keypoints() const
+{
+  KeypointList list;
+  if (!_hasKeypoints) {
+    return list;
+  }
+  QVector<AbstractParameter *>::const_iterator it = _presetParameters.begin();
+  while (it != _presetParameters.end()) {
+    (*it)->addToKeypointList(list);
+    ++it;
+  }
+  return list;
+}
+
+void CommandParamsWidget::setKeypoints(KeypointList list, bool notify)
+{
+  Q_ASSERT_X((list.isEmpty() || _hasKeypoints), __PRETTY_FUNCTION__, "Keypoint list mismatch");
+  if (!_hasKeypoints) {
+    return;
+  }
+  QVector<AbstractParameter *>::const_iterator it = _presetParameters.begin();
+  while (it != _presetParameters.end()) {
+    (*it)->extractPositionFromKeypointList(list);
+    ++it;
+  }
+  updateValueString(notify);
 }
