@@ -109,7 +109,7 @@
 <!-- /Arrays &amp; tiles/Chessboard -->
 <preset name="Chessboard">
   <command>
--fx_chessboard_preview $"*"
+-fx_chessboard $"*"
   </command>
   <int name="First size" default="64" min="1" max="512" />
   <int name="Second size" default="64" min="1" max="512" />
@@ -319,7 +319,7 @@
 <!-- /Artistic/Bokeh -->
 <preset name="Bokeh">
   <command>
--fx_bokeh_preview $"*"
+-fx_bokeh $"*"
   </command>
   <int name="Number of scales" default="3" min="1" max="10" />
   <choice name="Shape" default="8" choice0="Triangle" choice1="Square" choice2="Diamond" choice3="Pentagon" choice4="Hexagon" choice5="Octogon" choice6="Decagon" choice7="Star" choice8="Circular" />
