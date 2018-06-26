@@ -273,7 +273,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), _filterThread(0)
 
   connect(_imageView, SIGNAL(mouseMove(QMouseEvent *)), this, SLOT(imageViewMouseEvent(QMouseEvent *)));
 
-  connect(_imageView, SIGNAL(keypointPositionsChanged(uint, ulong)), this, SLOT(onImageViewKeypointsEvent(uint, ulong)));
+  connect(_imageView, SIGNAL(keypointPositionsChanged(ulong)), this, SLOT(onImageViewKeypointsEvent(ulong)));
 
   connect(_treeGPresets, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(presetClicked(QTreeWidgetItem *, int)));
 
@@ -787,6 +787,7 @@ void MainWindow::commandModified()
   if (_filterThread && _filterThread->isRunning()) {
     stop();
     play();
+    updateKeypointsInViews();
   }
 }
 
@@ -1278,7 +1279,7 @@ void MainWindow::closeEvent(QCloseEvent * event)
   event->accept();
 }
 
-void MainWindow::onImageViewKeypointsEvent(unsigned int flags, unsigned long time)
+void MainWindow::onImageViewKeypointsEvent(unsigned long /* time */)
 {
   _commandParamsWidget->setKeypoints(_imageView->keypoints(), true);
 }

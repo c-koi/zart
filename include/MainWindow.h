@@ -143,7 +143,7 @@ protected:
   void closeEvent(QCloseEvent *);
 
 private slots:
-  void onImageViewKeypointsEvent(unsigned int flags, unsigned long time);
+  void onImageViewKeypointsEvent(unsigned long time);
 
 private:
   void setPresets(const QDomElement &);

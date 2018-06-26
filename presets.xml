@@ -1985,6 +1985,20 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 ************************************ -->
 <preset_group name="Deformations" >
 
+  <preset name="SymmetrizePoints">
+  <command>
+-fx_symmetrize_preview $"*"
+  </command>
+  <point name="Point 1" position="50,50" />
+  <point name="Point 2" position="50,50" removable="1" color="255,0,0,128" />
+  <float name="Angle" default="0" min="-180" max="180" />
+  <choice name="Boundary" default="0" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
+  <choice name="Type" default="0" choice0="Symmetry" choice1="Antisymmetry" />
+  <bool name="Swap sides" default="0" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2018/06/11&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
 <!-- /Deformations/Cartesian transform -->
 <preset name="Cartesian transform">
   <command>

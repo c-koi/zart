@@ -253,20 +253,26 @@ void WebcamSource::retrieveWebcamResolutions(const QList<int> & camList, QSplash
           int w = widths[i];
           for (int ratio = 0; ratio < 5; ++ratio) {
             int h = w * ratioHeight[ratio] / ratioWidth[ratio];
-            cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, w);
-            cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, h);
-            QSize size((int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH), (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT));
-            if ((splashScreen || statusBar) && resolutions.back().find(size) == resolutions.back().end()) {
-              if (splashScreen) {
-                splashScreen->showMessage(QString("Retrieving webcam #%1 resolutions... %2x%3\n(brute-force checking!)\nResult will be saved.").arg(iCam + 1).arg(size.width()).arg(size.height()),
-                                          Qt::AlignBottom);
+            try {
+              cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, w);
+              cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, h);
+              QSize size((int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH), (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT));
+              if ((splashScreen || statusBar) && resolutions.back().find(size) == resolutions.back().end()) {
+                if (splashScreen) {
+                  splashScreen->showMessage(QString("Retrieving webcam #%1 resolutions... %2x%3\n(brute-force checking!)\nResult will be saved.").arg(iCam + 1).arg(size.width()).arg(size.height()),
+                                            Qt::AlignBottom);
+                }
+                if (statusBar) {
+                  statusBar->showMessage(QString("Retrieving webcam #%1 resolutions... %2x%3").arg(iCam + 1).arg(size.width()).arg(size.height()));
+                }
+                qApp->processEvents();
               }
-              if (statusBar) {
-                statusBar->showMessage(QString("Retrieving webcam #%1 resolutions... %2x%3").arg(iCam + 1).arg(size.width()).arg(size.height()));
+              if (size.isValid() && !size.isNull()) {
+                resolutions.back().insert(size);
               }
-              qApp->processEvents();
+            } catch (cv::Exception &) {
+              std::cerr << "Cannot set capture size " << w << "x" << h << std::endl;
             }
-            resolutions.back().insert(size);
           }
         }
       }
@@ -300,6 +306,7 @@ void WebcamSource::retrieveWebcamResolutions(const QList<int> & camList, QSplash
     }
     if (_webcamResolutions[iCam].isEmpty()) {
       _webcamResolutions[iCam].push_back(QSize(640, 480));
+      resolutionsList << QString("640x480");
     }
     settings.setValue(QString("WebcamSource/ResolutionsListForCam%1").arg(camList[iCam]), resolutionsList);
     ++itCam;
@@ -316,9 +323,7 @@ void WebcamSource::clearSavedSettings()
 {
   QSettings settings;
   for (int i = 0; i < 50; ++i) {
-    QStringList resolutionsStrList = settings.value(QString("WebcamSource/ResolutionsListForCam%1").arg(i)).toStringList();
-    if (!resolutionsStrList.isEmpty()) {
-      settings.setValue(QString("WebcamSource/ResolutionsListForCam%1").arg(i), QStringList());
-    }
+    settings.remove(QString("WebcamSource/ResolutionsListForCam%1").arg(i));
+    settings.remove(QString("WebcamSource/DefaultResolutionCam%1").arg(i));
   }
 }

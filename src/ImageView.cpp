@@ -139,7 +139,7 @@ void ImageView::mouseReleaseEvent(QMouseEvent * e)
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
       _movedKeypointIndex = -1;
-      emit keypointPositionsChanged(KeypointMouseReleaseEvent, e->timestamp());
+      emit keypointPositionsChanged(e->timestamp());
     }
     e->accept();
     return;
@@ -165,7 +165,7 @@ void ImageView::mouseMoveEvent(QMouseEvent * e)
       kp.setPosition(p);
       repaint();
       _keypointTimestamp = e->timestamp();
-      emit keypointPositionsChanged(0, e->timestamp());
+      emit keypointPositionsChanged(e->timestamp());
     }
     e->accept();
   }

@@ -64,12 +64,6 @@ public:
   void setKeypoints(const KeypointList & keypoints);
   KeypointList keypoints() const;
 
-  enum KeypointMotionFlags
-  {
-    KeypointBurstEvent = 1,
-    KeypointMouseReleaseEvent = 2
-  };
-
 public slots:
   void zoomOriginal();
   void zoomFitBest();
@@ -92,7 +86,7 @@ signals:
   void aboutToClose();
   void spaceBarPressed();
   void escapePressed();
-  void keypointPositionsChanged(unsigned int flags, unsigned long time);
+  void keypointPositionsChanged(unsigned long time);
 
 private:
   QMouseEvent mapMousePositionToImage(QMouseEvent * e);

@@ -50,7 +50,19 @@
 #include <QDebug>
 #include <iostream>
 
-#define SHOW(V) qDebug() << " " #V " = " << (V)
+#ifdef _ZART_DEBUG_
+#define ENTERING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
+#define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << "]" << #V << "=" << (V)
+#define SHOW(V) qWarning() << #V << "=" << (V)
+#else
+#define ENTERING while (false)
+#define TSHOW(V)                                                                                                                                                                                       \
+  while (false)                                                                                                                                                                                        \
+  qWarning() << ""
+#define SHOW(V)                                                                                                                                                                                        \
+  while (false)                                                                                                                                                                                        \
+  qWarning() << ""
+#endif
 
 #define ZART_VERSION 3.2.1
 
