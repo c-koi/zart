@@ -11,7 +11,7 @@
 <!-- /About/About G'MIC -->
 <preset name="About G'MIC">
   <command>
--fx_logo_en $"*"
+fx_logo_en $"*"
   </command>
   <note text="&lt;br/&gt;
  &lt;span foreground=&quot;purple&quot;&gt;( &lt;b&gt;G&lt;/b&gt;REYC's &lt;b&gt;M&lt;/b&gt;agic for &lt;b&gt;I&lt;/b&gt;mage &lt;b&gt;C&lt;/b&gt;omputing )&lt;/span&gt;
@@ -54,7 +54,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Array [faded] -->
 <preset name="Array [faded]">
   <command>
--fx_array_fade_preview $"*"
+fx_array_fade_preview $"*"
   </command>
   <int name="X-tiles" default="2" min="1" max="10" />
   <int name="Y-tiles" default="2" min="1" max="10" />
@@ -71,7 +71,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Array [mirrored] -->
 <preset name="Array [mirrored]">
   <command>
--fx_array_mirror_preview $"*"
+fx_array_mirror_preview $"*"
   </command>
   <int name="Iterations" default="1" min="1" max="10" />
   <float name="X-offset (%)" default="0" min="0" max="100" />
@@ -87,7 +87,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Array [random] -->
 <preset name="Array [random]">
   <command>
--array_random $"*"
+array_random $"*"
   </command>
   <int name="Source X-tiles" default="5" min="1" max="20" />
   <int name="Source Y-tiles" default="5" min="1" max="20" />
@@ -100,7 +100,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Array [random colors] -->
 <preset name="Array [random colors]">
   <command>
--fx_array_color $"*"
+fx_array_color $"*"
   </command>
   <int name="X-tiles" default="5" min="1" max="20" />
   <int name="Y-tiles" default="5" min="1" max="20" />
@@ -112,7 +112,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Array [regular] -->
 <preset name="Array [regular]">
   <command>
--fx_array_preview $"*"
+fx_array_preview $"*"
   </command>
   <int name="X-tiles" default="2" min="1" max="10" />
   <int name="Y-tiles" default="2" min="1" max="10" />
@@ -127,7 +127,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Ascii art -->
 <preset name="Ascii art">
   <command>
--fx_asciiart_preview $"*"
+fx_asciiart_preview $"*"
   </command>
   <choice name="Charset" default="5" choice0="Custom" choice1="Binary digits" choice2="Digits" choice3="Lowercase letters" choice4="Uppercase letters" choice5="Ascii" choice6="Card suits" choice7="Math symbols" />
   <text name="Custom dictionary" default=" .oO0" />
@@ -152,7 +152,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Chessboard -->
 <preset name="Chessboard">
   <command>
--fx_chessboard_preview $"*"
+fx_chessboard_preview $"*"
   </command>
   <int name="First size" default="64" min="1" max="512" />
   <int name="Second size" default="64" min="1" max="512" />
@@ -173,7 +173,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Dices -->
 <preset name="Dices">
   <command>
--fx_dices $"*"
+fx_dices $"*"
   </command>
   <float name="Resolution" default="2" min="1" max="10" />
   <int name="Size" default="24" min="8" max="64" />
@@ -185,7 +185,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Grid [cartesian] -->
 <preset name="Grid [cartesian]">
   <command>
--fx_imagegrid $"*"
+fx_imagegrid $"*"
   </command>
   <int name="X-size" default="10" min="2" max="100" />
   <int name="Y-size" default="10" min="2" max="100" />
@@ -196,7 +196,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Grid [hexagonal] -->
 <preset name="Grid [hexagonal]">
   <command>
--fx_imagegrid_hexagonal $"*"
+fx_imagegrid_hexagonal $"*"
   </command>
   <int name="Resolution" default="32" min="1" max="128" />
   <float name="Outline" default="0.1" min="0" max="0.5" />
@@ -208,7 +208,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Grid [triangular] -->
 <preset name="Grid [triangular]">
   <command>
--fx_imagegrid_triangular $"*"
+fx_imagegrid_triangular $"*"
   </command>
   <int name="Pattern width" default="10" min="8" max="128" />
   <int name="Pattern height" default="18" min="8" max="128" />
@@ -221,7 +221,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Make seamless [diffusion] -->
 <preset name="Make seamless [diffusion]">
   <command>
--fx_make_seamless_preview $"*"
+fx_make_seamless_preview $"*"
   </command>
   <float name="Equalize light" default="0" min="0" max="100" />
   <bool name="Preview original" default="0" />
@@ -239,7 +239,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Ministeck -->
 <preset name="Ministeck">
   <command>
--fx_ministeck_preview $"*"
+fx_ministeck_preview $"*"
   </command>
   <int name="Number of colors" default="8" min="2" max="24" />
   <int name="Resolution (px)" default="64" min="16" max="256" />
@@ -255,7 +255,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Puzzle -->
 <preset name="Puzzle">
   <command>
--fx_puzzle_preview $"*"
+fx_puzzle_preview $"*"
   </command>
   <note text="&lt;small&gt;&lt;b&gt;Pattern parameters:&lt;/b&gt;&lt;/small&gt;" />
   <int name="X-tiles" default="5" min="2" max="32" />
@@ -285,7 +285,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Taquin -->
 <preset name="Taquin">
   <command>
--fx_taquin $"*"
+fx_taquin $"*"
   </command>
   <int name="X-tiles" default="7" min="1" max="20" />
   <int name="Y-tiles" default="7" min="1" max="20" />
@@ -304,7 +304,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Tileable rotation -->
 <preset name="Tileable rotation">
   <command>
--fx_rotate_tileable_preview $"*"
+fx_rotate_tileable_preview $"*"
   </command>
   <float name="Angle" default="45" min="0" max="360" />
   <int name="Maximum size factor" default="8" min="0" max="20" />
@@ -319,7 +319,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Tiled rotation -->
 <preset name="Tiled rotation">
   <command>
--fx_rotate_tiles $"*"
+fx_rotate_tiles $"*"
   </command>
   <int name="X-tiles" default="5" min="1" max="80" />
   <int name="Y-tiles" default="5" min="1" max="80" />
@@ -334,7 +334,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Tiled normalization -->
 <preset name="Tiled normalization">
   <command>
--fx_normalize_tiles $"*"
+fx_normalize_tiles $"*"
   </command>
   <int name="X-tiles" default="25" min="1" max="80" />
   <int name="Y-tiles" default="25" min="1" max="80" />
@@ -349,7 +349,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Tiled random shifts -->
 <preset name="Tiled random shifts">
   <command>
--fx_shift_tiles $"*"
+fx_shift_tiles $"*"
   </command>
   <int name="X-tiles" default="10" min="1" max="30" />
   <int name="Y-tiles" default="10" min="1" max="30" />
@@ -362,7 +362,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Tiled parameterization -->
 <preset name="Tiled parameterization">
   <command>
--fx_parameterize_tiles $"*"
+fx_parameterize_tiles $"*"
   </command>
   <int name="X-tiles" default="10" min="1" max="30" />
   <int name="Y-tiles" default="10" min="1" max="30" />
@@ -374,7 +374,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Arrays &amp; tiles/Tiled isolation -->
 <preset name="Tiled isolation">
   <command>
--fx_isolate_tiles $"*"
+fx_isolate_tiles $"*"
   </command>
   <float name="X-size" default="10" min="0" max="100" />
   <float name="Y-size" default="10" min="0" max="100" />
@@ -398,7 +398,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Bokeh -->
 <preset name="Bokeh">
   <command>
--fx_bokeh_preview $"*"
+fx_bokeh_preview $"*"
   </command>
   <int name="Number of scales" default="3" min="1" max="10" />
   <choice name="Shape" default="8" choice0="Triangle" choice1="Square" choice2="Diamond" choice3="Pentagon" choice4="Hexagon" choice5="Octogon" choice6="Decagon" choice7="Star" choice8="Circular" />
@@ -432,7 +432,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Cartoon -->
 <preset name="Cartoon">
   <command>
--fx_cartoon_preview $"*"
+fx_cartoon_preview $"*"
   </command>
   <float name="Smoothness" default="3" min="0" max="10" />
   <float name="Sharpening" default="200" min="0" max="400" />
@@ -451,7 +451,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Cubism -->
 <preset name="Cubism">
   <command>
--fx_cubism_preview $"*"
+fx_cubism_preview $"*"
   </command>
   <int name="Iterations" default="2" min="0" max="10" />
   <float name="Density" default="50" min="0" max="200" />
@@ -470,7 +470,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Diffusion tensors -->
 <preset name="Diffusion tensors">
   <command>
--fx_diffusiontensors_preview $"*"
+fx_diffusiontensors_preview $"*"
   </command>
   <float name="Resolution (%)" default="10" min="0" max="20" />
   <float name="Size" default="5" min="0" max="16" />
@@ -492,7 +492,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Ellipsionism -->
 <preset name="Ellipsionism">
   <command>
--fx_ellipsionism_preview $"*"
+fx_ellipsionism_preview $"*"
   </command>
   <float name="Primary radius" default="20" min="1" max="100" />
   <float name="Secondary radius" default="10" min="1" max="100" />
@@ -511,7 +511,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Felt pen -->
 <preset name="Felt pen">
   <command>
--fx_feltpen_preview $"*"
+fx_feltpen_preview $"*"
   </command>
   <float name="Amplitude" default="300" min="0" max="4000" />
   <float name="Density" default="50" min="0" max="100" />
@@ -530,7 +530,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Hard sketch -->
 <preset name="Hard sketch">
   <command>
--fx_hardsketchbw_preview $"*"
+fx_hardsketchbw_preview $"*"
   </command>
   <float name="Amplitude" default="300" min="0" max="4000" />
   <float name="Density" default="50" min="0" max="100" />
@@ -550,7 +550,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Highlight bloom -->
 <preset name="Highlight bloom">
   <command>
--fx_highlight_bloom_preview $"*"
+fx_highlight_bloom_preview $"*"
   </command>
   <float name="Details strength (%)" default="90" min="0" max="400" />
   <float name="Details scale" default="60" min="0" max="255" />
@@ -571,7 +571,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Hope poster -->
 <preset name="Hope poster">
   <command>
--fx_poster_hope_preview $"*"
+fx_poster_hope_preview $"*"
   </command>
   <float name="Gamma" default="0" min="-3" max="3" />
   <float name="Smoothness" default="3" min="0" max="20" />
@@ -586,7 +586,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Hough sketch -->
 <preset name="Hough sketch">
   <command>
--fx_houghsketchbw_preview $"*"
+fx_houghsketchbw_preview $"*"
   </command>
   <float name="Smoothness" default="1.25" min="0" max="10" />
   <float name="Density" default="10" min="0" max="70" />
@@ -605,7 +605,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Kuwahara -->
 <preset name="Kuwahara">
   <command>
--fx_kuwahara_preview $"*"
+fx_kuwahara_preview $"*"
   </command>
   <int name="Iterations" default="2" min="1" max="20" />
   <int name="Radius" default="5" min="1" max="30" />
@@ -623,7 +623,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Lylejk's painting -->
 <preset name="Lylejk's painting">
   <command>
--fx_lylejk_painting_preview $"*"
+fx_lylejk_painting_preview $"*"
   </command>
   <int name="Iterations" default="10" min="1" max="20" />
   <int name="Abstraction" default="2" min="1" max="20" />
@@ -641,7 +641,7 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
 <!-- /Artistic/Painting -->
 <preset name="Painting">
   <command>
--fx_painting_preview $"*"
+fx_painting_preview $"*"
   </command>
   <int name="Abstraction" default="5" min="1" max="10" />
   <float name="Details scale" default="2.5" min="0" max="5" />
@@ -660,7 +660,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Pen drawing -->
 <preset name="Pen drawing">
   <command>
--fx_pen_drawing_preview $"*"
+fx_pen_drawing_preview $"*"
   </command>
   <float name="Amplitude" default="10" min="0" max="30" />
   <separator />
@@ -674,7 +674,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Polygonize [delaunay] -->
 <preset name="Polygonize [delaunay]">
   <command>
--fx_polygonize_delaunay_preview $"*"
+fx_polygonize_delaunay_preview $"*"
   </command>
   <float name="Density (%)" default="40" min="0" max="100" />
   <float name="Edges" default="5" min="0" max="100" />
@@ -695,7 +695,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Polygonize [energy] -->
 <preset name="Polygonize [energy]">
   <command>
--fx_polygonize_preview $"*"
+fx_polygonize_preview $"*"
   </command>
   <int name="Amplitude" default="300" min="0" max="2000" />
   <float name="Smoothness" default="10" min="0" max="100" />
@@ -716,7 +716,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Poster edges -->
 <preset name="Poster edges">
   <command>
--fx_poster_edges_preview $"*"
+fx_poster_edges_preview $"*"
   </command>
   <float name="Image smoothness" default="20" min="0" max="100" />
   <float name="Edge threshold" default="60" min="0" max="100" />
@@ -738,7 +738,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Posterize -->
 <preset name="Posterize">
   <command>
--fx_posterize_preview $"*"
+fx_posterize_preview $"*"
   </command>
   <float name="Smoothness" default="150" min="0" max="800" />
   <float name="Edges (%)" default="30" min="0" max="100" />
@@ -758,7 +758,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Quadtree variations -->
 <preset name="Quadtree variations">
   <command>
--fx_quadtree_preview $"*"
+fx_quadtree_preview $"*"
   </command>
   <choice name="Mode" default="0" choice0="Squares" choice1="Sierpinksi design" choice2="Ellipse painting" />
   <int name="Precision" default="1024" min="2" max="4096" />
@@ -781,7 +781,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Rodilius -->
 <preset name="Rodilius">
   <command>
--fx_rodilius_preview $"*"
+fx_rodilius_preview $"*"
   </command>
   <float name="Amplitude" default="10" min="0" max="30" />
   <float name="Thickness" default="10" min="0" max="100" />
@@ -805,7 +805,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Sharp abstract -->
 <preset name="Sharp abstract">
   <command>
--fx_sharp_abstract_preview $"*"
+fx_sharp_abstract_preview $"*"
   </command>
   <float name="Spatial scale" default="4" min="0" max="32" />
   <float name="Value scale" default="10" min="0" max="16" />
@@ -823,7 +823,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Sketch -->
 <preset name="Sketch">
   <command>
--fx_sketchbw_preview $"*"
+fx_sketchbw_preview $"*"
   </command>
   <int name="Number of orientations" default="3" min="1" max="16" />
   <float name="Starting angle" default="45" min="0" max="180" />
@@ -851,7 +851,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Smooth abstract -->
 <preset name="Smooth abstract">
   <command>
--fx_smooth_abstract_preview $"*"
+fx_smooth_abstract_preview $"*"
   </command>
   <float name="Smoothness (%)" default="75" min="0" max="100" />
   <choice name="Regularization" default="0" choice0="Isotropic" choice1="Delaunay-oriented" choice2="Edge-oriented" />
@@ -869,7 +869,7 @@ Latest update: &lt;i&gt;2011/28/02&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Vector painting -->
 <preset name="Vector painting">
   <command>
--fx_vector_painting_preview $"*"
+fx_vector_painting_preview $"*"
   </command>
   <float name="Details" default="9" min="0" max="10" />
   <separator />
@@ -884,7 +884,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Warhol -->
 <preset name="Warhol">
   <command>
--warhol $"*"
+warhol $"*"
   </command>
   <int name="X-tiles" default="3" min="1" max="10" />
   <int name="Y-tiles" default="3" min="1" max="10" />
@@ -897,7 +897,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Artistic/Whirl drawing -->
 <preset name="Whirl drawing">
   <command>
--fx_draw_whirl_preview $"*"
+fx_draw_whirl_preview $"*"
   </command>
   <float name="Amplitude" default="20" min="0" max="100" />
   <separator />
@@ -920,7 +920,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Black &amp; white -->
 <preset name="Black &amp; white">
   <command>
--fx_blackandwhite_preview $"*"
+fx_blackandwhite_preview $"*"
   </command>
   <float name="Red level" default="0.299" min="0" max="1" />
   <float name="Red smoothness" default="0" min="0" max="10" />
@@ -959,7 +959,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/B&amp;W stencil -->
 <preset name="B&amp;W stencil">
   <command>
--fx_stencilbw_preview $"*"
+fx_stencilbw_preview $"*"
   </command>
   <float name="Threshold" default="10" min="0" max="30" />
   <float name="Smoothness" default="10" min="0" max="30" />
@@ -976,7 +976,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Charcoal -->
 <preset name="Charcoal">
   <command>
--fx_charcoal_preview $"*"
+fx_charcoal_preview $"*"
   </command>
   <int name="Granularity" default="65" min="0" max="800" />
   <int name="Lowlights crossover point" default="70" min="0" max="255" />
@@ -1002,7 +1002,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Colorize [with colormap] -->
 <preset name="Colorize [with colormap]">
   <command>
--fx_bwrecolorize_preview $"*"
+fx_bwrecolorize_preview $"*"
   </command>
   <float name="Brightness (%)" default="0" min="-100" max="100" />
   <float name="Contrast (%)" default="0" min="-100" max="100" />
@@ -1034,7 +1034,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Dithering -->
 <preset name="Dithering">
   <command>
--fx_ditheredbw_preview $"*"
+fx_ditheredbw_preview $"*"
   </command>
   <float name="Brightness (%)" default="0" min="-100" max="100" />
   <float name="Contrast (%)" default="0" min="-100" max="100" />
@@ -1053,7 +1053,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Engrave -->
 <preset name="Engrave">
   <command>
--fx_engrave_preview $"*"
+fx_engrave_preview $"*"
   </command>
   <note text="&lt;small&gt;&lt;b&gt;Black &amp;amp; White foreground:&lt;/b&gt;&lt;/small&gt;" />
   <float name="Radius" default="0.5" min="0" max="2" />
@@ -1084,7 +1084,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Freaky B&amp;W -->
 <preset name="Freaky B&amp;W">
   <command>
--fx_freaky_bw_preview $"*"
+fx_freaky_bw_preview $"*"
   </command>
   <float name="Strength (%)" default="90" min="0" max="100" />
   <float name="Oddness (%)" default="20" min="0" max="100" />
@@ -1102,7 +1102,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Ink wash -->
 <preset name="Ink wash">
   <command>
--fx_ink_wash $"*"
+fx_ink_wash $"*"
   </command>
   <note text="Ink wash controls" />
   <float name="Size" default="0.14" min="0" max="4" />
@@ -1131,7 +1131,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Pencil -->
 <preset name="Pencil">
   <command>
--fx_pencilbw_preview $"*"
+fx_pencilbw_preview $"*"
   </command>
   <float name="Size" default="0.3" min="0" max="5" />
   <float name="Amplitude" default="60" min="0" max="200" />
@@ -1148,7 +1148,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Pencil portrait -->
 <preset name="Pencil portrait">
   <command>
--fx_pencil_portraitbw_preview $"*"
+fx_pencil_portraitbw_preview $"*"
   </command>
   <float name="Stroke length" default="30" min="0" max="500" />
   <float name="Stroke angle" default="120" min="0" max="180" />
@@ -1166,7 +1166,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Black &amp; white/Stamp -->
 <preset name="Stamp">
   <command>
--fx_stamp_preview $"*"
+fx_stamp_preview $"*"
   </command>
   <bool name="Auto-threshold" default="1" />
   <int name="Threshold" default="50" min="0" max="100" />
@@ -1195,7 +1195,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Colors/Abstraction -->
 <preset name="Abstraction">
   <command>
--fx_color_abstraction_preview $"*"
+fx_color_abstraction_preview $"*"
   </command>
   <float name="Smoothness" default="1" min="0" max="10" />
   <int name="Levels" default="10" min="2" max="100" />
@@ -1211,7 +1211,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Colors/Basic adjustments -->
 <preset name="Basic adjustments">
   <command>
--fx_adjust_colors_preview $"*"
+fx_adjust_colors_preview $"*"
   </command>
   <float name="Brightness (%)" default="0" min="-100" max="100" />
   <float name="Contrast (%)" default="0" min="-100" max="100" />
@@ -1229,7 +1229,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Colors/Boost chromaticity -->
 <preset name="Boost chromaticity">
   <command>
--fx_boost_chroma_preview $"*"
+fx_boost_chroma_preview $"*"
   </command>
   <float name="Amplitude (%)" default="50" min="0" max="100" />
   <choice name="Color space" default="0" choice0="YCbCr (distinct)" choice1="YCbCr (mixed)" choice2="Lab (distinct)" choice3="Lab (mixed)" />
@@ -1244,7 +1244,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Colors/Boost-fade -->
 <preset name="Boost-fade">
   <command>
--fx_boost_fade_preview $"*"
+fx_boost_fade_preview $"*"
   </command>
   <float name="Amplitude" default="5" min="0" max="10" />
   <separator />
@@ -1258,7 +1258,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Colors/Channel processing -->
 <preset name="Channel processing">
   <command>
--fx_channel_processing_preview $"*"
+fx_channel_processing_preview $"*"
   </command>
   <float name="Brightness (%)" default="0" min="-100" max="100" />
   <float name="Contrast (%)" default="0" min="-100" max="100" />
@@ -1286,7 +1286,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Colors/Channels to layers -->
 <preset name="Channels to layers">
   <command>
--fx_channels2layers_preview $"*"
+fx_channels2layers_preview $"*"
   </command>
   <choice name="Colorspace" default="0" choice0="RGB" choice1="CMY" choice2="HSV" />
   <separator />
@@ -1296,7 +1296,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Colors/Color balance -->
 <preset name="Color balance">
   <command>
--fx_balance_gamma_preview $"*"
+fx_balance_gamma_preview $"*"
   </command>
   <color name="Neutral color" default="128,128,128" />
   <bool name="Stretch colors" default="1" />
@@ -1311,7 +1311,7 @@ Latest update: &lt;i&gt;2015/25/08&lt;/i&gt;.&lt;/small&gt;" />
 <!-- /Colors/Color blindness -->
 <preset name="Color blindness">
   <command>
--fx_colorblind_preview $"*"
+fx_colorblind_preview $"*"
   </command>
   <choice name="Blindness type" default="0" choice0="Protanopia" choice1="Protanomaly" choice2="Deuteranopia" choice3="Deuteranomaly" choice4="Tritanopia" choice5="Tritanomaly" choice6="Achromatopsia" choice7="Achromatomaly" />
   <separator />
@@ -1329,7 +1329,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Colormap -->
 <preset name="Colormap">
   <command>
--fx_colormap_preview $"*"
+fx_colormap_preview $"*"
   </command>
   <choice name="Colormap" default="1" choice0="Adaptive" choice1="Custom" choice2="Standard (256)" choice3="HSV (256)" choice4="Lines (256)" choice5="Hot (256)" choice6="Cool (256)" choice7="Jet (256)" choice8="Flag (256)" choice9="Cube (256)" />
   <float name="Dithering" default="1" min="0" max="1" />
@@ -1358,7 +1358,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Decompose channels -->
 <preset name="Decompose channels">
   <command>
--fx_decompose_channels_preview $"*"
+fx_decompose_channels_preview $"*"
   </command>
   <choice name="Color basis" default="7" choice0="RGB" choice1="HSV" choice2="HSL" choice3="HSI" choice4="YUV" choice5="YCbCr" choice6="XYZ" choice7="Lab" choice8="Lch" choice9="CMY" choice10="CMYK" choice11="YIQ" />
   <choice name="Action" default="0" choice0="Decompose" choice1="Recompose" />
@@ -1371,7 +1371,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Equalize HSV -->
 <preset name="Equalize HSV">
   <command>
--fx_hsv_equalizer_preview $"*"
+fx_hsv_equalizer_preview $"*"
   </command>
   <bool name="Preview bands" default="0" />
   <separator />
@@ -1400,7 +1400,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Equalize HSI-HSL-HSV -->
 <preset name="Equalize HSI-HSL-HSV">
   <command>
--fx_equalize_hsv_preview $"*"
+fx_equalize_hsv_preview $"*"
   </command>
   <choice name="Colorspace" default="1" choice0="HSI" choice1="HSL" choice2="HSV" />
   <float name="Opacity (%)" default="100" min="0" max="100" />
@@ -1464,7 +1464,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Mixer [CMYK] -->
 <preset name="Mixer [CMYK]">
   <command>
--fx_mix_cmyk_preview $"*"
+fx_mix_cmyk_preview $"*"
   </command>
   <float name="Cyan factor" default="1" min="0" max="4" />
   <float name="Cyan shift" default="0" min="-255" max="255" />
@@ -1495,7 +1495,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Mixer [HSV] -->
 <preset name="Mixer [HSV]">
   <command>
--fx_mix_hsv_preview $"*"
+fx_mix_hsv_preview $"*"
   </command>
   <float name="Hue factor" default="1" min="0" max="4" />
   <float name="Hue shift" default="0" min="-180" max="180" />
@@ -1522,7 +1522,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Mixer [Lab] -->
 <preset name="Mixer [Lab]">
   <command>
--fx_mix_lab_preview $"*"
+fx_mix_lab_preview $"*"
   </command>
   <float name="Lightness factor" default="1" min="0.5" max="1.5" />
   <float name="Lightness shift" default="0" min="-50" max="50" />
@@ -1549,7 +1549,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Mixer [RGB] -->
 <preset name="Mixer [RGB]">
   <command>
--fx_mix_rgb_preview $"*"
+fx_mix_rgb_preview $"*"
   </command>
   <float name="Red factor" default="1" min="0" max="4" />
   <float name="Red shift" default="0" min="-255" max="255" />
@@ -1576,7 +1576,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Mixer [YCbCr] -->
 <preset name="Mixer [YCbCr]">
   <command>
--fx_mix_ycbcr_preview $"*"
+fx_mix_ycbcr_preview $"*"
   </command>
   <float name="Luminance factor" default="1" min="0" max="4" />
   <float name="Luminance shift" default="0" min="-255" max="255" />
@@ -1603,7 +1603,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Retinex -->
 <preset name="Retinex">
   <command>
--fx_retinex_preview $"*"
+fx_retinex_preview $"*"
   </command>
   <float name="Strength (%)" default="75" min="0" max="100" />
   <float name="Value offset" default="16" min="1" max="256" />
@@ -1629,7 +1629,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Selective desaturation -->
 <preset name="Selective desaturation">
   <command>
--fx_selective_desaturation_preview $"*"
+fx_selective_desaturation_preview $"*"
   </command>
   <color name="Reference color" default="255,255,255" />
   <choice name="Desaturate" default="0" choice0="Reference color" choice1="All but reference color" />
@@ -1647,7 +1647,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/Sepia -->
 <preset name="Sepia">
   <command>
--fx_sepia_preview $"*"
+fx_sepia_preview $"*"
   </command>
   <float name="Brightness (%)" default="0" min="-100" max="100" />
   <float name="Contrast (%)" default="0" min="-100" max="100" />
@@ -1663,7 +1663,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Colors/User-defined -->
 <preset name="User-defined">
   <command>
--fx_custom_transform $"*"
+fx_custom_transform $"*"
   </command>
   <text name="Red - green - blue - alpha" default="i" />
   <text name="Red - green - blue" default="i + 90*(x/w)*cos(i/10)" />
@@ -1688,7 +1688,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Convolve -->
 <preset name="Convolve">
   <command>
--fx_convolve_preview $"*"
+fx_convolve_preview $"*"
   </command>
   <choice name="Kernel" default="0" choice0="Custom" choice1="Average 3x3" choice2="Average 5x5" choice3="Average 7x7" choice4="Average 9x9" choice5="Prewitt-X" choice6="Prewitt-Y" choice7="Sobel-X" choice8="Sobel-Y" choice9="Rotinv-X" choice10="Rotinv-Y" choice11="Laplacian" choice12="Robert Cross 1" choice13="Robert Cross 2" choice14="Impulses 5x5" choice15="Impulses 7x7" choice16="Impulses 9x9" />
   <choice name="Boundary" default="1" choice0="Dirichlet" choice1="Neumann" />
@@ -1712,7 +1712,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Curvature -->
 <preset name="Curvature">
   <command>
--fx_curvature_preview $"*"
+fx_curvature_preview $"*"
   </command>
   <float name="Smoothness" default="2" min="0" max="10" />
   <float name="Min threshold" default="0" min="0" max="100" />
@@ -1730,7 +1730,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Difference of gaussians -->
 <preset name="Difference of gaussians">
   <command>
--fx_dog_preview $"*"
+fx_dog_preview $"*"
   </command>
   <float name="1st variance" default="1.4" min="0" max="5" />
   <float name="2nd variance" default="1.5" min="0" max="5" />
@@ -1748,7 +1748,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Distance transform -->
 <preset name="Distance transform">
   <command>
--fx_distance_preview $"*"
+fx_distance_preview $"*"
   </command>
   <int name="Value" default="128" min="0" max="255" />
   <choice name="Metric" default="2" choice0="Chebyshev" choice1="Manhattan" choice2="Euclidean" choice3="Squared-Euclidean" />
@@ -1765,7 +1765,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Edges -->
 <preset name="Edges">
   <command>
--fx_edges_preview $"*"
+fx_edges_preview $"*"
   </command>
   <float name="Smoothness" default="0" min="0" max="10" />
   <float name="Threshold" default="15" min="0" max="50" />
@@ -1781,7 +1781,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Edges offsets -->
 <preset name="Edges offsets">
   <command>
--fx_edge_offsets_preview $"*"
+fx_edge_offsets_preview $"*"
   </command>
   <float name="Smoothness" default="0" min="0" max="10" />
   <float name="Threshold" default="15" min="0" max="50" />
@@ -1799,7 +1799,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Gradient norm -->
 <preset name="Gradient norm">
   <command>
--fx_gradient_norm_preview $"*"
+fx_gradient_norm_preview $"*"
   </command>
   <float name="Smoothness" default="0" min="0" max="10" />
   <float name="Linearity" default="0.5" min="0" max="1.5" />
@@ -1817,7 +1817,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Gradient RGB -->
 <preset name="Gradient RGB">
   <command>
--fx_gradient2rgb_preview $"*"
+fx_gradient2rgb_preview $"*"
   </command>
   <float name="Smoothness" default="0" min="0" max="10" />
   <float name="Min threshold" default="0" min="0" max="100" />
@@ -1835,7 +1835,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Isophotes -->
 <preset name="Isophotes">
   <command>
--fx_isophotes_preview $"*"
+fx_isophotes_preview $"*"
   </command>
   <int name="Levels" default="8" min="1" max="256" />
   <float name="Smoothness" default="0" min="0" max="5" />
@@ -1851,7 +1851,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Laplacian -->
 <preset name="Laplacian">
   <command>
--fx_laplacian_preview $"*"
+fx_laplacian_preview $"*"
   </command>
   <float name="Smoothness" default="0" min="0" max="10" />
   <float name="Min threshold" default="0" min="0" max="100" />
@@ -1869,7 +1869,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Local orientation -->
 <preset name="Local orientation">
   <command>
--fx_local_orientation_preview $"*"
+fx_local_orientation_preview $"*"
   </command>
   <float name="Smoothness" default="0" min="0" max="5" />
   <float name="Min threshold" default="0" min="0" max="100" />
@@ -1888,7 +1888,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Morphological filter -->
 <preset name="Morphological filter">
   <command>
--fx_morpho_v2_preview $"*"
+fx_morpho_v2_preview $"*"
   </command>
   <choice name="Action" default="0" choice0="Erosion" choice1="Dilation" choice2="Opening" choice3="Closing" choice4="Original - Erosion" choice5="Dilation - Original" choice6="Original - Opening" choice7="Closing - Original" choice8="Original - (Opening + Closing)/2" choice9="Closing - Opening" />
   <choice name="Kernel" default="0" choice0="Square" choice1="Octagonal" choice2="Circular" choice3="Custom" />
@@ -1911,7 +1911,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Segmentation -->
 <preset name="Segmentation">
   <command>
--fx_segment_watershed_preview $"*"
+fx_segment_watershed_preview $"*"
   </command>
   <float name="Edge threshold" default="2" min="0" max="15" />
   <float name="Smoothness" default="1" min="0" max="5" />
@@ -1929,7 +1929,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Skeleton -->
 <preset name="Skeleton">
   <command>
--fx_skeleton_preview $"*"
+fx_skeleton_preview $"*"
   </command>
   <choice name="Method" default="0" choice0="Distance (fast)" choice1="Thinning (slow)" />
   <float name="Smoothness" default="0" min="0" max="10" />
@@ -1946,7 +1946,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Super-pixels -->
 <preset name="Super-pixels">
   <command>
--fx_superpixels_preview $"*"
+fx_superpixels_preview $"*"
   </command>
   <int name="Size" default="16" min="4" max="64" />
   <float name="Regularity" default="10" min="0" max="128" />
@@ -1965,7 +1965,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Contours/Thin edges -->
 <preset name="Thin edges">
   <command>
--fx_thin_edges_preview $"*"
+fx_thin_edges_preview $"*"
   </command>
   <float name="Smoothness" default="0" min="0" max="10" />
   <float name="Threshold" default="15" min="0" max="50" />
@@ -1990,7 +1990,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Cartesian transform -->
 <preset name="Cartesian transform">
   <command>
--fx_custom_deformation $"*"
+fx_custom_deformation $"*"
   </command>
   <text name="X-warping" default="(w+h)/20 * cos(y*20/h)" />
   <text name="Y-warping" default="(w+h)/20 * sin(x*20/w)" />
@@ -2004,7 +2004,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Circle transform -->
 <preset name="Circle transform">
   <command>
--fx_circle_transform_preview $"*"
+fx_circle_transform_preview $"*"
   </command>
   <point name="Center (%)" position="50,50" removable="0" />
   <point name="Radius" position="75,50" removable="0" />
@@ -2021,7 +2021,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Conformal maps -->
 <preset name="Conformal maps">
   <command>
--fx_conformal_maps_preview $"*"
+fx_conformal_maps_preview $"*"
   </command>
   <choice name="Mapping" default="8" choice0="Custom formula" choice1="z" choice2="(z-1)/(z+1)" choice3="cos(z)" choice4="sin(z)" choice5="tan(z)" choice6="exp(z)" choice7="log(z)" choice8="Dipole: 1/(4*z^2-1)" choice9="Star: -5*(z^3/3-z/4)/2" />
   <float name="Exponent (real)" default="1" min="-16" max="16" />
@@ -2046,7 +2046,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Crease -->
 <preset name="Crease">
   <command>
--fx_crease $"*"
+fx_crease $"*"
   </command>
   <float name="Amplitude" default="30" min="0" max="300" />
   <float name="Frequency (%)" default="10" min="0" max="100" />
@@ -2058,7 +2058,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Distort lens -->
 <preset name="Distort lens">
   <command>
--fx_distort_lens $"*"
+fx_distort_lens $"*"
   </command>
   <float name="Amplitude" default="0.1" min="-1" max="1" />
   <float name="Aspect ratio" default="0" min="-2" max="2" />
@@ -2072,7 +2072,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Drop water -->
 <preset name="Drop water">
   <command>
--fx_drop_water_preview $"*"
+fx_drop_water_preview $"*"
   </command>
   <note text="&lt;small&gt;&lt;b&gt;Shape geometry:&lt;/b&gt;&lt;/small&gt;" />
   <choice name="Shapes" default="0" choice0="Procedural" choice1="Opaque regions on top layer" />
@@ -2104,7 +2104,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Equirectangular to nadir-zenith -->
 <preset name="Equirectangular to nadir-zenith">
   <command>
--fx_equirectangular2nadirzenith $"*"
+fx_equirectangular2nadirzenith $"*"
   </command>
   <choice name="Mode" default="0" choice0="to nadir/zenith" choice1="to equirectangular" />
   <separator />
@@ -2114,7 +2114,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Euclidean - polar -->
 <preset name="Euclidean - polar">
   <command>
--fx_euclidean2polar $"*"
+fx_euclidean2polar $"*"
   </command>
   <point name="Center (%)" position="50,50" removable="0" />
   <float name="Stretch factor" default="1" min="0.1" max="10" />
@@ -2127,7 +2127,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Fish-eye -->
 <preset name="Fish-eye">
   <command>
--fisheye $"*"
+fisheye $"*"
   </command>
   <point name="Center (%)" position="50,50" removable="0" />
   <float name="Radius" default="70" min="0" max="100" />
@@ -2139,7 +2139,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Flower -->
 <preset name="Flower">
   <command>
--fx_flower_preview $"*"
+fx_flower_preview $"*"
   </command>
   <point name="Center (%)" position="50,50" removable="0" />
   <point name="Amplitude / Angle" position="75,50" removable="0" />
@@ -2153,7 +2153,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Kaleidoscope [blended] -->
 <preset name="Kaleidoscope [blended]">
   <command>
--fx_rotoidoscope $"*"
+fx_rotoidoscope $"*"
   </command>
   <point name="Center (%)" position="50,50" />
   <int name="Angular tiles" default="10" min="1" max="72" />
@@ -2166,7 +2166,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Kaleidoscope [polar] -->
 <preset name="Kaleidoscope [polar]">
   <command>
--fx_kaleidoscope $"*"
+fx_kaleidoscope $"*"
   </command>
   <point name="Center (%)" position="50,50" />
   <float name="X-offset (%)" default="0" min="0" max="100" />
@@ -2181,7 +2181,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Kaleidoscope [symmetry] -->
 <preset name="Kaleidoscope [symmetry]">
   <command>
--fx_symmetrizoscope $"*"
+fx_symmetrizoscope $"*"
   </command>
   <int name="Iterations" default="4" min="1" max="32" />
   <float name="Angle" default="0" min="0" max="360" />
@@ -2194,7 +2194,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Perspective -->
 <preset name="Perspective">
   <command>
--fx_warp_perspective $"*"
+fx_warp_perspective $"*"
   </command>
   <float name="X-angle" default="1.73" min="-4" max="4" />
   <float name="Y-angle" default="0" min="-4" max="4" />
@@ -2210,7 +2210,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Polar transform -->
 <preset name="Polar transform">
   <command>
--fx_transform_polar $"*"
+fx_transform_polar $"*"
   </command>
   <choice name="Preset" default="0" choice0="Custom transform" choice1="Inverse radius" choice2="Swap radius/angle" />
   <point name="Center (%)" position="50,50" removable="0" />
@@ -2224,7 +2224,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Raindrops -->
 <preset name="Raindrops">
   <command>
--raindrops $"*"
+raindrops $"*"
   </command>
   <float name="Amplitude" default="80" min="0" max="300" />
   <float name="Density" default="0.1" min="0" max="1" />
@@ -2237,7 +2237,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Random -->
 <preset name="Random">
   <command>
--deform $"*"
+deform $"*"
   </command>
   <float name="Amplitude" default="10" min="0" max="100" />
   <separator />
@@ -2247,7 +2247,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Ripple -->
 <preset name="Ripple">
   <command>
--ripple $"*"
+ripple $"*"
   </command>
   <float name="Amplitude" default="10" min="0" max="100" />
   <float name="Bandwidth" default="20" min="1" max="300" />
@@ -2261,7 +2261,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Reflection -->
 <preset name="Reflection">
   <command>
--fx_reflect $"*"
+fx_reflect $"*"
   </command>
   <float name="Height" default="50" min="0" max="100" />
   <float name="Attenuation" default="1" min="0.1" max="4" />
@@ -2279,7 +2279,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 <!-- /Deformations/Seamcarve -->
 <preset name="Seamcarve">
   <command>
--fx_seamcarve_preview $"*"
+fx_seamcarve_preview $"*"
   </command>
   <float name="Width (%)" default="85" min="0" max="200" />
   <float name="Height (%)" default="100" min="0" max="200" />
@@ -2304,7 +2304,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Sphere -->
 <preset name="Sphere">
   <command>
--fx_map_sphere_preview $"*"
+fx_map_sphere_preview $"*"
   </command>
   <int name="Width" default="512" min="1" max="4096" />
   <int name="Height" default="512" min="1" max="4096" />
@@ -2324,7 +2324,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Spherize -->
 <preset name="Spherize">
   <command>
--fx_spherize_preview $"*"
+fx_spherize_preview $"*"
   </command>
   <float name="Radius (%)" default="50" min="0" max="300" />
   <float name="Strength" default="1" min="-10" max="10" />
@@ -2341,7 +2341,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Square to circle -->
 <preset name="Square to circle">
   <command>
--fx_square_circle $"*"
+fx_square_circle $"*"
   </command>
   <choice name="Mode" default="0" choice0="Square to circle" choice1="Circle to square" />
   <choice name="Interpolation" default="1" choice0="Nearest neighbor" choice1="Linear" />
@@ -2361,7 +2361,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Symmetrize -->
 <preset name="Symmetrize">
   <command>
--fx_symmetrize_preview $"*"
+fx_symmetrize_preview $"*"
   </command>
   <point name="Point 1" position="50,50" removable="0" color="0,255,0,170" radius="10" />
   <point name="Point 2" position="50,75" removable="-1" color="255,255,0,170" radius="10" />
@@ -2376,7 +2376,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Textured glass -->
 <preset name="Textured glass">
   <command>
--fx_textured_glass_preview $"*"
+fx_textured_glass_preview $"*"
   </command>
   <float name="X-amplitude" default="40" min="0" max="400" />
   <float name="Y-amplitude" default="40" min="0" max="400" />
@@ -2396,7 +2396,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Twirl -->
 <preset name="Twirl">
   <command>
--fx_twirl $"*"
+fx_twirl $"*"
   </command>
   <float name="Amplitude" default="1" min="-5" max="5" />
   <point name="Center (%)" position="50,50" removable="0" />
@@ -2408,7 +2408,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Water -->
 <preset name="Water">
   <command>
--water $"*"
+water $"*"
   </command>
   <float name="Amplitude" default="30" min="0" max="300" />
   <float name="Smoothness" default="1.5" min="0" max="4" />
@@ -2420,7 +2420,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Wave -->
 <preset name="Wave">
   <command>
--wave $"*"
+wave $"*"
   </command>
   <float name="Amplitude" default="10" min="0" max="30" />
   <float name="Frequency" default="0.4" min="0" max="2" />
@@ -2432,7 +2432,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Wind -->
 <preset name="Wind">
   <command>
--fx_wind_preview $"*"
+fx_wind_preview $"*"
   </command>
   <int name="Amplitude" default="20" min="0" max="500" />
   <float name="Angle" default="0" min="0" max="360" />
@@ -2453,7 +2453,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Deformations/Zoom -->
 <preset name="Zoom">
   <command>
--fx_zoom $"*"
+fx_zoom $"*"
   </command>
   <float name="Factor" default="2" min="0.01" max="10" />
   <point name="Center (%)" position="50,50" removable="0" />
@@ -2474,7 +2474,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Blur [angular] -->
 <preset name="Blur [angular]">
   <command>
--fx_blur_angular_preview $"*"
+fx_blur_angular_preview $"*"
   </command>
   <float name="Amplitude" default="2" min="0" max="10" />
   <point name="Center (%)" position="50,50" removable="0" />
@@ -2490,7 +2490,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Blur [bloom] -->
 <preset name="Blur [bloom]">
   <command>
--fx_blur_bloom_preview $"*"
+fx_blur_bloom_preview $"*"
   </command>
   <float name="Amplitude" default="1" min="0" max="10" />
   <float name="Ratio" default="2" min="0" max="5" />
@@ -2514,7 +2514,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Blur [depth-of-field] -->
 <preset name="Blur [depth-of-field]">
   <command>
--fx_blur_dof_preview $"*"
+fx_blur_dof_preview $"*"
   </command>
   <float name="Blur amplitude" default="3" min="0" max="20" />
   <int name="Blur precision" default="16" min="2" max="64" />
@@ -2540,7 +2540,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Blur [gaussian] -->
 <preset name="Blur [gaussian]">
   <command>
--fx_gaussian_blur_preview $"*"
+fx_gaussian_blur_preview $"*"
   </command>
   <float name="XY-amplitude" default="3" min="0" max="20" />
   <float name="X-amplitude" default="0" min="0" max="20" />
@@ -2560,7 +2560,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Blur [glow] -->
 <preset name="Blur [glow]">
   <command>
--fx_glow_preview $"*"
+fx_glow_preview $"*"
   </command>
   <float name="Amplitude" default="6" min="0" max="20" />
   <separator />
@@ -2577,7 +2577,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Blur [linear] -->
 <preset name="Blur [linear]">
   <command>
--fx_blur_linear_preview $"*"
+fx_blur_linear_preview $"*"
   </command>
   <float name="Tangent radius" default="10" min="0" max="100" />
   <float name="Orthogonal radius" default="0.5" min="0" max="100" />
@@ -2598,7 +2598,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Blur [radial] -->
 <preset name="Blur [radial]">
   <command>
--fx_blur_radial_preview $"*"
+fx_blur_radial_preview $"*"
   </command>
   <float name="Amplitude" default="3" min="0" max="20" />
   <point name="Center (%)" position="50,50" removable="0" />
@@ -2614,7 +2614,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Chromatic aberrations -->
 <preset name="Chromatic aberrations">
   <command>
--fx_chromatic_aberrations_preview $"*"
+fx_chromatic_aberrations_preview $"*"
   </command>
   <color name="Primary color" default="255,0,0" />
   <float name="X-shift" default="2" min="-16" max="16" />
@@ -2634,7 +2634,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Dirty -->
 <preset name="Dirty">
   <command>
--fx_dirty_preview $"*"
+fx_dirty_preview $"*"
   </command>
   <float name="Amplitude" default="30" min="0" max="100" />
   <bool name="Monochrome" default="1" />
@@ -2652,7 +2652,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Flip &amp; rotate blocs -->
 <preset name="Flip &amp; rotate blocs">
   <command>
--fx_flip_blocs_preview $"*"
+fx_flip_blocs_preview $"*"
   </command>
   <int name="X-size (px)" default="4" min="1" max="128" />
   <int name="Y-size (px)" default="4" min="1" max="128" />
@@ -2671,7 +2671,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/JPEG artefacts -->
 <preset name="JPEG artefacts">
   <command>
--fx_jpeg_artefacts_preview $"*"
+fx_jpeg_artefacts_preview $"*"
   </command>
   <note text="&lt;small&gt;This filter simulates the JPEG compression artifacts, using DCT quantization on 8x8 blocs.&lt;/small&gt;" />
   <int name="Quality (%)" default="50" min="1" max="100" />
@@ -2686,7 +2686,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Lomo -->
 <preset name="Lomo">
   <command>
--fx_lomo_preview $"*"
+fx_lomo_preview $"*"
   </command>
   <float name="Vignette size" default="20" min="0" max="100" />
   <separator />
@@ -2700,7 +2700,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Noise [additive] -->
 <preset name="Noise [additive]">
   <command>
--fx_noise_preview $"*"
+fx_noise_preview $"*"
   </command>
   <float name="Amplitude" default="10" min="0" max="200" />
   <choice name="Noise type" default="0" choice0="Gaussian" choice1="Uniform" choice2="Salt and pepper" choice3="Poisson" />
@@ -2718,7 +2718,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Noise [spread] -->
 <preset name="Noise [spread]">
   <command>
--fx_spread_preview $"*"
+fx_spread_preview $"*"
   </command>
   <float name="X-variations" default="4" min="0" max="20" />
   <float name="Y-variations" default="4" min="0" max="20" />
@@ -2736,7 +2736,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Old-movie stripes -->
 <preset name="Old-movie stripes">
   <command>
--fx_stripes_y_preview $"*"
+fx_stripes_y_preview $"*"
   </command>
   <float name="Frequency" default="10" min="0" max="100" />
   <separator />
@@ -2753,7 +2753,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Oldschool 8bits -->
 <preset name="Oldschool 8bits">
   <command>
--fx_8bits_preview $"*"
+fx_8bits_preview $"*"
   </command>
   <float name="Scale" default="25" min="1" max="100" />
   <float name="Dithering" default="800" min="0" max="10000" />
@@ -2769,7 +2769,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 <!-- /Degradations/Pixel sort -->
 <preset name="Pixel sort">
   <command>
--fx_pixelsort_preview $"*"
+fx_pixelsort_preview $"*"
   </command>
   <note text="&lt;small&gt;&lt;b&gt;Sorting parameters:&lt;/b&gt;&lt;/small&gt;" />
   <choice name="Order" default="1" choice0="Decreasing" choice1="Increasing" />
@@ -2795,7 +2795,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Degradations/Rain &amp; snow -->
 <preset name="Rain &amp; snow">
   <command>
--fx_rain_preview $"*"
+fx_rain_preview $"*"
   </command>
   <float name="Angle" default="65" min="-180" max="180" />
   <float name="Speed" default="10" min="0" max="50" />
@@ -2814,7 +2814,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Degradations/Random shade stripes -->
 <preset name="Random shade stripes">
   <command>
--fx_shade_stripes_preview $"*"
+fx_shade_stripes_preview $"*"
   </command>
   <float name="Frequency" default="30" min="1" max="100" />
   <choice name="Orientation" default="1" choice0="Horizontal" choice1="Vertical" />
@@ -2834,7 +2834,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Degradations/Scanlines -->
 <preset name="Scanlines">
   <command>
--fx_scanlines_preview $"*"
+fx_scanlines_preview $"*"
   </command>
   <float name="Amplitude" default="60" min="0" max="255" />
   <float name="Bandwidth" default="2" min="1" max="300" />
@@ -2855,7 +2855,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Degradations/Visible watermark -->
 <preset name="Visible watermark">
   <command>
--fx_watermark_visible $"*"
+fx_watermark_visible $"*"
   </command>
   <text name="Text" default="\251 G'MIC" />
   <float name="Opacity" default="0.4" min="0.1" max="0.9" />
@@ -2870,7 +2870,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Degradations/Warp by intensity -->
 <preset name="Warp by intensity">
   <command>
--fx_warp_by_intensity_preview $"*"
+fx_warp_by_intensity_preview $"*"
   </command>
   <float name="X-factor" default="0.04" min="-6" max="6" />
   <float name="Y-factor" default="0.04" min="-6" max="6" />
@@ -2903,7 +2903,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Details equalizer -->
 <preset name="Details equalizer">
   <command>
--fx_equalize_details_preview $"*"
+fx_equalize_details_preview $"*"
   </command>
   <float name="Base scale" default="5" min="0" max="15" />
   <float name="Detail scale" default="0.5" min="0" max="5" />
@@ -2946,7 +2946,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Equalize local histograms -->
 <preset name="Equalize local histograms">
   <command>
--fx_equalize_local_histograms_preview $"*"
+fx_equalize_local_histograms_preview $"*"
   </command>
   <float name="Strength (%)" default="75" min="0" max="100" />
   <choice name="Mode" default="2" choice0="Raw" choice1="Hard" choice2="Soft" />
@@ -2967,7 +2967,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Freaky details -->
 <preset name="Freaky details">
   <command>
--fx_freaky_details_preview $"*"
+fx_freaky_details_preview $"*"
   </command>
   <int name="Amplitude" default="2" min="1" max="5" />
   <float name="Scale" default="10" min="0" max="100" />
@@ -2990,7 +2990,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Local normalization -->
 <preset name="Local normalization">
   <command>
--fx_normalize_local_preview $"*"
+fx_normalize_local_preview $"*"
   </command>
   <float name="Amplitude" default="2" min="0" max="60" />
   <int name="Radius" default="6" min="1" max="64" />
@@ -3010,7 +3010,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Local processing -->
 <preset name="Local processing">
   <command>
--fx_local_processing_preview $"*"
+fx_local_processing_preview $"*"
   </command>
   <choice name="Action" default="0" choice0="Normalize" choice1="Equalize" />
   <float name="Strength (%)" default="75" min="0" max="100" />
@@ -3031,7 +3031,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Magic details -->
 <preset name="Magic details">
   <command>
--fx_magic_details_preview $"*"
+fx_magic_details_preview $"*"
   </command>
   <float name="Amplitude" default="6" min="0" max="30" />
   <float name="Spatial scale" default="3" min="0" max="10" />
@@ -3051,7 +3051,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Mighty details -->
 <preset name="Mighty details">
   <command>
--fx_mighty_details_preview $"*"
+fx_mighty_details_preview $"*"
   </command>
   <float name="Amplitude" default="25" min="0" max="100" />
   <float name="Details amount" default="1" min="0" max="2" />
@@ -3070,7 +3070,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Sharpen [deblur] -->
 <preset name="Sharpen [deblur]">
   <command>
--fx_deblur_preview $"*"
+fx_deblur_preview $"*"
   </command>
   <float name="Radius" default="2" min="0" max="20" />
   <int name="Iterations" default="10" min="0" max="100" />
@@ -3092,7 +3092,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Sharpen [Gold-Meinel] -->
 <preset name="Sharpen [Gold-Meinel]">
   <command>
--fx_unsharp_goldmeinel_preview $"*"
+fx_unsharp_goldmeinel_preview $"*"
   </command>
   <float name="Sigma" default="1" min="0.5" max="10" />
   <int name="Iterations" default="5" min="1" max="15" />
@@ -3114,7 +3114,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Sharpen [inverse diffusion] -->
 <preset name="Sharpen [inverse diffusion]">
   <command>
--fx_sharpen_inversediff_preview $"*"
+fx_sharpen_inversediff_preview $"*"
   </command>
   <float name="Amplitude" default="50" min="1" max="300" />
   <int name="Iterations" default="2" min="1" max="10" />
@@ -3133,7 +3133,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Sharpen [octave sharpening] -->
 <preset name="Sharpen [octave sharpening]">
   <command>
--fx_unsharp_octave_preview $"*"
+fx_unsharp_octave_preview $"*"
   </command>
   <int name="Scales" default="4" min="1" max="10" />
   <float name="Maximal radius" default="5" min="0" max="20" />
@@ -3154,7 +3154,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Sharpen [Richardson-Lucy] -->
 <preset name="Sharpen [Richardson-Lucy]">
   <command>
--fx_unsharp_richardsonlucy_preview $"*"
+fx_unsharp_richardsonlucy_preview $"*"
   </command>
   <float name="Sigma" default="1" min="0.5" max="10" />
   <int name="Iterations" default="10" min="1" max="100" />
@@ -3171,7 +3171,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Sharpen [shock filters] -->
 <preset name="Sharpen [shock filters]">
   <command>
--fx_sharpen_shock_preview $"*"
+fx_sharpen_shock_preview $"*"
   </command>
   <float name="Amplitude" default="150" min="1" max="400" />
   <float name="Edge threshold" default="0.1" min="0" max="0.7" />
@@ -3193,7 +3193,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Sharpen [texture] -->
 <preset name="Sharpen [texture]">
   <command>
--fx_sharpen_texture_preview $"*"
+fx_sharpen_texture_preview $"*"
   </command>
   <float name="Strength" default="1" min="0" max="4" />
   <float name="Radius" default="4" min="0" max="32" />
@@ -3210,7 +3210,7 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 <!-- /Details/Sharpen [unsharp mask] -->
 <preset name="Sharpen [unsharp mask]">
   <command>
--fx_unsharp_preview $"*"
+fx_unsharp_preview $"*"
   </command>
   <choice name="Sharpening type" default="1" choice0="Gaussian" choice1="Bilateral" />
   <float name="Spatial radius" default="1.25" min="0" max="20" />
@@ -3239,7 +3239,7 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
 <!-- /Details/Split details [wavelets] -->
 <preset name="Split details [wavelets]">
   <command>
--fx_split_details_wavelets_preview $"*"
+fx_split_details_wavelets_preview $"*"
   </command>
   <int name="Number of scales" default="6" min="2" max="12" />
   <bool name="Add alpha channels to detail scale layers" default="0" />
@@ -3257,7 +3257,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Details/Tone mapping -->
 <preset name="Tone mapping">
   <command>
--fx_map_tones_preview $"*"
+fx_map_tones_preview $"*"
   </command>
   <float name="Threshold" default="0.5" min="0" max="1" />
   <float name="Gamma" default="0.7" min="0" max="1" />
@@ -3276,7 +3276,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Details/Tone mapping [fast] -->
 <preset name="Tone mapping [fast]">
   <command>
--fx_map_tones_fast_preview $"*"
+fx_map_tones_fast_preview $"*"
   </command>
   <float name="Radius" default="3" min="0" max="20" />
   <float name="Power" default="0.5" min="0" max="1" />
@@ -3302,7 +3302,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Add grain -->
 <preset name="Add grain">
   <command>
--fx_emulate_grain_preview $"*"
+fx_emulate_grain_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="Orwo NP20-GDR" choice1="Kodak TMAX 400" choice2="Kodak TMAX 3200" choice3="Kodak TRI-X 1600" choice4="Unknown" />
   <choice name="Blend mode" default="1" choice0="Alpha" choice1="Grain merge" choice2="Hard light" choice3="Overlay" choice4="Soft light" choice5="Grain only" />
@@ -3327,7 +3327,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/B&amp;W films -->
 <preset name="B&amp;W films">
   <command>
--fx_emulate_film_bw_preview $"*"
+fx_emulate_film_bw_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Agfa APX 100" choice2="Agfa APX 25" choice3="Fuji Neopan 1600" choice4="Fuji Neopan Acros 100" choice5="Ilford Delta 100" choice6="Ilford Delta 3200" choice7="Ilford Delta 400" choice8="Ilford FP4 Plus 125" choice9="Ilford HP5 Plus 400" choice10="Ilford HPS 800" choice11="Ilford Pan F Plus 50" choice12="Ilford XP2" choice13="Kodak BW 400 CN" choice14="Kodak HIE (HS Infra)" choice15="Kodak T-Max 100" choice16="Kodak T-Max 3200" choice17="Kodak T-Max 400" choice18="Kodak Tri-X 400" choice19="Polaroid 664" choice20="Polaroid 667" choice21="Polaroid 672" choice22="Rollei IR 400" choice23="Rollei Ortho 25" choice24="Rollei Retro 100 Tonal" choice25="Rollei Retro 80s" />
   <separator />
@@ -3354,7 +3354,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Fuji xtrans -->
 <preset name="Fuji xtrans">
   <command>
--fx_emulate_film_fujixtransii_preview $"*"
+fx_emulate_film_fujixtransii_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Astia" choice2="Classic Chrome" choice3="Pro Neg Hi" choice4="Pro Neg Std" choice5="Provia" choice6="Velvia" />
   <separator />
@@ -3379,7 +3379,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Instant [consumer] -->
 <preset name="Instant [consumer]">
   <command>
--fx_emulate_film_instant_consumer_preview $"*"
+fx_emulate_film_instant_consumer_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Polaroid PX-100UV+ Cold --" choice2="Polaroid PX-100UV+ Cold -" choice3="Polaroid PX-100UV+ Cold" choice4="Polaroid PX-100UV+ Cold +" choice5="Polaroid PX-100UV+ Cold ++" choice6="Polaroid PX-100UV+ Cold +++" choice7="Polaroid PX-100UV+ Warm --" choice8="Polaroid PX-100UV+ Warm -" choice9="Polaroid PX-100UV+ Warm" choice10="Polaroid PX-100UV+ Warm +" choice11="Polaroid PX-100UV+ Warm ++" choice12="Polaroid PX-100UV+ Warm +++" choice13="Polaroid PX-680 --" choice14="Polaroid PX-680 -" choice15="Polaroid PX-680" choice16="Polaroid PX-680 +" choice17="Polaroid PX-680 ++" choice18="Polaroid PX-680 Cold --" choice19="Polaroid PX-680 Cold -" choice20="Polaroid PX-680 Cold" choice21="Polaroid PX-680 Cold +" choice22="Polaroid PX-680 Cold ++" choice23="Polaroid PX-680 Cold ++a" choice24="Polaroid PX-680 Warm --" choice25="Polaroid PX-680 Warm -" choice26="Polaroid PX-680 Warm" choice27="Polaroid PX-680 Warm +" choice28="Polaroid PX-680 Warm ++" choice29="Polaroid PX-70 --" choice30="Polaroid PX-70 -" choice31="Polaroid PX-70" choice32="Polaroid PX-70 +" choice33="Polaroid PX-70 ++" choice34="Polaroid PX-70 +++" choice35="Polaroid PX-70 Cold --" choice36="Polaroid PX-70 Cold -" choice37="Polaroid PX-70 Cold" choice38="Polaroid PX-70 Cold +" choice39="Polaroid PX-70 Cold ++" choice40="Polaroid PX-70 Warm --" choice41="Polaroid PX-70 Warm -" choice42="Polaroid PX-70 Warm" choice43="Polaroid PX-70 Warm +" choice44="Polaroid PX-70 Warm ++" choice45="Polaroid Time Zero (Expired) ---" choice46="Polaroid Time Zero (Expired) --" choice47="Polaroid Time Zero (Expired) -" choice48="Polaroid Time Zero (Expired)" choice49="Polaroid Time Zero (Expired) +" choice50="Polaroid Time Zero (Expired) ++" choice51="Polaroid Time Zero (Expired) Cold ---" choice52="Polaroid Time Zero (Expired) Cold --" choice53="Polaroid Time Zero (Expired) Cold -" choice54="Polaroid Time Zero (Expired) Cold" />
   <separator />
@@ -3404,7 +3404,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Instant [pro] -->
 <preset name="Instant [pro]">
   <command>
--fx_emulate_film_instant_pro_preview $"*"
+fx_emulate_film_instant_pro_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Fuji FP-100c --" choice2="Fuji FP-100c -" choice3="Fuji FP-100c" choice4="Fuji FP-100c +" choice5="Fuji FP-100c ++" choice6="Fuji FP-100c ++a" choice7="Fuji FP-100c +++" choice8="Fuji FP-100c Cool --" choice9="Fuji FP-100c Cool -" choice10="Fuji FP-100c Cool" choice11="Fuji FP-100c Cool +" choice12="Fuji FP-100c Cool ++" choice13="Fuji FP-100c Negative --" choice14="Fuji FP-100c Negative -" choice15="Fuji FP-100c Negative" choice16="Fuji FP-100c Negative +" choice17="Fuji FP-100c Negative ++" choice18="Fuji FP-100c Negative ++a" choice19="Fuji FP-100c Negative +++" choice20="Fuji FP-3000b --" choice21="Fuji FP-3000b -" choice22="Fuji FP-3000b" choice23="Fuji FP-3000b +" choice24="Fuji FP-3000b ++" choice25="Fuji FP-3000b +++" choice26="Fuji FP-3000b HC" choice27="Fuji FP-3000b Negative --" choice28="Fuji FP-3000b Negative -" choice29="Fuji FP-3000b Negative" choice30="Fuji FP-3000b Negative +" choice31="Fuji FP-3000b Negative ++" choice32="Fuji FP-3000b Negative +++" choice33="Fuji FP-3000b Negative Early" choice34="Polaroid 665 --" choice35="Polaroid 665 -" choice36="Polaroid 665" choice37="Polaroid 665 +" choice38="Polaroid 665 ++" choice39="Polaroid 665 Negative -" choice40="Polaroid 665 Negative" choice41="Polaroid 665 Negative +" choice42="Polaroid 665 Negative HC" choice43="Polaroid 669 --" choice44="Polaroid 669 -" choice45="Polaroid 669" choice46="Polaroid 669 +" choice47="Polaroid 669 ++" choice48="Polaroid 669 +++" choice49="Polaroid 669 Cold --" choice50="Polaroid 669 Cold -" choice51="Polaroid 669 Cold" choice52="Polaroid 669 Cold +" choice53="Polaroid 690 --" choice54="Polaroid 690 -" choice55="Polaroid 690" choice56="Polaroid 690 +" choice57="Polaroid 690 ++" choice58="Polaroid 690 Cold --" choice59="Polaroid 690 Cold -" choice60="Polaroid 690 Cold" choice61="Polaroid 690 Cold +" choice62="Polaroid 690 Cold ++" choice63="Polaroid 690 Warm --" choice64="Polaroid 690 Warm -" choice65="Polaroid 690 Warm" choice66="Polaroid 690 Warm +" choice67="Polaroid 690 Warm ++" />
   <separator />
@@ -3429,7 +3429,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Negative [color] -->
 <preset name="Negative [color]">
   <command>
--fx_emulate_film_negative_color_preview $"*"
+fx_emulate_film_negative_color_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Agfa Ultra Color 100" choice2="Agfa Vista 200" choice3="Fuji Superia 200" choice4="Fuji Superia HG 1600" choice5="Fuji Superia Reala 100" choice6="Fuji Superia X-Tra 800" choice7="Kodak Elite 100 XPRO" choice8="Kodak Elite Color 200" choice9="Kodak Elite Color 400" choice10="Kodak Portra 160 NC" choice11="Kodak Portra 160 VC" choice12="Lomography Redscale 100" />
   <separator />
@@ -3454,7 +3454,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Negative [new] -->
 <preset name="Negative [new]">
   <command>
--fx_emulate_film_negative_new_preview $"*"
+fx_emulate_film_negative_new_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Fuji 160C" choice2="Fuji 400H" choice3="Fuji 800Z" choice4="Fuji Ilford HP5" choice5="Kodak Portra 160" choice6="Kodak Portra 400" choice7="Kodak Portra 800" choice8="Kodak TMAX 3200" choice9="Kodak TRI-X 400" />
   <choice name="Effect" default="1" choice0="Low" choice1="Standard" choice2="High" choice3="Higher" />
@@ -3480,7 +3480,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Negative [old] -->
 <preset name="Negative [old]">
   <command>
--fx_emulate_film_negative_old_preview $"*"
+fx_emulate_film_negative_old_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Fuji Ilford Delta 3200" choice2="Fuji Neopan 1600" choice3="Fuji Superia 100" choice4="Fuji Superia 400" choice5="Fuji Superia 800" choice6="Fuji Superia 1600" choice7="Kodak Portra 160 NC" choice8="Kodak Portra 160 VC" choice9="Kodak Portra 400 NC" choice10="Kodak Portra 400 UC" choice11="Kodak Portra 400 VC" />
   <choice name="Effect" default="1" choice0="Low" choice1="Standard" choice2="High" choice3="Higher" />
@@ -3506,7 +3506,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/PictureFX -->
 <preset name="PictureFX">
   <command>
--fx_emulate_film_picturefx_preview $"*"
+fx_emulate_film_picturefx_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="AnalogFX - Anno 1870 Color" choice2="AnalogFX - Old Style I" choice3="AnalogFX - Old Style II" choice4="AnalogFX - Old Style III" choice5="AnalogFX - Sepia Color" choice6="AnalogFX - Soft Sepia I" choice7="AnalogFX - Soft Sepia II" choice8="GoldFX - Perfect Sunset 01min" choice9="GoldFX - Perfect Sunset 05min" choice10="GoldFX - Perfect Sunset 10min" choice11="GoldFX - Spring breeze" choice12="GoldFX - Bright spring breeze" choice13="GoldFX - Summer heat" choice14="GoldFX - Bright summer heat" choice15="GoldFX - Hot summer heat" choice16="TechnicalFX - Backlight filter" choice17="ZilverFX - B&amp;amp;W Solarization" choice18="ZilverFX - Infrared" choice19="ZilverFX - Vintage B&amp;amp;W" />
   <separator />
@@ -3531,7 +3531,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Print films -->
 <preset name="Print films">
   <command>
--fx_emulate_film_print_preview $"*"
+fx_emulate_film_print_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Fuji 3510 (Constlclip)" choice2="Fuji 3510 (Constlmap)" choice3="Fuji 3510 (Cuspclip)" choice4="Fuji 3513 (Constlclip)" choice5="Fuji 3513 (Constlmap)" choice6="Fuji 3513 (Cuspclip)" choice7="Kodak 2383 (Constlclip)" choice8="Kodak 2383 (Constlmap)" choice9="Kodak 2383 (Cuspclip)" choice10="Kodak 2393 (Constlclip)" choice11="Kodak 2393 (Constlmap)" choice12="Kodak 2393 (Cuspclip)" />
   <separator />
@@ -3556,7 +3556,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Slide [color] -->
 <preset name="Slide [color]">
   <command>
--fx_emulate_film_colorslide_preview $"*"
+fx_emulate_film_colorslide_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="Agfa Precisa 100" choice2="Fuji Astia 100F" choice3="Fuji FP 100C" choice4="Fuji Provia 100F" choice5="Fuji Provia 400F" choice6="Fuji Provia 400X" choice7="Fuji Sensia 100" choice8="Fuji Superia 200 XPRO" choice9="Fuji Velvia 50" choice10="Generic Fuji Astia 100" choice11="Generic Fuji Provia 100" choice12="Generic Fuji Velvia 100" choice13="Generic Kodachrome 64" choice14="Generic Kodak Ektachrome 100 VS" choice15="Kodak E-100 GX Ektachrome 100" choice16="Kodak Ektachrome 100 VS" choice17="Kodak Elite Chrome 200" choice18="Kodak Elite Chrome 400" choice19="Kodak Elite ExtraColor 100" choice20="Kodak Kodachrome 200" choice21="Kodak Kodachrome 25" choice22="Kodak Kodachrome 64" choice23="Lomography X-Pro Slide 200" choice24="Polaroid 669" choice25="Polaroid 690" choice26="Polaroid Polachrome" />
   <separator />
@@ -3581,7 +3581,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/User-defined -->
 <preset name="User-defined">
   <command>
--fx_emulate_film_userdefined_preview $"*"
+fx_emulate_film_userdefined_preview $"*"
   </command>
   <choice name="Specify HaldCLUT as" default="2" choice0="Top layer" choice1="Bottom layer" choice2="Filename" />
   <choice name="Specify HaldCLUT as" default="2" choice0="Top layer" choice1="Bottom layer" choice2="Filename&quot;) HaldCLUT filename = filein(" />
@@ -3608,7 +3608,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Film emulation/Various -->
 <preset name="Various">
   <command>
--fx_emulate_film_various_preview $"*"
+fx_emulate_film_various_preview $"*"
   </command>
   <choice name="Preset" default="0" choice0="None" choice1="60's" choice2="60's (faded)" choice3="60's (faded alt)" choice4="Alien green" choice5="Black &amp;amp; White" choice6="Bleach bypass" choice7="Blue mono" choice8="Color (rich)" choice9="Faded" choice10="Faded (alt)" choice11="Faded (analog)" choice12="Faded (extreme)" choice13="Faded (vivid)" choice14="Expired (fade)" choice15="Expired (polaroid)" choice16="Extreme" choice17="Fade" choice18="Faux infrared" choice19="Golden" choice20="Golden (bright)" choice21="Golden (fade)" choice22="Golden (mono)" choice23="Golden (vibrant)" choice24="Green mono" choice25="Hong Kong" choice26="Light (blown)" choice27="Lomo" choice28="Mono tinted" choice29="Muted fade" choice30="Mute shift" choice31="Natural (vivid)" choice32="Nostalgic" choice33="Orange tone" choice34="Pink fade" choice35="Purple" choice36="Retro" choice37="Rotate (muted)" choice38="Rotate (vibrant)" choice39="Smooth crome-ish" choice40="Smooth fade" choice41="Soft fade" choice42="Solarize color" choice43="Solarized color2" choice44="Summer" choice45="Summer (alt)" choice46="Sunny" choice47="Sunny (alt)" choice48="Sunny (warm)" choice49="Sunny (rich)" choice50="Super warm" choice51="Super warm (rich)" choice52="Sutro FX" choice53="Vibrant" choice54="Vibrant (alien)" choice55="Vibrant (contrast)" choice56="Vibrant (crome-ish)" choice57="Vintage" choice58="Vintage (alt)" choice59="Vintage (brighter)" choice60="Warm" choice61="Warm (highlight)" choice62="Warm (yellow)" />
   <separator />
@@ -3642,7 +3642,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Droste -->
 <preset name="Droste">
   <command>
--fx_droste_preview $"*"
+fx_droste_preview $"*"
   </command>
   <note text="&lt;span color=&quot;red&quot;&gt;Upper-left coordinates :&lt;/span&gt;" />
   <float name="X0" default="20" min="0" max="100" />
@@ -3676,7 +3676,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Frame [blur] -->
 <preset name="Frame [blur]">
   <command>
--fx_frame_blur $"*"
+fx_frame_blur $"*"
   </command>
   <float name="Horizontal size (%)" default="30" min="0" max="100" />
   <float name="Vertical size (%)" default="30" min="0" max="100" />
@@ -3704,7 +3704,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Frame [cube] -->
 <preset name="Frame [cube]">
   <command>
--frame_cube $"*"
+frame_cube $"*"
   </command>
   <float name="Depth" default="3" min="0" max="30" />
   <float name="X-center" default="0" min="-2" max="2" />
@@ -3720,7 +3720,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Frame [fuzzy] -->
 <preset name="Frame [fuzzy]">
   <command>
--fx_frame_fuzzy $"*"
+fx_frame_fuzzy $"*"
   </command>
   <float name="Horizontal size (%)" default="5" min="0" max="100" />
   <float name="Vertical size (%)" default="5" min="0" max="100" />
@@ -3734,7 +3734,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Frame [painting] -->
 <preset name="Frame [painting]">
   <command>
--fx_frame_painting_preview $"*"
+fx_frame_painting_preview $"*"
   </command>
   <float name="Size (%)" default="10" min="0" max="100" />
   <float name="Contrast" default="0.4" min="0" max="1" />
@@ -3758,7 +3758,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Frame [pattern] -->
 <preset name="Frame [pattern]">
   <command>
--fx_frame_pattern_preview $"*"
+fx_frame_pattern_preview $"*"
   </command>
   <int name="Tiles" default="10" min="3" max="30" />
   <choice name="Pattern" default="1" choice0="Top layer" choice1="Self image" />
@@ -3771,7 +3771,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Frame [regular] -->
 <preset name="Frame [regular]">
   <command>
--fx_frame $"*"
+fx_frame $"*"
   </command>
   <note text="&lt;b&gt;Crop parameters :&lt;/b&gt;" />
   <int name="X-start (%)" default="0" min="0" max="100" />
@@ -3792,7 +3792,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Frame [round] -->
 <preset name="Frame [round]">
   <command>
--fx_frame_round $"*"
+fx_frame_round $"*"
   </command>
   <float name="Sharpness" default="6" min="0.1" max="40" />
   <float name="Size (%)" default="20" min="0" max="100" />
@@ -3809,7 +3809,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Frame [smooth] -->
 <preset name="Frame [smooth]">
   <command>
--fx_frame_smooth $"*"
+fx_frame_smooth $"*"
   </command>
   <int name="Width (%)" default="10" min="0" max="100" />
   <int name="Height (%)" default="10" min="0" max="100" />
@@ -3821,7 +3821,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Old photograph -->
 <preset name="Old photograph">
   <command>
--fx_old_photo $"*"
+fx_old_photo $"*"
   </command>
   <float name="Vignette strength" default="200" min="0" max="255" />
   <float name="Vignette min radius" default="50" min="0" max="100" />
@@ -3833,7 +3833,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Polaroid -->
 <preset name="Polaroid">
   <command>
--fx_polaroid $"*"
+fx_polaroid $"*"
   </command>
   <int name="Frame size" default="10" min="0" max="400" />
   <int name="Bottom size" default="20" min="0" max="400" />
@@ -3852,7 +3852,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Tunnel -->
 <preset name="Tunnel">
   <command>
--fx_tunnel $"*"
+fx_tunnel $"*"
   </command>
   <int name="Depth" default="4" min="1" max="100" />
   <float name="Factor" default="80" min="1" max="99" />
@@ -3866,7 +3866,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frames/Vignette -->
 <preset name="Vignette">
   <command>
--fx_vignette $"*"
+fx_vignette $"*"
   </command>
   <float name="Strength" default="70" min="0" max="255" />
   <float name="Min radius" default="70" min="0" max="100" />
@@ -3888,7 +3888,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Frequencies/Bandpass -->
 <preset name="Bandpass">
   <command>
--fx_bandpass_preview $"*"
+fx_bandpass_preview $"*"
   </command>
   <float name="Low frequency" default="0" min="0" max="100" />
   <float name="High frequency" default="100" min="0" max="100" />
@@ -3915,7 +3915,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Burn -->
 <preset name="Burn">
   <command>
--fx_burn_preview $"*"
+fx_burn_preview $"*"
   </command>
   <float name="Amplitude" default="0.5" min="0" max="1" />
   <float name="Scale" default="30" min="1" max="100" />
@@ -3934,7 +3934,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Contrast swiss mask -->
 <preset name="Contrast swiss mask">
   <command>
--fx_contrast_swm $"*"
+fx_contrast_swm $"*"
   </command>
   <separator />
   <float name="Blur the mask" default="2" min="0.5" max="10" />
@@ -3953,7 +3953,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Equalize shadow -->
 <preset name="Equalize shadow">
   <command>
--fx_equalize_shadow_preview $"*"
+fx_equalize_shadow_preview $"*"
   </command>
   <float name="Amplitude" default="1" min="0" max="1" />
   <separator />
@@ -3967,7 +3967,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Light glow -->
 <preset name="Light glow">
   <command>
--fx_lightglow_preview $"*"
+fx_lightglow_preview $"*"
   </command>
   <float name="Density" default="30" min="0" max="100" />
   <float name="Amplitude" default="0.5" min="0" max="2" />
@@ -3986,7 +3986,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Light leaks -->
 <preset name="Light leaks">
   <command>
--fx_light_leaks_preview $"*"
+fx_light_leaks_preview $"*"
   </command>
   <int name="Leak type" default="0" min="0" max="70" />
   <float name="Angle" default="0" min="-180" max="180" />
@@ -4010,7 +4010,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Light patch -->
 <preset name="Light patch">
   <command>
--fx_light_patch $"*"
+fx_light_patch $"*"
   </command>
   <int name="Density" default="5" min="2" max="30" />
   <float name="Darkness" default="0.7" min="0" max="1" />
@@ -4024,7 +4024,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Light rays -->
 <preset name="Light rays">
   <command>
--fx_lightrays $"*"
+fx_lightrays $"*"
   </command>
   <float name="Density" default="80" min="0" max="100" />
   <point name="Center (%)" position="50,50" removable="0" />
@@ -4038,7 +4038,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Pop shadows -->
 <preset name="Pop shadows">
   <command>
--fx_pop_shadows_preview $"*"
+fx_pop_shadows_preview $"*"
   </command>
   <float name="Strength" default="0.75" min="0" max="1" />
   <float name="Scale" default="5" min="0" max="20" />
@@ -4054,7 +4054,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Relief light -->
 <preset name="Relief light">
   <command>
--fx_light_relief $"*"
+fx_light_relief $"*"
   </command>
   <float name="Ambient lightness" default="0.3" min="0" max="5" />
   <float name="Specular lightness" default="0.2" min="0" max="2" />
@@ -4073,7 +4073,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Lights &amp; shadows/Shadow patch -->
 <preset name="Shadow patch">
   <command>
--fx_shadow_patch $"*"
+fx_shadow_patch $"*"
   </command>
   <float name="Opacity" default="0.7" min="0" max="1" />
   <separator />
@@ -4094,7 +4094,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Bayer filter -->
 <preset name="Bayer filter">
   <command>
--rgb2bayer $"*"
+rgb2bayer $"*"
   </command>
   <choice name="Starting pattern" default="0" choice0="Red-Green" choice1="Blue-Green" choice2="Green-Red" choice3="Green-Blue" />
   <bool name="Keep colors" default="1" />
@@ -4105,7 +4105,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Camouflage -->
 <preset name="Camouflage">
   <command>
--fx_camouflage $"*"
+fx_camouflage $"*"
   </command>
   <int name="Scale" default="9" min="2" max="12" />
   <int name="Levels" default="12" min="2" max="32" />
@@ -4121,7 +4121,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Canvas -->
 <preset name="Canvas">
   <command>
--fx_canvas_preview $"*"
+fx_canvas_preview $"*"
   </command>
   <note text="&lt;b&gt;First direction :&lt;/b&gt;" />
   <float name="Amplitude" default="70" min="0" max="300" />
@@ -4144,7 +4144,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Canvas texture -->
 <preset name="Canvas texture">
   <command>
--texturize_canvas $"*"
+texturize_canvas $"*"
   </command>
   <float name="Amplitude" default="20" min="0" max="256" />
   <float name="Fibrousness" default="3" min="0" max="20" />
@@ -4156,7 +4156,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Cracks -->
 <preset name="Cracks">
   <command>
--fx_cracks_preview $"*"
+fx_cracks_preview $"*"
   </command>
   <float name="Density (%)" default="30" min="0" max="100" />
   <bool name="Relief" default="1" />
@@ -4178,7 +4178,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Crystal -->
 <preset name="Crystal">
   <command>
--fx_crystal_preview $"*"
+fx_crystal_preview $"*"
   </command>
   <float name="Density" default="50" min="0" max="100" />
   <float name="Smoothness" default="0.2" min="0" max="2" />
@@ -4194,7 +4194,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Crystal background -->
 <preset name="Crystal background">
   <command>
--fx_crystal_background $"*"
+fx_crystal_background $"*"
   </command>
   <int name="Iterations" default="10" min="1" max="32" />
   <float name="Density (%)" default="25" min="0" max="100" />
@@ -4208,7 +4208,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Halftone -->
 <preset name="Halftone">
   <command>
--fx_halftone_preview $"*"
+fx_halftone_preview $"*"
   </command>
   <note text="&lt;b&gt;&lt;small&gt;Image parameters :&lt;/small&gt;&lt;/b&gt;" />
   <float name="Brightness (%)" default="0" min="-100" max="100" />
@@ -4233,7 +4233,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Hearts -->
 <preset name="Hearts">
   <command>
--fx_hearts_preview $"*"
+fx_hearts_preview $"*"
   </command>
   <float name="Density" default="2" min="0" max="30" />
   <separator />
@@ -4249,7 +4249,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Lava -->
 <preset name="Lava">
   <command>
--fx_lava_preview $"*"
+fx_lava_preview $"*"
   </command>
   <int name="Perturbation" default="8" min="0" max="15" />
   <float name="Smoothness" default="5" min="0" max="100" />
@@ -4266,7 +4266,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Marble -->
 <preset name="Marble">
   <command>
--fx_marble $"*"
+fx_marble $"*"
   </command>
   <float name="Image weight" default=".5" min="0" max="30" />
   <float name="Pattern weight" default="1" min="0" max="30" />
@@ -4285,7 +4285,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Mineral mosaic -->
 <preset name="Mineral mosaic">
   <command>
--fx_mineral_mosaic $"*"
+fx_mineral_mosaic $"*"
   </command>
   <float name="Density" default="1" min="0" max="3" />
   <float name="Area" default="2" min="0" max="32" />
@@ -4299,7 +4299,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Mosaic -->
 <preset name="Mosaic">
   <command>
--fx_mosaic_preview $"*"
+fx_mosaic_preview $"*"
   </command>
   <float name="Density (%)" default="50" min="0" max="100" />
   <separator />
@@ -4315,7 +4315,7 @@ It should provide similar results to the &lt;a href=&quot;http://registry.gimp.o
 <!-- /Patterns/Op art -->
 <preset name="Op art">
   <command>
--fx_shapes_preview $"*"
+fx_shapes_preview $"*"
   </command>
   <choice name="Shape" default="1" choice0="Custom layers" choice1="Circles" choice2="Squares" choice3="Diamonds" choice4="Triangles" choice5="Horizontal stripes" choice6="Vertical stripes" choice7="Balls" choice8="Hearts" choice9="Stars" choice10="Arrows" choice11="Truchet" choice12="Circles (outline)" choice13="Squares (outline)" choice14="Diamonds (outline)" choice15="Triangles (outline)" choice16="Hearts (outline)" choice17="Stars (outline)" choice18="Arrows (outline)" />
   <int name="Number of scales" default="16" min="2" max="24" />
@@ -4344,7 +4344,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Paper texture -->
 <preset name="Paper texture">
   <command>
--fx_paper_preview $"*"
+fx_paper_preview $"*"
   </command>
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
   <separator />
@@ -4358,7 +4358,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Plaid -->
 <preset name="Plaid">
   <command>
--fx_plaid_texture $"*"
+fx_plaid_texture $"*"
   </command>
   <float name="Line" default="50" min="0" max="100" />
   <int name="Number of angles" default="2" min="1" max="8" />
@@ -4373,7 +4373,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Polka dots -->
 <preset name="Polka dots">
   <command>
--fx_polka_dots $"*"
+fx_polka_dots $"*"
   </command>
   <float name="Size" default="80" min="0" max="100" />
   <float name="Density" default="20" min="0.1" max="100" />
@@ -4391,7 +4391,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Random color ellipses -->
 <preset name="Random color ellipses">
   <command>
--fx_color_ellipses $"*"
+fx_color_ellipses $"*"
   </command>
   <int name="Density" default="400" min="0" max="3000" />
   <float name="Radius" default="8" min="0" max="30" />
@@ -4403,7 +4403,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Resynthetize texture [FFT] -->
 <preset name="Resynthetize texture [FFT]">
   <command>
--fx_syntexturize_preview $"*"
+fx_syntexturize_preview $"*"
   </command>
   <int name="Width" default="1024" min="32" max="8192" />
   <int name="Height" default="1024" min="32" max="8192" />
@@ -4426,7 +4426,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Rorschach -->
 <preset name="Rorschach">
   <command>
--fx_rorschach $"*"
+fx_rorschach $"*"
   </command>
   <float name="Scale" default="3" min="0" max="10" />
   <choice name="Mirror" default="1" choice0="None" choice1="X-axis" choice2="Y-axis" choice3="XY-axes" />
@@ -4438,7 +4438,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Satin -->
 <preset name="Satin">
   <command>
--fx_satin $"*"
+fx_satin $"*"
   </command>
   <int name="Iterations" default="20" min="4" max="128" />
   <float name="Smoothness (%)" default="1" min="0" max="5" />
@@ -4462,7 +4462,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Seamless turbulence -->
 <preset name="Seamless turbulence">
   <command>
--fx_seamless_turbulence $"*"
+fx_seamless_turbulence $"*"
   </command>
   <float name="Amplitude" default="15" min="0" max="30" />
   <float name="Smoothness" default="20" min="0" max="40" />
@@ -4477,7 +4477,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Shock waves -->
 <preset name="Shock waves">
   <command>
--fx_shockwaves_preview $"*"
+fx_shockwaves_preview $"*"
   </command>
   <float name="Amplitude" default="10" min="0" max="100" />
   <float name="Low frequency" default="10" min="0" max="100" />
@@ -4495,7 +4495,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Sponge -->
 <preset name="Sponge">
   <command>
--fx_sponge_preview $"*"
+fx_sponge_preview $"*"
   </command>
   <int name="Size" default="13" min="3" max="21" />
   <separator />
@@ -4511,7 +4511,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Stained glass -->
 <preset name="Stained glass">
   <command>
--fx_stained_glass_preview $"*"
+fx_stained_glass_preview $"*"
   </command>
   <float name="Edges" default="20" min="0" max="100" />
   <float name="Shading" default="0.1" min="0" max="0.5" />
@@ -4533,7 +4533,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Stars -->
 <preset name="Stars">
   <command>
--fx_stars $"*"
+fx_stars $"*"
   </command>
   <float name="Density" default="10" min="0" max="200" />
   <float name="Depth" default="0" min="0" max="5" />
@@ -4549,7 +4549,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Stencil -->
 <preset name="Stencil">
   <command>
--fx_stencil_preview $"*"
+fx_stencil_preview $"*"
   </command>
   <float name="Radius" default="3" min="0" max="10" />
   <float name="Smoothness" default="0" min="0" max="30" />
@@ -4568,7 +4568,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Tetris -->
 <preset name="Tetris">
   <command>
--fx_tetris $"*"
+fx_tetris $"*"
   </command>
   <int name="Scale" default="10" min="1" max="20" />
   <separator />
@@ -4578,7 +4578,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Truchet -->
 <preset name="Truchet">
   <command>
--fx_truchet $"*"
+fx_truchet $"*"
   </command>
   <int name="Scale" default="32" min="1" max="256" />
   <int name="Radius" default="5" min="1" max="64" />
@@ -4592,7 +4592,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Weave -->
 <preset name="Weave">
   <command>
--weave $"*"
+weave $"*"
   </command>
   <int name="Density" default="6" min="1" max="32" />
   <float name="Thickness" default="65" min="0" max="100" />
@@ -4610,7 +4610,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Patterns/Whirls -->
 <preset name="Whirls">
   <command>
--fx_whirls_preview $"*"
+fx_whirls_preview $"*"
   </command>
   <int name="Density" default="7" min="3" max="20" />
   <float name="Smoothness" default="2" min="0" max="10" />
@@ -4638,7 +4638,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Bayer reconstruction -->
 <preset name="Bayer reconstruction">
   <command>
--gui_no_preview $"*"
+gui_no_preview $"*"
   </command>
   <float name="G/M smoothness" default="6" min="0" max="20" />
   <float name="R/B smoothness (principal)" default="6" min="0" max="20" />
@@ -4650,7 +4650,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Deinterlace -->
 <preset name="Deinterlace">
   <command>
--fx_deinterlace_preview $"*"
+fx_deinterlace_preview $"*"
   </command>
   <choice name="Algorithm" default="0" choice0="Standard" choice1="Motion-compensated" />
   <separator />
@@ -4664,7 +4664,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Red-eye attenuation -->
 <preset name="Red-eye attenuation">
   <command>
--red_eye $"*"
+red_eye $"*"
   </command>
   <float name="Threshold" default="75" min="0" max="100" />
   <float name="Smoothness" default="3.5" min="0" max="20" />
@@ -4676,7 +4676,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Remove hot pixels -->
 <preset name="Remove hot pixels">
   <command>
--fx_remove_hotpixels_preview $"*"
+fx_remove_hotpixels_preview $"*"
   </command>
   <int name="Mask size" default="3" min="3" max="20" />
   <float name="Threshold" default="10" min="0" max="200" />
@@ -4691,7 +4691,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [anisotropic] -->
 <preset name="Smooth [anisotropic]">
   <command>
--fx_smooth_anisotropic_preview $"*"
+fx_smooth_anisotropic_preview $"*"
   </command>
   <float name="Amplitude" default="60" min="0" max="1000" />
   <float name="Sharpness" default="0.7" min="0" max="2" />
@@ -4717,7 +4717,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [antialias] -->
 <preset name="Smooth [antialias]">
   <command>
--fx_smooth_antialias_preview $"*"
+fx_smooth_antialias_preview $"*"
   </command>
   <float name="Amplitude" default="5" min="0" max="100" />
   <float name="Edge threshold (%)" default="10" min="0" max="100" />
@@ -4733,7 +4733,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [bilateral] -->
 <preset name="Smooth [bilateral]">
   <command>
--fx_smooth_bilateral_preview $"*"
+fx_smooth_bilateral_preview $"*"
   </command>
   <float name="Spatial variance" default="10" min="0" max="100" />
   <float name="Value variance" default="7" min="0" max="100" />
@@ -4751,7 +4751,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [guided] -->
 <preset name="Smooth [guided]">
   <command>
--fx_smooth_guided_preview $"*"
+fx_smooth_guided_preview $"*"
   </command>
   <int name="Radius" default="5" min="1" max="100" />
   <float name="Smoothness" default="30" min="0" max="512" />
@@ -4769,7 +4769,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [diffusion] -->
 <preset name="Smooth [diffusion]">
   <command>
--fx_smooth_diffusion_preview $"*"
+fx_smooth_diffusion_preview $"*"
   </command>
   <float name="Sharpness" default="0.7" min="0" max="2" />
   <float name="Anisotropy" default="0.3" min="0" max="1" />
@@ -4792,7 +4792,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [mean-curvature] -->
 <preset name="Smooth [mean-curvature]">
   <command>
--fx_smooth_meancurvature_preview $"*"
+fx_smooth_meancurvature_preview $"*"
   </command>
   <float name="Time step" default="30" min="5" max="50" />
   <int name="Iterations" default="4" min="1" max="30" />
@@ -4812,7 +4812,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [median] -->
 <preset name="Smooth [median]">
   <command>
--fx_smooth_median_preview $"*"
+fx_smooth_median_preview $"*"
   </command>
   <int name="Radius" default="3" min="1" max="20" />
   <float name="Threshold" default="255" min="0" max="255" />
@@ -4829,7 +4829,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [nlmeans] -->
 <preset name="Smooth [nlmeans]">
   <command>
--fx_smooth_nlmeans_preview $"*"
+fx_smooth_nlmeans_preview $"*"
   </command>
   <float name="Patch size" default="4" min="0.5" max="10" />
   <int name="Spatial bandwidth" default="4" min="3" max="13" />
@@ -4850,7 +4850,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [patch-based] -->
 <preset name="Smooth [patch-based]">
   <command>
--fx_smooth_patch_preview $"*"
+fx_smooth_patch_preview $"*"
   </command>
   <float name="Spatial variance" default="10" min="0.1" max="200" />
   <float name="Patch variance" default="10" min="0.1" max="200" />
@@ -4874,7 +4874,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [perona-malik] -->
 <preset name="Smooth [perona-malik]">
   <command>
--fx_smooth_peronamalik_preview $"*"
+fx_smooth_peronamalik_preview $"*"
   </command>
   <float name="K-factor" default="20" min="0" max="255" />
   <float name="Time step" default="5" min="5" max="50" />
@@ -4895,7 +4895,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [selective gaussian] -->
 <preset name="Smooth [selective gaussian]">
   <command>
--fx_smooth_selective_preview $"*"
+fx_smooth_selective_preview $"*"
   </command>
   <float name="Amplitude" default="5" min="0" max="20" />
   <float name="Edges" default="0.5" min="0" max="2" />
@@ -4916,7 +4916,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [thin brush] -->
 <preset name="Smooth [thin brush]">
   <command>
--fx_smooth_anisotropic $"*"
+fx_smooth_anisotropic $"*"
   </command>
   <float name="Amplitude" default="60" min="0" max="1000" />
   <float name="Sharpness" default="0.9" min="0" max="2" />
@@ -4941,7 +4941,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [total variation] -->
 <preset name="Smooth [total variation]">
   <command>
--fx_smooth_tv_preview $"*"
+fx_smooth_tv_preview $"*"
   </command>
   <float name="Time step" default="30" min="5" max="100" />
   <int name="Iterations" default="10" min="1" max="40" />
@@ -4961,7 +4961,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Repair/Smooth [wavelets] -->
 <preset name="Smooth [wavelets]">
   <command>
--fx_smooth_haar_preview $"*"
+fx_smooth_haar_preview $"*"
   </command>
   <float name="Threshold" default="1" min="0" max="10" />
   <int name="Iterations" default="10" min="1" max="32" />
@@ -4990,7 +4990,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/3d blocks -->
 <preset name="3d blocks">
   <command>
--fx_blocks3d $"*"
+fx_blocks3d $"*"
   </command>
   <int name="Resolution" default="32" min="1" max="128" />
   <float name="Smoothness" default="0" min="0" max="40" />
@@ -5016,7 +5016,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/3d colored object -->
 <preset name="3d colored object">
   <command>
--fx_coloredobject3d_preview $"*"
+fx_coloredobject3d_preview $"*"
   </command>
   <choice name="Type" default="1" choice0="Plane" choice1="Box" choice2="Pyramid" choice3="Ellipsoid" choice4="Torus" choice5="Gyroid" choice6="Weird" choice7="Cup" />
   <color name="Color" default="128,128,128,255" />
@@ -5042,7 +5042,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/3d elevation -->
 <preset name="3d elevation">
   <command>
--fx_elevation3d_preview $"*"
+fx_elevation3d_preview $"*"
   </command>
   <float name="Factor" default="100" min="-1000" max="1000" />
   <float name="Smoothness" default="1" min="0" max="10" />
@@ -5070,7 +5070,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/3d extrusion -->
 <preset name="3d extrusion">
   <command>
--fx_extrude3d_preview $"*"
+fx_extrude3d_preview $"*"
   </command>
   <float name="Depth" default="10" min="1" max="1024" />
   <int name="Resolution" default="512" min="1" max="1024" />
@@ -5099,7 +5099,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/3d image object -->
 <preset name="3d image object">
   <command>
--fx_imageobject3d_preview $"*"
+fx_imageobject3d_preview $"*"
   </command>
   <choice name="Type" default="1" choice0="Plane" choice1="Cube" choice2="Pyramid" choice3="Sphere" choice4="Torus" choice5="Gyroid" choice6="Weird" choice7="Cup" choice8="Rubik" />
   <separator />
@@ -5124,7 +5124,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/3d lathing -->
 <preset name="3d lathing">
   <command>
--fx_lathing3d_preview $"*"
+fx_lathing3d_preview $"*"
   </command>
   <int name="Resolution" default="76" min="1" max="1024" />
   <float name="Smoothness" default="2" min="0" max="5" />
@@ -5153,7 +5153,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/3d random objects -->
 <preset name="3d random objects">
   <command>
--fx_random3d $"*"
+fx_random3d $"*"
   </command>
   <choice name="Type" default="0" choice0="Cube" choice1="Cone" choice2="Cylinder" choice3="Sphere" choice4="Torus" />
   <int name="Density" default="50" min="1" max="300" />
@@ -5174,7 +5174,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/Ball -->
 <preset name="Ball">
   <command>
--fx_ball_preview $"*"
+fx_ball_preview $"*"
   </command>
   <int name="Radius" default="128" min="1" max="1024" />
   <float name="Specular light" default="0.8" min="0" max="8" />
@@ -5188,7 +5188,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/Barnsley fern -->
 <preset name="Barnsley fern">
   <command>
--fx_barnsley_fern_preview $"*"
+fx_barnsley_fern_preview $"*"
   </command>
   <choice name="Type" default="0" choice0="Asplenium adiantum-nigrum" choice1="Thelypteridaceae" />
   <float name="Density (%)" default="100" min="0" max="300" />
@@ -5206,7 +5206,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/Circle art -->
 <preset name="Circle art">
   <command>
--fx_circle_art $"*"
+fx_circle_art $"*"
   </command>
   <choice name="Type" default="1" choice0="Random" choice1="Lissajous spiral" />
   <float name="Density" default="15" min="0" max="100" />
@@ -5231,7 +5231,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/Cupid -->
 <preset name="Cupid">
   <command>
--fx_cupid_preview $"*"
+fx_cupid_preview $"*"
   </command>
   <float name="Size (%)" default="75" min="0" max="100" />
   <float name="Smoothness" default="0" min="0" max="10" />
@@ -5244,7 +5244,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/Equation plot [parametric] -->
 <preset name="Equation plot [parametric]">
   <command>
--fx_equation_parametric $"*"
+fx_equation_parametric $"*"
   </command>
   <text name="X(t)" default="sin(t)*(exp(cos(t))-2*cos(4*t)-sin(t/12)^5)" />
   <text name="Y(t)" default="cos(t)*(exp(cos(t))-2*cos(4*t)-sin(t/12)^5)" />
@@ -5265,7 +5265,7 @@ these layers are passed to the filter.&lt;br/&gt;
 <!-- /Rendering/Equation plot [y=f(x)] -->
 <preset name="Equation plot [y=f(x)]">
   <command>
--fx_equation_plot $"*"
+fx_equation_plot $"*"
   </command>
   <text name="F(x)" default="X*c+10*cos(X+c+u)" />
   <float name="X-min" default="-10" min="-100" max="100" />
@@ -5288,7 +5288,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Gear -->
 <preset name="Gear">
   <command>
--fx_gear_preview $"*"
+fx_gear_preview $"*"
   </command>
   <float name="Size (%)" default="75" min="0" max="100" />
   <int name="Number of teeth" default="12" min="1" max="96" />
@@ -5305,7 +5305,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Gradient [corners] -->
 <preset name="Gradient [corners]">
   <command>
--fx_corner_gradient $"*"
+fx_corner_gradient $"*"
   </command>
   <color name="Color 1 (up/left corner)" default="255,255,255,128" />
   <color name="Color 2 (up/right corner)" default="255,0,0,255" />
@@ -5320,7 +5320,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Gradient [custom shape] -->
 <preset name="Gradient [custom shape]">
   <command>
--fx_custom_gradient_preview $"*"
+fx_custom_gradient_preview $"*"
   </command>
   <note text="&lt;small&gt;&lt;b&gt;Shape selection:&lt;/b&gt;&lt;/small&gt;" />
   <choice name="Select by" default="0" choice0="Auto" choice1="Dark pixels" choice2="Bright pixels" choice3="Opaque pixels" />
@@ -5362,7 +5362,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Gradient [from line] -->
 <preset name="Gradient [from line]">
   <command>
--fx_line_gradient_preview $"*"
+fx_line_gradient_preview $"*"
   </command>
   <point name="Starting point (%)" position="0,0" removable="0" color="255,0,0,255" />
   <point name="Ending point (%)" position="100,100" removable="0" color="64,128,255,255" />
@@ -5381,7 +5381,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Gradient [linear] -->
 <preset name="Gradient [linear]">
   <command>
--fx_linear_gradient $"*"
+fx_linear_gradient $"*"
   </command>
   <color name="Starting color" default="0,0,0,255" />
   <color name="Ending color" default="255,255,255,255" />
@@ -5398,7 +5398,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Gradient [radial] -->
 <preset name="Gradient [radial]">
   <command>
--fx_radial_gradient $"*"
+fx_radial_gradient $"*"
   </command>
   <color name="Starting color" default="0,0,0,255" />
   <color name="Ending color" default="255,255,255,255" />
@@ -5415,7 +5415,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Gradient [random] -->
 <preset name="Gradient [random]">
   <command>
--fx_random_gradient $"*"
+fx_random_gradient $"*"
   </command>
   <int name="Density" default="32" min="1" max="1024" />
   <int name="Seed" default="0" min="0" max="65535" />
@@ -5429,7 +5429,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Heart -->
 <preset name="Heart">
   <command>
--fx_heart_preview $"*"
+fx_heart_preview $"*"
   </command>
   <float name="Size (%)" default="75" min="0" max="100" />
   <float name="Smoothness" default="0" min="0" max="10" />
@@ -5442,7 +5442,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Lightning -->
 <preset name="Lightning">
   <command>
--fx_lightning_preview $"*"
+fx_lightning_preview $"*"
   </command>
   <note text="&lt;small&gt;&lt;b&gt;Global parameters:&lt;/b&gt;&lt;/small&gt;" />
   <int name="Number of streaks" default="20" min="1" max="1024" />
@@ -5477,7 +5477,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Lissajous -->
 <preset name="Lissajous">
   <command>
--fx_lissajous $"*"
+fx_lissajous $"*"
   </command>
   <int name="Resolution" default="4096" min="2" max="8192" />
   <separator />
@@ -5506,7 +5506,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Mandelbrot - Julia sets -->
 <preset name="Mandelbrot - Julia sets">
   <command>
--fx_mandelbrot_preview $"*"
+fx_mandelbrot_preview $"*"
   </command>
   <float name="X-center" default="0" min="-2" max="2" />
   <float name="Y-center" default="0" min="-2" max="2" />
@@ -5526,7 +5526,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Neon lightning -->
 <preset name="Neon lightning">
   <command>
--fx_neon_lightning $"*"
+fx_neon_lightning $"*"
   </command>
   <point name="Source (%)" position="50,50" />
   <float name="R0" default="0" min="0" max="100" />
@@ -5547,7 +5547,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Plasma -->
 <preset name="Plasma">
   <command>
--fx_plasma $"*"
+fx_plasma $"*"
   </command>
   <float name="Alpha" default="0.5" min="0" max="5" />
   <float name="Beta" default="0" min="0" max="100" />
@@ -5562,7 +5562,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Quick copyright -->
 <preset name="Quick copyright">
   <command>
--fx_quick_copyright $"*"
+fx_quick_copyright $"*"
   </command>
   <text name="Text" default="\251 G'MIC" />
   <int name="Size" default="27" min="13" max="128" />
@@ -5578,7 +5578,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Rainbow -->
 <preset name="Rainbow">
   <command>
--fx_rainbow $"*"
+fx_rainbow $"*"
   </command>
   <float name="Left position" default="80" min="0" max="100" />
   <float name="Right position" default="80" min="0" max="100" />
@@ -5593,7 +5593,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Sierpinski triangle -->
 <preset name="Sierpinski triangle">
   <command>
--fx_sierpinski $"*"
+fx_sierpinski $"*"
   </command>
   <int name="Recursions" default="6" min="0" max="10" />
   <float name="1st X-coord" default="50" min="0" max="100" />
@@ -5611,7 +5611,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Snowflake -->
 <preset name="Snowflake">
   <command>
--fx_snowflake $"*"
+fx_snowflake $"*"
   </command>
   <int name="Recursions" default="5" min="0" max="6" />
   <float name="Opacity" default="1" min="0" max="1" />
@@ -5623,7 +5623,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Superformula -->
 <preset name="Superformula">
   <command>
--fx_superformula $"*"
+fx_superformula $"*"
   </command>
   <int name="Resolution" default="4096" min="2" max="8192" />
   <separator />
@@ -5648,7 +5648,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Rendering/Turbulence -->
 <preset name="Turbulence">
   <command>
--fx_turbulence $"*"
+fx_turbulence $"*"
   </command>
   <float name="Radius" default="128" min="1" max="1024" />
   <int name="Octaves" default="6" min="1" max="12" />
@@ -5671,7 +5671,7 @@ Reduce resolution to be able to view&lt;br/&gt;
 <!-- /Various/Histogram analysis -->
 <preset name="Histogram analysis">
   <command>
--fx_display_histogram $"*"
+fx_display_histogram $"*"
   </command>
   <int name="Number of clusters" default="256" min="2" max="1024" />
   <separator />
@@ -5689,34 +5689,34 @@ Reduce resolution to be able to view&lt;br/&gt;
   <note text="&lt;small&gt;Author: &lt;i&gt;S&amp;#233;bastien Fourey&lt;/i&gt;.      Latest update: &lt;i&gt;2014/11/20&lt;/i&gt;.&lt;/small&gt;" />
   <command>
   N=$1 M={1+$2} Q={1.5*$3}
-  -if {narg($_xBlock)==0} _xBlock=0 _yBlock=0 -endif
-   -if {$_b==1}
+  if {narg($_xBlock)==0} _xBlock=0 _yBlock=0 fi
+   if {$_b==1}
      _xBlock=$_x _yBlock=$_y
-   -endif
+   fi
    _xBlock={min($_xBlock,w-$N*$M)}
    _yBlock={min($_yBlock,h-$N*$M)}
-   --crop $_xBlock,$_yBlock,{$_xBlock+$N*$M},{$_yBlock+$N*$M}
-   -rectangle[0] $_xBlock,$_yBlock,{$_xBlock+$N*$M},{$_yBlock+$N*$M},1,0xFFFFFFFF,0,0,0
-   -rectangle[0] {$_xBlock+1},{$_yBlock+1},{$_xBlock+$N*$M-1},{$_yBlock+$N*$M-1},1,0xFFFFFFFF,255,255,255
-   -rectangle[0] {$_xBlock+2},{$_yBlock+2},{$_xBlock+$N*$M-2},{$_yBlock+$N*$M-2},0.33,128,128,128
+   +crop $_xBlock,$_yBlock,{$_xBlock+$N*$M},{$_yBlock+$N*$M}
+   rectangle[0] $_xBlock,$_yBlock,{$_xBlock+$N*$M},{$_yBlock+$N*$M},1,0xFFFFFFFF,0,0,0
+   rectangle[0] {$_xBlock+1},{$_yBlock+1},{$_xBlock+$N*$M-1},{$_yBlock+$N*$M-1},1,0xFFFFFFFF,255,255,255
+   rectangle[0] {$_xBlock+2},{$_yBlock+2},{$_xBlock+$N*$M-2},{$_yBlock+$N*$M-2},0.33,128,128,128
    [-1]
-   -local[-1]
-      -split_tiles $M,$M
-      -apply_parallel "-jpeg_action "$Q
-      -append_tiles $M,$M
-   -endl
-   -resize[-2,-1] {0,h},{0,h},1,3,1
-   -append x
+   local[-1]
+      split_tiles $M,$M
+      apply_parallel "-jpeg_action "$Q
+      append_tiles $M,$M
+   endl
+   resize[-2,-1] {0,h},{0,h},1,3,1
+   append x
 
 jpeg_quantize:
-  -repeat $! -l[$>] [0],[0],1,[0],1+$1*(x+y) -/[0] [1] -round[0] -* -endl -done
+  repeat $! l[$>] [0],[0],1,[0],1+$1*(x+y) /[0] [1] round[0] * endl done
 
 jpeg_action:
-  -repeat $! -l[$>]
-    -rgb2ycbcr
-    -dct -round -jpeg_quantize $1 -idct
-    -ycbcr2rgb
-  -endl -done
+  repeat $! l[$>]
+    rgb2ycbcr
+    dct round jpeg_quantize $1 idct
+    ycbcr2rgb
+  endl done
   </command>
 </preset>
 
@@ -5724,8 +5724,8 @@ jpeg_action:
 <preset name="Fourier transform">
   <command>
 -r 50%,50%
---fft -a[-2,-1] c -norm[-1] -+[-1] 1 -log[-1]
--n[-1] 0,255 -shift[-1] 50%,50%,0,0,2 -r[-1] 100%,100%,1,3
+--fft a[-2,-1] c norm[-1] +[-1] 1 log[-1]
+-n[-1] 0,255 shift[-1] 50%,50%,0,0,2 r[-1] 100%,100%,1,3
 -a x
   </command>
 </preset>
@@ -5733,55 +5733,55 @@ jpeg_action:
 <!-- /Spectral filters/Fourier filtering -->
 <preset name="Fourier filtering">
   <command>
--r[0] 50%,50%
--if {$!==1} 100%,100% _rmin=0 _rmax=200 _is_update=1 -endif
--if $_is_update
-  -f[1] 0
+r[0] 50%,50%
+if {$!==1} 100%,100% _rmin=0 _rmax=200 _is_update=1 fi
+if $_is_update
+  f[1] 0
   _rmax={$_rmax+if($_rmin==$_rmax,1,0)}
-  -ellipse[1] 50%,50%,$_rmax,$_rmax,0,1,1
-  -ellipse[1] 50%,50%,$_rmin,$_rmin,0,1,0
+  ellipse[1] 50%,50%,$_rmax,$_rmax,0,1,1
+  ellipse[1] 50%,50%,$_rmin,$_rmin,0,1,0
   _is_update=0
--endif
--if {{*,b}&amp;1}
+fi
+if {{*,b}&amp;1}
   x={{*,x}-3*w/2}
   y={{*,y}-h/2}
   rmax={round((($x)^2+($y)^2)^0.5)}
   _rmin={if($_rmin&gt;$rmax,$rmax,$_rmin)}
-  -if {$rmax!=$_rmax} _is_update=1 _rmax=$rmax -endif
--elif {{*,b}&amp;2}
+  if {$rmax!=$_rmax} _is_update=1 _rmax=$rmax fi
+elif {{*,b}&amp;2}
   x={{*,x}-3*w/2}
   y={{*,y}-h/2}
   rmin={round((($x)^2+($y)^2)^0.5)}
   _rmax={if($rmin&gt;$_rmax,$rmin,$_rmax)}
-  -if {$rmin!=$_rmin} _is_update=1 _rmin=$rmin -endif
--elif {{*,b}&amp;4}
+  if {$rmin!=$_rmin} _is_update=1 _rmin=$rmin fi
+elif {{*,b}&amp;4}
   _rmin=0 _rmax=200 _is_update=1
--endif
--fft[0]
--shift[0,1] 50%,50%,0,0,2
---a[0,1] c -norm[-1] -+[-1] 1 -log[-1] -n[-1] 0,255
--*[0,1] [2]
--shift[0,1] -50%,-50%,0,0,2
--ifft[0,1]
--rm[1]
--n[0] 0,255
--*[2] [1] -text[-1] "Freq. min : "$_rmin"\nFreq. max : "$_rmax,5,5,13,1,255 -r[-1] 100%,100%,1,3 -a[0,-1] x
+fi
+fft[0]
+shift[0,1] 50%,50%,0,0,2
++a[0,1] c norm[-1] +[-1] 1 log[-1] n[-1] 0,255
+*[0,1] [2]
+shift[0,1] -50%,-50%,0,0,2
+ifft[0,1]
+rm[1]
+n[0] 0,255
+*[2] [1] text[-1] "Freq. min : "$_rmin"\nFreq. max : "$_rmax,5,5,13,1,255 r[-1] 100%,100%,1,3 a[0,-1] x
   </command>
 </preset>
 
 <!-- /Spectral filters/Saturate frequency -->
 <preset name="Saturate frequency">
   <command>
--r 50%,50% -fft -point {{*,x}/2},{{*,y}/2},0,1,{iM} -ifft -c 0,255 -rm[-1]
+r 50%,50% fft point {{*,x}/2},{{*,y}/2},0,1,{iM} ifft c 0,255 rm[-1]
   </command>
 </preset>
 
 <preset name="3d cube">
   <command>
--r 50%,50%,1,3,3 -imagecube3d[-1] -*3d 256
--r3d 1,1,2,{$|*30} -r3d 2,1,3,{$|*50} -db3d 0 -m3d 3
-(64;128^0;255^128;255) -r[-1] 640,480,1,3,3
--j3d[-1] [-2],{*,x},{*,y} -rm[-2]
+r 50%,50%,1,3,3 imagecube3d[-1] *3d 256
+r3d 1,1,2,{$|*30} r3d 2,1,3,{$|*50} db3d 0 m3d 3
+(64;128^0;255^128;255) r[-1] 640,480,1,3,3
+j3d[-1] [-2],{*,x},{*,y} rm[-2]
   </command>
 </preset>
 
