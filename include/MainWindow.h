@@ -102,6 +102,7 @@ public slots:
   void presetClicked(QTreeWidgetItem * item, int column);
 
   void imageViewMouseEvent(QMouseEvent *);
+  void imageViewResized(QSize);
   void snapshot();
   void about();
   void license();

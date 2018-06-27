@@ -63,6 +63,7 @@ public:
   void setBackgroundColor(QColor);
   void setKeypoints(const KeypointList & keypoints);
   KeypointList keypoints() const;
+  QRect imagePosition();
 
 public slots:
   void zoomOriginal();
@@ -87,6 +88,7 @@ signals:
   void spaceBarPressed();
   void escapePressed();
   void keypointPositionsChanged(unsigned long time);
+  void resized(QSize);
 
 private:
   QMouseEvent mapMousePositionToImage(QMouseEvent * e);

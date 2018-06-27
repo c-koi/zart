@@ -275,6 +275,8 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), _filterThread(0)
 
   connect(_imageView, SIGNAL(keypointPositionsChanged(ulong)), this, SLOT(onImageViewKeypointsEvent(ulong)));
 
+  connect(_imageView, SIGNAL(resized(QSize)), this, SLOT(imageViewResized(QSize)));
+
   connect(_treeGPresets, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(presetClicked(QTreeWidgetItem *, int)));
 
   connect(_fullScreenWidget->treeWidget(), SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(presetClicked(QTreeWidgetItem *, int)));
@@ -523,12 +525,15 @@ void MainWindow::play()
   connect(_filterThread, SIGNAL(imageAvailable()), this, SLOT(onImageAvailable()));
   connect(_filterThread, SIGNAL(finished()), this, SLOT(onFilterThreadFinished()));
   connect(_filterThread, SIGNAL(endOfCapture()), this, SLOT(onEndOfSource()));
-  if (_displayMode == FullScreen)
+  if (_displayMode == FullScreen) {
     _filterThread->setArguments(_fullScreenWidget->commandParamsWidget()->valueString());
-  else
+  } else {
     _filterThread->setArguments(_commandParamsWidget->valueString());
-  if (_source == StillImage)
+  }
+  imageViewResized(_imageView->size());
+  if (_source == StillImage) {
     _filterThreadSemaphore.release();
+  }
   updateKeypointsInViews();
   _filterThread->start();
 }
@@ -780,6 +785,13 @@ void MainWindow::imageViewMouseEvent(QMouseEvent * event)
   }
   if (_source == StillImage && _zeroFPS) {
     _filterThreadSemaphore.release();
+  }
+}
+
+void MainWindow::imageViewResized(QSize size)
+{
+  if (_filterThread) {
+    _filterThread->setViewSize(size);
   }
 }
 

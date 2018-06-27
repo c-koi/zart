@@ -87,6 +87,7 @@ public slots:
   void setFPS(int);
   void setPreviewMode(PreviewMode);
   void stop();
+  void setViewSize(const QSize &);
 
 signals:
 
@@ -99,6 +100,7 @@ private:
   ImageSource & _imageSource;
   QString _command;
   CriticalRef<QString> _arguments;
+  CriticalRef<QSize> _viewSize;
   bool _commandUpdated;
   QImage * _outputImageA;
   QMutex * _imageMutexA;

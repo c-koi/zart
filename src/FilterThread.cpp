@@ -60,8 +60,9 @@ using namespace cimg_library;
 
 FilterThread::FilterThread(ImageSource & imageSource, const QString & command, QImage * outputImageA, QMutex * imageMutexA, QImage * outputImageB, QMutex * imageMutexB, PreviewMode previewMode,
                            int frameSkip, int fps, QSemaphore * blockingSemaphore)
-    : _imageSource(imageSource), _arguments(new QString("")), _commandUpdated(true), _outputImageA(outputImageA), _imageMutexA(imageMutexA), _outputImageB(outputImageB), _imageMutexB(imageMutexB),
-      _blockingSemaphore(blockingSemaphore), _previewMode(previewMode), _frameSkip(frameSkip), _continue(true), _xMouse(-1), _yMouse(-1), _buttonsMouse(0), _gmic_images(), _gmic(0)
+    : _imageSource(imageSource), _arguments(new QString("")), _viewSize(new QSize), _commandUpdated(true), _outputImageA(outputImageA), _imageMutexA(imageMutexA), _outputImageB(outputImageB),
+      _imageMutexB(imageMutexB), _blockingSemaphore(blockingSemaphore), _previewMode(previewMode), _frameSkip(frameSkip), _continue(true), _xMouse(-1), _yMouse(-1), _buttonsMouse(0), _gmic_images(),
+      _gmic(0)
 {
   setCommand(command);
   setFPS(fps);
@@ -115,6 +116,13 @@ void FilterThread::stop()
   _frameInterval = 0;
 }
 
+void FilterThread::setViewSize(const QSize & size)
+{
+  _viewSize.lock();
+  _viewSize.object() = size;
+  _viewSize.unlock();
+}
+
 void FilterThread::run()
 {
   QTime timeMeasure;
@@ -123,8 +131,9 @@ void FilterThread::run()
   int n;
   while (_continue) {
     // Delay (minus last command duration)
-    if (_frameInterval && lastCommandDuration < _frameInterval)
+    if (_frameInterval && lastCommandDuration < _frameInterval) {
       msleep(_frameInterval - lastCommandDuration);
+    }
     // Skip some frames and grab an image from the webcam
     n = _frameSkip + 1;
     while (n--) {
@@ -148,26 +157,30 @@ void FilterThread::run()
 
       if (_commandUpdated) {
         delete _gmic;
-        QString c = QString("foo: -skip $\"*\" ") + _command;
+        QString c = QString("zart: -skip $\"*\" ") + _command;
         _gmic = new gmic("", c.toLatin1().constData());
         _commandUpdated = false;
       }
 
       _gmic->run("-v -");
       QString c;
-      c += QString("_x=") + QString("%1").arg(_xMouse);
-      c += QString(" _y=") + QString("%1").arg(_yMouse);
-      c += QString(" _b=") + QString("%1").arg(_buttonsMouse);
+      c += QString("_x=%1").arg(_xMouse);
+      c += QString(" _y=%1").arg(_yMouse);
+      c += QString(" _b=%1").arg(_buttonsMouse);
+      c += QString(" _host=zart _input_layers=1 _output_mode=0 _output_messages=0 _preview_mode=0 _preview_timeout=16");
+      _viewSize.lock();
+      c += QString(" _preview_width=%1 _preview_height=%2").arg(_viewSize.object().width()).arg(_viewSize.object().height());
+      _viewSize.unlock();
       QString call;
       _arguments.lock();
       if (_arguments.object().isEmpty())
-        call = QString(" -foo 0");
+        call = QString(" -zart 0");
       else
-        call = QString(" -foo %1").arg(_arguments.object());
+        call = QString(" -zart %1").arg(_arguments.object());
       _arguments.unlock();
       c += call;
 
-      // SHOW(call);
+      SHOW(c);
 
       _gmic->run(c.toLatin1().constData(), _gmic_images, _gmic_images_names);
       lastCommandDuration = timeMeasure.elapsed();

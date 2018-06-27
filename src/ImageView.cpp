@@ -179,7 +179,10 @@ void ImageView::mouseMoveEvent(QMouseEvent * e)
   e->accept();
 }
 
-void ImageView::resizeEvent(QResizeEvent *) {}
+void ImageView::resizeEvent(QResizeEvent * event)
+{
+  emit resized(event->size());
+}
 
 void ImageView::zoomOriginal()
 {
@@ -247,6 +250,11 @@ void ImageView::setKeypoints(const KeypointList & keypoints)
 KeypointList ImageView::keypoints() const
 {
   return _keypoints;
+}
+
+QRect ImageView::imagePosition()
+{
+  return _imagePosition;
 }
 
 void ImageView::paintKeypoints(QPainter & painter)
