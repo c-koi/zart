@@ -467,6 +467,28 @@ Postcards senders automatically enter the &lt;i&gt;Friends Hall of Fame&lt;/i&gt
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/05/06&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
+<!-- /Artistic/Diffusion tensors -->
+<preset name="Diffusion tensors">
+  <command>
+-fx_diffusiontensors_preview $"*"
+  </command>
+  <float name="Resolution (%)" default="10" min="0" max="20" />
+  <float name="Size" default="5" min="0" max="16" />
+  <choice name="Color mode" default="3" choice0="Monochrome" choice1="Grayscale" choice2="Orientation" choice3="Color" />
+  <int name="Outline" default="1" min="0" max="16" />
+  <separator />
+  <float name="Sharpness" default="0.15" min="0" max="1" />
+  <float name="Anisotropy" default="1" min="0" max="1" />
+  <float name="Gradient smoothness" default="0" min="0" max="10" />
+  <float name="Tensor smoothness" default="3" min="0" max="10" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/19/10&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
 <!-- /Artistic/Ellipsionism -->
 <preset name="Ellipsionism">
   <command>
@@ -1604,26 +1626,6 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/13/09&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Colors/Select-replace color -->
-<preset name="Select-replace color">
-  <command>
--fx_select_color_preview $"*"
-  </command>
-  <choice name="Similarity space" default="0" choice0="RGB[A]" choice1="RGB" choice2="YCbCr" choice3="Red" choice4="Green" choice5="Blue" choice6="Opacity" choice7="Luminance" choice8="Blue &amp;amp; Red chrominances" choice9="Hue" choice10="Saturation" />
-  <float name="Tolerance" default="20" min="0" max="100" />
-  <float name="Smoothness" default="0" min="0" max="10" />
-  <int name="Fill holes" default="0" min="0" max="256" />
-  <color name="Selected color" default="255,255,255,255" />
-  <choice name="Output as" default="0" choice0="Selected colors" choice1="Selected mask" choice2="Rejected colors" choice3="Rejected mask" choice4="Replaced color" />
-  <color name="Replacement color" default="255,0,0,255" />
-  <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
 <!-- /Colors/Selective desaturation -->
 <preset name="Selective desaturation">
   <command>
@@ -1985,20 +1987,6 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 ************************************ -->
 <preset_group name="Deformations" >
 
-  <preset name="SymmetrizePoints">
-  <command>
--fx_symmetrize_preview $"*"
-  </command>
-  <point name="Point 1" position="50,50" />
-  <point name="Point 2" position="50,50" />
-  <float name="Angle" default="0" min="-180" max="180" />
-  <choice name="Boundary" default="0" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
-  <choice name="Type" default="0" choice0="Symmetry" choice1="Antisymmetry" />
-  <bool name="Swap sides" default="0" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2018/06/11&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
 <!-- /Deformations/Cartesian transform -->
 <preset name="Cartesian transform">
   <command>
@@ -2011,6 +1999,23 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <choice name="Boundary" default="3" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Deformations/Circle transform -->
+<preset name="Circle transform">
+  <command>
+-fx_circle_transform_preview $"*"
+  </command>
+  <point name="Center (%)" position="50,50" removable="0" />
+  <point name="Radius" position="75,50" removable="0" />
+  <float name="X-scale" default="-2" min="-16" max="16" />
+  <float name="Y-scale" default="-2" min="-16" max="16" />
+  <choice name="Symmetry" default="0" choice0="None" choice1="Inside" choice2="Outside" />
+  <choice name="Interpolation" default="1" choice0="Nearest neighbor" choice1="Linear" />
+  <choice name="Boundary" default="3" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
+  <bool name="Preview reference circle" default="1" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/08/01&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 <!-- /Deformations/Conformal maps -->
@@ -2058,8 +2063,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <float name="Amplitude" default="0.1" min="-1" max="1" />
   <float name="Aspect ratio" default="0" min="-2" max="2" />
   <float name="Zoom" default="0" min="-4" max="4" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <choice name="Boundary" default="0" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2017/18/02&lt;/i&gt;.&lt;/small&gt;" />
@@ -2112,8 +2116,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <command>
 -fx_euclidean2polar $"*"
   </command>
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <float name="Stretch factor" default="1" min="0.1" max="10" />
   <choice name="Boundary" default="1" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
   <bool name="Inverse transform" default="0" />
@@ -2126,8 +2129,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <command>
 -fisheye $"*"
   </command>
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <float name="Radius" default="70" min="0" max="100" />
   <float name="Amplitude" default="1" min="0" max="2" />
   <separator />
@@ -2139,10 +2141,8 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <command>
 -fx_flower_preview $"*"
   </command>
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
-  <float name="X-Amplitude / Angle" default="50" min="0" max="100" />
-  <float name="Y-Amplitude / Angle" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
+  <point name="Amplitude / Angle" position="75,50" removable="0" />
   <int name="Petals" default="6" min="2" max="20" />
   <float name="Offset (%)" default="0" min="0" max="100" />
   <choice name="Boundary" default="3" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
@@ -2155,8 +2155,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <command>
 -fx_rotoidoscope $"*"
   </command>
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" />
   <int name="Angular tiles" default="10" min="1" max="72" />
   <float name="Smoothness" default="0.5" min="0" max="5" />
   <choice name="Boundary" default="3" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
@@ -2169,8 +2168,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <command>
 -fx_kaleidoscope $"*"
   </command>
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" />
   <float name="X-offset (%)" default="0" min="0" max="100" />
   <float name="Y-offset (%)" default="0" min="0" max="100" />
   <float name="Radius cut" default="100" min="0" max="100" />
@@ -2201,8 +2199,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
   <float name="X-angle" default="1.73" min="-4" max="4" />
   <float name="Y-angle" default="0" min="-4" max="4" />
   <float name="Zoom" default="1" min="0.1" max="4" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <float name="X-offset" default="0" min="0" max="100" />
   <float name="Y-offset" default="0" min="0" max="100" />
   <choice name="Boundary" default="2" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
@@ -2216,8 +2213,7 @@ This filter simulates different types of colorblindness vision.&lt;br/&gt;
 -fx_transform_polar $"*"
   </command>
   <choice name="Preset" default="0" choice0="Custom transform" choice1="Inverse radius" choice2="Swap radius/angle" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <text name="Radius" default="r + R/10*cos(a*5)" />
   <text name="Angle" default="a" />
   <choice name="Boundary" default="3" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
@@ -2333,8 +2329,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
   <float name="Radius (%)" default="50" min="0" max="300" />
   <float name="Strength" default="1" min="-10" max="10" />
   <float name="Smoothness (%)" default="0" min="0" max="4" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" color="255,255,255,170" radius="10" />
   <float name="Ratio" default="0" min="-2" max="2" />
   <float name="Angle" default="0" min="-90" max="90" />
   <choice name="Interpolation" default="2" choice0="Nearest neighbor" choice1="Linear" choice2="Cubic" />
@@ -2368,10 +2363,8 @@ You can define a transparent top layer that will help the seam-carving algorithm
   <command>
 -fx_symmetrize_preview $"*"
   </command>
-  <float name="X-Point 1" default="50" min="0" max="100" />
-  <float name="Y-Point 1" default="50" min="0" max="100" />
-  <float name="X-Point 2" default="50" min="0" max="100" />
-  <float name="Y-Point 2" default="50" min="0" max="100" />
+  <point name="Point 1" position="50,50" removable="0" color="0,255,0,170" radius="10" />
+  <point name="Point 2" position="50,75" removable="-1" color="255,255,0,170" radius="10" />
   <float name="Angle" default="0" min="-180" max="180" />
   <choice name="Boundary" default="0" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
   <choice name="Type" default="0" choice0="Symmetry" choice1="Antisymmetry" />
@@ -2406,8 +2399,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 -fx_twirl $"*"
   </command>
   <float name="Amplitude" default="1" min="-5" max="5" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <choice name="Boundary" default="3" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
@@ -2432,8 +2424,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
   </command>
   <float name="Amplitude" default="10" min="0" max="30" />
   <float name="Frequency" default="0.4" min="0" max="2" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" color="255,255,255,170" radius="10" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
@@ -2465,8 +2456,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 -fx_zoom $"*"
   </command>
   <float name="Factor" default="2" min="0.01" max="10" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <choice name="Boundary" default="0" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
@@ -2487,8 +2477,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 -fx_blur_angular_preview $"*"
   </command>
   <float name="Amplitude" default="2" min="0" max="10" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <float name="Sharpness" default="0" min="0" max="500" />
   <bool name="Preview guides" default="1" />
   <separator />
@@ -2533,8 +2522,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
   <bool name="Invert blur" default="0" />
   <separator />
   <note text="&lt;small&gt;&lt;b&gt;Gaussian depth-of-field:&lt;/b&gt;&lt;/small&gt;" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <float name="First radius" default="30" min="0" max="200" />
   <float name="Second radius" default="30" min="0" max="200" />
   <float name="Angle" default="0" min="0" max="180" />
@@ -2613,8 +2601,7 @@ You can define a transparent top layer that will help the seam-carving algorithm
 -fx_blur_radial_preview $"*"
   </command>
   <float name="Amplitude" default="3" min="0" max="20" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <float name="Sharpness" default="0" min="0" max="500" />
   <bool name="Preview guides" default="1" />
   <separator />
@@ -3249,6 +3236,24 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
+<!-- /Details/Split details [wavelets] -->
+<preset name="Split details [wavelets]">
+  <command>
+-fx_split_details_wavelets_preview $"*"
+  </command>
+  <int name="Number of scales" default="6" min="2" max="12" />
+  <bool name="Add alpha channels to detail scale layers" default="0" />
+  <separator />
+  <bool name="Sharpen details in preview" default="0" />
+  <separator />
+  <note text="&lt;small&gt;&lt;b&gt;Note:&lt;/b&gt; This filter decomposes an image into several detail scales, using wavelet atrous.&lt;br/&gt;
+It should provide similar results to the &lt;a href=&quot;http://registry.gimp.org/node/11742&quot;&gt;wavelet decompose plug-in&lt;/a&gt;&lt;br/&gt;
+(by Marco Rossini).&lt;br/&gt;
+ &lt;/small&gt;" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/23/03&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
 <!-- /Details/Tone mapping -->
 <preset name="Tone mapping">
   <command>
@@ -3293,6 +3298,31 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
 
 ************************************ -->
 <preset_group name="Film emulation" >
+
+<!-- /Film emulation/Add grain -->
+<preset name="Add grain">
+  <command>
+-fx_emulate_grain_preview $"*"
+  </command>
+  <choice name="Preset" default="0" choice0="Orwo NP20-GDR" choice1="Kodak TMAX 400" choice2="Kodak TMAX 3200" choice3="Kodak TRI-X 1600" choice4="Unknown" />
+  <choice name="Blend mode" default="1" choice0="Alpha" choice1="Grain merge" choice2="Hard light" choice3="Overlay" choice4="Soft light" choice5="Grain only" />
+  <float name="Opacity" default="0.2" min="0" max="1" />
+  <float name="Scale" default="100" min="30" max="200" />
+  <bool name="Colored grain" default="0" />
+  <separator />
+  <float name="Brightness (%)" default="0" min="-100" max="100" />
+  <float name="Contrast (%)" default="0" min="-100" max="100" />
+  <float name="Gamma (%)" default="0" min="-100" max="100" />
+  <float name="Hue (%)" default="0" min="-100" max="100" />
+  <float name="Saturation (%)" default="0" min="-100" max="100" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <bool name="Preview grain alone" default="0" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/02/08&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
 
 <!-- /Film emulation/B&amp;W films -->
 <preset name="B&amp;W films">
@@ -3826,8 +3856,7 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
   </command>
   <int name="Depth" default="4" min="1" max="100" />
   <float name="Factor" default="80" min="1" max="99" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" />
   <float name="Opacity" default="0.2" min="0" max="1" />
   <float name="Angle" default="0" min="-90" max="90" />
   <separator />
@@ -3882,6 +3911,44 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
 
 ************************************ -->
 <preset_group name="Lights &amp; shadows" >
+
+<!-- /Lights &amp; shadows/Burn -->
+<preset name="Burn">
+  <command>
+-fx_burn_preview $"*"
+  </command>
+  <float name="Amplitude" default="0.5" min="0" max="1" />
+  <float name="Scale" default="30" min="1" max="100" />
+  <float name="Smoothness" default="1" min="0" max="4" />
+  <separator />
+  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <choice name="Value action" default="0" choice0="None" choice1="Cut" choice2="Normalize" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2012/24/11&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Lights &amp; shadows/Contrast swiss mask -->
+<preset name="Contrast swiss mask">
+  <command>
+-fx_contrast_swm $"*"
+  </command>
+  <separator />
+  <float name="Blur the mask" default="2" min="0.5" max="10" />
+  <separator />
+  <separator />
+  <bool name="Skip to use the mask to boost" default="0" />
+  <bool name="Skip to use the mask to boost" default="0" />
+  <separator />
+  <note text="Merge the Mask" />
+  <float name="Intensity" default="1" min="0" max="1" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;PhotoComiX&lt;/i&gt;.      Latest update: &lt;i&gt;2011/01/01&lt;/i&gt;.&lt;/small&gt;" />
+  <link name="Filter explained here" url="http://www.gimpchat.com/viewtopic.php?f=9&amp;t=864" align="center" />
+</preset>
 
 <!-- /Lights &amp; shadows/Equalize shadow -->
 <preset name="Equalize shadow">
@@ -3960,8 +4027,7 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
 -fx_lightrays $"*"
   </command>
   <float name="Density" default="80" min="0" max="100" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <float name="Length" default="1" min="0" max="1" />
   <float name="Attenuation" default="0.5" min="0" max="1" />
   <bool name="Transparency" default="0" />
@@ -3995,8 +4061,7 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
   <float name="Specular size" default="0.2" min="0" max="1" />
   <float name="Darkness" default="0" min="0" max="1" />
   <float name="Light smoothness" default="1" min="0" max="5" />
-  <float name="X-XY-light" default="50" min="0" max="100" />
-  <float name="Y-XY-light" default="50" min="0" max="100" />
+  <point name="XY-light" position="50,50" removable="0" color="255,255,128,200" radius="10" />
   <float name="Z-light" default="5" min="0" max="20" />
   <float name="Z-scale" default="0.5" min="0" max="3" />
   <bool name="Opacity as heightmap" default="0" />
@@ -4013,6 +4078,550 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
   <float name="Opacity" default="0.7" min="0" max="1" />
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+</preset_group>
+
+<!-- ***********************************
+
+     Patterns
+
+************************************ -->
+<preset_group name="Patterns" >
+
+<!-- /Patterns/Bayer filter -->
+<preset name="Bayer filter">
+  <command>
+-rgb2bayer $"*"
+  </command>
+  <choice name="Starting pattern" default="0" choice0="Red-Green" choice1="Blue-Green" choice2="Green-Red" choice3="Green-Blue" />
+  <bool name="Keep colors" default="1" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Camouflage -->
+<preset name="Camouflage">
+  <command>
+-fx_camouflage $"*"
+  </command>
+  <int name="Scale" default="9" min="2" max="12" />
+  <int name="Levels" default="12" min="2" max="32" />
+  <float name="Coherence" default="100" min="0" max="1000" />
+  <color name="Color 1" default="30,46,33" />
+  <color name="Color 2" default="75,90,65" />
+  <color name="Color 3" default="179,189,117" />
+  <color name="Color 4" default="255,246,158" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/26/10&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Canvas -->
+<preset name="Canvas">
+  <command>
+-fx_canvas_preview $"*"
+  </command>
+  <note text="&lt;b&gt;First direction :&lt;/b&gt;" />
+  <float name="Amplitude" default="70" min="0" max="300" />
+  <float name="Angle" default="45" min="0" max="180" />
+  <float name="Sharpness" default="400" min="0" max="2000" />
+  <note text="
+&lt;b&gt;Second direction : &lt;/b&gt;" />
+  <bool name="Activate second direction" default="1" />
+  <float name="Amplitude" default="70" min="0" max="300" />
+  <float name="Angle" default="135" min="0" max="180" />
+  <float name="Sharpness" default="400" min="0" max="2000" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Canvas texture -->
+<preset name="Canvas texture">
+  <command>
+-texturize_canvas $"*"
+  </command>
+  <float name="Amplitude" default="20" min="0" max="256" />
+  <float name="Fibrousness" default="3" min="0" max="20" />
+  <float name="Emboss" default="0.6" min="0" max="1" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Cracks -->
+<preset name="Cracks">
+  <command>
+-fx_cracks_preview $"*"
+  </command>
+  <float name="Density (%)" default="30" min="0" max="100" />
+  <bool name="Relief" default="1" />
+  <color name="Color" default="255,255,255,128" />
+  <separator />
+  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/20/07&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Crystal -->
+<preset name="Crystal">
+  <command>
+-fx_crystal_preview $"*"
+  </command>
+  <float name="Density" default="50" min="0" max="100" />
+  <float name="Smoothness" default="0.2" min="0" max="2" />
+  <float name="Edges" default="20" min="0" max="100" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2015/19/01&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Crystal background -->
+<preset name="Crystal background">
+  <command>
+-fx_crystal_background $"*"
+  </command>
+  <int name="Iterations" default="10" min="1" max="32" />
+  <float name="Density (%)" default="25" min="0" max="100" />
+  <int name="Random seed" default="0" min="0" max="65535" />
+  <float name="Opacity (%)" default="100" min="0" max="100" />
+  <bool name="Color" default="1" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/18/10&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Halftone -->
+<preset name="Halftone">
+  <command>
+-fx_halftone_preview $"*"
+  </command>
+  <note text="&lt;b&gt;&lt;small&gt;Image parameters :&lt;/small&gt;&lt;/b&gt;" />
+  <float name="Brightness (%)" default="0" min="-100" max="100" />
+  <float name="Contrast (%)" default="0" min="-100" max="100" />
+  <float name="Gamma (%)" default="0" min="-100" max="100" />
+  <float name="Smoothness" default="0" min="0" max="10" />
+  <separator />
+  <note text="&lt;b&gt;&lt;small&gt;Halftone parameters :&lt;/small&gt;&lt;/b&gt;" />
+  <int name="Number of tones" default="5" min="2" max="32" />
+  <int name="Size for dark tones" default="8" min="2" max="256" />
+  <int name="Size for bright tones" default="8" min="2" max="256" />
+  <choice name="Shape" default="5" choice0="Square" choice1="Diamond" choice2="Circle" choice3="Square (inv.)" choice4="Diamond (inv.)" choice5="Circle (inv.)" />
+  <float name="Smoothness" default="0.1" min="0" max="32" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2012/23/07&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Hearts -->
+<preset name="Hearts">
+  <command>
+-fx_hearts_preview $"*"
+  </command>
+  <float name="Density" default="2" min="0" max="30" />
+  <separator />
+  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Lava -->
+<preset name="Lava">
+  <command>
+-fx_lava_preview $"*"
+  </command>
+  <int name="Perturbation" default="8" min="0" max="15" />
+  <float name="Smoothness" default="5" min="0" max="100" />
+  <float name="Scale" default="3" min="0" max="20" />
+  <float name="Sharpness" default="0" min="0" max="1000" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2012/26/11&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Marble -->
+<preset name="Marble">
+  <command>
+-fx_marble $"*"
+  </command>
+  <float name="Image weight" default=".5" min="0" max="30" />
+  <float name="Pattern weight" default="1" min="0" max="30" />
+  <float name="Pattern angle" default="0" min="0" max="360" />
+  <float name="Amplitude" default="0" min="0" max="1000" />
+  <float name="Sharpness" default=".4" min="0" max="5" />
+  <float name="Anisotropy" default=".6" min="0" max="1" />
+  <float name="Alpha" default=".6" min="0" max="20" />
+  <float name="Sigma" default="1.1" min="0" max="20" />
+  <float name="Cut low" default="0" min="0" max="100" />
+  <float name="Cut high" default="100" min="0" max="100" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;Preben Soeberg&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Mineral mosaic -->
+<preset name="Mineral mosaic">
+  <command>
+-fx_mineral_mosaic $"*"
+  </command>
+  <float name="Density" default="1" min="0" max="3" />
+  <float name="Area" default="2" min="0" max="32" />
+  <float name="Smoothness" default="1" min="0" max="10" />
+  <float name="Shade strength" default="100" min="0" max="255" />
+  <float name="Shade angle" default="0" min="0" max="360" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/01/02&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Mosaic -->
+<preset name="Mosaic">
+  <command>
+-fx_mosaic_preview $"*"
+  </command>
+  <float name="Density (%)" default="50" min="0" max="100" />
+  <separator />
+  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/19/07&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Op art -->
+<preset name="Op art">
+  <command>
+-fx_shapes_preview $"*"
+  </command>
+  <choice name="Shape" default="1" choice0="Custom layers" choice1="Circles" choice2="Squares" choice3="Diamonds" choice4="Triangles" choice5="Horizontal stripes" choice6="Vertical stripes" choice7="Balls" choice8="Hearts" choice9="Stars" choice10="Arrows" choice11="Truchet" choice12="Circles (outline)" choice13="Squares (outline)" choice14="Diamonds (outline)" choice15="Triangles (outline)" choice16="Hearts (outline)" choice17="Stars (outline)" choice18="Arrows (outline)" />
+  <int name="Number of scales" default="16" min="2" max="24" />
+  <float name="Resolution" default="10" min="1" max="50" />
+  <int name="Zoom factor" default="2" min="1" max="8" />
+  <float name="Minimal size" default="5" min="0" max="150" />
+  <float name="Maximal size" default="90" min="0" max="150" />
+  <choice name="Stencil type" default="0" choice0="Black &amp;amp; white" choice1="RGB" choice2="Color" />
+  <choice name="Allow angle" default="0" choice0="0 deg." choice1="90 deg." choice2="180 deg." />
+  <bool name="Negative" default="1" />
+  <bool name="Antialiasing" default="1" />
+  <separator />
+  <note text="&lt;small&gt;&lt;b&gt;Note:&lt;/b&gt;&lt;br/&gt;
+If you set the parameter &lt;i&gt;Shape&lt;/i&gt; to &lt;i&gt;Custom layers&lt;/i&gt;, the different shapes used to map the pixel intensities will be defined as&lt;br/&gt;
+the &lt;i&gt;Number of scales&lt;/i&gt; top layers of your image. Don't forget to set also &lt;i&gt;Input layers&lt;/i&gt; to &lt;i&gt;All&lt;/i&gt; to be sure&lt;br/&gt;
+these layers are passed to the filter.&lt;br/&gt;
+ &lt;/small&gt;" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/16/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Paper texture -->
+<preset name="Paper texture">
+  <command>
+-fx_paper_preview $"*"
+  </command>
+  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Plaid -->
+<preset name="Plaid">
+  <command>
+-fx_plaid_texture $"*"
+  </command>
+  <float name="Line" default="50" min="0" max="100" />
+  <int name="Number of angles" default="2" min="1" max="8" />
+  <float name="Starting angle" default="0" min="0" max="360" />
+  <float name="Angle range" default="90" min="0" max="360" />
+  <float name="Smoothness" default="1" min="0" max="5" />
+  <float name="Sharpen" default="300" min="0" max="1000" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2011/16/05&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Polka dots -->
+<preset name="Polka dots">
+  <command>
+-fx_polka_dots $"*"
+  </command>
+  <float name="Size" default="80" min="0" max="100" />
+  <float name="Density" default="20" min="0.1" max="100" />
+  <float name="First offset" default="50" min="0" max="100" />
+  <float name="Second offset" default="50" min="0" max="100" />
+  <float name="Angle" default="0" min="0" max="180" />
+  <float name="Aliasing" default="0.5" min="0.1" max="1" />
+  <float name="Shading" default="0.1" min="0.1" max="1" />
+  <float name="Opacity" default="1" min="0" max="1" />
+  <color name="Color" default="255,0,0,255" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Random color ellipses -->
+<preset name="Random color ellipses">
+  <command>
+-fx_color_ellipses $"*"
+  </command>
+  <int name="Density" default="400" min="0" max="3000" />
+  <float name="Radius" default="8" min="0" max="30" />
+  <float name="Opacity" default="0.1" min="0.01" max="0.5" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Resynthetize texture [FFT] -->
+<preset name="Resynthetize texture [FFT]">
+  <command>
+-fx_syntexturize_preview $"*"
+  </command>
+  <int name="Width" default="1024" min="32" max="8192" />
+  <int name="Height" default="1024" min="32" max="8192" />
+  <float name="Equalize light" default="0" min="0" max="100" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;&lt;b&gt;Note:&lt;/b&gt; This filter tries to re-synthetize a &lt;b&gt;micro&lt;/b&gt;-texture (given as the input image) onto an output (seamless) image with an arbitrary size.&lt;br/&gt;
+ It uses a phase randomization technique, as described in:&lt;/small&gt;" />
+  <link name="Micro-Texture Synthesis by Phase Randomization" url="http://www.ipol.im/pub/art/2011/ggm_rpn/" align="center" />
+  <note text="&lt;small&gt;This filter is based on the work of &lt;i&gt;Bruno Galerne&lt;/i&gt;, &lt;i&gt;Yann Gousseau&lt;/i&gt; and &lt;i&gt;Jean-Michel Morel&lt;/i&gt;.&lt;/small&gt;" />
+  <separator />
+  <link name="Click here for a detailed description of this filter." url="http://gimpchat.com/viewtopic.php?f=28&amp;t=10141" align="center" />
+  <separator />
+  <note text="&lt;small&gt;Authors: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt; and &lt;i&gt;J&amp;#233;rome Boulanger&lt;/i&gt;.      Latest update: &lt;i&gt;2014/09/04&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Rorschach -->
+<preset name="Rorschach">
+  <command>
+-fx_rorschach $"*"
+  </command>
+  <float name="Scale" default="3" min="0" max="10" />
+  <choice name="Mirror" default="1" choice0="None" choice1="X-axis" choice2="Y-axis" choice3="XY-axes" />
+  <choice name="Stencil type" default="2" choice0="Black &amp;amp; White" choice1="RGB" choice2="Color" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2011/12/03&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Satin -->
+<preset name="Satin">
+  <command>
+-fx_satin $"*"
+  </command>
+  <int name="Iterations" default="20" min="4" max="128" />
+  <float name="Smoothness (%)" default="1" min="0" max="5" />
+  <int name="Seed" default="0" min="0" max="65535" />
+  <separator />
+  <color name="Dark color" default="0,0,0,255" />
+  <color name="Light color" default="255,255,255,255" />
+  <bool name="Stretch contrast" default="0" />
+  <separator />
+  <float name="Brightness (%)" default="0" min="-100" max="100" />
+  <float name="Contrast (%)" default="0" min="-100" max="100" />
+  <float name="Gamma (%)" default="-50" min="-100" max="100" />
+  <float name="Hue (%)" default="0" min="-100" max="100" />
+  <float name="Saturation (%)" default="0" min="-100" max="100" />
+  <separator />
+  <note text="This filter has been inspired by &lt;a href=&quot;https://fence-post.deviantart.com/art/Satin-Texture-in-GIMP-46937633&quot;&gt;this tutorial&lt;/a&gt; from DeviantArt user &lt;i&gt;fence-post&lt;/i&gt;." />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2017/11/27&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Seamless turbulence -->
+<preset name="Seamless turbulence">
+  <command>
+-fx_seamless_turbulence $"*"
+  </command>
+  <float name="Amplitude" default="15" min="0" max="30" />
+  <float name="Smoothness" default="20" min="0" max="40" />
+  <float name="Orientation" default="0" min="0" max="180" />
+  <float name="Deviation" default="1" min="0" max="1" />
+  <float name="Contrast" default="3" min="0" max="4" />
+  <bool name="Color rendering" default="0" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/02/04&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Shock waves -->
+<preset name="Shock waves">
+  <command>
+-fx_shockwaves_preview $"*"
+  </command>
+  <float name="Amplitude" default="10" min="0" max="100" />
+  <float name="Low frequency" default="10" min="0" max="100" />
+  <float name="Frequency range" default="20" min="0" max="100" />
+  <separator />
+  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2014/01/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Sponge -->
+<preset name="Sponge">
+  <command>
+-fx_sponge_preview $"*"
+  </command>
+  <int name="Size" default="13" min="3" max="21" />
+  <separator />
+  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Stained glass -->
+<preset name="Stained glass">
+  <command>
+-fx_stained_glass_preview $"*"
+  </command>
+  <float name="Edges" default="20" min="0" max="100" />
+  <float name="Shading" default="0.1" min="0" max="0.5" />
+  <bool name="Thin separators" default="1" />
+  <separator />
+  <bool name="Equalize" default="1" />
+  <float name="Colors" default="1" min="0" max="3" />
+  <float name="Brightness (%)" default="0" min="-100" max="100" />
+  <float name="Contrast (%)" default="0" min="-100" max="100" />
+  <float name="Gamma (%)" default="0" min="-100" max="100" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2011/18/03&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Stars -->
+<preset name="Stars">
+  <command>
+-fx_stars $"*"
+  </command>
+  <float name="Density" default="10" min="0" max="200" />
+  <float name="Depth" default="0" min="0" max="5" />
+  <int name="Size" default="32" min="8" max="128" />
+  <int name="Branches" default="5" min="3" max="16" />
+  <float name="Thickness" default="0.38" min="0.1" max="1" />
+  <float name="Smoothness" default="0" min="0" max="10" />
+  <color name="Color" default="255,255,100,200" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2012/01/10&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Stencil -->
+<preset name="Stencil">
+  <command>
+-fx_stencil_preview $"*"
+  </command>
+  <float name="Radius" default="3" min="0" max="10" />
+  <float name="Smoothness" default="0" min="0" max="30" />
+  <int name="Iterations" default="8" min="1" max="100" />
+  <float name="Aliasing" default="0" min="0" max="5" />
+  <choice name="Stencil type" default="2" choice0="Black &amp;amp; White" choice1="RGB" choice2="Color" />
+  <bool name="Transparency" default="0" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Tetris -->
+<preset name="Tetris">
+  <command>
+-fx_tetris $"*"
+  </command>
+  <int name="Scale" default="10" min="1" max="20" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Truchet -->
+<preset name="Truchet">
+  <command>
+-fx_truchet $"*"
+  </command>
+  <int name="Scale" default="32" min="1" max="256" />
+  <int name="Radius" default="5" min="1" max="64" />
+  <float name="Smoothness" default="1" min="0" max="10" />
+  <choice name="Type" default="1" choice0="Straight" choice1="Curved" />
+  <choice name="Color" default="0" choice0="White on black" choice1="Black on white" choice2="White on transparent" choice3="Black on transparent" choice4="Transparent on white" choice5="Transparent on black" choice6="Random" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2011/26/10&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Weave -->
+<preset name="Weave">
+  <command>
+-weave $"*"
+  </command>
+  <int name="Density" default="6" min="1" max="32" />
+  <float name="Thickness" default="65" min="0" max="100" />
+  <float name="Shadow" default="0" min="0" max="100" />
+  <float name="Shading" default="0.5" min="0" max="3" />
+  <float name="Fibers amplitude" default="0" min="0" max="255" />
+  <float name="Fibers smoothness" default="0" min="0" max="10" />
+  <choice name="Angle" default="0" choice0="0 deg." choice1="22.5 deg." choice2="45 deg." choice3="67.5 deg." />
+  <float name="X-curvature" default="0" min="-1" max="1" />
+  <float name="Y-curvature" default="0" min="-1" max="1" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/18/01&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
+<!-- /Patterns/Whirls -->
+<preset name="Whirls">
+  <command>
+-fx_whirls_preview $"*"
+  </command>
+  <int name="Density" default="7" min="3" max="20" />
+  <float name="Smoothness" default="2" min="0" max="10" />
+  <float name="Darkness" default="0.2" min="0" max="1" />
+  <float name="Lightness" default="1.8" min="1" max="3" />
+  <separator />
+  <choice name="Channel(s)" default="11" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <value value="0" />
+  <value value="50" />
+  <value value="50" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
@@ -4052,88 +4661,6 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Inpaint [holes] -->
-<preset name="Inpaint [holes]">
-  <command>
--fx_inpaint_holes $"*"
-  </command>
-  <float name="Maximal area" default="4" min="1" max="512" />
-  <float name="Tolerance" default="20" min="0" max="255" />
-  <choice name="Connectivity" default="1" choice0="Low" choice1="High" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2014/27/05&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Repair/Inpaint [morphological] -->
-<preset name="Inpaint [morphological]">
-  <command>
--fx_inpaint_morpho_preview $"*"
-  </command>
-  <color name="Mask color" default="255,0,0,255" />
-  <int name="Mask dilation" default="0" min="0" max="32" />
-  <separator />
-  <note text="&lt;small&gt;&lt;b&gt;Note:&lt;/b&gt; It is strongly suggested to apply this filter only on a selection around the region to inpaint, to save computation time!&lt;/small&gt;" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2015/25/11&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Repair/Inpaint [multi-scale] -->
-<preset name="Inpaint [multi-scale]">
-  <command>
--fx_inpaint_patchmatch_preview $"*"
-  </command>
-  <int name="Number of scales" default="0" min="0" max="16" />
-  <note text="&lt;small&gt;(Set &lt;i&gt;Number of scales&lt;/i&gt; to &lt;i&gt;0&lt;/i&gt; for automatic scale detection)&lt;/small&gt;" />
-  <int name="Patch size" default="9" min="1" max="64" />
-  <int name="Number of iterations per scale" default="10" min="1" max="100" />
-  <int name="Blend size" default="5" min="0" max="32" />
-  <bool name="Allow outer blending" default="1" />
-  <color name="Mask color" default="255,0,0,255" />
-  <int name="Mask dilation" default="0" min="0" max="32" />
-  <separator />
-  <bool name="Preview progression while running" default="0" />
-  <separator />
-  <note text="&lt;small&gt;&lt;b&gt;Note:&lt;/b&gt; Preview and final result may strongly differ.&lt;/small&gt;" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2015/25/11&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Repair/Inpaint [patch-based] -->
-<preset name="Inpaint [patch-based]">
-  <command>
--fx_inpaint_patch_preview $"*"
-  </command>
-  <int name="Patch size" default="7" min="1" max="64" />
-  <float name="Lookup size" default="16" min="1" max="32" />
-  <float name="Lookup factor" default="0.1" min="0" max="1" />
-  <float name="Blend size" default="1.2" min="0" max="5" />
-  <float name="Blend threshold" default="0" min="0" max="1" />
-  <float name="Blend decay" default="0.05" min="0" max="0.5" />
-  <int name="Blend scales" default="10" min="1" max="20" />
-  <bool name="Allow outer blending" default="1" />
-  <color name="Mask color" default="255,0,0,255" />
-  <int name="Mask dilation" default="0" min="0" max="32" />
-  <separator />
-  <note text="&lt;small&gt;A quick tutorial on how to use this filter can be found here:&lt;/small&gt;" />
-  <link name="G'MIC Inpainting tutorial on Patrick David's blog." url="http://blog.patdavid.net/2014/02/getting-around-in-gimp-gmic-inpainting.html" align="center" />
-  <separator />
-  <note text="&lt;small&gt;Authors: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt; and &lt;i&gt;Maxime Daisy&lt;/i&gt;.      Latest update: &lt;i&gt;2015/25/11&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Repair/Inpaint [transport-diffusion] -->
-<preset name="Inpaint [transport-diffusion]">
-  <command>
--fx_inpaint_diffusion_preview $"*"
-  </command>
-  <float name="Smoothness (%)" default="75" min="0" max="100" />
-  <choice name="Regularization" default="1" choice0="Isotropic" choice1="Delaunay-oriented" choice2="Edge-oriented" />
-  <int name="Regularization iterations" default="20" min="0" max="100" />
-  <color name="Mask color" default="255,0,0,255" />
-  <int name="Mask dilation" default="0" min="0" max="32" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/10/04&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
 <!-- /Repair/Red-eye attenuation -->
 <preset name="Red-eye attenuation">
   <command>
@@ -4159,28 +4686,6 @@ This filter is inspired by the original GIMP &lt;i&gt;Unsharp Mask&lt;/i&gt; fil
   <value value="50" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;rome Boulanger&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Repair/Solidify -->
-<preset name="Solidify">
-  <command>
--fx_solidify_td_preview $"*"
-  </command>
-  <float name="Smoothness (%)" default="75" min="0" max="100" />
-  <choice name="Regularization" default="1" choice0="Isotropic" choice1="Delaunay-oriented" choice2="Edge-oriented" />
-  <int name="Regularization iterations" default="20" min="0" max="100" />
-  <int name="Dilation / erosion" default="0" min="-20" max="20" />
-  <choice name="Colorspace" default="1" choice0="sRGB" choice1="Linear RGB" />
-  <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
-  <separator />
-  <note text="&lt;small&gt;&lt;b&gt;Note:&lt;/b&gt;&lt;br/&gt;
-This filter reconstructs transparent regions of an image using a transport-diffusion algorithm. Useful only for images having an alpha-channel.&lt;br/&gt;
- &lt;/small&gt;" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/07/04&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 <!-- /Repair/Smooth [anisotropic] -->
@@ -4366,29 +4871,6 @@ This filter reconstructs transparent regions of an image using a transport-diffu
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [patch-pca] -->
-<preset name="Smooth [patch-pca]">
-  <command>
--fx_smooth_patchpca_preview $"*"
-  </command>
-  <float name="Strength" default="4" min="0" max="16" />
-  <int name="Patch size" default="7" min="2" max="21" />
-  <int name="Lookup size" default="11" min="2" max="21" />
-  <int name="Spatial sampling" default="7" min="1" max="16" />
-  <separator />
-  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
-  <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
-  <separator />
-  <note text="&lt;small&gt;&lt;b&gt;Note:&lt;/b&gt; Beware, this filter uses a very computationally intensive algorithm to denoise images. So, do not complain too much if you have less than 8 cores&lt;br/&gt;
-available for the computation :)&lt;br/&gt;
- &lt;/small&gt;" />
-  <separator />
-  <note text="&lt;small&gt;Authors: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt; and &lt;i&gt;J&amp;#233;rome Boulanger&lt;/i&gt;.      Latest update: &lt;i&gt;2016/24/03&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
 <!-- /Repair/Smooth [perona-malik] -->
 <preset name="Smooth [perona-malik]">
   <command>
@@ -4429,41 +4911,6 @@ available for the computation :)&lt;br/&gt;
   <value value="50" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Repair/Smooth [skin] -->
-<preset name="Smooth [skin]">
-  <command>
--fx_smooth_skin_preview $"*"
-  </command>
-  <note text="&lt;small&gt;&lt;b&gt;Step 1:&lt;/b&gt; Skin detection&lt;/small&gt;" />
-  <choice name="Skin estimation" default="2" choice0="None" choice1="Manual" choice2="Automatic" />
-  <float name="Tolerance" default="0.5" min="0" max="1" />
-  <float name="Smoothness" default="1" min="0" max="5" />
-  <float name="Threshold" default="1" min="0" max="10" />
-  <bool name="Pre-normalize image" default="1" />
-  <float name="X-coordinate [manual]" default="50" min="0" max="100" />
-  <float name="Y-coordinate [manual]" default="50" min="0" max="100" />
-  <float name="Radius [manual]" default="5" min="0" max="25" />
-  <separator />
-  <note text="&lt;small&gt;&lt;b&gt;Step 2:&lt;/b&gt; Medium scale smoothing&lt;/small&gt;" />
-  <float name="Base scale" default="2" min="0" max="10" />
-  <float name="Fine scale" default="0.2" min="0" max="0.8" />
-  <float name="Smoothness" default="3" min="0" max="10" />
-  <choice name="Smoothness type" default="1" choice0="Gaussian" choice1="Bilateral" />
-  <separator />
-  <note text="&lt;small&gt;&lt;b&gt;Step 3:&lt;/b&gt; Details enhancement&lt;/small&gt;" />
-  <float name="Gain" default="0.05" min="0" max="0.5" />
-  <separator />
-  <choice name="Preview data" default="5" choice0="Skin mask" choice1="Base scale" choice2="Medium scale (original)" choice3="Medium scale (smoothed)" choice4="Fine scale" choice5="Result image" />
-  <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
-  <separator />
-  <link name="Click here for a video tutorial" url="http://www.youtube.com/watch?v=H8pQfq-ybCc" align="center" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/20/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 <!-- /Repair/Smooth [thin brush] -->
@@ -4531,65 +4978,6 @@ available for the computation :)&lt;br/&gt;
   <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;rome Boulanger and David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Upscale [diffusion] -->
-<preset name="Upscale [diffusion]">
-  <command>
--fx_upscale_smart_preview $"*"
-  </command>
-  <text name="Width" default="200%" />
-  <text name="Height" default="200%" />
-  <float name="Smoothness" default="2" min="0" max="20" />
-  <float name="Anisotropy" default="0.4" min="0" max="1" />
-  <float name="Sharpness" default="50" min="0" max="100" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Repair/Upscale [scale2x] -->
-<preset name="Upscale [scale2x]">
-  <command>
--fx_scalenx_preview $"*"
-  </command>
-  <choice name="Scaling factor" default="0" choice0="x 2" choice1="x 3" choice2="x 4" choice3="x 6" choice4="x 8" choice5="x 9" choice6="x 12" choice7="x 16" choice8="x 18" choice9="x 27" />
-  <choice name="Colorbase" default="0" choice0="RGB" choice1="YCbCr" choice2="Lab" />
-  <note text="
-&lt;small&gt;&lt;b&gt;Note: &lt;/b&gt;&lt;br/&gt;
-This filter re-implements the scaling algorithm described at :&lt;br/&gt;
- &lt;/small&gt;" />
-  <link name="http://scale2x.sourceforge.net" url="http://scale2x.sourceforge.net" align="center" />
-  <note text="&lt;small&gt;&lt;br/&gt;
-This filter is useful for resizing images that have very few colors&lt;br/&gt;
-(e.g. indexed images). It is generally useless for true colors images.&lt;br/&gt;
- &lt;/small&gt;" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Repair/Upscale [dcci2x] -->
-<preset name="Upscale [dcci2x]">
-  <command>
--fx_scale_dcci2x_preview $"*"
-  </command>
-  <note text="&lt;i&gt;Directional Cubic Convolution Interpolation&lt;/i&gt;" />
-  <separator />
-  <float name="Threshold" default="1.15" min="1" max="2" />
-  <int name="Exponent" default="5" min="1" max="6" />
-  <bool name="Extend 1px" default="0" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;Garagecoder&lt;/i&gt;.      Latest update : &lt;i&gt;2015/11/07&lt;/i&gt;.&lt;/small&gt;" />
-  <note text="
-&lt;small&gt;&lt;b&gt;Note: &lt;/b&gt;&lt;br/&gt;
-This filter re-implements the scaling algorithm described at :&lt;br/&gt;
- &lt;/small&gt;" />
-  <link name="wikipedia.org" url="https://en.wikipedia.org/wiki/Directional_Cubic_Convolution_Interpolation" align="center" />
-  <note text="&lt;small&gt;The algorithm is intended for enlarging images while avoiding&lt;/small&gt;" />
-  <note text="&lt;small&gt;artifacts, e.g. staircase artifacts.&lt;/small&gt;" />
-  <note text="
-&lt;small&gt;Threshold controls edge[lower] to texture[higher] balance.&lt;/small&gt;" />
-  <note text="&lt;small&gt;Exponent controls texture edge sharpness[higher].&lt;/small&gt;" />
-  <note text="&lt;small&gt;Warning: highly experimental...&lt;/small&gt;" />
-</preset>
-
 </preset_group>
 
 <!-- ***********************************
@@ -4611,8 +4999,7 @@ This filter re-implements the scaling algorithm described at :&lt;br/&gt;
   <float name="Angle" default="30" min="0" max="360" />
   <float name="Tilt" default="60" min="0" max="90" />
   <float name="FOV" default="45" min="1" max="90" />
-  <float name="X-Centering (%)" default="50" min="0" max="100" />
-  <float name="Y-Centering (%)" default="50" min="0" max="100" />
+  <point name="Centering (%)" position="50,50" />
   <separator />
   <float name="X-light" default="0" min="-100" max="100" />
   <float name="Y-light" default="-50" min="-100" max="100" />
@@ -4977,10 +5364,8 @@ Reduce resolution to be able to view&lt;br/&gt;
   <command>
 -fx_line_gradient_preview $"*"
   </command>
-  <float name="X-Starting point (%)" default="50" min="0" max="100" />
-  <float name="Y-Starting point (%)" default="50" min="0" max="100" />
-  <float name="X-Ending point (%)" default="50" min="0" max="100" />
-  <float name="Y-Ending point (%)" default="50" min="0" max="100" />
+  <point name="Starting point (%)" position="0,0" removable="0" color="255,0,0,255" />
+  <point name="Ending point (%)" position="100,100" removable="0" color="64,128,255,255" />
   <float name="Sampling" default="100" min="0" max="100" />
   <int name="Length" default="0" min="0" max="4096" />
   <note text="&lt;small&gt;&lt;b&gt;Note:&lt;/b&gt; Set length to &lt;i&gt;0&lt;/i&gt; to release gradient length constraints.&lt;/small&gt;" />
@@ -5020,8 +5405,7 @@ Reduce resolution to be able to view&lt;br/&gt;
   <bool name="Swap colors" default="0" />
   <float name="Fade start" default="0" min="0" max="100" />
   <float name="Fade end" default="100" min="0" max="100" />
-  <float name="X-Center (%)" default="50" min="0" max="100" />
-  <float name="Y-Center (%)" default="50" min="0" max="100" />
+  <point name="Center (%)" position="50,50" removable="0" />
   <separator />
   <choice name="Colorspace" default="0" choice0="sRGB" choice1="Linear RGB" choice2="Lab" />
   <separator />
@@ -5071,8 +5455,7 @@ Reduce resolution to be able to view&lt;br/&gt;
   <int name="Seed" default="0" min="0" max="65535" />
   <separator />
   <note text="&lt;small&gt;&lt;b&gt;Initial streak:&lt;/b&gt;&lt;/small&gt;" />
-  <float name="X-XY-coordinates (%)" default="50" min="0" max="100" />
-  <float name="Y-XY-coordinates (%)" default="50" min="0" max="100" />
+  <point name="XY-coordinates (%)" position="50,5" removable="0" />
   <float name="Angle (deg)" default="0" min="-180" max="180" />
   <int name="Thickness (px.)" default="6" min="1" max="64" />
   <float name="Blur" default="0.2" min="0" max="3" />
@@ -5145,11 +5528,9 @@ Reduce resolution to be able to view&lt;br/&gt;
   <command>
 -fx_neon_lightning $"*"
   </command>
-  <float name="X-Source (%)" default="50" min="0" max="100" />
-  <float name="Y-Source (%)" default="50" min="0" max="100" />
+  <point name="Source (%)" position="50,50" />
   <float name="R0" default="0" min="0" max="100" />
-  <float name="X-Destination (%)" default="50" min="0" max="100" />
-  <float name="Y-Destination (%)" default="50" min="0" max="100" />
+  <point name="Destination (%)" position="50,50" />
   <float name="R1" default="100" min="0" max="100" />
   <separator />
   <int name="Density" default="50" min="1" max="512" />
@@ -5207,28 +5588,6 @@ Reduce resolution to be able to view&lt;br/&gt;
   <float name="Opacity" default="80" min="0" max="199" />
   <separator />
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
-</preset>
-
-<!-- /Rendering/Shade bobs -->
-<preset name="Shade bobs">
-  <command>
--fx_shadebobs $"*"
-  </command>
-  <note text="&lt;small&gt;Bobs parameters :&lt;/small&gt;" />
-  <int name="Density" default="50" min="1" max="200" />
-  <int name="Radius" default="5" min="1" max="100" />
-  <int name="Duration" default="200" min="1" max="500" />
-  <float name="Velocity" default="1" min="0" max="10" />
-  <separator />
-  <note text="&lt;small&gt;Curve parameters :&lt;/small&gt;" />
-  <float name="Rx" default="-1" min="-3" max="3" />
-  <float name="Ry" default="2" min="-3" max="3" />
-  <float name="Rz" default="1" min="-3" max="3" />
-  <float name="Rt" default="0.8" min="-3" max="3" />
-  <float name="Rcx" default="0" min="-3" max="3" />
-  <choice name="Colormap" default="8" choice0="Grayscale" choice1="Standard" choice2="HSV" choice3="Lines" choice4="Hot" choice5="Cool" choice6="Jet" choice7="Flag" choice8="Cube" />
-  <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2012/18/04&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 <!-- /Rendering/Sierpinski triangle -->
@@ -5308,6 +5667,18 @@ Reduce resolution to be able to view&lt;br/&gt;
 
 ************************************ -->
 <preset_group name="Various" >
+
+<!-- /Various/Histogram analysis -->
+<preset name="Histogram analysis">
+  <command>
+-fx_display_histogram $"*"
+  </command>
+  <int name="Number of clusters" default="256" min="2" max="1024" />
+  <separator />
+  <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [all]" choice2="RGB [all]" choice3="RGB [red]" choice4="RGB [green]" choice5="RGB [blue]" choice6="RGBA [alpha]" choice7="Linear RGB [all]" choice8="Linear RGB [red]" choice9="Linear RGB [green]" choice10="Linear RGB [blue]" choice11="YCbCr [luminance]" choice12="YCbCr [blue-red chrominances]" choice13="YCbCr [blue chrominance]" choice14="YCbCr [red chrominance]" choice15="YCbCr [green chrominance]" choice16="Lab [lightness]" choice17="Lab [ab-chrominances]" choice18="Lab [a-chrominance]" choice19="Lab [b-chrominance]" choice20="Lch [ch-chrominances]" choice21="Lch [c-chrominance]" choice22="Lch [h-chrominance]" choice23="HSV [hue]" choice24="HSV [saturation]" choice25="HSV [value]" choice26="HSI [intensity]" choice27="HSL [lightness]" choice28="CMYK [cyan]" choice29="CMYK [magenta]" choice30="CMYK [yellow]" choice31="CMYK [key]" choice32="YIQ [luma]" choice33="YIQ [chromas]" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2016/20/06&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
 
 <!-- /Spectral filters/Discrete Cosine Transform -->
 <preset name="Discrete Cosine Transform">
