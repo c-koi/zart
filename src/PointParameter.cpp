@@ -265,7 +265,7 @@ bool PointParameter::initFromNode(QDomNode node)
 
     savedPosition = node.toElement().attribute("savedValue");
     if (!savedPosition.isNull()) {
-      savedAsRemoved = (savedPosition.back() == QChar('-'));
+      savedAsRemoved = savedPosition.endsWith(QChar('-'));
       savedPosition.chop(1);
       position = savedPosition;
     }
