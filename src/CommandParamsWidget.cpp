@@ -49,6 +49,7 @@
 #include <QLabel>
 #include "AbstractParameter.h"
 #include "Common.h"
+#include "PointParameter.h"
 
 CommandParamsWidget::CommandParamsWidget(QWidget * parent) : QWidget(parent), _valueString(""), _pbReset(0), _labelNoParams(0)
 {
@@ -69,6 +70,7 @@ void CommandParamsWidget::build(QDomNode presetNode)
   QGridLayout * grid = new QGridLayout;
   grid->setRowStretch(1, 2);
   setLayout(grid);
+  PointParameter::resetDefaultColorIndex();
 
   int row = 0;
   QDomNode child = presetNode.firstChild();
