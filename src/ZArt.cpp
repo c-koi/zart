@@ -46,6 +46,7 @@
 #include <iostream>
 using namespace std;
 #include <QApplication>
+#include <QFileInfo>
 #include <QMessageBox>
 #include <QSplashScreen>
 #include "Common.h"
@@ -102,6 +103,20 @@ int main(int argc, char * argv[])
     cerr << "[ZArt] Warning: Could not create resources directory.\n";
   }
   MainWindow mainWindow;
+  if ((args.size() > 1) && QFileInfo(args.back()).isReadable()) {
+    QStringList imagesExtensions = QString("bmp gif jpg png pbm pgm ppm xbm xpm svg").split(" ");
+    for (const QString & ext : imagesExtensions) {
+      if (args.back().endsWith("." + ext)) {
+        mainWindow.setInputImage(args.back());
+      }
+    }
+    QStringList videoExtensions = QString("avi mpg mpeg").split(" ");
+    for (const QString & ext : imagesExtensions) {
+      if (args.back().endsWith("." + ext)) {
+        mainWindow.setInputVideo(args.back());
+      }
+    }
+  }
   mainWindow.show();
   splashScreen.finish(&mainWindow);
   return app.exec();

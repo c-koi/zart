@@ -115,6 +115,9 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), _filterThread(0)
   _fullScreenWidget = new FullScreenWidget(this);
   _fullScreenWidget->setFavesModel(_cbFaves->model());
   connect(_fullScreenWidget, SIGNAL(escapePressed()), this, SLOT(toggleFullScreenMode()));
+  connect(_fullScreenWidget->imageView(), SIGNAL(keypointPositionsChanged(ulong)), this, SLOT(onFullScreenKeypointsEvent(ulong)));
+  connect(_fullScreenWidget->imageView(), SIGNAL(resized(QSize)), this, SLOT(fullScreenImageViewResized(QSize)));
+
   _displayMode = InWindow;
 
   QSettings settings;
@@ -467,17 +470,19 @@ QString MainWindow::getPreset(const QString & name)
 
 void MainWindow::updateKeypointsInViews()
 {
-  KeypointList keypoints = _commandParamsWidget->keypoints();
+  KeypointList keypoints = (_displayMode == InWindow) ? _commandParamsWidget->keypoints() : _fullScreenWidget->commandParamsWidget()->keypoints();
   if (_displayMode == InWindow) {
     _imageView->setKeypoints(keypoints);
     _imageView->repaint();
   }
+  _fullScreenWidget->imageView()->setKeypoints(keypoints);
   if (_displayMode == FullScreen) {
-    _fullScreenWidget->imageView()->setKeypoints(keypoints);
     _fullScreenWidget->imageView()->repaint();
   }
-  if (_outputWindow && _outputWindow->isVisible() && _outputWindowAction->isChecked()) {
+  if (_outputWindow) {
     _outputWindow->imageView()->setKeypoints(keypoints);
+  }
+  if (_outputWindow && _outputWindow->isVisible() && _outputWindowAction->isChecked()) {
     _outputWindow->imageView()->repaint();
   }
 }
@@ -531,6 +536,9 @@ void MainWindow::play()
     _filterThread->setArguments(_commandParamsWidget->valueString());
   }
   imageViewResized(_imageView->size());
+  if (_outputWindow && _outputWindow->isVisible()) {
+    outputWindowImageViewResized(_outputWindow->imageView()->size());
+  }
   if (_source == StillImage) {
     _filterThreadSemaphore.release();
   }
@@ -577,6 +585,7 @@ void MainWindow::onCommandParametersChangedFullScreen()
         _filterThreadSemaphore.release();
     }
   }
+  updateKeypointsInViews();
 }
 
 void MainWindow::toggleFullScreenMode()
@@ -676,6 +685,16 @@ void MainWindow::onComboSourceChanged(int i)
     showOneSourceImage();
   }
   firstRun = false;
+}
+
+void MainWindow::setInputImage(QString filepath)
+{
+  _stillImage.loadImage(filepath);
+}
+
+void MainWindow::setInputVideo(QString filepath)
+{
+  _videoFile.loadVideoFile(filepath);
 }
 
 void MainWindow::onOpenImageFile()
@@ -790,7 +809,23 @@ void MainWindow::imageViewMouseEvent(QMouseEvent * event)
 
 void MainWindow::imageViewResized(QSize size)
 {
-  if (_filterThread) {
+  if (!_outputWindow || !_outputWindow->isVisible()) {
+    if (_filterThread) {
+      _filterThread->setViewSize(size);
+    }
+  }
+}
+
+void MainWindow::outputWindowImageViewResized(QSize size)
+{
+  if (size.isValid() && _filterThread) {
+    _filterThread->setViewSize(size);
+  }
+}
+
+void MainWindow::fullScreenImageViewResized(QSize size)
+{
+  if (size.isValid() && _filterThread) {
     _filterThread->setViewSize(size);
   }
 }
@@ -1192,6 +1227,8 @@ void MainWindow::onOutputWindow(bool on)
     if (!_outputWindow) {
       _outputWindow = new OutputWindow(this);
       connect(_outputWindow, SIGNAL(aboutToClose()), this, SLOT(onOutputWindowClosing()));
+      connect(_outputWindow->imageView(), SIGNAL(keypointPositionsChanged(ulong)), this, SLOT(onOutputWindowKeypointsEvent(ulong)));
+      connect(_outputWindow->imageView(), SIGNAL(resized(QSize)), this, SLOT(outputWindowImageViewResized(QSize)));
     }
     if (!_outputWindow->isVisible()) {
       bool running = _filterThread && _filterThread->isRunning();
@@ -1205,6 +1242,7 @@ void MainWindow::onOutputWindow(bool on)
   if (!on && _outputWindow && _outputWindow->isVisible()) {
     _outputWindow->onShowFullscreen(false);
     _outputWindow->close();
+    imageViewResized(_imageView->size());
   }
 }
 
@@ -1294,4 +1332,14 @@ void MainWindow::closeEvent(QCloseEvent * event)
 void MainWindow::onImageViewKeypointsEvent(unsigned long /* time */)
 {
   _commandParamsWidget->setKeypoints(_imageView->keypoints(), true);
+}
+
+void MainWindow::onOutputWindowKeypointsEvent(unsigned long /* time */)
+{
+  _commandParamsWidget->setKeypoints(_outputWindow->imageView()->keypoints(), true);
+}
+
+void MainWindow::onFullScreenKeypointsEvent(unsigned long /* time */)
+{
+  _fullScreenWidget->commandParamsWidget()->setKeypoints(_fullScreenWidget->imageView()->keypoints(), true);
 }

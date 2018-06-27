@@ -91,6 +91,9 @@ public:
     FullScreen
   };
 
+  void setInputImage(QString filepath);
+  void setInputVideo(QString filepath);
+
 public slots:
 
   void play();
@@ -145,6 +148,10 @@ protected:
 
 private slots:
   void onImageViewKeypointsEvent(unsigned long time);
+  void outputWindowImageViewResized(QSize size);
+  void onOutputWindowKeypointsEvent(unsigned long);
+  void onFullScreenKeypointsEvent(unsigned long);
+  void fullScreenImageViewResized(QSize size);
 
 private:
   void setPresets(const QDomElement &);

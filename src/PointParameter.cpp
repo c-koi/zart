@@ -254,11 +254,21 @@ bool PointParameter::initFromNode(QDomNode node)
 
   node.attributes();
 
+  bool savedAsRemoved = false;
+  QString savedPosition;
+
   QDomNode item;
 
   item = attributes.namedItem("position");
   if (!item.isNull()) {
     QString position = item.nodeValue();
+
+    savedPosition = node.toElement().attribute("savedValue");
+    if (!savedPosition.isNull()) {
+      savedAsRemoved = (savedPosition.back() == QChar('-'));
+      savedPosition.chop(1);
+      position = savedPosition;
+    }
     QStringList list = position.split(",");
     if (list.size() >= 1) {
       x = list[0].toFloat(&ok);
@@ -305,6 +315,10 @@ bool PointParameter::initFromNode(QDomNode node)
     default:
       return false;
     }
+  }
+
+  if (!savedPosition.isNull()) {
+    _removed = savedAsRemoved;
   }
 
   item = attributes.namedItem("color");
@@ -406,7 +420,7 @@ void PointParameter::setRemoved(bool on)
 
 void PointParameter::saveValueInDOM()
 {
-  _node.toElement().setAttribute("savedValue", QString("%1,%2").arg(_position.rx()).arg(_position.ry()));
+  _node.toElement().setAttribute("savedValue", textValue() + (_removed ? "-" : "+"));
 }
 
 void PointParameter::resetDefaultColorIndex()
