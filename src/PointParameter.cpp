@@ -350,6 +350,8 @@ bool PointParameter::initFromNode(QDomNode node)
       }
       _color.setAlpha(std::abs(alpha));
     }
+  } else {
+    pickColorFromDefaultColormap();
   }
 
   item = attributes.namedItem("radius");
