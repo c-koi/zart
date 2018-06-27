@@ -45,6 +45,7 @@
  */
 #include "DialogAbout.h"
 #include "Common.h"
+#include "gmic.h"
 
 /**
  * Constructor
@@ -54,6 +55,10 @@ DialogAbout::DialogAbout(QWidget * parent) : QDialog(parent)
   setupUi(this);
   setWindowTitle("About ZArt");
   QString str = _topLabel->text();
-  str.replace("VERSION", ZART_VERSION_STRING);
+
+  QString gmicVersion = QString("%1.%2.%3").arg(gmic_version / 100).arg((gmic_version / 10) % 10).arg(gmic_version % 10);
+  str.replace("GMICVERSION", gmicVersion);
+  str.replace("ZARTVERSION", ZART_VERSION_STRING);
+
   _topLabel->setText(str);
 }

@@ -64,7 +64,7 @@
   qWarning() << ""
 #endif
 
-#define ZART_VERSION 3.2.1
+#define ZART_VERSION 3.2.2
 
 #define ZART_STRINGIFY(X) #X
 #define ZART_XSTRINGIFY(X) ZART_STRINGIFY(X)
