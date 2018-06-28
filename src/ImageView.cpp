@@ -52,6 +52,7 @@
 #include <QPainter>
 #include <QRect>
 #include <QThread>
+#include <cmath>
 #include <iostream>
 #include "Common.h"
 #include "OverrideCursor.h"
@@ -115,7 +116,7 @@ void ImageView::mousePressEvent(QMouseEvent * e)
     int index = keypointUnderMouse(e->pos());
     if (index != -1) {
       _movedKeypointIndex = index;
-      _keypointTimestamp = e->timestamp();
+      _keypointTimestamp.start();
       if (!_keypoints[index].keepOpacityWhenSelected) {
         update();
       }
@@ -139,7 +140,7 @@ void ImageView::mouseReleaseEvent(QMouseEvent * e)
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
       _movedKeypointIndex = -1;
-      emit keypointPositionsChanged(e->timestamp());
+      emit keypointPositionsChanged();
     }
     e->accept();
     return;
@@ -159,13 +160,13 @@ void ImageView::mouseMoveEvent(QMouseEvent * e)
   }
 
   if (e->buttons() & (Qt::LeftButton | Qt::MiddleButton)) {
-    if (_movedKeypointIndex != -1 && ((e->timestamp() - _keypointTimestamp) > 25)) {
+    if (_movedKeypointIndex != -1 && (_keypointTimestamp.elapsed() > 25)) {
       QPointF p = pointInWidgetToKeypointPosition(e->pos());
       KeypointList::Keypoint & kp = _keypoints[_movedKeypointIndex];
       kp.setPosition(p);
       repaint();
-      _keypointTimestamp = e->timestamp();
-      emit keypointPositionsChanged(e->timestamp());
+      _keypointTimestamp.restart();
+      emit keypointPositionsChanged();
     }
     e->accept();
   }
@@ -297,9 +298,9 @@ void ImageView::paintKeypoints(QPainter & painter)
 
 int ImageView::roundedDistance(const QPoint & p1, const QPoint & p2)
 {
-  const double dx = p1.x() - p2.x();
-  const double dy = p1.y() - p2.y();
-  return (int)std::round(std::sqrt(dx * dx + dy * dy));
+  const float dx = p1.x() - p2.x();
+  const float dy = p1.y() - p2.y();
+  return (int)roundf(sqrtf(dx * dx + dy * dy));
 }
 
 int ImageView::keypointUnderMouse(const QPoint & p)
@@ -322,7 +323,7 @@ int ImageView::keypointUnderMouse(const QPoint & p)
 
 QPoint ImageView::keypointToPointInWidget(const KeypointList::Keypoint & kp) const
 {
-  return QPoint(std::round(_imagePosition.left() + (_imagePosition.width() - 1) * (kp.x / 100.0f)), std::round(_imagePosition.top() + (_imagePosition.height() - 1) * (kp.y / 100.0f)));
+  return QPoint(roundf(_imagePosition.left() + (_imagePosition.width() - 1) * (kp.x / 100.0f)), roundf(_imagePosition.top() + (_imagePosition.height() - 1) * (kp.y / 100.0f)));
 }
 
 QPoint ImageView::keypointToVisiblePointInWidget(const KeypointList::Keypoint & kp) const

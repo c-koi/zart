@@ -10,9 +10,12 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 #
 #
 #
-#
 
-CONFIG	+= qt c++11
+CONFIG	+= qt
+
+greaterThan(QT_MAJOR_VERSION, 4): CONFIG += c++11
+!greaterThan(QT_MAJOR_VERSION, 4): QMAKE_CXXFLAGS += --std=c++11
+
 CONFIG	+= warn_on
 QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig

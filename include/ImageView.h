@@ -47,6 +47,7 @@
 #define _IMAGEVIEW_H_
 
 #include <QMutex>
+#include <QTime>
 #include <QWidget>
 #include "KeypointList.h"
 
@@ -87,7 +88,7 @@ signals:
   void aboutToClose();
   void spaceBarPressed();
   void escapePressed();
-  void keypointPositionsChanged(unsigned long time);
+  void keypointPositionsChanged();
   void resized(QSize);
 
 private:
@@ -100,7 +101,7 @@ private:
   QColor _backgroundColor;
   KeypointList _keypoints;
   int _movedKeypointIndex;
-  unsigned long _keypointTimestamp;
+  QTime _keypointTimestamp;
   static int roundedDistance(const QPoint & p1, const QPoint & p2);
   int keypointUnderMouse(const QPoint & p);
   void paintKeypoints(QPainter & painter);

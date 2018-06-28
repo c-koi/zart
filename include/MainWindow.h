@@ -147,10 +147,10 @@ protected:
   void closeEvent(QCloseEvent *);
 
 private slots:
-  void onImageViewKeypointsEvent(unsigned long time);
+  void onImageViewKeypointsEvent();
   void outputWindowImageViewResized(QSize size);
-  void onOutputWindowKeypointsEvent(unsigned long);
-  void onFullScreenKeypointsEvent(unsigned long);
+  void onOutputWindowKeypointsEvent();
+  void onFullScreenKeypointsEvent();
   void fullScreenImageViewResized(QSize size);
 
 private:

@@ -102,8 +102,8 @@ public:
   const_iterator cend() const { return _keypoints.cend(); }
   reverse_iterator rbegin() { return _keypoints.rbegin(); }
   reverse_iterator rend() { return _keypoints.rend(); }
-  const_reverse_iterator rbegin() const { return _keypoints.crbegin(); }
-  const_reverse_iterator rend() const { return _keypoints.crend(); }
+  const_reverse_iterator crbegin() const { return _keypoints.crbegin(); }
+  const_reverse_iterator crend() const { return _keypoints.crend(); }
 
 private:
   std::deque<Keypoint> _keypoints;
@@ -124,9 +124,9 @@ void KeypointList::Keypoint::setPosition(const QPointF & point)
 int KeypointList::Keypoint::actualRadiusFromPreviewSize(const QSize & size) const
 {
   if (radius >= 0) {
-    return radius;
+    return (int)roundf(radius);
   } else {
-    return std::round(-radius * (std::sqrt(size.width() * size.width() + size.height() * size.height())) / 100.0);
+    return (int)roundf(-radius * (sqrtf(size.width() * size.width() + size.height() * size.height())) / 100.0f);
   }
 }
 
