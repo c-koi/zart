@@ -50,7 +50,7 @@ a GUI for G'MIC real-time manipulations on the output of a webcam.
 
 The following libraries are required to compile/run ZArt:
 
- * libqt4-dev
+ * libqt4-dev or libqt5-dev
  * libcv2.1
  * libcvaux2.1
  * libcvaux-dev
