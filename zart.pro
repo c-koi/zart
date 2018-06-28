@@ -34,6 +34,10 @@ defined(GMIC_PATH, var) {
   message(GMIC_PATH was not set: Found gmic sources in ../gmic/src)
   GMIC_PATH = ../gmic/src
 }
+!defined(GMIC_PATH, var):exists(./gmic/src/gmic.cpp) {
+  message(GMIC_PATH was not set: Found gmic sources in ./gmic/src)
+  GMIC_PATH = ./gmic/src
+}
 defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
  error("G'MIC repository was not found ("$$GMIC_PATH")")
 }
