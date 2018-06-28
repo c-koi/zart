@@ -67,8 +67,10 @@ The following libraries are required to compile/run ZArt:
  You should update to the latest version available of libxkbcommon. Otherwise,
  the application might exit at any time with the error below.
 
+```
  zart: symbol lookup error: /usr/lib64/qt5/plugins/platforms/libqxcb.so: \
  undefined symbol: xkb_state_key_get_utf8
+```
 
 ### Tavis CI last build status
 
