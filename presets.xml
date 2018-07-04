@@ -2358,6 +2358,23 @@ fx_square_circle $"*"
   <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2017/10/30&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
+<!-- /Deformations/Stereographic projection -->
+<preset name="Stereographic projection">
+  <command>
+-fx_project_stereographic_preview $"*"
+  </command>
+  <choice name="Transform" default="0" choice0="Direct" choice1="Inverse" />
+  <point name="Center (%)" position="50,50" removable="0" color="255,255,255,170" />
+  <point name="Radius / Angle" position="75,50" removable="0" color="255,0,255,170" />
+  <float name="Horizon rectification (deg.)" default="0" min="-5" max="5" />
+  <float name="Left/right blur (%)" default="0" min="0" max="20" />
+  <float name="Dilation" default="0" min="-2" max="2" />
+  <choice name="Mirror" default="0" choice0="None" choice1="X-axis" choice2="Y-axis" choice3="XY-axis" />
+  <choice name="Boundary" default="2" choice0="Transparent" choice1="Nearest" choice2="Periodic" choice3="Mirror" />
+  <separator />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.      Latest update: &lt;i&gt;2018/07/03&lt;/i&gt;.&lt;/small&gt;" />
+</preset>
+
 <!-- /Deformations/Symmetrize -->
 <preset name="Symmetrize">
   <command>
