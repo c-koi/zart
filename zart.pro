@@ -43,6 +43,9 @@ defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
 }
 message("G'MIC repository was found ("$$GMIC_PATH")")
 
+defined(GMIC_LIB_PATH, var) {
+  message("GMIC_LIB_PATH is set ("$$GMIC_LIB_PATH")")
+}
 !defined(GMIC_LIB_PATH, var) {
   GMIC_LIB_PATH = $$GMIC_PATH
 }
