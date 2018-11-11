@@ -43,6 +43,10 @@ defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
 }
 message("G'MIC repository was found ("$$GMIC_PATH")")
 
+!defined(GMIC_LIB_PATH, var) {
+  GMIC_LIB_PATH = $$GMIC_PATH
+}
+
 unix {
    VERSION = $$system(grep \"define.ZART_VERSION \" include/Common.h | sed -e \"s/.*VERSION //\")
 }
@@ -78,7 +82,7 @@ openmp {
 
 equals(GMIC_DYNAMIC_LINKING, "on" ) {
   message(Dynamic linking with libgmic)
-  LIBS += $$GMIC_PATH/libgmic.so
+  LIBS += $$GMIC_LIB_PATH/libgmic.so
 }
 
 equals(GMIC_DYNAMIC_LINKING, "off" ) {
