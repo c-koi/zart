@@ -21,7 +21,7 @@ else
 CONFIG=debug
 endif
 
-QMAKE=qmake-qt4
+QMAKE=qmake-qt5
 
 .PHONY: all
 
