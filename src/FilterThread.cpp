@@ -149,135 +149,141 @@ void FilterThread::run()
     if (!_gmic_images[0].is_sameXYZC(_imageSource.width(), _imageSource.height(), 1, 3))
       _gmic_images[0].assign(_imageSource.width(), _imageSource.height(), 1, 3);
 
-    ImageConverter::convert(_imageSource.image(), _gmic_images[0]);
+    if (_noFilter) {
+      ImageConverter::convert(_imageSource.image(), _outputImageA);
+      ImageConverter::convert(_imageSource.image(), _outputImageB);
+    } else {
 
-    // Call the G'MIC interpreter.
-    try {
-      timeMeasure.restart();
+      ImageConverter::convert(_imageSource.image(), _gmic_images[0]);
 
-      if (_commandUpdated) {
-        delete _gmic;
-        QString c = QString("zart: -skip $\"*\" ") + _command;
-        _gmic = new gmic("", c.toLatin1().constData());
-        _commandUpdated = false;
-      }
+      // Call the G'MIC interpreter.
+      try {
+        timeMeasure.restart();
 
-      _gmic->run("-v -");
-      QString c;
-      c += QString("_x=%1").arg(_xMouse);
-      c += QString(" _y=%1").arg(_yMouse);
-      c += QString(" _b=%1").arg(_buttonsMouse);
-      c += QString(" _host=zart _input_layers=1 _output_mode=0 _output_messages=0 _preview_mode=0 _preview_timeout=16");
-      _viewSize.lock();
-      c += QString(" _preview_width=%1 _preview_height=%2").arg(_viewSize.object().width()).arg(_viewSize.object().height());
-      _viewSize.unlock();
-      QString call;
-      _arguments.lock();
-      if (_arguments.object().isEmpty())
-        call = QString(" -zart 0");
-      else
-        call = QString(" -zart %1").arg(_arguments.object());
-      _arguments.unlock();
-      c += call;
+        if (_commandUpdated) {
+          delete _gmic;
+          QString c = QString("zart: -skip $\"*\" ") + _command;
+          _gmic = new gmic("", c.toLatin1().constData());
+          _commandUpdated = false;
+        }
 
-      // SHOW(c);
+        _gmic->run("-v -");
+        QString c;
+        c += QString("_x=%1").arg(_xMouse);
+        c += QString(" _y=%1").arg(_yMouse);
+        c += QString(" _b=%1").arg(_buttonsMouse);
+        c += QString(" _host=zart _input_layers=1 _output_mode=0 _output_messages=0 _preview_mode=0 _preview_timeout=16");
+        _viewSize.lock();
+        c += QString(" _preview_width=%1 _preview_height=%2").arg(_viewSize.object().width()).arg(_viewSize.object().height());
+        _viewSize.unlock();
+        QString call;
+        _arguments.lock();
+        if (_arguments.object().isEmpty())
+          call = QString(" -zart 0");
+        else
+          call = QString(" -zart %1").arg(_arguments.object());
+        _arguments.unlock();
+        c += call;
 
-      _gmic->run(c.toLatin1().constData(), _gmic_images, _gmic_images_names);
-      lastCommandDuration = timeMeasure.elapsed();
+        // SHOW(c);
 
-      switch (_previewMode) {
-      case Full:
-        if (_gmic_images && _gmic_images[0]) {
-          QSize size(_gmic_images[0].width(), _gmic_images[0].height());
+        _gmic->run(c.toLatin1().constData(), _gmic_images, _gmic_images_names);
+        lastCommandDuration = timeMeasure.elapsed();
+
+        switch (_previewMode) {
+        case Full:
+          if (_gmic_images && _gmic_images[0]) {
+            QSize size(_gmic_images[0].width(), _gmic_images[0].height());
+            _imageMutexA->lock();
+            if (_outputImageA->size() != size) {
+              *_outputImageA = QImage(size, QImage::Format_RGB888);
+            }
+            _imageMutexA->unlock();
+            ImageConverter::convert(_gmic_images[0], _outputImageA);
+            if (_outputImageB) {
+              _imageMutexB->lock();
+              if (_outputImageB->size() != size) {
+                *_outputImageB = QImage(size, QImage::Format_RGB888);
+              }
+              _imageMutexB->unlock();
+              ImageConverter::convert(_gmic_images[0], _outputImageB);
+            }
+          }
+          break;
+        case Original: {
           _imageMutexA->lock();
+          QSize size(_imageSource.width(), _imageSource.height());
           if (_outputImageA->size() != size) {
             *_outputImageA = QImage(size, QImage::Format_RGB888);
           }
           _imageMutexA->unlock();
-          ImageConverter::convert(_gmic_images[0], _outputImageA);
           if (_outputImageB) {
-            _imageMutexB->lock();
             if (_outputImageB->size() != size) {
               *_outputImageB = QImage(size, QImage::Format_RGB888);
             }
             _imageMutexB->unlock();
-            ImageConverter::convert(_gmic_images[0], _outputImageB);
           }
+          ImageConverter::convert(_imageSource.image(), _outputImageA);
+          ImageConverter::convert(_imageSource.image(), _outputImageB);
+        } break;
+        case LeftHalf:
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeLeft);
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeLeft);
+          break;
+        case TopHalf:
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeTop);
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeTop);
+          break;
+        case BottomHalf:
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeBottom);
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeBottom);
+          break;
+        case RightHalf:
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexB, ImageConverter::MergeRight);
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeRight);
+          break;
+        case DuplicateHorizontal:
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::DuplicateHorizontal);
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::DuplicateHorizontal);
+          break;
+        case DuplicateVertical:
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::DuplicateVertical);
+          ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::DuplicateVertical);
+          break;
+        default:
+          _outputImageA->fill(QColor(255, 255, 255).rgb());
+          if (_outputImageB) {
+            _outputImageB->fill(QColor(255, 255, 255).rgb());
+          }
+          break;
         }
-        break;
-      case Original: {
-        _imageMutexA->lock();
-        QSize size(_imageSource.width(), _imageSource.height());
+
+      } catch (gmic_exception & e) {
+        CImg<unsigned char> src(reinterpret_cast<unsigned char *>(_imageSource.image()->imageData), 3, _imageSource.width(), _imageSource.height(), 1, true);
+        _gmic_images = src.get_permute_axes("yzcx");
+        QString errorCommand = QString("-gimp_error_preview \"%1\"").arg(e.what());
+
+        try {
+          _gmic->run(errorCommand.toLatin1().constData(), _gmic_images, _gmic_images_names);
+        } catch (gmic_exception & e) {
+          const unsigned char color1[] = {0, 255, 0}, color2[] = {0, 0, 0};
+          _gmic_images = src.get_permute_axes("yzcx").channel(0).resize(-100, -100, 1, 3).draw_text(10, 10, "Syntax Error", color1, color2, 0.5, 57);
+        }
+        std::cerr << e.what() << std::endl;
+        QSize size(_imageSource.image()->width, _imageSource.image()->height);
         if (_outputImageA->size() != size) {
+          _imageMutexA->lock();
           *_outputImageA = QImage(size, QImage::Format_RGB888);
+          _imageMutexA->unlock();
         }
-        _imageMutexA->unlock();
-        if (_outputImageB) {
-          if (_outputImageB->size() != size) {
-            *_outputImageB = QImage(size, QImage::Format_RGB888);
-          }
+        if (_outputImageB && _outputImageB->size() != size) {
+          _imageMutexB->lock();
+          *_outputImageB = QImage(size, QImage::Format_RGB888);
           _imageMutexB->unlock();
         }
-        ImageConverter::convert(_imageSource.image(), _outputImageA);
-        ImageConverter::convert(_imageSource.image(), _outputImageB);
-      } break;
-      case LeftHalf:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeLeft);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeLeft);
-        break;
-      case TopHalf:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeTop);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeTop);
-        break;
-      case BottomHalf:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::MergeBottom);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeBottom);
-        break;
-      case RightHalf:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexB, ImageConverter::MergeRight);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::MergeRight);
-        break;
-      case DuplicateHorizontal:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::DuplicateHorizontal);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::DuplicateHorizontal);
-        break;
-      case DuplicateVertical:
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageA, _imageMutexA, ImageConverter::DuplicateVertical);
-        ImageConverter::merge(_imageSource.image(), _gmic_images[0], _outputImageB, _imageMutexB, ImageConverter::DuplicateVertical);
-        break;
-      default:
-        _outputImageA->fill(QColor(255, 255, 255).rgb());
-        if (_outputImageB) {
-          _outputImageB->fill(QColor(255, 255, 255).rgb());
-        }
-        break;
+        ImageConverter::convert(_gmic_images[0], _outputImageA);
+        ImageConverter::convert(_gmic_images[0], _outputImageB);
       }
-
-    } catch (gmic_exception & e) {
-      CImg<unsigned char> src(reinterpret_cast<unsigned char *>(_imageSource.image()->imageData), 3, _imageSource.width(), _imageSource.height(), 1, true);
-      _gmic_images = src.get_permute_axes("yzcx");
-      QString errorCommand = QString("-gimp_error_preview \"%1\"").arg(e.what());
-
-      try {
-        _gmic->run(errorCommand.toLatin1().constData(), _gmic_images, _gmic_images_names);
-      } catch (gmic_exception & e) {
-        const unsigned char color1[] = {0, 255, 0}, color2[] = {0, 0, 0};
-        _gmic_images = src.get_permute_axes("yzcx").channel(0).resize(-100, -100, 1, 3).draw_text(10, 10, "Syntax Error", color1, color2, 0.5, 57);
-      }
-      std::cerr << e.what() << std::endl;
-      QSize size(_imageSource.image()->width, _imageSource.image()->height);
-      if (_outputImageA->size() != size) {
-        _imageMutexA->lock();
-        *_outputImageA = QImage(size, QImage::Format_RGB888);
-        _imageMutexA->unlock();
-      }
-      if (_outputImageB && _outputImageB->size() != size) {
-        _imageMutexB->lock();
-        *_outputImageB = QImage(size, QImage::Format_RGB888);
-        _imageMutexB->unlock();
-      }
-      ImageConverter::convert(_gmic_images[0], _outputImageA);
-      ImageConverter::convert(_gmic_images[0], _outputImageB);
     }
     emit imageAvailable();
     if (!_fps && _blockingSemaphore) {
@@ -292,8 +298,14 @@ void FilterThread::run()
 
 void FilterThread::setCommand(const QString & command)
 {
-  QByteArray str = command.toLatin1();
-  _command = str.constData();
-  _command.replace("{*,x}", "$_x").replace("{*,y}", "$_y").replace("{*,b}", "$_b");
+  if (command == "_none_") {
+    _noFilter = true;
+    _command.clear();
+  } else {
+    _noFilter = false;
+    QByteArray str = command.toLatin1();
+    _command = str.constData();
+    _command.replace("{*,x}", "$_x").replace("{*,y}", "$_y").replace("{*,b}", "$_b");
+  }
   _commandUpdated = true;
 }

@@ -407,7 +407,14 @@ MainWindow::~MainWindow()
 void MainWindow::setCurrentPreset(QDomNode node)
 {
   QDomNode command = node.namedItem("command");
-  _commandEditor->setPlainText(command.firstChild().toText().data().trimmed());
+  QString text = command.firstChild().toText().data().trimmed();
+  if (text == "_none_") {
+    _commandEditor->clear();
+    _commandEditor->setEnabled(false);
+  } else {
+    _commandEditor->setEnabled(true);
+    _commandEditor->setPlainText(text);
+  }
   _currentPresetNode = node;
   if (_displayMode == FullScreen) {
     _fullScreenWidget->commandParamsWidget()->saveValuesInDOM();

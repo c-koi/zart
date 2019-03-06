@@ -119,6 +119,7 @@ private:
   cimg_library::CImgList<float> _gmic_images;
   cimg_library::CImgList<char> _gmic_images_names;
   gmic * _gmic;
+  bool _noFilter;
 };
 
 #endif // _FILTERTHREAD_H_
