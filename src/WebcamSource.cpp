@@ -1,5 +1,5 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
- * @file   WebcamGrabber.cpp
+ * @file   WebcamSource.cpp
  * @author Sebastien Fourey
  * @date   July 2010
  * @brief Definition of methods of the class WebcamGrabber

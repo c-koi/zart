@@ -1,5 +1,5 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
- * @file   WebcamGrabber.h
+ * @file   WebcamSource.h
  * @author Sebastien Fourey
  * @date   July 2010
  * @brief  Declaration of the class ImageFilter

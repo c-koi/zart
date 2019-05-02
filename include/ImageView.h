@@ -1,5 +1,5 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
- * @file   View2DWidget.h
+ * @file   ImageView.h
  * @author Sebastien Fourey
  * @date   July 2010
  * @brief  Declaration of the class ImageFilter
