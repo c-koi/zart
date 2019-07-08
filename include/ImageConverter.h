@@ -46,14 +46,8 @@
 #ifndef _IMAGECONVERTER_H_
 #define _IMAGECONVERTER_H_
 
-#if defined(HAS_OPENCV2_HEADERS) || defined(OPENCV2_HEADERS)
-#include <opencv2/core/core_c.h>
-#include <opencv2/imgproc/imgproc_c.h>
-#else
-#include <cv.h>
-#endif
-
 #include <QMutex>
+#include <opencv2/opencv.hpp>
 #include "gmic.h"
 
 class QImage;
@@ -70,20 +64,20 @@ public:
     DuplicateHorizontal
   };
 
-  static void convert(const IplImage * in, QImage * out);
-  static void convert(const QImage & in, IplImage ** out);
-  static void convert(const IplImage * in, cimg_library::CImg<float> & out);
+  static void convert(const cv::Mat * in, QImage * out);
+  static void convert(const QImage & in, cv::Mat ** out);
+  static void convert(const cv::Mat * in, cimg_library::CImg<float> & out);
   static void convert(const cimg_library::CImg<float> & in, QImage * out);
-  static void merge(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, QMutex * imageMutex, MergeDirection direction);
-  static void mergeTop(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
-  static void mergeLeft(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
-  static void mergeBottom(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift = false);
-  static void mergeRight(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift = true);
-  static void duplicateVertical(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
-  static void duplicateHorizontal(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
+  static void merge(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out, QMutex * imageMutex, MergeDirection direction);
+  static void mergeTop(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
+  static void mergeLeft(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
+  static void mergeBottom(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift = false);
+  static void mergeRight(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift = true);
+  static void duplicateVertical(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
+  static void duplicateHorizontal(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out);
 
 private:
-  static IplImage * _image;
+  static cv::Mat * _image;
 };
 
 #endif // _IMAGECONVERTER_H_

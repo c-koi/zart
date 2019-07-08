@@ -47,13 +47,10 @@
 #ifndef _IMAGESOURCE_H_
 #define _IMAGESOURCE_H_
 
-#if defined(HAS_OPENCV2_HEADERS) || defined(OPENCV2_HEADERS)
-#include <opencv2/core/core_c.h>
-#include <opencv2/highgui/highgui_c.h>
-#else
-#include <cv.h>
-#include <highgui.h>
-#endif
+namespace cv
+{
+class Mat;
+}
 
 #include <QSize>
 
@@ -61,7 +58,7 @@ class ImageSource {
 public:
   ImageSource();
   virtual ~ImageSource();
-  IplImage * image() const;
+  cv::Mat * image() const;
   int width() const;
   int height() const;
   QSize size() const;
@@ -70,10 +67,10 @@ public:
 protected:
   void setWidth(int);
   void setHeight(int);
-  void setImage(IplImage * image);
+  void setImage(cv::Mat * image);
 
 private:
-  IplImage * _image;
+  cv::Mat * _image;
   int _width;
   int _height;
 };

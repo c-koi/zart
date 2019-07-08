@@ -48,13 +48,6 @@
 #ifndef _STILLIMAGESOURCE_H_
 #define _STILLIMAGESOURCE_H_
 
-#if defined(HAS_OPENCV2_HEADERS) || defined(OPENCV2_HEADERS)
-#include <opencv2/core/core_c.h>
-#include <opencv2/highgui/highgui_c.h>
-#else
-#include <cv.h>
-#include <highgui.h>
-#endif
 #include <QString>
 #include "ImageSource.h"
 

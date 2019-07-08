@@ -46,6 +46,7 @@
 #include "StillImageSource.h"
 #include <QFileInfo>
 #include <QImage>
+#include <opencv2/opencv.hpp>
 #include "ImageConverter.h"
 
 StillImageSource::StillImageSource()
@@ -56,8 +57,8 @@ StillImageSource::StillImageSource()
 StillImageSource::~StillImageSource()
 {
   if (image()) {
-    IplImage * iplImage = image();
-    cvReleaseImage(&iplImage);
+    cv::Mat * anImage = image();
+    delete anImage;
   }
 }
 
@@ -76,12 +77,13 @@ bool StillImageSource::loadImage(QString filename)
   QImage rgb = qimage.convertToFormat(QImage::Format_RGB888);
   _filename = info.fileName();
   _filePath = info.absolutePath();
-  IplImage * iplImage = image();
-  if (iplImage)
-    cvReleaseImage(&iplImage);
-  iplImage = 0;
-  ImageConverter::convert(rgb, &iplImage);
-  setImage(iplImage);
+  cv::Mat * anImage = image();
+  if (anImage) {
+    delete anImage;
+    anImage = nullptr;
+  }
+  ImageConverter::convert(rgb, &anImage);
+  setImage(anImage);
   return true;
 }
 

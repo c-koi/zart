@@ -51,46 +51,52 @@
 #include <cassert>
 #include <iostream>
 #include "Common.h"
-IplImage * ImageConverter::_image = 0;
 
-void ImageConverter::convert(const IplImage * in, QImage * out)
+cv::Mat * ImageConverter::_image = 0;
+
+void ImageConverter::convert(const cv::Mat * in, QImage * out)
 {
-  if (!in || !out)
+  if (!in || !out) {
     return;
-  assert(in->depth == IPL_DEPTH_8U);
-  assert(in->nChannels == 3 || in->nChannels == 1);
+  }
+  assert(in->depth() == CV_8U);
+  assert(in->channels() == 3 || in->channels() == 1);
   if (out->format() != QImage::Format_RGB888) {
     *out = out->convertToFormat(QImage::Format_RGB888);
   }
-  if (out->width() != in->width || out->height() != in->height) {
-    *out = out->scaled(in->width, in->height);
+  if (out->width() != in->cols || out->height() != in->rows) {
+    *out = out->scaled(in->cols, in->rows);
   }
-  IplImage * tmp = cvCreateImage(cvSize(in->width, in->height), in->depth, in->nChannels);
-  cvCvtColor(in, tmp, (in->nChannels == 1) ? CV_GRAY2RGB : CV_BGR2RGB);
-  const unsigned int w3 = 3 * tmp->width;
-  unsigned char * src = reinterpret_cast<unsigned char *>(tmp->imageData);
-  if (out->bytesPerLine() == tmp->widthStep) {
+
+  cv::Mat tmp(in->cols, in->rows, in->depth());
+
+  cvtColor(*in, tmp, (in->channels() == 1) ? CV_GRAY2RGB : CV_BGR2RGB);
+
+  const unsigned int w3 = 3 * tmp.cols;
+  unsigned char * src = reinterpret_cast<unsigned char *>(tmp.ptr());
+  if (static_cast<size_t>(out->bytesPerLine()) == tmp.step) {
     memcpy(out->scanLine(0), src, out->byteCount());
   } else {
-    for (int line = 0; line < tmp->height; ++line) {
+    for (int line = 0; line < tmp.rows; ++line) {
       unsigned char * dst = reinterpret_cast<unsigned char *>(out->scanLine(line));
       memcpy(dst, src, w3);
-      src += tmp->widthStep;
+      src += tmp.step;
     }
   }
-  cvReleaseImage(&tmp);
 }
 
-void ImageConverter::convert(const QImage & in, IplImage ** out)
+void ImageConverter::convert(const QImage & in, cv::Mat ** out)
 {
-  if (!out)
+  if (!out) {
     return;
-  *out = cvCreateImage(cvSize(in.width(), in.height()), IPL_DEPTH_8U, 3);
+  }
   assert(in.format() == QImage::Format_RGB888);
+  *out = new cv::Mat(in.width(), in.height() * 3, CV_8U);
+  (*out)->reshape(3, in.height()); // Make it 3 channels
   const unsigned int w3 = 3 * in.width();
   const unsigned char * src = reinterpret_cast<const unsigned char *>(in.scanLine(0));
-  unsigned char * dst = reinterpret_cast<unsigned char *>((*out)->imageData);
-  const ssize_t step = (*out)->widthStep;
+  unsigned char * dst = reinterpret_cast<unsigned char *>((*out)->ptr());
+  const ssize_t step = (*out)->step;
   if (in.bytesPerLine() == step) {
     memcpy(dst, src, in.byteCount());
   } else {
@@ -100,13 +106,14 @@ void ImageConverter::convert(const QImage & in, IplImage ** out)
       dst += step;
     }
   }
-  cvCvtColor(*out, *out, CV_BGR2RGB);
+  cvtColor(**out, **out, CV_BGR2RGB);
 }
 
 void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage * out)
 {
-  if (!out)
+  if (!out) {
     return;
+  }
   const int spectrum = in.spectrum();
   unsigned char * dst = out->scanLine(0);
   const float * srcR = in.data(0, 0, 0, 0);
@@ -128,16 +135,20 @@ void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage * out)
   }
 }
 
-void ImageConverter::merge(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, QMutex * imageMutex, MergeDirection direction)
+void ImageConverter::merge(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out, QMutex * imageMutex, MergeDirection direction)
 {
-  if (!iplImage || !out)
+  if (!cvImage || !out) {
     return;
-  IplImage * cameraImage = iplImage;
-  if (iplImage->width != cimgImage.width() || iplImage->height != cimgImage.height()) {
-    if (_image)
-      cvReleaseImage(&_image);
-    _image = cvCreateImage(cvSize(cimgImage.width(), cimgImage.height()), IPL_DEPTH_8U, 3);
-    cvResize(iplImage, _image, CV_INTER_LINEAR);
+  }
+  cv::Mat * cameraImage = cvImage;
+  if (cvImage->cols != cimgImage.width() || cvImage->rows != cimgImage.height()) {
+    if (_image) {
+      delete _image;
+      _image = nullptr;
+    }
+    _image = new cv::Mat(cimgImage.width(), 3 * cimgImage.height(), CV_8U);
+    _image->reshape(3, cimgImage.height());
+    cv::resize(*cvImage, *_image, cv::Size(cimgImage.width(), cimgImage.height()), cv::INTER_LINEAR);
     cameraImage = _image;
   }
   QSize size(cimgImage.width(), cimgImage.height());
@@ -168,10 +179,10 @@ void ImageConverter::merge(IplImage * iplImage, const cimg_library::CImg<float> 
   }
 }
 
-void ImageConverter::mergeTop(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out)
+void ImageConverter::mergeTop(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out)
 {
-  const int height = iplImage->height;
-  const int width = iplImage->width;
+  const int width = cvImage->cols;
+  const int height = cvImage->rows;
   const int spectrum = cimgImage.spectrum();
   const float * srcR = cimgImage.data(0, 0, 0, 0);
   const float * srcG = cimgImage.data(0, 0, 0, (spectrum >= 2) ? 1 : 0);
@@ -179,7 +190,7 @@ void ImageConverter::mergeTop(IplImage * iplImage, const cimg_library::CImg<floa
   unsigned char * dst = out->scanLine(0);
   unsigned char * endDst;
   const unsigned int qiOffset = ((width * 3) % 4) ? (4 - ((width * 3) % 4)) : 0;
-  const unsigned int iplOffset = iplImage->widthStep - 3 * width;
+  const unsigned int iplOffset = cvImage->step - 3 * width;
 
   // Copy from cimgImage
   unsigned int lines = height / 2;
@@ -194,9 +205,9 @@ void ImageConverter::mergeTop(IplImage * iplImage, const cimg_library::CImg<floa
     dst += qiOffset;
   }
 
-  // Copy from iplImage
-  unsigned char * srcIpl = reinterpret_cast<unsigned char *>(iplImage->imageData);
-  srcIpl += (height / 2) * iplImage->widthStep;
+  // Copy from cvImage
+  unsigned char * srcIpl = reinterpret_cast<unsigned char *>(cvImage->ptr());
+  srcIpl += (height / 2) * cvImage->step;
   lines = height - height / 2;
   while (lines--) {
     endDst = dst + 3 * width;
@@ -212,22 +223,22 @@ void ImageConverter::mergeTop(IplImage * iplImage, const cimg_library::CImg<floa
   }
 }
 
-void ImageConverter::mergeLeft(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out)
+void ImageConverter::mergeLeft(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out)
 {
-  const int width = iplImage->width;
+  const int width = cvImage->cols;
   const int spectrum = cimgImage.spectrum();
   const float * srcR = cimgImage.data(0, 0, 0, 0);
   const float * srcG = cimgImage.data(0, 0, 0, (spectrum >= 2) ? 1 : 0);
   const float * srcB = cimgImage.data(0, 0, 0, (spectrum >= 3) ? 2 : 0);
-  unsigned char * srcIpl = reinterpret_cast<unsigned char *>(iplImage->imageData);
+  unsigned char * srcIpl = reinterpret_cast<unsigned char *>(cvImage->ptr());
   unsigned char * dst = out->scanLine(0);
   unsigned char * endDst;
   const unsigned int qiOffset = ((width * 3) % 4) ? (4 - ((width * 3) % 4)) : 0;
-  const unsigned int iplOffset = iplImage->widthStep - 3 * width;
+  const unsigned int iplOffset = cvImage->step - 3 * width;
 
   const unsigned int firstHalf = width / 2;
   const unsigned int secondHalf = width - width / 2;
-  int height = iplImage->height;
+  int height = cvImage->rows;
   while (height--) {
     endDst = dst + 3 * firstHalf;
     while (dst != endDst) {
@@ -254,17 +265,17 @@ void ImageConverter::mergeLeft(IplImage * iplImage, const cimg_library::CImg<flo
   }
 }
 
-void ImageConverter::mergeBottom(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift)
+void ImageConverter::mergeBottom(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift)
 {
-  const int height = iplImage->height;
-  const int width = iplImage->width;
+  const int height = cvImage->rows;
+  const int width = cvImage->cols;
   unsigned char * dst = out->scanLine(0);
   unsigned char * endDst;
   const unsigned int qiOffset = ((width * 3) % 4) ? (4 - ((width * 3) % 4)) : 0;
-  const unsigned int iplOffset = iplImage->widthStep - 3 * width;
+  const unsigned int iplOffset = cvImage->step - 3 * width;
 
-  // Copy from iplImage
-  unsigned char * srcIpl = reinterpret_cast<unsigned char *>(iplImage->imageData);
+  // Copy from cvImage
+  unsigned char * srcIpl = reinterpret_cast<unsigned char *>(cvImage->ptr());
   unsigned int lines = height / 2;
   while (lines--) {
     endDst = dst + 3 * width;
@@ -298,9 +309,9 @@ void ImageConverter::mergeBottom(IplImage * iplImage, const cimg_library::CImg<f
   }
 }
 
-void ImageConverter::mergeRight(IplImage * iplImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift)
+void ImageConverter::mergeRight(cv::Mat * cvImage, const cimg_library::CImg<float> & cimgImage, QImage * out, bool shift)
 {
-  const int width = iplImage->width;
+  const int width = cvImage->cols;
   const unsigned int firstHalf = width / 2;
   const unsigned int secondHalf = width - width / 2;
 
@@ -309,17 +320,17 @@ void ImageConverter::mergeRight(IplImage * iplImage, const cimg_library::CImg<fl
   const float * srcG = cimgImage.data(0, 0, 0, (spectrum >= 2) ? 1 : 0) + (shift ? firstHalf : 0);
   const float * srcB = cimgImage.data(0, 0, 0, (spectrum >= 3) ? 2 : 0) + (shift ? firstHalf : 0);
 
-  unsigned char * srcIpl = reinterpret_cast<unsigned char *>(iplImage->imageData);
-  const unsigned int iplOffset = iplImage->widthStep - 3 * width;
+  unsigned char * srcIpl = reinterpret_cast<unsigned char *>(cvImage->ptr());
+  const unsigned int iplOffset = cvImage->step - 3 * width;
   const unsigned int iplShift = 3 * secondHalf + iplOffset;
 
   unsigned char * dst = out->scanLine(0);
   unsigned char * endDst;
   const unsigned int qiOffset = ((width * 3) % 4) ? (4 - ((width * 3) % 4)) : 0;
 
-  int height = iplImage->height;
+  int height = cvImage->rows;
   while (height--) {
-    // First half from iplImage
+    // First half from cvImage
     endDst = dst + 3 * firstHalf;
     while (dst != endDst) {
       dst[0] = srcIpl[2];
@@ -344,20 +355,20 @@ void ImageConverter::mergeRight(IplImage * iplImage, const cimg_library::CImg<fl
   }
 }
 
-void ImageConverter::convert(const IplImage * in, cimg_library::CImg<float> & out)
+void ImageConverter::convert(const cv::Mat * in, cimg_library::CImg<float> & out)
 {
-  assert(in->depth == IPL_DEPTH_8U);
-  assert(in->nChannels == 3);
+  assert(in->depth() == CV_8U);
+  assert(in->channels() == 3);
   assert(in);
   const int spectrum = out.spectrum();
   float * dstR = out.data(0, 0, 0, 0);
   float * dstG = out.data(0, 0, 0, (spectrum >= 2) ? 1 : 0);
   float * dstB = out.data(0, 0, 0, (spectrum >= 3) ? 2 : 0);
-  const unsigned char * src = reinterpret_cast<unsigned char *>(in->imageData);
+  const unsigned char * src = reinterpret_cast<const unsigned char *>(in->ptr());
   const unsigned char * endSrc;
-  const unsigned int w3 = in->width * 3;
-  const unsigned int iplOffset = in->widthStep - w3;
-  unsigned int height = in->height;
+  const unsigned int w3 = in->cols * 3;
+  const unsigned int iplOffset = in->step - w3;
+  unsigned int height = in->rows;
   while (height--) {
     endSrc = src + w3;
     while (src != endSrc) {

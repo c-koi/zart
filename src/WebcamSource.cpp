@@ -46,6 +46,7 @@
 #include "WebcamSource.h"
 #include <QCoreApplication>
 #include <QDir>
+#include <QFile>
 #include <QList>
 #include <QSettings>
 #include <QSplashScreen>
@@ -55,6 +56,14 @@
 #include <set>
 #include "Common.h"
 using namespace std;
+
+#if CV_MAJOR_VERSION >= 3
+#define ZART_CV_CAP_PROP_FRAME_WIDTH cv::VideoCaptureProperties::CAP_PROP_FRAME_WIDTH
+#define ZART_CV_CAP_PROP_FRAME_HEIGHT cv::VideoCaptureProperties::CAP_PROP_FRAME_HEIGHT
+#else
+#define ZART_CV_CAP_PROP_FRAME_WIDTH CV_CAP_PROP_FRAME_WIDTH
+#define ZART_CV_CAP_PROP_FRAME_HEIGHT CV_CAP_PROP_FRAME_HEIGHT
+#endif
 
 QVector<QList<QSize>> WebcamSource::_webcamResolutions;
 QList<int> WebcamSource::_webcamList;
@@ -72,13 +81,19 @@ WebcamSource::WebcamSource() : _capture(0), _cameraIndex(-1), _captureSize(640, 
 WebcamSource::~WebcamSource()
 {
   if (_capture) {
-    cvReleaseCapture(&_capture);
+    delete _capture;
+    _capture = nullptr;
   }
 }
 
 void WebcamSource::capture()
 {
-  setImage(cvQueryFrame(_capture));
+  cv::Mat * anImage = new cv::Mat;
+  if (_capture && _capture->read(*anImage)) {
+    setImage(anImage);
+  } else {
+    delete anImage;
+  }
 }
 
 const QList<int> & WebcamSource::getWebcamList()
@@ -86,7 +101,7 @@ const QList<int> & WebcamSource::getWebcamList()
   _webcamList.clear();
 #if defined(_IS_UNIX_)
   int i = 0;
-  for (i = 0; i < 6; ++i) {
+  for (i = 0; i <= 10; ++i) {
     QFile file(QString("/dev/video%1").arg(i));
     if (file.open(QFile::ReadOnly)) {
       file.close();
@@ -94,12 +109,12 @@ const QList<int> & WebcamSource::getWebcamList()
     }
   }
 #else
-  CvCapture * capture = 0;
-  int i = 0;
-  for (i = 0; i < 6; ++i) {
-    capture = cvCaptureFromCAM(i);
-    if (capture) {
-      cvReleaseCapture(&capture);
+  cv::VideoCapture * capture;
+  for (int i = 0; i <= 10; ++i) {
+    capture = new cv::VideoCapture;
+    if (capture && capture->open(i, 0)) {
+      capture->release();
+      delete capture;
       _webcamList.push_back(i);
     }
   }
@@ -114,9 +129,7 @@ int WebcamSource::getFirstUnusedWebcam()
   }
   QList<int>::iterator it = _webcamList.begin();
   while (it != _webcamList.end()) {
-    CvCapture * capture = cvCaptureFromCAM(*it);
-    if (capture) {
-      cvReleaseCapture(&capture);
+    if (isWebcamUnused(*it)) {
       return *it;
     }
     ++it;
@@ -126,17 +139,35 @@ int WebcamSource::getFirstUnusedWebcam()
 
 bool WebcamSource::isWebcamUnused(int index)
 {
-  IplImage * capturedImage = 0;
-  CvCapture * capture = cvCaptureFromCAM(index);
-  if (capture) {
-    try {
-      capturedImage = cvQueryFrame(capture);
-    } catch (cv::Exception &) {
-      capturedImage = 0;
+  try {
+    cv::VideoCapture capture;
+
+#if defined(_IS_UNIX_)
+    bool canOpenFile = false;
+    {
+      QFile file(QString("/dev/video%1").arg(index));
+      if (file.open(QFile::ReadOnly)) {
+        canOpenFile = true;
+        file.close();
+      }
     }
-    cvReleaseCapture(&capture);
+#else
+    const bool canOpenFile = true;
+#endif
+
+    if (canOpenFile && capture.open(index, cv::CAP_GSTREAMER)) {
+      cv::Mat cvImage;
+      if (capture.read(cvImage)) {
+        std::cout << "[ZArt] Webcam " << index << " is available (" << cvImage.cols << "x" << cvImage.rows << ")\n";
+        return true;
+      }
+    }
+  } catch (const cv::Exception &) {
+    TRACE << "DONE (exception) index " << index;
   }
-  return capturedImage;
+  TRACE << "DONE index " << index;
+  std::cout << "[ZArt] Cannot use webcam " << index << std::endl;
+  return false;
 }
 
 const QList<int> & WebcamSource::getCachedWebcamList()
@@ -152,34 +183,44 @@ void WebcamSource::setCameraIndex(int i)
 void WebcamSource::stop()
 {
   if (_capture) {
-    cvReleaseCapture(&_capture);
-    _capture = 0;
+    delete _capture;
+    _capture = nullptr;
   }
 }
 
 void WebcamSource::start()
 {
   if (!_capture && _cameraIndex != -1) {
-    _capture = cvCaptureFromCAM(_cameraIndex);
-    IplImage * capturedImage = 0;
-    if (_capture) {
+    _capture = new cv::VideoCapture;
+    cv::Mat * capturedImage = new cv::Mat;
+    if (_capture && _capture->open(_cameraIndex, cv::CAP_GSTREAMER)) {
       try {
-        capturedImage = cvQueryFrame(_capture);
+        _capture->read(*capturedImage); // TODO : Check
       } catch (cv::Exception &) {
-        capturedImage = 0;
+        capturedImage = nullptr;
       }
+    } else {
+      delete capturedImage;
+      capturedImage = nullptr;
     }
     setImage(capturedImage);
     if (image()) {
-      QSize imageSize(image()->width, image()->height);
+      QSize imageSize(image()->cols, image()->rows);
       if (imageSize != _captureSize) {
-        cvSetCaptureProperty(_capture, CV_CAP_PROP_FRAME_WIDTH, _captureSize.width());
-        cvSetCaptureProperty(_capture, CV_CAP_PROP_FRAME_HEIGHT, _captureSize.height());
-        setImage(cvQueryFrame(_capture));
-        setImage(cvQueryFrame(_capture));
+        _capture->set(ZART_CV_CAP_PROP_FRAME_WIDTH, _captureSize.width());
+        _capture->set(ZART_CV_CAP_PROP_FRAME_HEIGHT, _captureSize.height());
+        cv::Mat * anImage = new cv::Mat;
+        // Read two images!
+        _capture->grab();
+        // _capture->read(*anImage);
+        if (_capture->read(*anImage)) {
+          setImage(anImage);
+        } else {
+          delete anImage;
+        }
       }
-      setWidth(image()->width);
-      setHeight(image()->height);
+      setWidth(image()->cols);
+      setHeight(image()->rows);
     }
   }
 }
@@ -210,25 +251,51 @@ int WebcamSource::cameraIndex()
 
 void WebcamSource::retrieveWebcamResolutions(const QList<int> & camList, QSplashScreen * splashScreen, QStatusBar * statusBar)
 {
+#if defined(_IS_UNIX_)
+  QString os = osName();
+#else
+  QString os("NotUnix");
+#endif
+
   QSettings settings;
 
-  CvCapture * capture;
   QList<int>::const_iterator it = camList.begin();
   QList<std::set<QSize, QSizeCompare>> resolutions;
   int iCam = 0;
   while (it != camList.end()) {
     resolutions.push_back(std::set<QSize, QSizeCompare>());
-    if (isWebcamUnused(*it)) {
-      capture = cvCaptureFromCAM(*it);
+    cv::VideoCapture capture;
+#if defined(_IS_UNIX_)
+    bool canOpenFile = false;
+    {
+      QFile file(QString("/dev/video%1").arg(*it));
+      if (file.open(QFile::ReadOnly)) {
+        canOpenFile = true;
+        file.close();
+      }
+    }
+    if (os == "Fedora" && *it % 2) { // Fedora seems to create two devices per webcam!
+      canOpenFile = false;
+    }
+#else
+    const bool canOpenFile = true;
+#endif
+    if (canOpenFile && capture.open(*it, 0)) {
       QStringList resolutionsStrList = settings.value(QString("WebcamSource/ResolutionsListForCam%1").arg(camList[iCam])).toStringList();
       bool settingsAreFine = !resolutionsStrList.isEmpty();
       for (int i = 0; i < resolutionsStrList.size() && settingsAreFine; ++i) {
         QStringList str = resolutionsStrList.at(i).split(QChar('x'));
         int w = str[0].toInt();
         int h = str[1].toInt();
-        cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, w);
-        cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, h);
-        QSize size((int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH), (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT));
+        bool ok1 = capture.set(ZART_CV_CAP_PROP_FRAME_WIDTH, w);
+        bool ok2 = capture.set(ZART_CV_CAP_PROP_FRAME_HEIGHT, h);
+        if (!ok1 || !ok2) {
+          continue;
+        }
+        cv::Mat tmpA;
+        capture.read(tmpA);
+
+        QSize size(static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_WIDTH)), static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_HEIGHT)));
         if (size == QSize(w, h)) {
           resolutions.back().insert(size);
         } else {
@@ -246,17 +313,24 @@ void WebcamSource::retrieveWebcamResolutions(const QList<int> & camList, QSplash
           qApp->processEvents();
         }
         resolutions.back().clear();
-        int ratioWidth[] = {16, 11, 8, 5, 4};
-        int ratioHeight[] = {9, 9, 5, 4, 3};
+
+        int ratioWidth[] = {16, 11, 8, 5, 4, 0};
+        int ratioHeight[] = {9, 9, 5, 4, 3, 0};
         int widths[] = {100, 120, 140, 160, 180, 200, 220, 240, 280, 300, 320, 360, 400, 600, 640, 700, 720, 800, 900, 1100, 1200, 1300, 1500, 1800, 2000, 2100, 0};
+        //        int ratioWidth[] = {4, 16, 0};
+        //        int ratioHeight[] = {3, 9, 0};
+        //        int widths[] = {640, 800, 1024, 0};
+
         for (int i = 0; widths[i]; ++i) {
           int w = widths[i];
-          for (int ratio = 0; ratio < 5; ++ratio) {
+          for (int ratio = 0; ratioWidth[ratio]; ++ratio) {
             int h = w * ratioHeight[ratio] / ratioWidth[ratio];
             try {
-              cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, w);
-              cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, h);
-              QSize size((int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH), (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT));
+              cv::Mat tmp;
+              capture.read(tmp);
+              capture.set(ZART_CV_CAP_PROP_FRAME_WIDTH, w);
+              capture.set(ZART_CV_CAP_PROP_FRAME_HEIGHT, h);
+              QSize size(static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_WIDTH)), static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_HEIGHT)));
               if ((splashScreen || statusBar) && resolutions.back().find(size) == resolutions.back().end()) {
                 if (splashScreen) {
                   splashScreen->showMessage(QString("Retrieving webcam #%1 resolutions... %2x%3\n(brute-force checking!)\nResult will be saved.").arg(iCam + 1).arg(size.width()).arg(size.height()),
@@ -276,7 +350,6 @@ void WebcamSource::retrieveWebcamResolutions(const QList<int> & camList, QSplash
           }
         }
       }
-      cvReleaseCapture(&capture);
     } else {
       if (splashScreen) {
         splashScreen->showMessage(QString("Webcam #%1 is busy (default to 640x480 resolution)...").arg(iCam + 1), Qt::AlignBottom);
@@ -326,4 +399,27 @@ void WebcamSource::clearSavedSettings()
     settings.remove(QString("WebcamSource/ResolutionsListForCam%1").arg(i));
     settings.remove(QString("WebcamSource/DefaultResolutionCam%1").arg(i));
   }
+}
+
+QString WebcamSource::osName()
+{
+  QFile file("/etc/os-release");
+  if (!file.open(QIODevice::ReadOnly)) {
+    return "Unknown";
+  }
+  while (file.bytesAvailable()) {
+    QString line = file.readLine().trimmed();
+    if (line.startsWith("NAME=")) {
+      line.replace("NAME=", "");
+      if (line.size() && line.front() == '"') {
+        line.remove(0, 1);
+      }
+      if (line.size() && line.back() == '"') {
+        line.chop(0);
+      }
+      SHOW(line);
+      return line;
+    }
+  }
+  return "Unknown";
 }

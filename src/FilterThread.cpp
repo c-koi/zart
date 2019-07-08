@@ -259,7 +259,7 @@ void FilterThread::run()
         }
 
       } catch (gmic_exception & e) {
-        CImg<unsigned char> src(reinterpret_cast<unsigned char *>(_imageSource.image()->imageData), 3, _imageSource.width(), _imageSource.height(), 1, true);
+        CImg<unsigned char> src(reinterpret_cast<unsigned char *>(_imageSource.image()->ptr()), 3, _imageSource.width(), _imageSource.height(), 1, true);
         _gmic_images = src.get_permute_axes("yzcx");
         QString errorCommand = QString("-gimp_error_preview \"%1\"").arg(e.what());
 
@@ -270,7 +270,7 @@ void FilterThread::run()
           _gmic_images = src.get_permute_axes("yzcx").channel(0).resize(-100, -100, 1, 3).draw_text(10, 10, "Syntax Error", color1, color2, 0.5, 57);
         }
         std::cerr << e.what() << std::endl;
-        QSize size(_imageSource.image()->width, _imageSource.image()->height);
+        QSize size(_imageSource.image()->cols, _imageSource.image()->rows);
         if (_outputImageA->size() != size) {
           _imageMutexA->lock();
           *_outputImageA = QImage(size, QImage::Format_RGB888);

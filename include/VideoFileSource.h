@@ -47,14 +47,8 @@
 #ifndef _VIDEOFILESOURCE_H_
 #define _VIDEOFILESOURCE_H_
 
-#if defined(HAS_OPENCV2_HEADERS) || defined(OPENCV2_HEADERS)
-#include <opencv2/core/core_c.h>
-#include <opencv2/highgui/highgui_c.h>
-#else
-#include <cv.h>
-#include <highgui.h>
-#endif
 #include <QString>
+#include <opencv2/opencv.hpp>
 #include "ImageSource.h"
 
 class VideoFileSource : public ImageSource {
@@ -68,7 +62,7 @@ public:
   void setLoop(bool);
 
 private:
-  CvCapture * _capture;
+  cv::VideoCapture * _capture;
   QString _filename;
   QString _filePath;
   bool _videoIsReadable;

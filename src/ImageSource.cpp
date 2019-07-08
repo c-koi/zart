@@ -44,6 +44,7 @@
  * knowledge of the CeCILL license and that you accept its terms.
  */
 #include "ImageSource.h"
+#include <opencv2/opencv.hpp>
 
 ImageSource::ImageSource()
 {
@@ -54,7 +55,7 @@ ImageSource::ImageSource()
 
 ImageSource::~ImageSource() {}
 
-IplImage * ImageSource::image() const
+cv::Mat * ImageSource::image() const
 {
   return _image;
 }
@@ -69,12 +70,12 @@ void ImageSource::setHeight(int height)
   _height = height;
 }
 
-void ImageSource::setImage(IplImage * image)
+void ImageSource::setImage(cv::Mat * image)
 {
   _image = image;
   if (_image) {
-    _width = image->width;
-    _height = image->height;
+    _width = image->cols;
+    _height = image->rows;
   } else {
     _width = 0;
     _height = 0;

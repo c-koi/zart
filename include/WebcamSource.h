@@ -48,16 +48,11 @@
 #ifndef _WEBCAMGRABBER_H_
 #define _WEBCAMGRABBER_H_
 
-#if defined(HAS_OPENCV2_HEADERS) || defined(OPENCV2_HEADERS)
-#include <opencv2/core/core_c.h>
-#include <opencv2/highgui/highgui_c.h>
-#else
-#include <cv.h>
-#include <highgui.h>
-#endif
 #include <QList>
 #include <QSize>
+#include <QString>
 #include <QVector>
+#include <opencv2/opencv.hpp>
 #include "ImageSource.h"
 
 class QSplashScreen;
@@ -82,9 +77,10 @@ public:
   static void retrieveWebcamResolutions(const QList<int> & camList, QSplashScreen * splashScreen = 0, QStatusBar * statusBar = 0);
   static const QList<QSize> & webcamResolutions(int index);
   static void clearSavedSettings();
+  static QString osName();
 
 private:
-  CvCapture * _capture;
+  cv::VideoCapture * _capture;
   int _cameraIndex;
   QSize _captureSize;
   static QList<int> _webcamList;

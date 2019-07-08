@@ -429,10 +429,10 @@ void MainWindow::setCurrentPreset(QDomNode node)
 void MainWindow::showOneSourceImage()
 {
   _currentSource->capture();
-  IplImage * image = _currentSource->image();
+  cv::Mat * image = _currentSource->image();
   if (image) {
     _imageView->imageMutex().lock();
-    QSize size(image->width, image->height);
+    QSize size(image->cols, image->rows);
     if (_imageView->image().size() != size) {
       _imageView->image() = QImage(size, QImage::Format_RGB888);
     }

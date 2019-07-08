@@ -53,6 +53,7 @@
 #ifdef _ZART_DEBUG_
 #define ENTERING qWarning() << "[" << __PRETTY_FUNCTION__ << "] <<Entering>>"
 #define TSHOW(V) qWarning() << "[" << __PRETTY_FUNCTION__ << "]" << #V << "=" << (V)
+#define TRACE qWarning() << "[" << __PRETTY_FUNCTION__ << "]"
 #define SHOW(V) qWarning() << #V << "=" << (V)
 #else
 #define ENTERING while (false)
@@ -60,6 +61,9 @@
   while (false)                                                                                                                                                                                        \
   qWarning() << ""
 #define SHOW(V)                                                                                                                                                                                        \
+  while (false)                                                                                                                                                                                        \
+  qWarning() << ""
+#define TRACE                                                                                                                                                                                          \
   while (false)                                                                                                                                                                                        \
   qWarning() << ""
 #endif
