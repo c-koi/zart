@@ -411,13 +411,12 @@ QString WebcamSource::osName()
     QString line = file.readLine().trimmed();
     if (line.startsWith("NAME=")) {
       line.replace("NAME=", "");
-      if (line.size() && line.front() == '"') {
+      if (line.size() && line[0] == '"') {
         line.remove(0, 1);
       }
-      if (line.size() && line.back() == '"') {
+      if (line.size() && line[line.size() - 1] == '"') {
         line.chop(0);
       }
-      SHOW(line);
       return line;
     }
   }
