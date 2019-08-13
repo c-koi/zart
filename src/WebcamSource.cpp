@@ -76,7 +76,7 @@ public:
 };
 } // namespace
 
-WebcamSource::WebcamSource() : _capture(0), _cameraIndex(-1), _captureSize(640, 480) {}
+WebcamSource::WebcamSource() : _capture(nullptr), _cameraIndex(-1), _captureSize(640, 480) {}
 
 WebcamSource::~WebcamSource()
 {
@@ -112,7 +112,7 @@ const QList<int> & WebcamSource::getWebcamList()
   cv::VideoCapture * capture;
   for (int i = 0; i <= 10; ++i) {
     capture = new cv::VideoCapture;
-    if (capture && capture->open(i, 0)) {
+    if (capture && capture->open(i)) {
       capture->release();
       delete capture;
       _webcamList.push_back(i);
@@ -155,7 +155,7 @@ bool WebcamSource::isWebcamUnused(int index)
     const bool canOpenFile = true;
 #endif
 
-    if (canOpenFile && capture.open(index, cv::CAP_GSTREAMER)) {
+    if (canOpenFile && capture.open(index)) {
       cv::Mat cvImage;
       if (capture.read(cvImage)) {
         std::cout << "[ZArt] Webcam " << index << " is available (" << cvImage.cols << "x" << cvImage.rows << ")\n";
@@ -193,7 +193,7 @@ void WebcamSource::start()
   if (!_capture && _cameraIndex != -1) {
     _capture = new cv::VideoCapture;
     cv::Mat * capturedImage = new cv::Mat;
-    if (_capture && _capture->open(_cameraIndex, cv::CAP_GSTREAMER)) {
+    if (_capture && _capture->open(_cameraIndex)) {
       try {
         _capture->read(*capturedImage); // TODO : Check
       } catch (cv::Exception &) {
@@ -280,7 +280,7 @@ void WebcamSource::retrieveWebcamResolutions(const QList<int> & camList, QSplash
 #else
     const bool canOpenFile = true;
 #endif
-    if (canOpenFile && capture.open(*it, 0)) {
+    if (canOpenFile && capture.open(*it)) {
       QStringList resolutionsStrList = settings.value(QString("WebcamSource/ResolutionsListForCam%1").arg(camList[iCam])).toStringList();
       bool settingsAreFine = !resolutionsStrList.isEmpty();
       for (int i = 0; i < resolutionsStrList.size() && settingsAreFine; ++i) {
