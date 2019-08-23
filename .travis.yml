@@ -33,7 +33,7 @@ matrix:
 before_install:
   - date -u
   - uname -a
-  - git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic
+  - GIT_SSL_NO_VERIFY=true git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic
   - make -C gmic/src CImg.h gmic_stdlib.h
 
 install:
