@@ -52,6 +52,9 @@ defined(GMIC_LIB_PATH, var) {
 
 unix {
    VERSION = $$system(grep \"define.ZART_VERSION \" include/Common.h | sed -e \"s/.*VERSION //\")
+   zart_program.path = /usr/bin
+   zart_program.files = ./zart
+   INSTALLS += zart_program
 }
 
 isEmpty( VERSION ):{
