@@ -50,9 +50,13 @@ defined(GMIC_LIB_PATH, var) {
   GMIC_LIB_PATH = $$GMIC_PATH
 }
 
+!defined(PREFIX, var) {
+  PREFIX = /usr/bin
+}
+
 unix {
    VERSION = $$system(grep \"define.ZART_VERSION \" include/Common.h | sed -e \"s/.*VERSION //\")
-   zart_program.path = /usr/bin
+   zart_program.path = $$PREFIX
    zart_program.files = ./zart
    INSTALLS += zart_program
 }
