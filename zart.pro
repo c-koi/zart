@@ -1,11 +1,21 @@
 TEMPLATE = app
 
-QT       += core gui xml network
+QT += core gui xml network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # OPTIONS
 
+defined(GMIC_PATH, var) { message("GMIC_PATH is set ("$$GMIC_PATH")") }
+
 !defined(GMIC_DYNAMIC_LINKING,var) { GMIC_DYNAMIC_LINKING = off }
+
+defined(GMIC_LIB_PATH, var) { message("GMIC_LIB_PATH is set ("$$GMIC_LIB_PATH")") }
+
+!defined(PREFIX, var) { PREFIX = /usr/bin }
+
+# Sample qmake command to build with dynamic linking to libgmic.so
+#    $qmake GMIC_DYNAMIC_LINKING=on GMIC_PATH=/usr/include GMIC_LIB_PATH=/usr/lib/x86_64-linux-gnu/
+#    $make
 
 #
 #
@@ -23,9 +33,6 @@ PKGCONFIG += opencv fftw3 zlib
 # LIBS += -lfftw3_threads
 DEFINES += cimg_use_fftw3 cimg_use_zlib
 
-defined(GMIC_PATH, var) {
-  message("GMIC_PATH is set ("$$GMIC_PATH")")
-}
 !defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
   message(GMIC_PATH was not set: Found gmic sources in ../src)
   GMIC_PATH = ../src
@@ -38,20 +45,21 @@ defined(GMIC_PATH, var) {
   message(GMIC_PATH was not set: Found gmic sources in ./gmic/src)
   GMIC_PATH = ./gmic/src
 }
-defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
- error("G'MIC repository was not found ("$$GMIC_PATH")")
+equals(GMIC_DYNAMIC_LINKING, "off" ){
+ defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.cpp ) {
+  error("G'MIC repository was not found ("$$GMIC_PATH")")
+ }
+ message("G'MIC repository was found ("$$GMIC_PATH")")
 }
-message("G'MIC repository was found ("$$GMIC_PATH")")
+equals(GMIC_DYNAMIC_LINKING, "on" ){
+ defined(GMIC_PATH, var):!exists( $$GMIC_PATH/gmic.h ) {
+  error("G'MIC header was not found ("$$GMIC_PATH"/gmic.h)")
+ }
+ message("G'MIC header was found ("$$GMIC_PATH"/gmic.h)")
+}
 
-defined(GMIC_LIB_PATH, var) {
-  message("GMIC_LIB_PATH is set ("$$GMIC_LIB_PATH")")
-}
 !defined(GMIC_LIB_PATH, var) {
   GMIC_LIB_PATH = $$GMIC_PATH
-}
-
-!defined(PREFIX, var) {
-  PREFIX = /usr/bin
 }
 
 unix {
@@ -96,17 +104,18 @@ equals(GMIC_DYNAMIC_LINKING, "on" ) {
 }
 
 equals(GMIC_DYNAMIC_LINKING, "off" ) {
+   HEADERS += $$GMIC_PATH/gmic_stdlib.h
    SOURCES += $$GMIC_PATH/gmic.cpp
+   DEFINES += gmic_build
 }
 
-DEFINES += gmic_build gmic_is_parallel cimg_use_abort
+DEFINES += gmic_is_parallel cimg_use_abort
 
 INCLUDEPATH += $$PWD $$PWD/include $$GMIC_PATH
 
 DEPENDPATH += $$PWD/include
 
 HEADERS	+= $$GMIC_PATH/gmic.h \
-    $$GMIC_PATH/gmic_stdlib.h \
     $$GMIC_PATH/CImg.h \
     include/ImageView.h \
     include/MainWindow.h \
