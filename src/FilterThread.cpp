@@ -185,8 +185,6 @@ void FilterThread::run()
         _arguments.unlock();
         c += call;
 
-        // SHOW(c);
-
         _gmic->run(c.toLatin1().constData(), _gmic_images, _gmic_images_names);
         lastCommandDuration = timeMeasure.elapsed();
 

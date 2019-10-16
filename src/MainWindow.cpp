@@ -385,7 +385,8 @@ MainWindow::~MainWindow()
 {
   QSettings settings;
   for (int i = 0; i < _cameraDefaultResolutionsIndexes.size(); ++i) {
-    settings.setValue(QString("WebcamSource/DefaultResolutionCam%1").arg(i), WebcamSource::webcamResolutions(i).at(_cameraDefaultResolutionsIndexes[i]));
+    const int index = _cameraDefaultResolutionsIndexes[i];
+    settings.setValue(QString("WebcamSource/DefaultResolutionCam%1").arg(i), (index == -1) ? QSize() : WebcamSource::webcamResolutions(i).at(index));
   }
   settings.remove("Faves");
   settings.setValue("Faves/Count", _cbFaves->count());
@@ -1090,7 +1091,10 @@ void MainWindow::updateCameraResolutionCombo()
     _comboCamResolution->addItem(QString("%1 x %2").arg(it->width()).arg(it->height()), *it);
     ++it;
   }
-  _comboCamResolution->setCurrentIndex(_cameraDefaultResolutionsIndexes[index]);
+  const int defaultResIndex = index >= 0 ? _cameraDefaultResolutionsIndexes[index] : -1;
+  if (defaultResIndex >= 0) {
+    _comboCamResolution->setCurrentIndex(defaultResIndex);
+  }
   connect(_comboCamResolution, SIGNAL(currentIndexChanged(int)), this, SLOT(onWebcamResolutionComboChanged(int)));
 }
 
@@ -1212,6 +1216,10 @@ void MainWindow::initGUIFromCameraList(const QList<int> & camList, int firstUnus
     _comboWebcam->setEnabled(camList.size() > 1);
     _cameraDefaultResolutionsIndexes.clear();
     for (int iCam = 0; iCam < camList.size(); ++iCam) {
+      if (WebcamSource::webcamResolutions(iCam).isEmpty()) {
+        _cameraDefaultResolutionsIndexes.push_back(-1);
+        continue;
+      }
       _comboWebcam->addItem(QString("Webcam %1").arg(camList[iCam]), QVariant(camList[iCam]));
       QSize size = settings.value(QString("WebcamSource/DefaultResolutionCam%1").arg(iCam), QSize()).toSize();
       if (size.isValid() && WebcamSource::webcamResolutions(iCam).contains(size)) {
