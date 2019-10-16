@@ -29,11 +29,12 @@ matrix:
 
 #  GMIC blessed repo has been moved to Framagit (June 2018)
 #  - git clone --depth=1 https://github.com/dtschump/gmic.git gmic-clone
+#  - GIT_SSL_NO_VERIFY=true git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic
 
 before_install:
   - date -u
   - uname -a
-  - GIT_SSL_NO_VERIFY=true git clone --depth=1 https://framagit.org/dtschump/gmic.git gmic
+  - git clone --depth=1 https://github.com/dtschump/gmic.git gmic
   - make -C gmic/src CImg.h gmic_stdlib.h
 
 install:
