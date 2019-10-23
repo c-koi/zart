@@ -74,7 +74,10 @@ public:
   static const QList<int> & getCachedWebcamList();
   static int getFirstUnusedWebcam();
   static bool isWebcamUnused(int index);
+  static bool canOpenDeviceFile(int index);
   static void retrieveWebcamResolutions(const QList<int> & camList, QSplashScreen * splashScreen = 0, QStatusBar * statusBar = 0);
+  static void retrieveWebcamResolutionsV4L2(const QList<int> & camList);
+  static void retrieveWebcamResolutionsOpenCV(const QList<int> & camList, QSplashScreen * splashScreen = 0, QStatusBar * statusBar = 0);
   static const QList<QSize> & webcamResolutions(int index);
   static void clearSavedSettings();
   static QString osName();

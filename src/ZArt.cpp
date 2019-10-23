@@ -48,6 +48,7 @@ using namespace std;
 #include <QApplication>
 #include <QFileInfo>
 #include <QMessageBox>
+#include <QObject>
 #include <QSplashScreen>
 #include "Common.h"
 #include "MainWindow.h"

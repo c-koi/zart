@@ -33,6 +33,19 @@ PKGCONFIG += opencv fftw3 zlib
 # LIBS += -lfftw3_threads
 DEFINES += cimg_use_fftw3 cimg_use_zlib
 
+#
+# Check for V4L2
+#
+linux:exists(/usr/include/libv4l2.h):exists(/usr/include/linux/videodev2.h) {
+LIBS += -lv4l2
+message("libv4l2 detected")
+DEFINES += HAS_V4L2
+}
+
+linux:!exists(/usr/include/libv4l2.h):!exists(/usr/include/linux/videodev2.h) {
+warning(Video4Linux development files not found. They are HIGHLY recommended.)
+}
+
 !defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
   message(GMIC_PATH was not set: Found gmic sources in ../src)
   GMIC_PATH = ../src
