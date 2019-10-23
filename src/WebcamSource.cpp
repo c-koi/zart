@@ -52,6 +52,7 @@
 #include <QSplashScreen>
 #include <QStatusBar>
 #include <QStringList>
+#include <QtGlobal>
 #include <algorithm>
 #include <chrono>
 #include <set>
@@ -65,6 +66,10 @@ using namespace std;
 #else
 #define ZART_CV_CAP_PROP_FRAME_WIDTH CV_CAP_PROP_FRAME_WIDTH
 #define ZART_CV_CAP_PROP_FRAME_HEIGHT CV_CAP_PROP_FRAME_HEIGHT
+#endif
+
+#if (CV_MAJOR_VERSION > 3) || ((CV_MAJOR_VERSION == 3) && (CV_MINOR_VERSION > 4)) || ((CV_MAJOR_VERSION == 3) && (CV_MINOR_VERSION == 4) && (CV_SUBMINOR_VERSION >= 4))
+#define CVCAPTURE_HAS_BACKEND_METHOD
 #endif
 
 QVector<QList<QSize>> WebcamSource::_webcamResolutions;
@@ -109,7 +114,7 @@ const QList<int> & WebcamSource::getWebcamList()
       file.close();
       cv::VideoCapture capture;
       capture.open(i);
-      if (std::string("UNICAP") != capture.getBackendName().c_str()) {
+      if (captureIsValid(capture, i)) {
         _webcamList.push_back(i);
       }
       capture.release();
@@ -283,7 +288,7 @@ void WebcamSource::retrieveWebcamResolutions(const QList<int> & camList, QSplash
 #else
     const bool canOpenFile = true;
 #endif
-    if (canOpenFile && capture.open(*it) && (std::string("UNICAP") != capture.getBackendName().c_str())) {
+    if (canOpenFile && capture.open(*it) && captureIsValid(capture, *it)) {
       QStringList resolutionsStrList = settings.value(QString("WebcamSource/ResolutionsListForCam%1").arg(camList[iCam])).toStringList();
       bool settingsAreFine = !resolutionsStrList.isEmpty();
       for (int i = 0; i < resolutionsStrList.size() && settingsAreFine; ++i) {
@@ -331,7 +336,7 @@ void WebcamSource::retrieveWebcamResolutions(const QList<int> & camList, QSplash
         //        int widths[] = {100, 120, 140, 160, 180, 200, 220, 240, 280, 300, 320, 360, 400, 600, 640, 700, 720, 800, 900, 1100, 1200, 1300, 1500, 1800, 2000, 2100, 0};
         int ratioWidth[] = {4, 16, 0};
         int ratioHeight[] = {3, 9, 0};
-        int widths[] = {640, 800, 1024, 1280, 1600, 1920, 0};
+        int widths[] = {320, 640, 800, 1024, 1280, 1600, 1920, 0};
 
         for (int i = 0; widths[i]; ++i) {
           int w = widths[i];
@@ -417,6 +422,7 @@ QString WebcamSource::osName()
 {
   QFile file("/etc/os-release");
   if (!file.open(QIODevice::ReadOnly)) {
+    qWarning("Warning: Cannot determine the os name (/etc/os-release file missing?)");
     return "Unknown";
   }
   while (file.bytesAvailable()) {
@@ -433,4 +439,16 @@ QString WebcamSource::osName()
     }
   }
   return "Unknown";
+}
+
+bool WebcamSource::captureIsValid(const cv::VideoCapture & capture, int index)
+{
+#ifdef CVCAPTURE_HAS_BACKEND_METHOD
+  Q_UNUSED(index)
+  return std::string("UNICAP") != capture.getBackendName().c_str();
+#else
+  Q_UNUSED(capture)
+  QString os = osName();
+  return (os != "Fedora" && os != "FreeBSD") || !(index % 2);
+#endif
 }

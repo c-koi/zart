@@ -85,6 +85,8 @@ private:
   QSize _captureSize;
   static QList<int> _webcamList;
   static QVector<QList<QSize>> _webcamResolutions;
+
+  static bool captureIsValid(const cv::VideoCapture & capture, int index);
 };
 
 #endif
