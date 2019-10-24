@@ -74,10 +74,12 @@ using namespace std;
 
 #ifdef HAS_V4L2
 #include <errno.h>
-#include <fcntl.h>
-#include <libv4l2.h>
 #include <linux/videodev2.h>
 #include <sys/ioctl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 #endif
 
 QVector<QList<QSize>> WebcamSource::_webcamResolutions;

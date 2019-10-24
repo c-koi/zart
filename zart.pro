@@ -33,19 +33,6 @@ PKGCONFIG += opencv fftw3 zlib
 # LIBS += -lfftw3_threads
 DEFINES += cimg_use_fftw3 cimg_use_zlib
 
-#
-# Check for V4L2
-#
-linux:exists(/usr/include/libv4l2.h):exists(/usr/include/linux/videodev2.h) {
-LIBS += -lv4l2
-message("libv4l2 detected")
-DEFINES += HAS_V4L2
-}
-
-linux:!exists(/usr/include/libv4l2.h):!exists(/usr/include/linux/videodev2.h) {
-warning(Video4Linux development files not found. They are HIGHLY recommended.)
-}
-
 !defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
   message(GMIC_PATH was not set: Found gmic sources in ../src)
   GMIC_PATH = ../src
@@ -120,6 +107,18 @@ equals(GMIC_DYNAMIC_LINKING, "off" ) {
    HEADERS += $$GMIC_PATH/gmic_stdlib.h
    SOURCES += $$GMIC_PATH/gmic.cpp
    DEFINES += gmic_build
+}
+
+#
+# Check for V4L2
+#
+linux:exists(/usr/include/linux/videodev2.h) {
+message("v4l2 header file videodev2.h is available")
+DEFINES += HAS_V4L2
+}
+
+linux:!exists(/usr/include/linux/videodev2.h) {
+warning(v4l2 header file videodev2.h not found. It is HIGHLY recommended.)
 }
 
 DEFINES += gmic_is_parallel cimg_use_abort
