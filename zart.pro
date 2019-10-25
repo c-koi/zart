@@ -227,6 +227,8 @@ OBJECTS_DIR = .obj
 
 unix:!macx { DEFINES += _IS_UNIX_ }
 
+freebsd { DEFINES += _IS_FREEBSD_ }
+
 macx {  DEFINES += _IS_MACOS_ }
 
 DEFINES += cimg_display=0

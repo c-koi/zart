@@ -74,11 +74,11 @@ using namespace std;
 
 #ifdef HAS_V4L2
 #include <errno.h>
+#include <fcntl.h>
 #include <linux/videodev2.h>
 #include <sys/ioctl.h>
-#include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
+#include <sys/types.h>
 #include <unistd.h>
 #endif
 
@@ -549,6 +549,9 @@ void WebcamSource::clearSavedSettings()
 
 QString WebcamSource::osName()
 {
+#ifdef _IS_FREEBSD_
+  return "FreeBSD";
+#else
   QFile file("/etc/os-release");
   if (!file.open(QIODevice::ReadOnly)) {
     qWarning("Warning: Cannot determine the os name (/etc/os-release file missing?)");
@@ -568,6 +571,7 @@ QString WebcamSource::osName()
     }
   }
   return "Unknown";
+#endif
 }
 
 bool WebcamSource::captureIsValid(const cv::VideoCapture & capture, int index)
