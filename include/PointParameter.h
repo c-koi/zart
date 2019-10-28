@@ -44,8 +44,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _ZART_POINTPARAMETER_H_
-#define _ZART_POINTPARAMETER_H_
+#ifndef ZART_POINTPARAMETER_H
+#define ZART_POINTPARAMETER_H
 
 #include <QColor>
 #include <QColorDialog>
@@ -118,4 +118,4 @@ private:
   static unsigned long _randomSeed;
 };
 
-#endif // _ZART_POINTPARAMETER_H_
+#endif // ZART_POINTPARAMETER_H

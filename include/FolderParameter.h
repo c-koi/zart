@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _FOLDERPARAMETER_H_
-#define _FOLDERPARAMETER_H_
+#ifndef ZART_FOLDERPARAMETER_H
+#define ZART_FOLDERPARAMETER_H
 
 #include <QDomNode>
 #include <QString>
@@ -77,4 +77,4 @@ private:
   QPushButton * _button;
 };
 
-#endif // _FOLDERPARAMETER_H_
+#endif // ZART_FOLDERPARAMETER_H

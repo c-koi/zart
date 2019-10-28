@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _COMMANDPARAMSWIDGET_H_
-#define _COMMANDPARAMSWIDGET_H_
+#ifndef ZART_COMMANDPARAMSWIDGET_H
+#define ZART_COMMANDPARAMSWIDGET_H
 
 #include <QDomNode>
 #include <QPushButton>
@@ -85,4 +85,4 @@ protected:
   bool _hasKeypoints;
 };
 
-#endif // _COMMANDPARAMSWIDGET_H_
+#endif // ZART_COMMANDPARAMSWIDGET_H

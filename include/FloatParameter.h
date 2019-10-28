@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _FLOATPARAMETER_H_
-#define _FLOATPARAMETER_H_
+#ifndef ZART_FLOATPARAMETER_H
+#define ZART_FLOATPARAMETER_H
 
 #include <QDomNode>
 #include <QString>
@@ -81,4 +81,4 @@ private:
   QDoubleSpinBox * _spinBox;
 };
 
-#endif // _FLOATPARAMETERPARAMETER_H_
+#endif // ZART_FLOATPARAMETER_H

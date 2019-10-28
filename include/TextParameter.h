@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _TEXTPARAMETER_H_
-#define _TEXTPARAMETER_H_
+#ifndef ZART_TEXTPARAMETER_H
+#define ZART_TEXTPARAMETER_H
 
 #include <QDomNode>
 #include <QString>
@@ -76,4 +76,4 @@ private:
   QLineEdit * _lineEdit;
 };
 
-#endif // _TEXTPARAMETER_H_
+#endif // ZART_TEXTPARAMETER_H

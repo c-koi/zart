@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _ABSTRACTPARAMETER_H_
-#define _ABSTRACTPARAMETER_H_
+#ifndef ZART_ABSTRACTPARAMETER_H
+#define ZART_ABSTRACTPARAMETER_H
 
 #include <QDomNode>
 #include <QObject>
@@ -71,4 +71,4 @@ signals:
   void valueChanged();
 };
 
-#endif // _ABSTRACTPARAMETER_H_
+#endif // ZART_ABSTRACTPARAMETER_H

@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _IMAGEVIEW_H_
-#define _IMAGEVIEW_H_
+#ifndef ZART_IMAGEVIEW_H
+#define ZART_IMAGEVIEW_H
 
 #include <QMutex>
 #include <QTime>
@@ -120,4 +120,4 @@ QMutex & ImageView::imageMutex()
   return _imageMutex;
 }
 
-#endif
+#endif // ZART_IMAGEVIEW_H

@@ -45,8 +45,8 @@
  *
  */
 
-#ifndef _WEBCAMGRABBER_H_
-#define _WEBCAMGRABBER_H_
+#ifndef ZART_WEBCAMSOURCE_H
+#define ZART_WEBCAMSOURCE_H
 
 #include <QList>
 #include <QSize>
@@ -92,4 +92,4 @@ private:
   static bool captureIsValid(const cv::VideoCapture & capture, int index);
 };
 
-#endif
+#endif // ZART_WEBCAMSOURCE_H

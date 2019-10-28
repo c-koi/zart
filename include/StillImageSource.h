@@ -45,8 +45,8 @@
  *
  */
 
-#ifndef _STILLIMAGESOURCE_H_
-#define _STILLIMAGESOURCE_H_
+#ifndef ZART_STILLIMAGESOURCE_H
+#define ZART_STILLIMAGESOURCE_H
 
 #include <QString>
 #include "ImageSource.h"
@@ -66,4 +66,4 @@ private:
   QString _filePath;
 };
 
-#endif
+#endif // ZART_STILLIMAGESOURCE_H

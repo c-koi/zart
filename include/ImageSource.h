@@ -44,8 +44,8 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
-#ifndef _IMAGESOURCE_H_
-#define _IMAGESOURCE_H_
+#ifndef ZART_IMAGESOURCE_H
+#define ZART_IMAGESOURCE_H
 
 namespace cv
 {
@@ -75,4 +75,4 @@ private:
   int _height;
 };
 
-#endif
+#endif // ZART_IMAGESOURCE_H

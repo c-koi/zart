@@ -44,8 +44,8 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
-#ifndef _VIDEOFILESOURCE_H_
-#define _VIDEOFILESOURCE_H_
+#ifndef ZART_VIDEOFILESOURCE_H
+#define ZART_VIDEOFILESOURCE_H
 
 #include <QString>
 #include <opencv2/opencv.hpp>
@@ -69,4 +69,4 @@ private:
   bool _loop;
 };
 
-#endif
+#endif // ZART_VIDEOFILESOURCE_H

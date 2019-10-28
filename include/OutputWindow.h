@@ -1,8 +1,8 @@
 /** -*- mode: c++ ; c-basic-offset: 2 -*-
- * @file   FullScreenWidget.h
+ * @file   OutputWindow.h
  * @author Sebastien Fourey
  * @date   Nov 2015
- * @brief  Declaration of the class FullScreenWidget
+ * @brief  Declaration of the class OutputWindow
  *
  * This file is part of the ZArt software's source code.
  *
@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _OUTPUTWINDOW_H_
-#define _OUTPUTWINDOW_H_
+#ifndef ZART_OUTPUTWINDOW_H
+#define ZART_OUTPUTWINDOW_H
 
 #include "ui_OutputWindow.h"
 
@@ -81,4 +81,4 @@ private:
   QAction * _fullScreenAction;
 };
 
-#endif
+#endif // ZART_OUTPUTWINDOW_H

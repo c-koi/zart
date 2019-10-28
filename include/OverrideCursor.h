@@ -44,8 +44,8 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
-#ifndef _ZART_OVERRIDECURSOR_H_
-#define _ZART_OVERRIDECURSOR_H_
+#ifndef ZART_OVERRIDECURSOR_H
+#define ZART_OVERRIDECURSOR_H
 
 class OverrideCursor {
 public:
@@ -62,4 +62,4 @@ private:
   static bool _pointingHand;
 };
 
-#endif // _ZART_OVERRIDECURSOR_H_
+#endif // ZART_OVERRIDECURSOR_H

@@ -45,8 +45,8 @@
  *
  */
 
-#ifndef _TREEWIDGETPRESETITEM_H_
-#define _TREEWIDGETPRESETITEM_H_
+#ifndef ZART_TREEWIDGETPRESETITEM_H
+#define ZART_TREEWIDGETPRESETITEM_H
 
 #include <QDomNode>
 #include <QStringList>
@@ -67,4 +67,4 @@ private:
   QDomNode _presetNode;
 };
 
-#endif
+#endif // ZART_TREEWIDGETPRESETITEM_H

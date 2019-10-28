@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _DIALOGLICENCE_H_
-#define _DIALOGLICENCE_H_
+#ifndef ZART_DIALOGLICENCE_H
+#define ZART_DIALOGLICENCE_H
 
 #include <QDialog>
 #include "ui_DialogLicense.h"
@@ -61,4 +61,4 @@ protected:
 private:
 };
 
-#endif // DIALOGLICENCE_H
+#endif // ZART_DIALOGLICENCE_H

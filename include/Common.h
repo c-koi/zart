@@ -44,8 +44,8 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
-#ifndef _COMMON_H_
-#define _COMMON_H_
+#ifndef ZART_COMMON_H
+#define ZART_COMMON_H
 
 #include <QDebug>
 #include <iostream>
@@ -75,4 +75,4 @@
 #define ZART_XSTRINGIFY(X) ZART_STRINGIFY(X)
 #define ZART_VERSION_STRING ZART_XSTRINGIFY(ZART_VERSION)
 
-#endif
+#endif // ZART_COMMON_H

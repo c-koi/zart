@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _SEPARATORPARAMETER_H_
-#define _SEPARATORPARAMETER_H_
+#ifndef ZART_SEPARATORPARAMETER_H
+#define ZART_SEPARATORPARAMETER_H
 
 #include "AbstractParameter.h"
 class QFrame;
@@ -66,4 +66,4 @@ private:
   QFrame * _frame;
 };
 
-#endif // _SEPARATORPARAMETER_H_
+#endif // ZART_SEPARATORPARAMETER_H

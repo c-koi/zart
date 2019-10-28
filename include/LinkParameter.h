@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _LINKPARAMETER_H_
-#define _LINKPARAMETER_H_
+#ifndef ZART_LINKPARAMETER_H
+#define ZART_LINKPARAMETER_H
 
 #include <Qt>
 #include "AbstractParameter.h"
@@ -72,4 +72,4 @@ private:
   Qt::AlignmentFlag _alignment;
 };
 
-#endif // _LINKPARAMETER_H_
+#endif // ZART_LINKPARAMETER_H

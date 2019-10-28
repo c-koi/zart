@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _COLORPARAMETER_H_
-#define _COLORPARAMETER_H_
+#ifndef ZART_COLORPARAMETER_H
+#define ZART_COLORPARAMETER_H
 
 #include <QColor>
 #include <QColorDialog>
@@ -86,4 +86,4 @@ private:
   QColorDialog * _dialog;
 };
 
-#endif // _COLORPARAMETER_H_
+#endif // ZART_COLORPARAMETER_H

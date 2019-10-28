@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _INTPARAMETER_H_
-#define _INTPARAMETER_H_
+#ifndef ZART_INTPARAMETER_H
+#define ZART_INTPARAMETER_H
 
 #include <QDomNode>
 #include <QString>
@@ -81,4 +81,4 @@ private:
   QSpinBox * _spinBox;
 };
 
-#endif // _INTPARAMETER_H_
+#endif // ZART_INTPARAMETER_H

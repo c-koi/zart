@@ -44,8 +44,8 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
-#ifndef _FILTERTHREAD_H_
-#define _FILTERTHREAD_H_
+#ifndef ZART_FILTERTHREAD_H
+#define ZART_FILTERTHREAD_H
 
 #include <QThread>
 #include "Common.h"
@@ -122,4 +122,4 @@ private:
   bool _noFilter;
 };
 
-#endif // _FILTERTHREAD_H_
+#endif // ZART_FILTERTHREAD_H

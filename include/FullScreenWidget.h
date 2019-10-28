@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _FULLSCREENWIDGET_H_
-#define _FULLSCREENWIDGET_H_
+#ifndef ZART_FULLSCREENWIDGET_H
+#define ZART_FULLSCREENWIDGET_H
 
 #include "ui_FullScreenWidget.h"
 
@@ -79,4 +79,4 @@ private:
   MainWindow * _mainWindow;
 };
 
-#endif
+#endif // ZART_FULLSCREENWIDGET_H

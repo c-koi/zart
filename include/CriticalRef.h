@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _CRITICALREF_H_
-#define _CRITICALREF_H_
+#ifndef ZART_CRITICALREF_H
+#define ZART_CRITICALREF_H
 
 #include <QMutex>
 
@@ -89,4 +89,4 @@ template <typename T> void CriticalRef<T>::unlock()
   _mutex.unlock();
 }
 
-#endif // _CRITICALREF_H_
+#endif // ZART_CRITICALREF_H

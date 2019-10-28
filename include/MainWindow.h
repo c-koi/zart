@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _MAINWINDOW_H_
-#define _MAINWINDOW_H_
+#ifndef ZART_MAINWINDOW_H
+#define ZART_MAINWINDOW_H
 
 #include <QDomNode>
 #include <QLineEdit>
@@ -191,4 +191,4 @@ private:
   void updateKeypointsInViews();
 };
 
-#endif
+#endif // ZART_MAINWINDOW_H

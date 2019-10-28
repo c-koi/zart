@@ -43,8 +43,8 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
-#ifndef _NOTEPARAMETER_H_
-#define _NOTEPARAMETER_H_
+#ifndef ZART_NOTEPARAMETER_H
+#define ZART_NOTEPARAMETER_H
 
 #include "AbstractParameter.h"
 class QLabel;
@@ -67,4 +67,4 @@ private:
   QString _text;
 };
 
-#endif // _NOTEPARAMETER_H_
+#endif // ZART_NOTEPARAMETER_H
