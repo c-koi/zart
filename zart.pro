@@ -30,8 +30,8 @@ CONFIG	+= warn_on
 QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig
 PKGCONFIG += opencv fftw3 zlib
-# LIBS += -lfftw3_threads
 DEFINES += cimg_use_fftw3 cimg_use_zlib
+DEFINES += gmic_build
 
 !defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
   message(GMIC_PATH was not set: Found gmic sources in ../src)
@@ -80,7 +80,7 @@ isEmpty( VERSION ):{
 }
 
 !win32 {
- LIBS += -lfftw3_threads
+    LIBS += -lfftw3_threads
 }
 
 # use qmake CONFIG+=openmp ... to force using openmp
@@ -95,18 +95,14 @@ openmp {
     QMAKE_LFLAGS += -fopenmp
 }
 
-# compile our own version of gmic, with the same cimg_* flags as zart
-#LIBS += $$GMIC_PATH/libgmic.a
-
 equals(GMIC_DYNAMIC_LINKING, "on" ) {
   message(Dynamic linking with libgmic)
-  LIBS += $$GMIC_LIB_PATH/libgmic.so
+  LIBS += -L$$GMIC_LIB_PATH -lgmic
 }
 
 equals(GMIC_DYNAMIC_LINKING, "off" ) {
    HEADERS += $$GMIC_PATH/gmic_stdlib.h
    SOURCES += $$GMIC_PATH/gmic.cpp
-   DEFINES += gmic_build
 }
 
 #
@@ -232,7 +228,3 @@ freebsd { DEFINES += _IS_FREEBSD_ }
 macx {  DEFINES += _IS_MACOS_ }
 
 DEFINES += cimg_display=0
-
-#QMAKE_LIBS =
-#QMAKE_LFLAGS_DEBUG = -lcxcore -lcv -lhighgui -lml
-#QMAKE_LFLAGS_RELEASE = -lcxcore -lcv -lhighgui -lml
