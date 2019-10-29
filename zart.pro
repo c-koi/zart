@@ -119,7 +119,11 @@ linux:!exists(/usr/include/linux/videodev2.h) {
 
 DEFINES += gmic_is_parallel cimg_use_abort
 
-INCLUDEPATH += $$PWD $$PWD/include $$GMIC_PATH
+INCLUDEPATH += $$PWD $$PWD/include
+
+!equals(GMIC_PATH,/usr/include):!equals(GMIC_PATH,/include) {
+ INCLUDEPATH += $$GMIC_PATH
+}
 
 DEPENDPATH += $$PWD/include
 
