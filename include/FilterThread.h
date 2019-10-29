@@ -50,6 +50,9 @@
 #include <QThread>
 #include "Common.h"
 #include "CriticalRef.h"
+#ifndef gmic_build
+#include "CImg.h"
+#endif
 #include "gmic.h"
 class ImageSource;
 class QMutex;

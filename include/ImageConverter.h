@@ -48,6 +48,9 @@
 
 #include <QMutex>
 #include <opencv2/opencv.hpp>
+#ifndef gmic_build
+#include "CImg.h"
+#endif
 #include "gmic.h"
 
 class QImage;

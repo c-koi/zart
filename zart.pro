@@ -31,7 +31,6 @@ QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig
 PKGCONFIG += opencv fftw3 zlib
 DEFINES += cimg_use_fftw3 cimg_use_zlib
-DEFINES += gmic_build
 
 !defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
  message(GMIC_PATH was not set: Found gmic sources in ../src)
@@ -103,6 +102,7 @@ equals(GMIC_DYNAMIC_LINKING, "on" ) {
 equals(GMIC_DYNAMIC_LINKING, "off" ) {
  HEADERS += $$GMIC_PATH/gmic_stdlib.h
  SOURCES += $$GMIC_PATH/gmic.cpp
+ DEFINES += gmic_build
 }
 
 #
