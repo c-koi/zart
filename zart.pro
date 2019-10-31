@@ -227,7 +227,10 @@ OBJECTS_DIR = .obj
 
 unix:!macx { DEFINES += _IS_UNIX_ }
 
-freebsd { DEFINES += _IS_FREEBSD_ }
+freebsd {
+ DEFINES += _IS_FREEBSD_
+ message(Detected OS is PreeBSD)
+}
 
 macx {  DEFINES += _IS_MACOS_ }
 

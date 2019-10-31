@@ -116,10 +116,8 @@ void WebcamSource::capture()
 const QList<int> & WebcamSource::getWebcamList()
 {
   _webcamList.clear();
-
 #if defined(HAS_V4L2)
-  int i = 0;
-  for (i = 0; i <= 10; ++i) {
+  for (int i = 0; i <= 10; ++i) {
     QString filename = QString("/dev/video%1").arg(i);
     if (!QFileInfo(filename).isReadable()) {
       continue;
@@ -154,8 +152,9 @@ const QList<int> & WebcamSource::getWebcamList()
     }
   }
 #elif defined(_IS_UNIX_)
-  int i = 0;
-  for (i = 0; i <= 10; ++i) {
+  const QString os = osName();
+  const bool skipOdd = (os == "Fedora" || os == "FreeBSD");
+  for (int i = 0; i <= 10; i += (1 + skipOdd)) {
     QFile file(QString("/dev/video%1").arg(i));
     if (file.open(QFile::ReadOnly)) {
       file.close();
