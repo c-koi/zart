@@ -239,6 +239,7 @@ bool WebcamSource::canOpenDeviceFile(int index)
   }
   return false;
 #else
+  Q_UNUSED(index)
   return true;
 #endif
 }

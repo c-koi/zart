@@ -73,7 +73,7 @@ void NoteParameter::addTo(QWidget * widget, int row)
 
 QString NoteParameter::textValue() const
 {
-  return QString::null;
+  return QString();
 }
 
 void NoteParameter::setValue(const QString &) {}

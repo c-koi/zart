@@ -32,6 +32,8 @@ CONFIG += link_pkgconfig
 PKGCONFIG += opencv fftw3 zlib
 DEFINES += cimg_use_fftw3 cimg_use_zlib
 
+DEFINES += QT_DEPRECATED_WARNINGS
+
 !defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
  message(GMIC_PATH was not set: Found gmic sources in ../src)
  GMIC_PATH = ../src
