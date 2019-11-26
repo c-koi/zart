@@ -75,7 +75,11 @@ void ImageConverter::convert(const cv::Mat * in, QImage * out)
   const unsigned int w3 = 3 * tmp.cols;
   unsigned char * src = reinterpret_cast<unsigned char *>(tmp.ptr());
   if (static_cast<size_t>(out->bytesPerLine()) == tmp.step) {
+#if QT_VERSION_GTE(5,10)
     memcpy(out->scanLine(0), src, out->sizeInBytes());
+#else
+    memcpy(out->scanLine(0), src, out->byteCount());
+#endif
   } else {
     for (int line = 0; line < tmp.rows; ++line) {
       unsigned char * dst = reinterpret_cast<unsigned char *>(out->scanLine(line));
@@ -98,7 +102,11 @@ void ImageConverter::convert(const QImage & in, cv::Mat ** out)
   unsigned char * dst = reinterpret_cast<unsigned char *>((*out)->ptr());
   const ssize_t step = (*out)->step;
   if (in.bytesPerLine() == step) {
+#if QT_VERSION_GTE(5,10)
     memcpy(dst, src, in.sizeInBytes());
+#else
+    memcpy(dst, src, in.byteCount());
+#endif
   } else {
     for (int line = 0; line < in.height(); ++line) {
       src = reinterpret_cast<const unsigned char *>(in.scanLine(line));
