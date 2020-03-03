@@ -68,14 +68,14 @@ void ImageConverter::convert(const cv::Mat * in, QImage * out)
     *out = out->scaled(in->cols, in->rows);
   }
 
-  cv::Mat tmp(in->cols, in->rows, in->depth());
+  cv::Mat tmp(in->cols, in->rows, in->type());
 
   cvtColor(*in, tmp, (in->channels() == 1) ? CV_GRAY2RGB : CV_BGR2RGB);
 
   const unsigned int w3 = 3 * tmp.cols;
   unsigned char * src = reinterpret_cast<unsigned char *>(tmp.ptr());
   if (static_cast<size_t>(out->bytesPerLine()) == tmp.step) {
-#if QT_VERSION_GTE(5,10)
+#if QT_VERSION_GTE(5, 10)
     memcpy(out->scanLine(0), src, out->sizeInBytes());
 #else
     memcpy(out->scanLine(0), src, out->byteCount());
@@ -95,14 +95,13 @@ void ImageConverter::convert(const QImage & in, cv::Mat ** out)
     return;
   }
   assert(in.format() == QImage::Format_RGB888);
-  *out = new cv::Mat(in.width(), in.height() * 3, CV_8U);
-  (*out)->reshape(3, in.height()); // Make it 3 channels
+  *out = new cv::Mat(in.height(), in.width(), CV_8UC(3));
   const unsigned int w3 = 3 * in.width();
   const unsigned char * src = reinterpret_cast<const unsigned char *>(in.scanLine(0));
   unsigned char * dst = reinterpret_cast<unsigned char *>((*out)->ptr());
   const ssize_t step = (*out)->step;
   if (in.bytesPerLine() == step) {
-#if QT_VERSION_GTE(5,10)
+#if QT_VERSION_GTE(5, 10)
     memcpy(dst, src, in.sizeInBytes());
 #else
     memcpy(dst, src, in.byteCount());
@@ -154,8 +153,7 @@ void ImageConverter::merge(cv::Mat * cvImage, const cimg_library::CImg<float> & 
       delete _image;
       _image = nullptr;
     }
-    _image = new cv::Mat(cimgImage.width(), 3 * cimgImage.height(), CV_8U);
-    _image->reshape(3, cimgImage.height());
+    _image = new cv::Mat(cimgImage.height(), cimgImage.width(), CV_8UC(3));
     cv::resize(*cvImage, *_image, cv::Size(cimgImage.width(), cimgImage.height()), cv::INTER_LINEAR);
     cameraImage = _image;
   }
