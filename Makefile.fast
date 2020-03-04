@@ -17,15 +17,20 @@ JOBS=1
 #
 ifeq ($(strip $(RELEASE)),1)
 CONFIG=release
+OPT_CFLAGS=""
 else
 CONFIG=debug
+OPT_CFLAGS="-g"
 endif
 
 QMAKE=qmake-qt5
 
-.PHONY: all
+.PHONY: all clean
 
 all: zart
+
+clean:
+	rm -rf .obj .moc .ui .qrc ../gmic/src/libgmic.o
 
 zart: zart.pro .obj/gmic.o
 	$(QMAKE) CONFIG+=$(CONFIG) || $(QMAKE) CONFIG+=$(CONFIG)
@@ -44,6 +49,7 @@ zart: zart.pro .obj/gmic.o
 	@echo "/------------------------------------------------------------------\\"
 	@echo "                  Compiling in "$(CONFIG)" mode"
 	@echo "\\------------------------------------------------------------------/"
-	-( strings ../gmic/src/libgmic.o | grep -q png_write_image ) && rm -f ../gmic/src/libgmic.o
-	+$(MAKE) -C ../gmic/src X11_CFLAGS="" JPEG_CFLAGS="" TIFF_CFLAGS="" PNG_CFLAGS="" CURL_CFLAGS="" OPT_CFLAGS="" lib
+	-test ! -d .obj && mkdir .obj
+	-test ! -e /gmic/src/libgmic.o && (strings ../gmic/src/libgmic.o | grep -q png_write_image ) && rm -f ../gmic/src/libgmic.o
+	+$(MAKE) -C ../gmic/src X11_CFLAGS="" JPEG_CFLAGS="" TIFF_CFLAGS="" PNG_CFLAGS="" CURL_CFLAGS="" OPT_CFLAGS="$(OPT_CFLAGS)" lib
 	cp ../gmic/src/libgmic.o .obj/gmic.o
