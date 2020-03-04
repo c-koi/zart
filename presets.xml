@@ -2985,11 +2985,9 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
 ************************************ -->
 <preset_group name="Details" >
 
-<!-- /Details/Details Equalizer -->
+<!-- Details/Details Equalizer -->
 <preset name="Details Equalizer">
-  <command>
--fx_equalize_details_preview $"*"
-  </command>
+  <command>fx_equalize_details_preview $*</command>
   <float name="Base Scale" default="5" min="0" max="15" />
   <float name="Detail Scale" default="0.5" min="0" max="5" />
   <note text="&lt;small&gt;&lt;b&gt;Coarse scale:&lt;/b&gt;&lt;/small&gt;" />
@@ -3019,14 +3017,13 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
   <choice name="Channel(s)" default="11" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <choice name="Value Action" default="0" choice0="None" choice1="Cut" choice2="Normalize" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="32" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="32" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;rome Boulanger&lt;/i&gt; and &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&lt;br/&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2015/11/11&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;rome Boulanger&lt;/i&gt; and &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2015/11/11&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 <!-- /Details/Equalize Local Histograms -->
@@ -3051,25 +3048,22 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
  Latest Update: &lt;i&gt;2018/01/31&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Details/Freaky Details -->
+<!-- Details/Freaky Details -->
 <preset name="Freaky Details">
-  <command>
--fx_freaky_details_preview $"*"
-  </command>
+  <command>fx_freaky_details_preview $*</command>
   <int name="Amplitude" default="2" min="1" max="5" />
   <float name="Scale" default="10" min="0" max="100" />
   <int name="Iterations" default="1" min="1" max="4" />
   <separator />
   <choice name="Channel(s)" default="11" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="32" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="32" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Authors: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt; and &lt;i&gt;Patrick David&lt;/i&gt;.&lt;br/&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2013/27/02&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Authors: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt; and &lt;i&gt;Patrick David&lt;/i&gt;. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2013/27/02&lt;/i&gt;.&lt;/small&gt;" />
   <separator />
   <note text="This effect has been done following:" />
   <link name="This tutorial from Patrick David" url="http://blog.patdavid.net/2013/02/calvin-hollywood-freaky-details-in-gimp.html" align="center" />
@@ -3159,11 +3153,9 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
  Latest Update: &lt;i&gt;2014/08/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Details/Sharpen [Deblur] -->
+<!-- Details/Sharpen [Deblur] -->
 <preset name="Sharpen [Deblur]">
-  <command>
--fx_deblur_preview $"*"
-  </command>
+  <command>fx_deblur_preview $*</command>
   <float name="Radius" default="2" min="0" max="20" />
   <int name="Iterations" default="10" min="0" max="100" />
   <float name="Time Step" default="20" min="0" max="50" />
@@ -3172,21 +3164,18 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="11" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Details/Sharpen [Gold-Meinel] -->
+<!-- Details/Sharpen [Gold-Meinel] -->
 <preset name="Sharpen [Gold-Meinel]">
-  <command>
--fx_unsharp_goldmeinel_preview $"*"
-  </command>
+  <command>fx_unsharp_goldmeinel_preview $*</command>
   <float name="Sigma" default="1" min="0.5" max="10" />
   <int name="Iterations" default="5" min="1" max="15" />
   <float name="Acceleration" default="1" min="1" max="3" />
@@ -3195,41 +3184,35 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="11" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;r&amp;#244;me Boulanger&lt;/i&gt;.&lt;br/&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2013/29/03&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;r&amp;#244;me Boulanger&lt;/i&gt;. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2013/29/03&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Details/Sharpen [Inverse Diffusion] -->
+<!-- Details/Sharpen [Inverse Diffusion] -->
 <preset name="Sharpen [Inverse Diffusion]">
-  <command>
--fx_sharpen_inversediff_preview $"*"
-  </command>
+  <command>fx_sharpen_inversediff_preview $*</command>
   <float name="Amplitude" default="50" min="1" max="300" />
   <int name="Iterations" default="2" min="1" max="10" />
   <separator />
   <choice name="Channel(s)" default="11" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Details/Sharpen [Octave Sharpening] -->
+<!-- Details/Sharpen [Octave Sharpening] -->
 <preset name="Sharpen [Octave Sharpening]">
-  <command>
--fx_unsharp_octave_preview $"*"
-  </command>
+  <command>fx_unsharp_octave_preview $*</command>
   <int name="Scales" default="4" min="1" max="10" />
   <float name="Maximal Radius" default="5" min="0" max="20" />
   <float name="Amount" default="3" min="0" max="10" />
@@ -3237,14 +3220,13 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 <!-- /Details/Sharpen [Richardson-Lucy] -->
@@ -3265,11 +3247,9 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2013/29/03&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Details/Sharpen [Shock Filters] -->
+<!-- Details/Sharpen [Shock Filters] -->
 <preset name="Sharpen [Shock Filters]">
-  <command>
--fx_sharpen_shock_preview $"*"
-  </command>
+  <command>fx_sharpen_shock_preview $*</command>
   <float name="Amplitude" default="150" min="1" max="400" />
   <float name="Edge Threshold" default="0.1" min="0" max="0.7" />
   <float name="Gradient Smoothness" default="0.8" min="0" max="10" />
@@ -3278,14 +3258,13 @@ This filter implements one version of the algorithm described here :&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 <!-- /Details/Sharpen [Texture] -->
@@ -4556,11 +4535,9 @@ these layers are passed to the filter.&lt;br/&gt;
  Latest Update: &lt;i&gt;2019/10/02&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [Diffusion] -->
+<!-- Repair/Smooth [Diffusion] -->
 <preset name="Smooth [Diffusion]">
-  <command>
--fx_smooth_diffusion_preview $"*"
-  </command>
+  <command>fx_smooth_diffusion_preview $*</command>
   <float name="Sharpness" default="0.7" min="0" max="2" />
   <float name="Anisotropy" default="0.3" min="0" max="1" />
   <float name="Gradient Smoothness" default="0.6" min="0" max="10" />
@@ -4570,35 +4547,31 @@ these layers are passed to the filter.&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [Mean-Curvature] -->
+<!-- Repair/Smooth [Mean-Curvature] -->
 <preset name="Smooth [Mean-Curvature]">
-  <command>
--fx_smooth_meancurvature_preview $"*"
-  </command>
+  <command>fx_smooth_meancurvature_preview $*</command>
   <float name="Time Step" default="30" min="5" max="50" />
   <int name="Iterations" default="4" min="1" max="30" />
   <bool name="Keep Iterations as Different Layers" default="0" />
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 <!-- /Repair/Smooth [Median] -->
@@ -4619,11 +4592,9 @@ these layers are passed to the filter.&lt;br/&gt;
  Latest Update: &lt;i&gt;2010/29/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [NL-Means] -->
+<!-- Repair/Smooth [NL-Means] -->
 <preset name="Smooth [NL-Means]">
-  <command>
--fx_smooth_nlmeans_preview $"*"
-  </command>
+  <command>fx_smooth_nlmeans_preview $*</command>
   <float name="Patch Size" default="4" min="0.5" max="10" />
   <int name="Spatial Bandwidth" default="4" min="3" max="13" />
   <float name="Tonal Bandwidth" default="10" min="1" max="50" />
@@ -4631,21 +4602,18 @@ these layers are passed to the filter.&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;r&amp;#244;me Boulanger&lt;/i&gt;.&lt;br/&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2015/01/07&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;r&amp;#244;me Boulanger&lt;/i&gt;. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2015/01/07&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [Patch-Based] -->
+<!-- Repair/Smooth [Patch-Based] -->
 <preset name="Smooth [Patch-Based]">
-  <command>
--fx_smooth_patch_preview $"*"
-  </command>
+  <command>fx_smooth_patch_preview $*</command>
   <float name="Spatial Variance" default="10" min="0.1" max="200" />
   <float name="Patch Variance" default="10" min="0.1" max="200" />
   <int name="Patch Size" default="3" min="2" max="21" />
@@ -4656,21 +4624,18 @@ these layers are passed to the filter.&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [Perona-Malik] -->
+<!-- Repair/Smooth [Perona-Malik] -->
 <preset name="Smooth [Perona-Malik]">
-  <command>
--fx_smooth_peronamalik_preview $"*"
-  </command>
+  <command>fx_smooth_peronamalik_preview $*</command>
   <float name="K-Factor" default="20" min="0" max="255" />
   <float name="Time Step" default="5" min="5" max="50" />
   <int name="Iterations" default="5" min="1" max="30" />
@@ -4678,21 +4643,18 @@ these layers are passed to the filter.&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2014/26/11&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2014/26/11&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [Selective Gaussian] -->
+<!-- Repair/Smooth [Selective Gaussian] -->
 <preset name="Smooth [Selective Gaussian]">
-  <command>
--fx_smooth_selective_preview $"*"
-  </command>
+  <command>fx_smooth_selective_preview $*</command>
   <float name="Amplitude" default="5" min="0" max="20" />
   <float name="Edges" default="0.5" min="0" max="2" />
   <int name="Scales" default="5" min="1" max="10" />
@@ -4700,21 +4662,18 @@ these layers are passed to the filter.&lt;br/&gt;
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [Thin Brush] -->
+<!-- Repair/Smooth [Thin Brush] -->
 <preset name="Smooth [Thin Brush]">
-  <command>
--fx_smooth_anisotropic $"*"
-  </command>
+  <command>fx_smooth_anisotropic $*</command>
   <float name="Amplitude" default="60" min="0" max="1000" />
   <float name="Sharpness" default="0.9" min="0" max="2" />
   <float name="Anisotropy" default="0.64" min="0" max="1" />
@@ -4726,57 +4685,50 @@ these layers are passed to the filter.&lt;br/&gt;
   <choice name="Interpolation" default="0" choice0="Nearest Neighbor" choice1="Linear" choice2="Runge-Kutta" />
   <bool name="Fast Approximation" default="1" />
   <int name="Iterations" default="1" min="1" max="10" />
-  <choice name="Channel(s)" default="0" choice0="RGB" choice1="Luminance" choice2="Blue &amp;amp; Red chrominances" choice3="Blue chrominance" choice4="Red chrominance" />
+  <choice name="Channel(s)" default="0" choice0="RGB" choice1="Luminance" choice2="Blue &amp; Red Chrominances" choice3="Blue Chrominance" choice4="Red Chrominance" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <note text="
-&lt;small&gt;&lt;b&gt;Note: &lt;/b&gt;This set of anisotropic smoothing parameters has been suggested&lt;br/&gt;
- by PhotoComiX.&lt;/small&gt;" />
+&lt;small&gt;&lt;b&gt;Note: &lt;/b&gt;This set of anisotropic smoothing parameters has been suggested by PhotoComiX.&lt;/small&gt;" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;PhotoComiX&lt;/i&gt;.&lt;br/&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2010/26/12&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;PhotoComiX&lt;/i&gt;. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2010/26/12&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [Total Variation] -->
+<!-- Repair/Smooth [Total Variation] -->
 <preset name="Smooth [Total Variation]">
-  <command>
--fx_smooth_tv_preview $"*"
-  </command>
+  <command>fx_smooth_tv_preview $*</command>
   <float name="Time Step" default="30" min="5" max="100" />
   <int name="Iterations" default="10" min="1" max="40" />
   <bool name="Keep Iterations as Different Layers" default="0" />
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br/&gt;
- Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;David Tschumperl&amp;#233;&lt;/i&gt;.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
-<!-- /Repair/Smooth [Wavelets] -->
+<!-- Repair/Smooth [Wavelets] -->
 <preset name="Smooth [Wavelets]">
-  <command>
--fx_smooth_haar_preview $"*"
-  </command>
+  <command>fx_smooth_haar_preview $*</command>
   <float name="Threshold" default="1" min="0" max="10" />
   <int name="Iterations" default="10" min="1" max="32" />
   <int name="Scales" default="10" min="2" max="10" />
   <separator />
   <choice name="Channel(s)" default="0" choice0="All" choice1="RGBA [All]" choice2="RGB [All]" choice3="RGB [Red]" choice4="RGB [Green]" choice5="RGB [Blue]" choice6="RGBA [Alpha]" choice7="Linear RGB [All]" choice8="Linear RGB [Red]" choice9="Linear RGB [Green]" choice10="Linear RGB [Blue]" choice11="YCbCr [Luminance]" choice12="YCbCr [Blue-Red Chrominances]" choice13="YCbCr [Blue Chrominance]" choice14="YCbCr [Red Chrominance]" choice15="YCbCr [Green Chrominance]" choice16="Lab [Lightness]" choice17="Lab [ab-Chrominances]" choice18="Lab [a-Chrominance]" choice19="Lab [b-Chrominance]" choice20="Lch [ch-Chrominances]" choice21="Lch [c-Chrominance]" choice22="Lch [h-Chrominance]" choice23="HSV [Hue]" choice24="HSV [Saturation]" choice25="HSV [Value]" choice26="HSI [Intensity]" choice27="HSL [Lightness]" choice28="CMYK [Cyan]" choice29="CMYK [Magenta]" choice30="CMYK [Yellow]" choice31="CMYK [Key]" choice32="YIQ [Luma]" choice33="YIQ [Chromas]" choice34="RYB [All]" choice35="RYB [Red]" choice36="RYB [Yellow]" choice37="RYB [Blue]" />
   <separator />
-  <int name="&quot;Sixteen Threads&quot;), Spatial Overlap" default="24" min="0" max="256" />
+  <choice name="Parallel Processing" default="1" choice0="Auto" choice1="One Thread" choice2="Two Threads" choice3="Four Threads" choice4="Eight Threads" choice5="Sixteen Threads" />
+  <int name="Spatial Overlap" default="24" min="0" max="256" />
   <separator />
-  <value value="0" />
-  <value value="50" />
-  <value value="50" />
+  <choice name="Preview Type" default="0" choice0="Full" choice1="Forward Horizontal" choice2="Forward Vertical" choice3="Backward Horizontal" choice4="Backward Vertical" choice5="Duplicate Top" choice6="Duplicate Left" choice7="Duplicate Bottom" choice8="Duplicate Right" choice9="Duplicate Horizontal" choice10="Duplicate Vertical" choice11="Checkered" choice12="Checkered Inverse" />
+  <point name="Preview Split" position="50,50" />
   <separator />
-  <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;rome Boulanger and David Tschumperl&amp;#233;&lt;/i&gt;.&lt;br/&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
+  <note text="&lt;small&gt;Author: &lt;i&gt;J&amp;#233;rome Boulanger and David Tschumperl&amp;#233;&lt;/i&gt;. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Latest Update: &lt;i&gt;2013/27/08&lt;/i&gt;.&lt;/small&gt;" />
 </preset>
 
 </preset_group>
