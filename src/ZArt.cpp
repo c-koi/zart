@@ -65,6 +65,18 @@ void onSigQuit(int)
 }
 #endif
 
+void usage(const char * argv0)
+{
+  cout << "Usage:" << endl
+       << "       " << QFileInfo(argv0).baseName().toLatin1().constData() << " [options] [image_file|video_file]" << endl
+       << "\n"
+       << "Options: " << endl
+       << "      --clear-cams  : Clear webcam cache." << endl
+       << "      --help | -h   : print this help." << endl
+       << endl;
+  exit(EXIT_SUCCESS);
+}
+
 int main(int argc, char * argv[])
 {
 #ifdef _IS_UNIX_
@@ -77,21 +89,8 @@ int main(int argc, char * argv[])
   QCoreApplication::setOrganizationDomain("greyc.fr");
   QCoreApplication::setApplicationName("ZArt");
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
-
-  QStringList args = app.arguments();
-  QStringList::iterator it = args.begin();
-  while (it != args.end()) {
-    if (it->startsWith("-h") || it->startsWith("--help")) {
-      cout << "Usage:" << endl
-           << "       " << QFileInfo(argv[0]).baseName().toLatin1().constData() << " [options]" << endl
-           << "  "
-           << "Options: " << endl
-           << "      --clear-cams  : Clear webcam cache." << endl
-           << "      --help | -h   : print this help." << endl
-           << endl;
-      exit(EXIT_SUCCESS);
-    }
-    ++it;
+  if (QApplication::arguments().contains("-h") || QApplication::arguments().contains("--help")) {
+    usage(argv[0]);
   }
   QSplashScreen splashScreen(QPixmap(":/images/splash.png"));
   splashScreen.show();
@@ -104,16 +103,17 @@ int main(int argc, char * argv[])
     cerr << "[ZArt] Warning: Could not create resources directory.\n";
   }
   MainWindow mainWindow;
+  QStringList args = QApplication::arguments();
   if ((args.size() > 1) && QFileInfo(args.back()).isReadable()) {
-    QStringList imagesExtensions = QString("bmp gif jpg png pbm pgm ppm xbm xpm svg").split(" ");
+    QStringList imagesExtensions = QString(".bmp;.gif;.jpg;.png;.pbm;.pgm;.ppm;.xbm;.xpm;.svg").split(";");
     for (const QString & ext : imagesExtensions) {
-      if (args.back().endsWith("." + ext)) {
+      if (args.back().endsWith(ext)) {
         mainWindow.setInputImage(args.back());
       }
     }
-    QStringList videoExtensions = QString("avi mpg mpeg").split(" ");
-    for (const QString & ext : imagesExtensions) {
-      if (args.back().endsWith("." + ext)) {
+    QStringList videoExtensions = QString(".avi;.mpg;.mpeg").split(";");
+    for (const QString & ext : videoExtensions) {
+      if (args.back().endsWith(ext)) {
         mainWindow.setInputVideo(args.back());
       }
     }

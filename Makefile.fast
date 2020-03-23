@@ -50,6 +50,6 @@ zart: zart.pro .obj/gmic.o
 	@echo "                  Compiling in "$(CONFIG)" mode"
 	@echo "\\------------------------------------------------------------------/"
 	-test ! -d .obj && mkdir .obj
-	-test ! -e /gmic/src/libgmic.o && (strings ../gmic/src/libgmic.o | grep -q png_write_image ) && rm -f ../gmic/src/libgmic.o
+	-test -e ../gmic/src/libgmic.o && ( strings ../gmic/src/libgmic.o | grep -q png_write_image ) && rm -f ../gmic/src/libgmic.o
 	+$(MAKE) -C ../gmic/src X11_CFLAGS="" JPEG_CFLAGS="" TIFF_CFLAGS="" PNG_CFLAGS="" CURL_CFLAGS="" OPT_CFLAGS="$(OPT_CFLAGS)" lib
 	cp ../gmic/src/libgmic.o .obj/gmic.o

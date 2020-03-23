@@ -167,9 +167,8 @@ void FilterThread::run()
           _commandUpdated = false;
         }
 
-        _gmic->run("-v -");
-        QString c;
-        c += QString("_x=%1").arg(_xMouse);
+        QString c("v -");
+        c += QString(" _x=%1").arg(_xMouse);
         c += QString(" _y=%1").arg(_yMouse);
         c += QString(" _b=%1").arg(_buttonsMouse);
         c += QString(" _host=zart _input_layers=1 _output_mode=0 _output_messages=0 _preview_mode=0 _preview_timeout=16");
@@ -178,10 +177,11 @@ void FilterThread::run()
         _viewSize.unlock();
         QString call;
         _arguments.lock();
-        if (_arguments.object().isEmpty())
+        if (_arguments.object().isEmpty()) {
           call = QString(" -zart 0");
-        else
+        } else {
           call = QString(" -zart %1").arg(_arguments.object());
+        }
         _arguments.unlock();
         c += call;
 
