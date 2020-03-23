@@ -271,6 +271,7 @@ void WebcamSource::start()
       try {
         _capture->read(*capturedImage); // TODO : Check
       } catch (cv::Exception &) {
+        delete capturedImage;
         capturedImage = nullptr;
       }
     } else {
