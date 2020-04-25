@@ -70,7 +70,7 @@ void ImageConverter::convert(const cv::Mat * in, QImage * out)
 
   cv::Mat tmp(in->cols, in->rows, in->type());
 
-  cvtColor(*in, tmp, (in->channels() == 1) ? CV_GRAY2RGB : CV_BGR2RGB);
+  cvtColor(*in, tmp, (in->channels() == 1) ? cv::COLOR_GRAY2RGB : cv::COLOR_BGR2RGB);
 
   const unsigned int w3 = 3 * tmp.cols;
   unsigned char * src = reinterpret_cast<unsigned char *>(tmp.ptr());
@@ -113,7 +113,7 @@ void ImageConverter::convert(const QImage & in, cv::Mat ** out)
       dst += step;
     }
   }
-  cvtColor(**out, **out, CV_BGR2RGB);
+  cvtColor(**out, **out, cv::COLOR_BGR2RGB);
 }
 
 void ImageConverter::convert(const cimg_library::CImg<float> & in, QImage * out)
