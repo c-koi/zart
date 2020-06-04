@@ -29,9 +29,22 @@ greaterThan(QT_MAJOR_VERSION, 4): CONFIG += c++11
 CONFIG	+= warn_on
 QT_CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig
-PKGCONFIG += opencv fftw3 zlib
-DEFINES += cimg_use_fftw3 cimg_use_zlib
+PKGCONFIG += fftw3 zlib
 
+#
+# OpenCV
+#
+packagesExist(opencv4) { # e.g. Ubuntu 20.04
+   PKGCONFIG += opencv4
+}
+packagesExist(opencv) {
+   PKGCONFIG += opencv
+}
+!packagesExist(opencv):!packagesExist(opencv4) {
+  error(Cannot find OpenCV)
+}
+
+DEFINES += cimg_use_fftw3 cimg_use_zlib
 DEFINES += QT_DEPRECATED_WARNINGS
 
 !defined(GMIC_PATH, var):exists(../src/gmic.cpp) {
