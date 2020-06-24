@@ -72,7 +72,7 @@ The following libraries are required to compile/run ZArt:
  undefined symbol: xkb_state_key_get_utf8
 ```
 
-### Tavis CI last build status
+### Travis CI last build status
 
  * Master branch (Linux) [![Build Status](https://api.travis-ci.org/c-koi/zart.svg?branch=master)](https://travis-ci.org/c-koi/zart)
  * Devel branch (Linux) [![Build Status](https://api.travis-ci.org/c-koi/zart.svg?branch=devel)](https://travis-ci.org/c-koi/zart)
