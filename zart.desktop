@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=ZArt
+Terminal=false
+Comment=Apply G'MIC filters to images or video streams
+Comment[fr]=Appliquer des filtres G'MIC à des images ou des flux vidéo
+TryExec=zart
+Exec=zart %F
+Icon=zart
+Categories=AudioVideo;Video
+MimeType=video/avi;video/mpeg;image/jpeg;image/png;image/bmp;image/gif;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;image/svg;
