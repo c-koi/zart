@@ -46,8 +46,8 @@
 #ifndef ZART_IMAGEVIEW_H
 #define ZART_IMAGEVIEW_H
 
+#include <QElapsedTimer>
 #include <QMutex>
-#include <QTime>
 #include <QWidget>
 #include "KeypointList.h"
 
@@ -101,7 +101,7 @@ private:
   QColor _backgroundColor;
   KeypointList _keypoints;
   int _movedKeypointIndex;
-  QTime _keypointTimestamp;
+  QElapsedTimer _keypointTimestamp;
   static int roundedDistance(const QPoint & p1, const QPoint & p2);
   int keypointUnderMouse(const QPoint & p);
   void paintKeypoints(QPainter & painter);
