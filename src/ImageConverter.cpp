@@ -47,7 +47,6 @@
 #include <QImage>
 #include <QMutex>
 #include <QPainter>
-#include <QTime>
 #include <cassert>
 #include <iostream>
 #include "Common.h"

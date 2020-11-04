@@ -46,13 +46,13 @@
 #include "FilterThread.h"
 #include <QApplication>
 #include <QColor>
+#include <QElapsedTimer>
 #include <QFont>
 #include <QFontMetrics>
 #include <QImage>
 #include <QMutex>
 #include <QPainter>
 #include <QSemaphore>
-#include <QTime>
 #include <iostream>
 #include "ImageConverter.h"
 #include "WebcamSource.h"
@@ -125,7 +125,7 @@ void FilterThread::setViewSize(const QSize & size)
 
 void FilterThread::run()
 {
-  QTime timeMeasure;
+  QElapsedTimer timeMeasure;
   unsigned int lastCommandDuration = 0;
   timeMeasure.start();
   int n;
