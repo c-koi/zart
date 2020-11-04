@@ -964,8 +964,7 @@ void MainWindow::setPresets(const QDomElement & domE)
   _presetsCount = 0;
   addPresets(domE, 0);
 
-  QString label;
-  label.sprintf("Presets (%d)", _presetsCount);
+  QString label = QString("Presets (%1)").arg(_presetsCount);
   _treeGPresets->setHeaderLabel(label);
   _fullScreenWidget->treeWidget()->setHeaderLabel(label);
 
