@@ -163,8 +163,8 @@ void FilterThread::run()
         if (_commandUpdated) {
           delete _gmic;
           QString c = QString("zart: -skip $\"*\" ") + _command;
-          _gmic = new gmic("", c.toLatin1().constData());
-          _commandUpdated = false;
+	  _gmic = new gmic("", c.toLatin1().constData(), true, 0, 0, 0.0f);
+	  _commandUpdated = false;
         }
 
         QString c("v -");
