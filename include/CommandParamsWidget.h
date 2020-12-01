@@ -59,9 +59,9 @@ class QLabel;
 class CommandParamsWidget : public QWidget {
   Q_OBJECT
 public:
-  CommandParamsWidget(QWidget * parent = 0);
+  CommandParamsWidget(QWidget * parent = nullptr);
   void build(QDomNode presetNode);
-  virtual ~CommandParamsWidget();
+  ~CommandParamsWidget() override;
   const QString & valueString() const;
   QStringList valueStringList() const;
   void setValues(const QStringList &);

@@ -61,9 +61,9 @@ class QStatusBar;
 class WebcamSource : public ImageSource {
 public:
   WebcamSource();
-  ~WebcamSource();
+  ~WebcamSource() override;
   int cameraIndex();
-  void capture();
+  void capture() override;
   void setCameraIndex(int i);
   void stop();
   void start();
@@ -75,9 +75,9 @@ public:
   static int getFirstUnusedWebcam();
   static bool isWebcamUnused(int index);
   static bool canOpenDeviceFile(int index);
-  static void retrieveWebcamResolutions(const QList<int> & camList, QSplashScreen * splashScreen = 0, QStatusBar * statusBar = 0);
+  static void retrieveWebcamResolutions(const QList<int> & camList, QSplashScreen * splashScreen = nullptr, QStatusBar * statusBar = nullptr);
   static void retrieveWebcamResolutionsV4L2(const QList<int> & camList);
-  static void retrieveWebcamResolutionsOpenCV(const QList<int> & camList, QSplashScreen * splashScreen = 0, QStatusBar * statusBar = 0);
+  static void retrieveWebcamResolutionsOpenCV(const QList<int> & camList, QSplashScreen * splashScreen = nullptr, QStatusBar * statusBar = nullptr);
   static const QList<QSize> & webcamResolutions(int index);
   static void clearSavedSettings();
   static QString osName();

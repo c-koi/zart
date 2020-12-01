@@ -55,13 +55,13 @@ class QLabel;
 class ChoiceParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ChoiceParameter(QDomNode node, QObject * parent = 0);
-  ~ChoiceParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString &);
-  void reset();
-  void saveValueInDOM();
+  ChoiceParameter(QDomNode node, QObject * parent = nullptr);
+  ~ChoiceParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString &) override;
+  void reset() override;
+  void saveValueInDOM() override;
 public slots:
   void onComboBoxIndexChanged(int);
 signals:

@@ -54,8 +54,8 @@ class KeypointList;
 class AbstractParameter : public QObject {
   Q_OBJECT
 public:
-  AbstractParameter(QObject * parent = 0);
-  virtual ~AbstractParameter();
+  AbstractParameter(QObject * parent = nullptr);
+  virtual ~AbstractParameter() override;
   virtual bool isVisible() const;
   virtual void addTo(QWidget *, int row) = 0;
   virtual QString textValue() const = 0;
@@ -66,7 +66,7 @@ public:
   virtual void addToKeypointList(KeypointList &) const;
   virtual void extractPositionFromKeypointList(KeypointList &);
 
-  static AbstractParameter * createFromNode(QDomNode node, QObject * parent = 0);
+  static AbstractParameter * createFromNode(QDomNode node, QObject * parent = nullptr);
 signals:
   void valueChanged();
 };

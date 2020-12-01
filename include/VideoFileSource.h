@@ -54,8 +54,8 @@
 class VideoFileSource : public ImageSource {
 public:
   VideoFileSource();
-  virtual ~VideoFileSource();
-  void capture();
+  ~VideoFileSource() override;
+  void capture() override;
   bool loadVideoFile(QString filename);
   const QString & filename() const;
   const QString & filePath() const;

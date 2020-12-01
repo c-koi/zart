@@ -126,7 +126,7 @@ int KeypointList::Keypoint::actualRadiusFromPreviewSize(const QSize & size) cons
   if (radius >= 0) {
     return (int)roundf(radius);
   } else {
-    return (int)roundf(-radius * (sqrtf(size.width() * size.width() + size.height() * size.height())) / 100.0f);
+    return (int)roundf(-radius * (sqrtf(float(size.width() * size.width() + size.height() * size.height()))) / 100.0f); // TODO: use std::hypoth()
   }
 }
 

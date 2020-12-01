@@ -55,13 +55,13 @@ class QLabel;
 class BoolParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  BoolParameter(QDomNode node, QObject * parent = 0);
-  ~BoolParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  BoolParameter(QDomNode node, QObject * parent = nullptr);
+  ~BoolParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 public slots:
   void onCheckBoxChanged(bool);
 signals:

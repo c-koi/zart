@@ -56,13 +56,13 @@ class QLabel;
 class FloatParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  FloatParameter(QDomNode node, QObject * parent = 0);
-  ~FloatParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  FloatParameter(QDomNode node, QObject * parent = nullptr);
+  ~FloatParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 public slots:
   void onSliderChanged(int);
   void onSpinBoxChanged(double);

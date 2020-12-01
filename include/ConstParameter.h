@@ -52,14 +52,14 @@ class QLabel;
 class ConstParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ConstParameter(QDomNode node, QObject * parent = 0);
-  ~ConstParameter();
-  bool isVisible() const;
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  ConstParameter(QDomNode node, QObject * parent = nullptr);
+  ~ConstParameter() override;
+  bool isVisible() const override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 signals:
   void valueChanged();
 

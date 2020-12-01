@@ -54,13 +54,13 @@
 class CommandEditor : public QPlainTextEdit {
   Q_OBJECT
 public:
-  CommandEditor(QWidget * parent = 0);
-  ~CommandEditor();
+  CommandEditor(QWidget * parent = nullptr);
+  ~CommandEditor() override;
 signals:
   void commandModified();
 
 protected:
-  void keyPressEvent(QKeyEvent * event);
+  void keyPressEvent(QKeyEvent * event) override;
 
 private:
 };

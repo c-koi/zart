@@ -60,7 +60,7 @@ class FullScreenWidget : public QWidget, public Ui::FullScreenWidget {
   Q_OBJECT
 public:
   FullScreenWidget(MainWindow *);
-  ~FullScreenWidget();
+  ~FullScreenWidget() override;
   ImageView * imageView();
   QTreeWidget * treeWidget();
   CommandParamsWidget * commandParamsWidget();
@@ -68,9 +68,9 @@ public:
   QComboBox * cbFaves();
 
 protected:
-  void showEvent(QShowEvent * event);
-  void keyPressEvent(QKeyEvent *);
-  bool eventFilter(QObject * watched, QEvent * event);
+  void showEvent(QShowEvent * event) override;
+  void keyPressEvent(QKeyEvent *) override;
+  bool eventFilter(QObject * watched, QEvent * event) override;
 signals:
   void escapePressed();
   void spaceBarPressed();

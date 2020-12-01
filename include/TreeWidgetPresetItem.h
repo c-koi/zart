@@ -58,9 +58,9 @@ public:
   TreeWidgetPresetItem(const QStringList & strings, QDomNode node = QDomNode());
   TreeWidgetPresetItem(QTreeWidget * parent, const QStringList & strings, QDomNode node = QDomNode());
   TreeWidgetPresetItem(QTreeWidgetItem * parent, const QStringList & strings, QDomNode node = QDomNode());
-  ~TreeWidgetPresetItem();
+  ~TreeWidgetPresetItem() override;
   QDomNode node() const;
-  TreeWidgetPresetItem * clone() const;
+  TreeWidgetPresetItem * clone() const override;
   QStringList path() const;
 
 private:

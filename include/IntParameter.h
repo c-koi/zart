@@ -56,13 +56,13 @@ class QLabel;
 class IntParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  IntParameter(QDomNode node, QObject * parent = 0);
-  ~IntParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  IntParameter(QDomNode node, QObject * parent = nullptr);
+  ~IntParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 public slots:
   void onSliderChanged(int);
   void onSpinBoxChanged(int);
