@@ -731,7 +731,7 @@ void MainWindow::onOpenVideoFile()
 {
   QString filename;
   filename =
-      QFileDialog::getOpenFileName(this, "Select a video file", _videoFile.filePath().isEmpty() ? _stillImage.filePath() : _videoFile.filePath(), "Video files (*.avi *.mpg *.mp4 *.webm *.mkv *.ts)");
+      QFileDialog::getOpenFileName(this, "Select a video file", _videoFile.filePath().isEmpty() ? _stillImage.filePath() : _videoFile.filePath(), "Video files (*.avi *.mpg *.mp4 *.webm *.ts *.mkv)");
   if (filename.isEmpty())
     return;
   if (_source == Video && _filterThread) {
