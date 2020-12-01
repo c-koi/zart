@@ -144,7 +144,7 @@ public slots:
   void onRenameFave();
 
 protected:
-  void closeEvent(QCloseEvent *);
+  void closeEvent(QCloseEvent *) override;
 
 private slots:
   void onImageViewKeypointsEvent();

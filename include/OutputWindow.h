@@ -59,13 +59,13 @@ class OutputWindow : public QWidget {
   Q_OBJECT
 public:
   OutputWindow(MainWindow *);
-  ~OutputWindow();
+  ~OutputWindow() override;
   ImageView * imageView();
 
 protected:
-  void showEvent(QShowEvent * event);
-  void keyPressEvent(QKeyEvent *);
-  void closeEvent(QCloseEvent * event);
+  void showEvent(QShowEvent * event) override;
+  void keyPressEvent(QKeyEvent *) override;
+  void closeEvent(QCloseEvent * event) override;
 public slots:
   void onCloseClicked();
   void onShowFullscreen(bool);

@@ -90,11 +90,11 @@
 #define CURRENTDATA(CBOX) (CBOX->itemData(CBOX->currentIndex()))
 #endif
 
-MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), _filterThread(0), _source(Webcam), _currentSource(&_webcam), _currentDir("."), _zeroFPS(false), _presetsCount(0)
+MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), _filterThread(nullptr), _source(Webcam), _currentSource(&_webcam), _currentDir("."), _zeroFPS(false), _presetsCount(0)
 {
   setupUi(this);
 
-  _outputWindow = 0;
+  _outputWindow = nullptr;
 
   delete _frameImageView->layout();
   _frameImageView->setLayout(new QGridLayout);
@@ -516,23 +516,23 @@ void MainWindow::play()
   int pm = _cbPreviewMode->itemData(_cbPreviewMode->currentIndex()).toInt();
   FilterThread::PreviewMode previewMode = static_cast<FilterThread::PreviewMode>(pm);
   ImageView * viewA = (_displayMode == InWindow) ? _imageView : _fullScreenWidget->imageView();
-  ImageView * viewB = 0;
+  ImageView * viewB = nullptr;
   if (_outputWindow && _outputWindow->isVisible() && _outputWindowAction->isChecked()) {
     viewB = _outputWindow->imageView();
   }
 
   switch (_source) {
   case Webcam:
-    _filterThread = new FilterThread(_webcam, _commandEditor->toPlainText(), &viewA->image(), &viewA->imageMutex(), (viewB) ? &viewB->image() : 0, (viewB) ? &viewB->imageMutex() : 0, previewMode,
-                                     _sliderWebcamSkipFrames->value(), -1, 0);
+    _filterThread = new FilterThread(_webcam, _commandEditor->toPlainText(), &viewA->image(), &viewA->imageMutex(), (viewB) ? &viewB->image() : nullptr, (viewB) ? &viewB->imageMutex() : nullptr,
+                                     previewMode, _sliderWebcamSkipFrames->value(), -1, nullptr);
     break;
   case StillImage:
-    _filterThread = new FilterThread(_stillImage, _commandEditor->toPlainText(), &viewA->image(), &viewA->imageMutex(), (viewB) ? &viewB->image() : 0, (viewB) ? &viewB->imageMutex() : 0, previewMode,
-                                     0, _sliderImageFPS->value(), &_filterThreadSemaphore);
+    _filterThread = new FilterThread(_stillImage, _commandEditor->toPlainText(), &viewA->image(), &viewA->imageMutex(), (viewB) ? &viewB->image() : nullptr, (viewB) ? &viewB->imageMutex() : nullptr,
+                                     previewMode, 0, _sliderImageFPS->value(), &_filterThreadSemaphore);
     break;
   case Video:
-    _filterThread = new FilterThread(_videoFile, _commandEditor->toPlainText(), &viewA->image(), &viewA->imageMutex(), (viewB) ? &viewB->image() : 0, (viewB) ? &viewB->imageMutex() : 0, previewMode,
-                                     _sliderVideoSkipFrames->value(), _sliderVideoFPS->value(), 0);
+    _filterThread = new FilterThread(_videoFile, _commandEditor->toPlainText(), &viewA->image(), &viewA->imageMutex(), (viewB) ? &viewB->image() : nullptr, (viewB) ? &viewB->imageMutex() : nullptr,
+                                     previewMode, _sliderVideoSkipFrames->value(), _sliderVideoFPS->value(), nullptr);
     break;
   }
   connect(_filterThread, SIGNAL(imageAvailable()), this, SLOT(onImageAvailable()));
@@ -560,7 +560,7 @@ void MainWindow::stop()
     _filterThread->stop();
     _filterThreadSemaphore.release();
     _filterThread->wait();
-    _filterThread = 0;
+    _filterThread = nullptr;
   }
 }
 
@@ -730,7 +730,8 @@ void MainWindow::onOpenImageFile()
 void MainWindow::onOpenVideoFile()
 {
   QString filename;
-  filename = QFileDialog::getOpenFileName(this, "Select a video file", _videoFile.filePath().isEmpty() ? _stillImage.filePath() : _videoFile.filePath(), "Video files (*.avi *.mpg)");
+  filename =
+      QFileDialog::getOpenFileName(this, "Select a video file", _videoFile.filePath().isEmpty() ? _stillImage.filePath() : _videoFile.filePath(), "Video files (*.avi *.mpg *.mp4 *.webm *.mkv *.ts)");
   if (filename.isEmpty())
     return;
   if (_source == Video && _filterThread) {
@@ -871,7 +872,7 @@ void MainWindow::snapshot()
 {
   if (_filterThread)
     _startStopAction->setChecked(false);
-  QString filename = QFileDialog::getSaveFileName(this, "Save image as...", _currentDir, _imageFilters, 0, 0);
+  QString filename = QFileDialog::getSaveFileName(this, "Save image as...", _currentDir, _imageFilters, nullptr, QFileDialog::Options());
   if (!filename.isEmpty()) {
     QFileInfo info(filename);
     _currentDir = info.filePath();
@@ -962,7 +963,7 @@ void MainWindow::setPresets(const QDomElement & domE)
 {
   _treeGPresets->clear();
   _presetsCount = 0;
-  addPresets(domE, 0);
+  addPresets(domE, nullptr);
 
   QString label = QString("Presets (%1)").arg(_presetsCount);
   _treeGPresets->setHeaderLabel(label);
@@ -1081,7 +1082,7 @@ void MainWindow::onRightPanel(bool on)
 
 void MainWindow::updateCameraResolutionCombo()
 {
-  disconnect(_comboCamResolution, SIGNAL(currentIndexChanged(int)), this, 0);
+  disconnect(_comboCamResolution, SIGNAL(currentIndexChanged(int)), this, nullptr);
   int index = _comboWebcam->currentIndex();
   _comboCamResolution->clear();
   const QList<QSize> & resolutions = WebcamSource::webcamResolutions(index);
@@ -1122,7 +1123,7 @@ TreeWidgetPresetItem * MainWindow::findPresetItem(QTreeWidget * tree, const QStr
       ++it;
     }
   }
-  return 0;
+  return nullptr;
 }
 
 TreeWidgetPresetItem * MainWindow::findPresetItem(QTreeWidget * tree, const QStringList & path)
@@ -1130,12 +1131,10 @@ TreeWidgetPresetItem * MainWindow::findPresetItem(QTreeWidget * tree, const QStr
   switch (path.size()) {
   case 1:
     return findPresetItem(tree, QString(), path[0]);
-    break;
   case 2:
     return findPresetItem(tree, path[0], path[1]);
-    break;
   default:
-    return 0;
+    return nullptr;
   }
 }
 
@@ -1174,7 +1173,7 @@ void MainWindow::onDetectCameras()
   menuBar()->setEnabled(false);
   QList<int> camList = WebcamSource::getWebcamList();
   int firstUnused = WebcamSource::getFirstUnusedWebcam();
-  WebcamSource::retrieveWebcamResolutions(camList, 0, statusBar());
+  WebcamSource::retrieveWebcamResolutions(camList, nullptr, statusBar());
   initGUIFromCameraList(camList, firstUnused);
   statusBar()->showMessage(QString());
   centralWidget()->setEnabled(true);
@@ -1183,8 +1182,8 @@ void MainWindow::onDetectCameras()
 
 void MainWindow::initGUIFromCameraList(const QList<int> & camList, int firstUnused)
 {
-  disconnect(_comboWebcam, SIGNAL(currentIndexChanged(int)), this, 0);
-  disconnect(_comboSource, SIGNAL(currentIndexChanged(int)), this, 0);
+  disconnect(_comboWebcam, SIGNAL(currentIndexChanged(int)), this, nullptr);
+  disconnect(_comboSource, SIGNAL(currentIndexChanged(int)), this, nullptr);
 
   QSettings settings;
   _comboSource->clear();
@@ -1324,7 +1323,7 @@ void MainWindow::onRenameFave()
 {
   int index = _cbFaves->currentIndex();
   QStringList list = CURRENTDATA(_cbFaves).toStringList();
-  QString newName = QInputDialog::getText(this, "Rename a fave", "Enter a new name", QLineEdit::Normal, list[0], 0);
+  QString newName = QInputDialog::getText(this, "Rename a fave", "Enter a new name", QLineEdit::Normal, list[0], nullptr);
   if (!newName.isNull()) {
     _cbFaves->setItemText(index, newName);
     list[0] = newName;

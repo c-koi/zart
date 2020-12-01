@@ -53,13 +53,13 @@ class QLabel;
 class LinkParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  LinkParameter(QDomNode node, QObject * parent = 0);
-  ~LinkParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  LinkParameter(QDomNode node, QObject * parent = nullptr);
+  ~LinkParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 public slots:
   void onLinkActivated(const QString & link);
 signals:

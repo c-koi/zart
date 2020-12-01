@@ -65,8 +65,8 @@ class KeypointList;
 class PointParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  PointParameter(QDomNode node, QObject * parent = 0);
-  ~PointParameter();
+  PointParameter(QDomNode node, QObject * parent = nullptr);
+  ~PointParameter() override;
   bool isVisible() const override;
   void addTo(QWidget *, int row) override;
   void addToKeypointList(KeypointList &) const override;

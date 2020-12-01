@@ -52,13 +52,13 @@ class QLabel;
 class NoteParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  NoteParameter(QDomNode node, QObject * parent = 0);
-  ~NoteParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  NoteParameter(QDomNode node, QObject * parent = nullptr);
+  ~NoteParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 signals:
   void valueChanged();
 

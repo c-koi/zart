@@ -60,13 +60,13 @@ class QToolButton;
 class ColorParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  ColorParameter(QDomNode node, QObject * parent = 0);
-  ~ColorParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  ColorParameter(QDomNode node, QObject * parent = nullptr);
+  ~ColorParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 public slots:
   void onButtonPressed();
   void colorChanged(const QColor &);

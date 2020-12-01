@@ -55,14 +55,14 @@ class QPushButton;
 class FileParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  FileParameter(QDomNode node, QObject * parent = 0);
-  ~FileParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  QString unquotedTextValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  FileParameter(QDomNode node, QObject * parent = nullptr);
+  ~FileParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  QString unquotedTextValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 public slots:
   void onButtonPressed();
 signals:

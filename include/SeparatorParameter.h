@@ -52,13 +52,13 @@ class QFrame;
 class SeparatorParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  SeparatorParameter(QDomNode node, QObject * parent = 0);
-  ~SeparatorParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  SeparatorParameter(QDomNode node, QObject * parent = nullptr);
+  ~SeparatorParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 signals:
   void valueChanged();
 

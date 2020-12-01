@@ -55,14 +55,14 @@ class QPushButton;
 class FolderParameter : public AbstractParameter {
   Q_OBJECT
 public:
-  FolderParameter(QDomNode node, QObject * parent = 0);
-  ~FolderParameter();
-  void addTo(QWidget *, int row);
-  QString textValue() const;
-  QString unquotedTextValue() const;
-  void setValue(const QString & value);
-  void reset();
-  void saveValueInDOM();
+  FolderParameter(QDomNode node, QObject * parent = nullptr);
+  ~FolderParameter() override;
+  void addTo(QWidget *, int row) override;
+  QString textValue() const override;
+  QString unquotedTextValue() const override;
+  void setValue(const QString & value) override;
+  void reset() override;
+  void saveValueInDOM() override;
 public slots:
   void onButtonPressed();
 signals:

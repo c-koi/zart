@@ -55,8 +55,8 @@ class StillImageSource : public ImageSource {
 
 public:
   StillImageSource();
-  ~StillImageSource();
-  void capture();
+  ~StillImageSource() override;
+  void capture() override;
   bool loadImage(QString filename);
   const QString & filename() const;
   const QString & filePath() const;

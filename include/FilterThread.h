@@ -77,9 +77,9 @@ public:
   FilterThread(ImageSource & webcam, const QString & command, QImage * outputImageA, QMutex * imageMutexA, QImage * outputImageB, QMutex * imageMutexB, PreviewMode previewMode, int frameSkip, int fps,
                QSemaphore * blockingSemaphore);
 
-  virtual ~FilterThread();
+  ~FilterThread() override;
 
-  void run();
+  void run() override;
   void setMousePosition(int x, int y, int buttons);
 
   void setArguments(const QString &);
