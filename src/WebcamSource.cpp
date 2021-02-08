@@ -344,22 +344,32 @@ void WebcamSource::retrieveWebcamResolutionsOpenCV(const QList<int> & camList, Q
   int iCam = 0;
   while (it != camList.end()) {
     resolutions.push_back(std::set<QSize, QSizeCompare>());
-    cv::VideoCapture capture;
-    if (canOpenDeviceFile(*it) && capture.open(*it) && captureIsValid(capture, *it)) {
+    cv::VideoCapture * capture = nullptr;
+    try {
+      capture = new cv::VideoCapture;
+      if (!canOpenDeviceFile(*it) || !capture->open(*it) || !captureIsValid(*capture, *it)) {
+        delete capture;
+        capture = nullptr;
+      }
+    } catch (cv::Exception & e) {
+      std::cerr << "Error: cannot open camera " << *it << std::endl;
+      std::cerr << "OpenCV says: " << e.what() << std::endl;
+    }
+    if (capture) {
       QStringList resolutionsStrList = settings.value(QString("WebcamSource/ResolutionsListForCam%1").arg(camList[iCam])).toStringList();
       bool settingsAreFine = !resolutionsStrList.isEmpty();
       for (int i = 0; i < resolutionsStrList.size() && settingsAreFine; ++i) {
         QStringList str = resolutionsStrList.at(i).split(QChar('x'));
         int w = str[0].toInt();
         int h = str[1].toInt();
-        bool ok1 = capture.set(ZART_CV_CAP_PROP_FRAME_WIDTH, w);
-        bool ok2 = capture.set(ZART_CV_CAP_PROP_FRAME_HEIGHT, h);
+        bool ok1 = capture->set(ZART_CV_CAP_PROP_FRAME_WIDTH, w);
+        bool ok2 = capture->set(ZART_CV_CAP_PROP_FRAME_HEIGHT, h);
         if (!ok1 || !ok2) {
           continue;
         }
         cv::Mat tmpA;
-        capture.read(tmpA);
-        QSize size(static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_WIDTH)), static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_HEIGHT)));
+        capture->read(tmpA);
+        QSize size(static_cast<int>(capture->get(ZART_CV_CAP_PROP_FRAME_WIDTH)), static_cast<int>(capture->get(ZART_CV_CAP_PROP_FRAME_HEIGHT)));
         if (size == QSize(w, h)) {
           resolutions.back().insert(size);
         } else {
@@ -381,8 +391,8 @@ void WebcamSource::retrieveWebcamResolutionsOpenCV(const QList<int> & camList, Q
         // Default size ?
         {
           cv::Mat tmp;
-          capture.read(tmp);
-          QSize defaultSize(static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_WIDTH)), static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_HEIGHT)));
+          capture->read(tmp);
+          QSize defaultSize(static_cast<int>(capture->get(ZART_CV_CAP_PROP_FRAME_WIDTH)), static_cast<int>(capture->get(ZART_CV_CAP_PROP_FRAME_HEIGHT)));
           if (defaultSize.isValid() && !defaultSize.isEmpty()) {
             resolutions.back().insert(defaultSize);
           }
@@ -399,10 +409,10 @@ void WebcamSource::retrieveWebcamResolutionsOpenCV(const QList<int> & camList, Q
             QSize requestedSize(w, h);
             try {
               cv::Mat tmp;
-              capture.read(tmp);
-              capture.set(ZART_CV_CAP_PROP_FRAME_WIDTH, w);
-              capture.set(ZART_CV_CAP_PROP_FRAME_HEIGHT, h);
-              QSize size(static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_WIDTH)), static_cast<int>(capture.get(ZART_CV_CAP_PROP_FRAME_HEIGHT)));
+              capture->read(tmp);
+              capture->set(ZART_CV_CAP_PROP_FRAME_WIDTH, w);
+              capture->set(ZART_CV_CAP_PROP_FRAME_HEIGHT, h);
+              QSize size(static_cast<int>(capture->get(ZART_CV_CAP_PROP_FRAME_WIDTH)), static_cast<int>(capture->get(ZART_CV_CAP_PROP_FRAME_HEIGHT)));
               if ((splashScreen || statusBar) && resolutions.back().find(size) == resolutions.back().end()) {
                 if (splashScreen) {
                   splashScreen->showMessage(QString("Retrieving webcam #%1 resolutions... %2x%3\n(brute-force checking!)\nResult will be saved.").arg(iCam + 1).arg(size.width()).arg(size.height()),
@@ -433,6 +443,7 @@ void WebcamSource::retrieveWebcamResolutionsOpenCV(const QList<int> & camList, Q
       }
       resolutions.back().clear();
     }
+    delete capture;
     ++it;
     ++iCam;
   }

@@ -87,7 +87,13 @@ bool VideoFileSource::loadVideoFile(QString filename)
   if (!info.isReadable()) {
     return false;
   }
-  _capture = new cv::VideoCapture(filename.toLatin1().constData());
+  _capture = nullptr;
+  try {
+    _capture = new cv::VideoCapture(filename.toLatin1().constData());
+  } catch (cv::Exception & e) {
+    std::cerr << "Error: Cannot open video file." << std::endl;
+    std::cerr << "OpenCV says: " << e.what() << std::endl;
+  }
   if (_capture) {
     cv::Mat image;
     if (_capture->read(image)) {
@@ -101,7 +107,7 @@ bool VideoFileSource::loadVideoFile(QString filename)
       _videoIsReadable = false;
       setWidth(0);
       setHeight(0);
-      setImage(0);
+      setImage(nullptr);
       QMessageBox::critical(0, "Error", "Could not decode video file.\nTry to install gstreamer-ffmpeg...");
     }
   }
