@@ -117,7 +117,7 @@ equals(GMIC_DYNAMIC_LINKING, "on" ) {
 equals(GMIC_DYNAMIC_LINKING, "off" ) {
  HEADERS += $$GMIC_PATH/gmic_stdlib.h
  SOURCES += $$GMIC_PATH/gmic.cpp
- DEFINES += gmic_build
+ DEFINES += gmic_core
 }
 
 #
