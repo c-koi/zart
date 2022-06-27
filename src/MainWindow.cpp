@@ -257,7 +257,7 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), _filterThread(nu
   _cbPreviewMode->setItemIcon(7, QIcon::fromTheme("go-home"));
   _tbCamera->setIcon(QIcon::fromTheme("camera-photo", QIcon(":/images/camera.png")));
 #else
-  _tbCamera->setIcon(QIcon(":images/camera.png");
+  _tbCamera->setIcon(QIcon(":images/camera.png"));
 #endif
 
   connect(_cbPreviewMode, SIGNAL(activated(int)), this, SLOT(onPreviewModeChanged(int)));
