@@ -48,10 +48,10 @@
 
 #include <QMutex>
 #include <opencv2/opencv.hpp>
-#include "gmic.h"
 #ifndef gmic_core
 #include "CImg.h"
 #endif
+#include "gmic.h"
 
 class QImage;
 
