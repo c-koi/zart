@@ -163,8 +163,8 @@ void FilterThread::run()
         if (_commandUpdated) {
           delete _gmic;
           QString c = QString("zart: -skip $\"*\" ") + _command;
-	  _gmic = new gmic("", c.toLatin1().constData(), true, 0, 0, 0.0f);
-	  _commandUpdated = false;
+          _gmic = new gmic("", c.toLocal8Bit().constData(), true, 0, 0, 0.0f);
+          _commandUpdated = false;
         }
 
         QString c("v -");
@@ -185,7 +185,7 @@ void FilterThread::run()
         _arguments.unlock();
         c += call;
 
-        _gmic->run(c.toLatin1().constData(), _gmic_images, _gmic_images_names);
+        _gmic->run(c.toLocal8Bit().constData(), _gmic_images, _gmic_images_names);
         lastCommandDuration = timeMeasure.elapsed();
 
         switch (_previewMode) {
@@ -262,7 +262,7 @@ void FilterThread::run()
         QString errorCommand = QString("-gimp_error_preview \"%1\"").arg(e.what());
 
         try {
-          _gmic->run(errorCommand.toLatin1().constData(), _gmic_images, _gmic_images_names);
+          _gmic->run(errorCommand.toLocal8Bit().constData(), _gmic_images, _gmic_images_names);
         } catch (gmic_exception & e) {
           const unsigned char color1[] = {0, 255, 0}, color2[] = {0, 0, 0};
           _gmic_images = src.get_permute_axes("yzcx").channel(0).resize(-100, -100, 1, 3).draw_text(10, 10, "Syntax Error", color1, color2, 0.5, 57);
@@ -301,7 +301,7 @@ void FilterThread::setCommand(const QString & command)
     _command.clear();
   } else {
     _noFilter = false;
-    QByteArray str = command.toLatin1();
+    QByteArray str = command.toLocal8Bit();
     _command = str.constData();
     _command.replace("{*,x}", "$_x").replace("{*,y}", "$_y").replace("{*,b}", "$_b");
   }

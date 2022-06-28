@@ -89,7 +89,7 @@ bool VideoFileSource::loadVideoFile(QString filename)
   }
   _capture = nullptr;
   try {
-    _capture = new cv::VideoCapture(filename.toLatin1().constData());
+    _capture = new cv::VideoCapture(filename.toLocal8Bit().constData());
   } catch (cv::Exception & e) {
     std::cerr << "Error: Cannot open video file." << std::endl;
     std::cerr << "OpenCV says: " << e.what() << std::endl;

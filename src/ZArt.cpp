@@ -68,7 +68,7 @@ void onSigQuit(int)
 void usage(const char * argv0)
 {
   cout << "Usage:" << endl
-       << "       " << QFileInfo(argv0).baseName().toLatin1().constData() << " [options] [image_file|video_file]" << endl
+       << "       " << QFileInfo(argv0).baseName().toLocal8Bit().constData() << " [options] [image_file|video_file]" << endl
        << "\n"
        << "Options: " << endl
        << "      --clear-cams  : Clear webcam cache." << endl

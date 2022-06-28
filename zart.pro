@@ -231,8 +231,8 @@ CONFIG(release, debug|release) {
 CONFIG(debug, debug|release) {
  message(Debug build)
  DEFINES += _ZART_DEBUG_
-# QMAKE_CXXFLAGS_DEBUG += -fsanitize=address -Dcimg_verbosity=3
-# QMAKE_LFLAGS_DEBUG +=  -fsanitize=address -g
+ # QMAKE_CXXFLAGS_DEBUG += -fsanitize=address -Dcimg_verbosity=3
+ # QMAKE_LFLAGS_DEBUG +=  -fsanitize=address
 }
 
 UI_DIR = .ui
