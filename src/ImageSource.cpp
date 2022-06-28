@@ -50,10 +50,13 @@ ImageSource::ImageSource()
 {
   _width = 0;
   _height = 0;
-  _image = 0;
+  _image = nullptr;
 }
 
-ImageSource::~ImageSource() {}
+ImageSource::~ImageSource()
+{
+  delete _image;
+}
 
 cv::Mat * ImageSource::image() const
 {
@@ -72,6 +75,7 @@ void ImageSource::setHeight(int height)
 
 void ImageSource::setImage(cv::Mat * image)
 {
+  delete _image;
   _image = image;
   if (_image) {
     _width = image->cols;

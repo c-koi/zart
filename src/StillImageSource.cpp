@@ -54,13 +54,7 @@ StillImageSource::StillImageSource()
   _filename = "";
 }
 
-StillImageSource::~StillImageSource()
-{
-  if (image()) {
-    cv::Mat * anImage = image();
-    delete anImage;
-  }
-}
+StillImageSource::~StillImageSource() {}
 
 void StillImageSource::capture() {}
 
@@ -77,11 +71,7 @@ bool StillImageSource::loadImage(QString filename)
   QImage rgb = qimage.convertToFormat(QImage::Format_RGB888);
   _filename = info.fileName();
   _filePath = info.absolutePath();
-  cv::Mat * anImage = image();
-  if (anImage) {
-    delete anImage;
-    anImage = nullptr;
-  }
+  cv::Mat * anImage = nullptr;
   ImageConverter::convert(rgb, &anImage);
   setImage(anImage);
   return true;
