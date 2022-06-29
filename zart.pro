@@ -132,7 +132,7 @@ linux:!exists(/usr/include/linux/videodev2.h) {
  warning(v4l2 header file videodev2.h not found. It is HIGHLY recommended.)
 }
 
-DEFINES += gmic_is_parallel cimg_use_abort
+DEFINES += cimg_use_abort
 
 INCLUDEPATH += $$PWD $$PWD/include
 
